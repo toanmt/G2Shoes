@@ -27,7 +27,7 @@
                                     <label>Password</label>
                                 </div>
                                 <div class="col-auto">
-                                    <a class="text-muted" href="forgot-password.html">
+                                    <a class="text-muted" href="{{ url('admin/forgot-password') }}">
                                         Forgot password?
                                     </a>
                                 </div>

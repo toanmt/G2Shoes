@@ -55,6 +55,48 @@
                 $('.errPass').text('');
             }
         });
+
+        $('.confirm').keyup(function(){
+            var password = $('.comfirm').val();
+            if(password == null || password ==''){
+                $('.errConf').text('Confirm password không được để trống');
+            }else if(password.length < 6){
+                $('.errConf').text('Confirm password không được bé hơn 6 ký tự');
+            }else if(password == $('.pass').val()){
+                $('.errConf').text('Confirm password không khớp');
+            }else{
+                $('.errConf').text('');
+            }
+        });
+        $('#frm-forgot-pass').submit(function(e){
+            e.preventDefault();
+            var formData = $(this).serialize();
+            $.post($(this).attr('action'),formData,function(data){
+                if(data.error !== undefined){
+                    alert(data.error);
+                }
+
+                if(data.success !== undefined){
+                    alert(data.success);
+                    location.href = data.url;
+                }
+            });
+        });
+
+        $('#frm-reset-pass').submit(function(e){
+            e.preventDefault();
+            var formData = $(this).serialize();
+            $.post($(this).attr('action'),formData,function(data){
+                if(data.error !== undefined){
+                    alert(data.error);
+                }
+
+                if(data.success !== undefined){
+                    alert(data.success);
+                    location.href = data.url;
+                }
+            });
+        });
     })
 </script>
 </body>
