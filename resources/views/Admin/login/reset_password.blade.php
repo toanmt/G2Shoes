@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <input name="confirm_pass" class="form-control confirm" type="password">
+                            <input name="confirm_pass" class="form-control confirm_pass" type="password">
                             <div class="errConf text-danger"></div>
                         </div>
                         <div class="form-group text-center">

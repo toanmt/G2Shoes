@@ -56,13 +56,13 @@
             }
         });
 
-        $('.confirm').keyup(function(){
-            var password = $('.comfirm').val();
+        $('.confirm_pass').keyup(function(){
+            var password = $(this).val();
             if(password == null || password ==''){
                 $('.errConf').text('Confirm password không được để trống');
             }else if(password.length < 6){
                 $('.errConf').text('Confirm password không được bé hơn 6 ký tự');
-            }else if(password == $('.pass').val()){
+            }else if(password != $('.pass').val()){
                 $('.errConf').text('Confirm password không khớp');
             }else{
                 $('.errConf').text('');

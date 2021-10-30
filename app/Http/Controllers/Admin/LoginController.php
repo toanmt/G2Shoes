@@ -81,8 +81,8 @@ class LoginController extends Controller
     public function resetPassPost(Request $request){
         $admin = Admin::where('username',$request->username)->first();
         if(!empty($admin)){
-            if($request->password == $request->confirm){
-                Admin::update('password',$request->password);
+            if($request->new_pass == $request->confirm_pass){
+                Admin::where('username',$request->username)->update(['password'=>bcrypt($request->confirm_pass)]);
                 return response()->json(['success'=>'cập nhật thành công hãy đăng nhập lại!!',
                 'url'=>url('admin/login')]);
             }else{
