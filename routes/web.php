@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
     Route::get('login',[App\Http\Controllers\Admin\LoginController::class,'index'])->name('login');
     Route::post('login',[App\Http\Controllers\Admin\LoginController::class,'login'])->name('login');
+    Route::get('forgot-password',[App\Http\Controllers\Admin\LoginController::class,'forgotPass']);
+    Route::post('send-mail',[App\Http\Controllers\Admin\LoginController::class,'sendMail']);
+    Route::get('reset-password',[App\Http\Controllers\Admin\LoginController::class,'resetPass']);
+    Route::post('reset-pass',[App\Http\Controllers\Admin\LoginController::class,'resetPassPost']);
     Route::middleware(['validate'])->group(function () {
         Route::get('/logout',[App\Http\Controllers\Admin\LoginController::class,'logout']);
         //Home
