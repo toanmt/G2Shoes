@@ -10,51 +10,52 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="page-title">Products</h3>
+                    <h3 class="page-title">Images</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Products</li>
+                        <li class="breadcrumb-item active">Images</li>
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#size_manage"><i class="fa fa-arrows-h" aria-hidden="true"></i> Sizes</a>
+                    <div class="view-icons">
+                        <a href="{{ url('admin/images') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+                        <a href="{{ url('admin/image-lists') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
+                    </div>
                 </div>
-                <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Product</a>  
-                </div>
-                
             </div>
         </div>
         <!-- /Page Header -->
         
         <!-- Search Filter -->
-        <form id="frm-search-product" action="{{ url('admin/product-search') }}" method="POST">
+        <form id="frm-search" action="{{ url('admin/image-search') }}" method="POST">
             @csrf
             <div class="row filter-row">
                 <div class="col-sm-6 col-md-3">  
                     <div class="form-group form-focus">
-                        <input name="name" type="text" class="form-control floating">
-                        <label class="focus-label">Product Name</label>
+                        <input name="user" type="text" class="form-control floating">
+                        <label class="focus-label">image Username</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">  
                     <div class="form-group form-focus">
-                        <input name="price" type="text" class="form-control floating">
-                        <label class="focus-label">Price</label>
+                        <input name="name" type="text" class="form-control floating">
+                        <label class="focus-label">image Name</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3"> 
                     <div class="form-group form-focus select-focus">
-                        <select name="size[]" class="select floating">
-                            @foreach ($sizes as $size)
-                                <option value="{{ $size->SizeID }}">size {{ $size->Number }}</option>
-                            @endforeach 
+                        <select class="select floating"> 
+                            <option>Select Designation</option>
+                            <option>Web Developer</option>
+                            <option>Web Designer</option>
+                            <option>Android Developer</option>
+                            <option>Ios Developer</option>
                         </select>
-                        <label class="focus-label">Sizes</label>
+                        <label class="focus-label">Designation</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">  
-                    <button type="submit" class="btn btn-success btn-block btn-search-product"> Search </button>  
+                    <button type="submit" class="btn btn-success btn-block btn-search-image"> Search </button>  
                 </div>
             </div>
         </form>
@@ -63,12 +64,6 @@
         @yield('section')
     </div>
     <!-- /Page Content -->
-    
-    @include('Admin.products.create')
-    
-    @include('Admin.products.edit')
-
-    @include('Admin.products.delete')
 
 </div>
 <!-- /Page Wrapper -->

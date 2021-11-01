@@ -30,15 +30,18 @@ Route::prefix('admin')->group(function () {
         Route::get('/home',[App\Http\Controllers\Admin\HomeController::class,'index']);
         //product
         Route::get('/products',[App\Http\Controllers\Admin\ProductController::class,'index']);
-        Route::post('/add-product',[App\Http\Controllers\Admin\ProductController::class,'addProduct']);
-        Route::get('/products/{id}',[App\Http\Controllers\Admin\ProductController::class,'showProduct']);
-        Route::post('/edit-product/{id}',[App\Http\Controllers\Admin\ProductController::class,'editProduct']);
-        Route::get('/delete-product/{id}',[App\Http\Controllers\Admin\ProductController::class,'deleteProduct']);
-        Route::post('/product-search',[App\Http\Controllers\Admin\ProductController::class,'search']);
+        // Route::post('/add-product',[App\Http\Controllers\Admin\ProductController::class,'addProduct']);
+        // Route::get('/products/{id}',[App\Http\Controllers\Admin\ProductController::class,'showProduct']);
+        // Route::post('/edit-product/{id}',[App\Http\Controllers\Admin\ProductController::class,'editProduct']);
+        // Route::get('/delete-product/{id}',[App\Http\Controllers\Admin\ProductController::class,'deleteProduct']);
+        // Route::post('/product-search',[App\Http\Controllers\Admin\ProductController::class,'search']);
         //size
-        Route::post('/add-size',[App\Http\Controllers\Admin\SizeController::class,'addSize']);
-        Route::get('/edit-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'editSize']);
-        Route::get('/delete-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'deleteSize']);
+        Route::get('/sizes',[App\Http\Controllers\Admin\SizeController::class,'index']);
+        // Route::post('/add-size',[App\Http\Controllers\Admin\SizeController::class,'addSize']);
+        // Route::get('/edit-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'editSize']);
+        // Route::get('/delete-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'deleteSize']);
+         //image
+         Route::get('/images',[App\Http\Controllers\Admin\ImageController::class,'index']);
     });
     
 });

@@ -49,6 +49,12 @@
 
                     </ul>
                 </li>
+                <li>
+                    <a href="{{ url('admin/sizes') }}"><i class="fa fa-cubes"></i> <span> Sizes </span></a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/images') }}"><i class="fa fa-cubes"></i> <span> Images </span></a>
+                </li>
                 <li class="menu-title"> 
                     <span>Font-end</span>
                 </li>
