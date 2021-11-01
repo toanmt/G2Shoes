@@ -14,21 +14,29 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('types') -> insert([
+        DB::table('types')->insert([
             'type_name' => 'Converse CLASSIC',
-            'brand_id' => '1'
+            'brand_id' => 1,
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('types') -> insert([
+        DB::table('types')->insert([
             'type_name' => 'Vans OLD SKOOL',
-            'brand_id' => '2'
+            'brand_id' => 2,
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('types') -> insert([
+        DB::table('types')->insert([
             'type_name' => 'Adidas SUPERSTAR',
-            'brand_id' => '3'
+            'brand_id' => 3,
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('types') -> insert([
+        DB::table('types')->insert([
             'type_name' => 'Nike AIR FORCE',
-            'brand_id' => '4'
+            'brand_id' => 4,
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
         ]);
     }
 }
