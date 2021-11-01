@@ -4,7 +4,7 @@
   <!-- Logo -->
   <div class="header-left">
     <a href="" class="logo">
-      <img src="{{ asset('backend/img/logo.png') }}" width="40" height="40" alt="">
+      <img src="{{ asset('Image/logo/logo.png') }}" width="40" height="40" alt="">
     </a>
   </div>
   <!-- /Logo -->

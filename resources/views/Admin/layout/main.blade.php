@@ -12,7 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/img/favicon.png') }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Image/logo/favicon.png') }}">
   
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
