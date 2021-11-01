@@ -8,18 +8,11 @@
 		</div>
 		<div class="nav-menu">
 			<ul class="nav-list">
+				@foreach($data as $brand)
 				<li class="nav-item">
-					<a href="#" class="nav-link">sneaker</a>
+					<a href="#" class="nav-link">{{$brand->brand_name}}</a>
 				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link">slide/sandal</a>
-				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link">Crocs</a>
-				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link">sales</a>
-				</li>
+				@endforeach
 				<li class="nav-item">
 					<a href="./introduce.html" class="nav-link">giới thiệu</a>
 				</li>

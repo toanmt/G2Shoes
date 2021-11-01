@@ -1,5 +1,3 @@
-@extends('User.layout.main')
-@section('content')
 <section class="gallery">
   <div class="product-heading">
     <h2 class="heading heading-title">
@@ -41,4 +39,3 @@
     </ul>
   </div>
 </section>
-@endsection
