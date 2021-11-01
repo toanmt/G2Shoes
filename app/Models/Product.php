@@ -10,4 +10,17 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'products';
+
+    public function product_size(){
+        return $this->hasMany(ProductSize::class,'product_id','id');
+    }
+    
+    public function type()
+    {
+        return $this->belongsTo(Type::class, 'type_id', 'id');
+    }
+
+    public function images(){
+        return $this->hasMany(Image::class,'product_id','id');
+    }
 }
