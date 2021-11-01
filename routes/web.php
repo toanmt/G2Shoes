@@ -39,6 +39,12 @@ Route::prefix('admin')->group(function () {
         Route::post('/add-size',[App\Http\Controllers\Admin\SizeController::class,'addSize']);
         Route::get('/edit-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'editSize']);
         Route::get('/delete-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'deleteSize']);
+        //brands
+        Route::get('/brand-product',[App\Http\Controllers\Admin\BrandProductController::class,'index']);
+        Route::post('/add-brand',[App\Http\Controllers\Admin\BrandProductController::class,'addBrand']);
+        Route::get('/delete-brand/{id}',[App\Http\Controllers\Admin\BrandProductController::class,'deleteBrand']);
+        Route::get('/brand/{id}',[App\Http\Controllers\Admin\BrandProductController::class,'showBrand']);
+        Route::post('/edit-brand/{id}',[App\Http\Controllers\Admin\BrandProductController::class,'editBrand']);
     });
     
 });
