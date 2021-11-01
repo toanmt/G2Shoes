@@ -1,16 +1,18 @@
-
+@foreach($type as $product_type)
 <section class="product">
   <div class="product-heading">
-    <h2 class="heading heading-title"><a href="#">{{$type->type_name}}</a></h2>
+    <h2 class="heading heading-title"><a href="#">{{$product_type->type_name}}</a></h2>
     <a href="#" class="heading-view">Xem thêm</a>
   </div>
   <div class="product-list">
     <div class="container">
+      @foreach($product_type -> products_type as $product)
       <div class="product-item">
         <div class="product-image">
           <a href="#" class="product-image__link">
-            <img src="{{ asset('frontend/img/product/product_1.webp') }}" alt="" />
-            <img src="{{ asset('frontend/img/product/product_2.webp') }}" alt="" />
+            @foreach($product->images as $image) 
+            <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
+            @endforeach
           </a>
           <div class="product-control">
             <a href="#" class="product-btn">Mua ngay</a>
@@ -20,21 +22,22 @@
         <div class="product-infor">
           <div class="product-name">
             <h3>
-              <a href="#" title="{{$item->product_name}}">{{$item->product_name}}</a>
+              <a href="#" title="">{{$product->product_name}}</a>
             </h3>
           </div>
           <div class="product-price">
             <p class="product-price__new">
-              {{$item->price}}
-              @if({{$item->discount}} > 0) 
-              <span class="product-price__old">{{$item->price - ($item->price * $item->dicount)/100}}</span>
+              {{$product->price}}
+              @if($product->discount > 0)
+              <span class="product-price__old">{{$product->price - ($product->price * $product->discount)/100}}</span>
               @endif
             </p>
           </div>
         </div>
       </div>
+      @endforeach
     </div>
   </div>
 </div>
 </section>
-
+@endforeach

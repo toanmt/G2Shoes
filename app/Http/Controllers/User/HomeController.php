@@ -14,7 +14,6 @@ class HomeController extends Controller
 	public function index(){
 		$data = Brand::all();
 		$type = Type::all()->take(3);
-		$product = Product::where('type_id', $type->id)->get(); 
-		return View('User.home.main')->with(['data'=>(object)$data])->with(['type'=>(object)$type])->with(['product'=>(object)$product]);
+		return View('User.home.main')->with(['data'=>(object)$data])->with(['type'=>(object)$type]);
 	}
 }
