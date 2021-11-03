@@ -17,50 +17,38 @@
                     </ul>
                 </li>
                 <li class="menu-title"> 
-                    <span>Employees</span>
+                    <span>Sản phẩm</span>
                 </li>
                 <li> 
-                    <a href="{{ url('admin/clients') }}"><i class="la la-users"></i> <span>Clients</span></a>
+                    <a href="{{ url('admin/products') }}"><i class="la la-cubes"></i> <span> Tất cả sản phẩm </span></a>
                 </li>
-                <li> 
-                    <a href="tickets.html"><i class="la la-ticket"></i> <span>Tickets</span></a>
+                <li>
+                    <a href="{{ url('admin/image-product') }}"><i class="las la-comment"></i> <span>Ảnh sản phẩm</span></a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/brand-product') }}"><i class="la la-tags"></i> <span> Thương hiệu</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="las la-comment"></i> <span>Đánh giá khách hàng</span></a>
                 </li>
                 <li class="menu-title"> 
-                    <span>Business Management</span>
+                    <span>Quản lý kinh doanh</span>
+                </li>
+                <li>
+                    <a href="#"><i class="las la-ticket-alt"></i> <span> Mã giảm giá</span></a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/invoices') }}"><i class="las la-file-invoice-dollar"></i> <span> Hóa đơn </span></span></a>                    
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="fa fa-first-order"></i> <span> Invoices </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="{{ url('admin/invoices') }}"> All Invoices</a></li>
-                    </ul>
-                    
-                </li>
-                <li class="submenu">
-                    <a href="#"><i class="la la-pie-chart"></i> <span> Reports </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="la la-pie-chart"></i> <span> Thống kê </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="invoice-reports.html"> Invoice Report </a></li>
                         <li><a href="payments-reports.html"> Payments Report </a></li>
                     </ul>
                 </li>
-                <li class="submenu">
-                    <a href="#"><i class="fa fa-cubes"></i> <span> Products </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="{{ url('admin/products') }}"> All Products</a></li>
+                
 
-                    </ul>
-                </li>
-                <li>
-                    <a href="{{ url('admin/sizes') }}"><i class="fa fa-cubes"></i> <span> Sizes </span></a>
-                </li>
-                <li>
-                    <a href="{{ url('admin/images') }}"><i class="fa fa-cubes"></i> <span> Images </span></a>
-                </li>
-                <li class="menu-title"> 
-                    <span>Font-end</span>
-                </li>
-                <li>
-                    <a href="{{ url('admin/brand-product') }}"><i class="la la-dashboard"></i> <span> Brand Product</span></a>
-                </li>
             </ul>
         </div>
     </div>

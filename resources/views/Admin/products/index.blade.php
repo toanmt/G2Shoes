@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
-                <table class="table table-striped custom-table datatable">
+                <table id="product-table" class="table table-striped custom-table datatable">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -29,16 +29,16 @@
                             <td>{{ $product->product_name }}</td>
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->discount }}</td>
-                            <td>@foreach ($product->product_size as $a)
-                                <button><?php echo $a->sizes->Number ?></button>
+                            <td>@foreach ($product->product_size as $product_size)
+                                <button><?php echo $product_size->sizes->size_number ?></button>
                             @endforeach</td>
                             <td>{{ $product->type->type_name }}</td>
                             <td class="text-right">
                                 <div class="dropdown dropdown-action">
                                     <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item btn-edit-product" href="#" data-id="{{ $product->id }}" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                        <a class="dropdown-item btn-delete-product" data-id="{{ $product->id }}" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        <a class="dropdown-item btn-edit-product" href="#" data-id="{{ $product->id }}" data-toggle="modal" data-target="#edit_product"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                        <a class="dropdown-item btn-delete-product" data-id="{{ $product->id }}" href="#" data-toggle="modal" data-target="#delete_product"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                     </div>
                                 </div>
                             </td>

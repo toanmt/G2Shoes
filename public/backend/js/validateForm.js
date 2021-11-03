@@ -28,6 +28,35 @@ $(document).ready(function(){
         }
     })
 
+    $('.amount').keyup(function(){
+        var amount = $(this).val();
+        if(amount == null || amount == ''){
+            $('.err_amount').text('Amount không được để trống!!');
+        }else if(isNaN(parseInt(amount))){
+            $('.err_amount').text('Amount không đúng định dạng!!');
+        }else{
+            $('.err_amount').text('');
+        }
+    })
+
+    $('.amount-size').change(function(){
+        var amount = $(this).val();
+        if(isNaN(parseInt(amount))){
+            alert('Amount size không đúng định dạng!!');
+        }
+    })
+
+    $('.discount').keyup(function(){
+        var discount = $(this).val();
+        if(discount == null || discount == ''){
+            $('.err_discount').text('Discount không được để trống!!');
+        }else if(isNaN(parseInt(discount))){
+            $('.err_discount').text('Discount không đúng định dạng!!');
+        }else{
+            $('.err_discount').text('');
+        }
+    })
+
     $('.discount').keyup(function(){
         var discount = $(this).val();
         if(discount == null || discount == ''){
@@ -122,4 +151,6 @@ $(document).ready(function(){
             $('.err_conf').text('');
         }        
     })
+
+    
 })

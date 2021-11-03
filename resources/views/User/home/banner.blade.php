@@ -1,5 +1,3 @@
-@extends('User.layout.main')
-@section('content')
 <!-- Banner -->
 <section class="banner">
 	<div class="slider">
@@ -22,4 +20,3 @@
 	</div>
 </section>
 <!-- Banner -->
-@endsection

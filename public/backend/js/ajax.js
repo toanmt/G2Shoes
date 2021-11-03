@@ -32,7 +32,7 @@ $(document).ready(function(){
 
     //show edit
     function edit(){
-            $('.btn-edit').click(function(){
+        $('.btn-edit').click(function(){
             var id = $(this).data('id');
             $('#frm-edit').attr('action',location.origin+'/admin/edit-user/'+id);
             $('.edit-sbm').attr('data-id',id);
@@ -85,27 +85,27 @@ $(document).ready(function(){
         })
     });
 
-    //delete
-    function del(){
-        $('.btn-delete').click(function(){
-            var key = $(this).data('id');
-            $('.continue-btn').attr('data-id',key);
-        })
-    };
-    del();
+    // //delete
+    // function del(){
+    //     $('.btn-delete').click(function(){
+    //         var key = $(this).data('id');
+    //         $('.continue-btn').attr('data-id',key);
+    //     })
+    // };
+    // del();
 
-    $('.continue-btn').click(function(){
-        $.ajax({
-            type: 'GET',
-            url: '/admin/delete-user/'+$(this).data('id'),
-            dataType: 'json',
-            success: function(data){
-                if(data.ok){
-                    location.reload();
-                }
-            }
-        });
-    })
+    // $('.continue-btn').click(function(){
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: '/admin/delete-user/'+$(this).data('id'),
+    //         dataType: 'json',
+    //         success: function(data){
+    //             if(data.ok){
+    //                 location.reload();
+    //             }
+    //         }
+    //     });
+    // })
 
     $('.btn-search-user').click(function(e){
         e.preventDefault();
@@ -138,15 +138,15 @@ $(document).ready(function(){
     });
 
     function action(){$('.action').click(function(e){
-            e.preventDefault();
-            $.ajax({
-                type: 'GET',
-                url: '/admin/client-lists/action',
-                data: {
-                    'status': $(this).attr('status'),
-                    'id': $(this).data('id')
-                },
-                success: function(data){
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: '/admin/client-lists/action',
+            data: {
+                'status': $(this).attr('status'),
+                'id': $(this).data('id')
+            },
+            success: function(data){
                     // $('#status').removeData();
                     $('#status').html(data.output);
                 },
@@ -155,188 +155,163 @@ $(document).ready(function(){
                     
                 }
             })
-        })
-    };
-    action();
-
-    $('.btn-search-client').click(function(e){
-        e.preventDefault();
-        var formData = $('#frm-search').serialize();
-        
-        $.ajax({
-            type: 'POST',
-            url: '/admin/client-search',
-            data: formData,
-            dataType: 'json',
-            success: function(data){
-                if(data.output != null){
-                    $('#data').removeData();
-                    $('#data').html(data.output);
-                    action();
-                }
-                if(data.result!= null){
-                    $('#data-show').removeData();
-                    $('#data-show').html(data.result);
-                }
-            },
-            error: function(data){
-                console.log(data);
-                
-            }
-        })
-    });
-
-    $('#frm-profile').on('submit',function(e){
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'),
-            data: new FormData(this),
-            dataType: 'json',
-            contentType:false,
-            processData:false,
-            success: function(data){
-                if(data.error !== undefined){
-                    alert(data.error);
-                }else{
-                    alert(data.success);
-                    setTimeout(function(){
-                        location.reload();
-                    },1);
-                }
-            },
-            error: function(data){
-                console.log(data);
-                
-            }
-        })
     })
+};
+action();
 
-    
+$('.btn-search-client').click(function(e){
+    e.preventDefault();
+    var formData = $('#frm-search').serialize();
 
-    function editSize()
-    {
-        $('.edit-size').on('click',function(e){
-            e.preventDefault();
-            var id = $(this).data('id');
-            var num = prompt('Nhập số size');
-            if(parseFloat(num) > 0){
-                $.ajax({
-                    type: 'GET',
-                    url: '/admin/edit-size/'+id,
-                    data: {
-                        'size': num
-                    },
-                    dataType: 'json',
-                    success: function(data){
-                        alert(data.output);
-                        $('#size-'+id).text(num);
-                    },
-                    error: function(data){
-                        console.log(data);
-                        
-                    }
-                })
+    $.ajax({
+        type: 'POST',
+        url: '/admin/client-search',
+        data: formData,
+        dataType: 'json',
+        success: function(data){
+            if(data.output != null){
+                $('#data').removeData();
+                $('#data').html(data.output);
+                action();
+            }
+            if(data.result!= null){
+                $('#data-show').removeData();
+                $('#data-show').html(data.result);
+            }
+        },
+        error: function(data){
+            console.log(data);
+
+        }
+    })
+});
+
+$('#frm-profile').on('submit',function(e){
+    e.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: new FormData(this),
+        dataType: 'json',
+        contentType:false,
+        processData:false,
+        success: function(data){
+            if(data.error !== undefined){
+                alert(data.error);
             }else{
-                alert('Vui lòng nhập đúng định dạng!!');
+                alert(data.success);
+                setTimeout(function(){
+                    location.reload();
+                },1);
             }
-            
-        })
-    }
+        },
+        error: function(data){
+            console.log(data);
 
-    editSize();
+        }
+    })
+})
 
-    function delSize(){
-        $('.delete-size').on('click',function(e){
-            e.preventDefault();
-            var id = $(this).data('id');
-            var choose = confirm('Bạn có muốn xóa size này không?');
-            if(choose){
-                $.ajax({
-                    type: 'GET',
-                    url: '/admin/delete-size/'+id,
-                    dataType: 'json',
-                    success: function(data){
-                        alert(data.output);
-                        $('#del-'+id).remove();
-                    },
-                    error: function(data){
-                        console.log(data);
-                    }
-                })
-            }
-        })
-    }
 
-    delSize();
 
-    $('#frm-create-size').on('submit',function(e){
+function editSize()
+{
+    $('.edit-size').on('click',function(e){
         e.preventDefault();
-        var formData = $('#frm-create-size').serialize();
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'),
-            data: formData,
-            dataType: 'json',
-            success: function(data){  
-                if(data.error !== undefined){
-                    alert(data.error);
-                }else{
-                    alert('Thêm hành công!!');
-                    $('#table-size').append(data.output);
-                    editSize();
-                    delSize();
-                }
-            },
-            error: function(data){
-                console.log(data);
-                
-            }
-        })
-    });
-
-    function editProduct(){
-            $('.btn-edit-product').click(function(){
-            var id = $(this).data('id');
-            $('#frm-edit-product').attr('action',location.origin+'/admin/edit-product/'+id);
-            
+        var id = $(this).data('id');
+        var num = prompt('Nhập số size');
+        if(parseFloat(num) > 0){
             $.ajax({
                 type: 'GET',
-                url: '/admin/products/'+id,
+                url: '/admin/edit-size/'+id,
+                data: {
+                    'size': num
+                },
                 dataType: 'json',
                 success: function(data){
+                    alert(data.output);
+                    $('#size-'+id).text(num);
+                },
+                error: function(data){
                     console.log(data);
-                    $('.edit-output').attr('src',location.origin+'/backend/img/products/'+data.products.Image);
-                    $('.edit-price').val(data.products.Price);
-                    $('.edit-discount').val(data.products.Discount);
-                    $('.edit-name').val(data.products.ProductName);
-                    $('.edit-description').html(data.products.Description);
-                    //size
-                    for(let item of data.size_products){
-                        $('#check-'+item.sizes.SizeID).attr('checked','checked');
-                    }
+
                 }
-            });
-        })
-    };
-    editProduct();
+            })
+        }else{
+            alert('Vui lòng nhập đúng định dạng!!');
+        }
 
+    })
+}
 
+editSize();
 
-    $('#frm-create-product').on('submit',function(e){
+function delSize(){
+    $('.delete-size').on('click',function(e){
         e.preventDefault();
+        var id = $(this).data('id');
+        var choose = confirm('Bạn có muốn xóa size này không?');
+        if(choose){
+            $.ajax({
+                type: 'GET',
+                url: '/admin/delete-size/'+id,
+                dataType: 'json',
+                success: function(data){
+                    alert(data.output);
+                    $('#del-'+id).remove();
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            })
+        }
+    })
+}
+
+delSize();
+
+$('#frm-create-size').on('submit',function(e){
+    e.preventDefault();
+    var formData = $('#frm-create-size').serialize();
+    $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: formData,
+        dataType: 'json',
+        success: function(data){  
+            if(data.error !== undefined){
+                alert(data.error);
+            }else{
+                alert('Thêm hành công!!');
+                $('#table-size').append(data.output);
+                editSize();
+                delSize();
+            }
+        },
+        error: function(data){
+            console.log(data);
+
+        }
+    })
+});
+
+
+    //-------------------- Brand---------------------
+
+    $('#submit_form').on('submit',function(e){
+        e.preventDefault();
+        $('#err_name_brand').text('');
+        var dataF = $(this).serialize();
         $.ajax({
             type: 'POST',
-            url: $(this).attr('action'),
-            data: new FormData(this),
+            url: '/admin/add-brand',
+            data: dataF,
             dataType: 'json',
-            contentType:false,
-            processData:false,
-            success: function(data){  
-                if(data.error !== undefined){
-                    alert(data.error);
-                }else{
-                    alert(data.success);
+            success: function(data){
+                if(data.errorN !== undefined){
+                    $('#err_name_brand').html(data.errorN);
+                    data.errorN.remove();
+                } else {
                     setTimeout(function(){
                         location.reload();
                     },1);
@@ -344,49 +319,23 @@ $(document).ready(function(){
             },
             error: function(data){
                 console.log(data);
-                
             }
-        })
-    });
-
-    $('#frm-edit-product').on('submit',function(e){
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'),
-            data: new FormData(this),
-            dataType: 'json',
-            contentType:false,
-            processData:false,
-            success: function(data){ 
-                if(data.error !== undefined){
-                    alert(data.error);
-                }else{
-                    alert(data.success);
-                    setTimeout(function(){
-                        location.reload();
-                    },1);
-                }
-            },
-            error: function(data){
-                console.log(data);
-            }
-        })
+        });
     });
 
     //delete
-    function delProduct(){
-        $('.btn-delete-product').click(function(){
+    function delbrand(){
+        $('.btn-delete-brand').click(function(){
             var key = $(this).data('id');
-            $('.del-product').attr('data-id',key);
+            $('.btn-del-brand').attr('data-id',key);
         })
     };
-    delProduct();
+    delbrand();
 
-    $('.del-product').click(function(){
+    $('.btn-del-brand').click(function(){
         $.ajax({
             type: 'GET',
-            url: '/admin/delete-product/'+$(this).data('id'),
+            url: '/admin/delete-brand/'+$(this).data('id'),
             dataType: 'json',
             success: function(data){
                 if(data.ok){
@@ -395,26 +344,47 @@ $(document).ready(function(){
             }
         });
     });
+    //show edit
+    function editBrand(){
+        $('.btn-edit-brand').click(function(){
+            var id = $(this).data('id');
+            $('#submit_form_edit_brand').attr('action',location.origin+'/admin/edit-brand/'+id);
+            $('.submit-edit-brand-btn').attr('data-id',id);
+            $.ajax({
+                type: 'GET',
+                url: '/admin/brand/'+$(this).data('id'),
+                dataType: 'json',
+                success: function(data){
+                    $('.brand-Name').val(data.brand_name);
+                }
+            });
+        })
+    };
+    editBrand();
 
-    $('#frm-search-product').on('submit',function(e){
+    $('#submit_form_edit_brand').on('submit',function(e){
         e.preventDefault();
-        var formData = $(this).serialize();
         $.ajax({
             type: 'POST',
-            url: '/admin/product-search',
-            data: formData,
+            url: $(this).attr('action'),
+            data: new FormData(this),
             dataType: 'json',
+            contentType: false,
+            processData: false,
             success: function(data){
-                if(data.output != ''){
-                    $('#data').removeData();
-                    $('#data').html(data.output);
-                    editProduct();
-                    delProduct();
-                }
+                if(data.error !== undefined){
+                    alert(data.error);
+                }else{
+                    setTimeout(function(){
+                        location.reload();
+                    },1);
+                }  
             },
             error: function(data){
                 console.log(data);
+                
             }
         })
     });
+    // -------------------------- /Brand --------------------------------
 })
