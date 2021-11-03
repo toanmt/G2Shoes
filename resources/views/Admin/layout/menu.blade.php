@@ -23,6 +23,9 @@
                     <a href="{{ url('admin/products') }}"><i class="la la-cubes"></i> <span> Tất cả sản phẩm </span></a>
                 </li>
                 <li>
+                    <a href="{{ url('admin/image-product') }}"><i class="las la-comment"></i> <span>Ảnh sản phẩm</span></a>
+                </li>
+                <li>
                     <a href="{{ url('admin/brand-product') }}"><i class="la la-tags"></i> <span> Thương hiệu</span></a>
                 </li>
                 <li>
@@ -44,6 +47,8 @@
                         <li><a href="payments-reports.html"> Payments Report </a></li>
                     </ul>
                 </li>
+                
+
             </ul>
         </div>
     </div>

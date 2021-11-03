@@ -1,5 +1,5 @@
 <!-- Edit Employee Modal -->
-<div id="edit_employee" class="modal custom-modal fade" role="dialog">
+<div id="edit_product" class="modal custom-modal fade" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,14 +12,14 @@
                 <form id="frm-edit-product" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="profile-img-wrap edit-img">
-                                <img class="inline-block output edit-output" src="">
+                        <div  class="col-md-12 text-center">
+                            <div class="edit-img">
                                 <div class="fileupload btn">
-                                    <span class="btn-text">edit</span>
-                                    <input name="image_product" class="upload" type="file">
+                                    <span class="btn-text">edit images product</span>
+                                    <input name="image_product[]" class="upload" type="file" multiple>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                     <div class="row">
@@ -57,12 +57,19 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Category <span class="text-danger">*</span></label>
-                                <select name="category" class="select">
+                                <label>Amount <span class="text-danger">*</span></label>
+                                <input name="amount" class="form-control amount edit-amount" type="text">
+                                <div class="err_amount text-danger"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Type Product <span class="text-danger">*</span></label>
+                                <select name="type" class="select edit-type">
                                     @foreach ($types as $type)
-                                        <option value="{{ $type->CategoryID }}">{{ $type->CategoryName }}</option>
+                                        <option value="{{ $type->id }}">{{ $type->type_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -72,17 +79,28 @@
                     <div class="table-responsive m-t-15">
                         <table class="table table-striped custom-table">
                             <thead>
-                                <tr>
+                                <th>Sizes</th>
+
                                     @foreach ($sizes as $size)
-                                        <th class="text-center">{{ $size->Number }}</th>
+                                        <th class="text-center">{{ $size->size_number }}</th>
                                     @endforeach
-                                </tr>
+
                             </thead>
                             <tbody>
+                                
                                 <tr>
+                                    <td>Size</td>
                                     @foreach ($sizes as $size)
                                         <td class="text-center">
-                                            <input name="size[]" id="check-{{ $size->SizeID }}" type="checkbox" value="{{ $size->SizeID }}">
+                                            <input name="sizes[]" class="edit-size-check check-{{ $size->id }}" type="checkbox" value="{{ $size->id }}">
+                                        </td>
+                                    @endforeach
+                                </tr>
+                                <tr>
+                                    <td>Amount</td>
+                                    @foreach ($sizes as $size)
+                                        <td class="text-center">
+                                            <input style="width:40px;" class="amount-size-{{ $size->id }} edit-amount-input-{{ $size->id }}" name="size_amount[]" type="text" disabled>
                                         </td>
                                     @endforeach
                                 </tr>

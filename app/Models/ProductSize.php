@@ -14,10 +14,10 @@ class ProductSize extends Model
     protected $table = 'product_sizes';
 
     public function products(){
-        return $this->belongsTo(Product::class, 'product_id','product_id');
+        return $this->belongsTo(Product::class, 'product_id','id');
     }
 
     public function sizes(){
-        return $this->belongsTo(Size::class, 'size_id','size_id');
+        return $this->belongsTo(Size::class, 'size_id','id');
     }
 }

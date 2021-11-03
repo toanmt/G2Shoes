@@ -31,6 +31,9 @@
 
   <!-- Main CSS -->
   <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
+
+  <!-- Summernote CSS -->
+  <link rel="stylesheet" href="{{ asset('backend/plugins/summernote/dist/summernote-bs4.css') }}">
   
 </head>
 
@@ -48,11 +51,7 @@
   <!-- jQuery -->
   <script src="{{ asset('backend/js/jquery-3.5.1.min.js') }}"></script>
 
-  <script>
-    $('.upload').change(function(e){
-      $('.output').attr('src',URL.createObjectURL(e.target.files[0]));
-    });
-  </script>
+  
   <!-- Bootstrap Core JS -->
   <script src="{{ asset('backend/js/popper.min.js') }}"></script>
   <script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
@@ -79,12 +78,47 @@
 
   <!-- Ajax -->
   <script src="{{ asset('backend/js/ajax.js') }}"></script>
+  <script src="{{ asset('backend/js/ajax_tien.js') }}"></script>
   <!-- Export To PDF -->
   <script src="{{ asset('backend/js/exportPDF.js') }}"></script>
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+  <!-- Summernote CSS -->
+  <script src="{{ asset('backend/plugins/summernote/dist/summernote-bs4.min.js') }}"></script>
   <script>
     $('.product-description').summernote();
   </script>
+
+<script>
+  $('.upload').change(function(e){
+    if(e.target.files.length <=2){
+      $('.edit-img').css('border','none');
+      $('.btn-text').hide();
+      $('.img-output').remove();
+      for(let image of e.target.files){        
+        $('.edit-img').append('<img class="img-output" src="'+URL.createObjectURL(image)+'">');
+      }
+    }else{
+        alert('chỉ nhận được tối đa 2 ảnh');
+    }
+
+    
+  });
+
+  $('.size-check').change(function(e){
+        if($(this).is(':checked')){
+            $('.amount-input-'+$(this).val()).removeAttr('disabled');
+        }else{
+            $('.amount-input-'+$(this).val()).attr('disabled','disabled');
+        } 
+    });
+
+    $('.edit-size-check').change(function(e){
+                if($(this).is(':checked')){
+                    $('.edit-amount-input-'+$(this).val()).removeAttr('disabled');
+                }else{
+                    $('.edit-amount-input-'+$(this).val()).val('').attr('disabled','disabled');
+                } 
+            });
+</script>
 </body>
 </html>

@@ -85,27 +85,27 @@ $(document).ready(function(){
         })
     });
 
-    //delete
-    function del(){
-        $('.btn-delete').click(function(){
-            var key = $(this).data('id');
-            $('.continue-btn').attr('data-id',key);
-        })
-    };
-    del();
+    // //delete
+    // function del(){
+    //     $('.btn-delete').click(function(){
+    //         var key = $(this).data('id');
+    //         $('.continue-btn').attr('data-id',key);
+    //     })
+    // };
+    // del();
 
-    $('.continue-btn').click(function(){
-        $.ajax({
-            type: 'GET',
-            url: '/admin/delete-user/'+$(this).data('id'),
-            dataType: 'json',
-            success: function(data){
-                if(data.ok){
-                    location.reload();
-                }
-            }
-        });
-    })
+    // $('.continue-btn').click(function(){
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: '/admin/delete-user/'+$(this).data('id'),
+    //         dataType: 'json',
+    //         success: function(data){
+    //             if(data.ok){
+    //                 location.reload();
+    //             }
+    //         }
+    //     });
+    // })
 
     $('.btn-search-user').click(function(e){
         e.preventDefault();
@@ -295,128 +295,7 @@ $('#frm-create-size').on('submit',function(e){
     })
 });
 
-function editProduct(){
-    $('.btn-edit-product').click(function(){
-        var id = $(this).data('id');
-        $('#frm-edit-product').attr('action',location.origin+'/admin/edit-product/'+id);
 
-        $.ajax({
-            type: 'GET',
-            url: '/admin/products/'+id,
-            dataType: 'json',
-            success: function(data){
-                console.log(data);
-                $('.edit-output').attr('src',location.origin+'/backend/img/products/'+data.products.Image);
-                $('.edit-price').val(data.products.Price);
-                $('.edit-discount').val(data.products.Discount);
-                $('.edit-name').val(data.products.ProductName);
-                $('.edit-description').html(data.products.Description);
-                    //size
-                    for(let item of data.size_products){
-                        $('#check-'+item.sizes.SizeID).attr('checked','checked');
-                    }
-                }
-            });
-    })
-};
-editProduct();
-
-
-
-$('#frm-create-product').on('submit',function(e){
-    e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: new FormData(this),
-        dataType: 'json',
-        contentType:false,
-        processData:false,
-        success: function(data){  
-            if(data.error !== undefined){
-                alert(data.error);
-            }else{
-                alert(data.success);
-                setTimeout(function(){
-                    location.reload();
-                },1);
-            }
-        },
-        error: function(data){
-            console.log(data);
-
-        }
-    })
-});
-
-$('#frm-edit-product').on('submit',function(e){
-    e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: new FormData(this),
-        dataType: 'json',
-        contentType:false,
-        processData:false,
-        success: function(data){ 
-            if(data.error !== undefined){
-                alert(data.error);
-            }else{
-                alert(data.success);
-                setTimeout(function(){
-                    location.reload();
-                },1);
-            }
-        },
-        error: function(data){
-            console.log(data);
-        }
-    })
-});
-
-    //delete
-    function delProduct(){
-        $('.btn-delete-product').click(function(){
-            var key = $(this).data('id');
-            $('.del-product').attr('data-id',key);
-        })
-    };
-    delProduct();
-
-    $('.del-product').click(function(){
-        $.ajax({
-            type: 'GET',
-            url: '/admin/delete-product/'+$(this).data('id'),
-            dataType: 'json',
-            success: function(data){
-                if(data.ok){
-                    location.reload();
-                }
-            }
-        });
-    });
-
-    $('#frm-search-product').on('submit',function(e){
-        e.preventDefault();
-        var formData = $(this).serialize();
-        $.ajax({
-            type: 'POST',
-            url: '/admin/product-search',
-            data: formData,
-            dataType: 'json',
-            success: function(data){
-                if(data.output != ''){
-                    $('#data').removeData();
-                    $('#data').html(data.output);
-                    editProduct();
-                    delProduct();
-                }
-            },
-            error: function(data){
-                console.log(data);
-            }
-        })
-    });
     //-------------------- Brand---------------------
 
     $('#submit_form').on('submit',function(e){

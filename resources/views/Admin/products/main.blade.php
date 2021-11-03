@@ -16,11 +16,9 @@
                         <li class="breadcrumb-item active">Products</li>
                     </ul>
                 </div>
+
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#size_manage"><i class="fa fa-arrows-h" aria-hidden="true"></i> Sizes</a>
-                </div>
-                <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Product</a>  
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_product"><i class="fa fa-plus"></i> Add Product</a>  
                 </div>
                 
             </div>
@@ -47,7 +45,7 @@
                     <div class="form-group form-focus select-focus">
                         <select name="size[]" class="select floating">
                             @foreach ($sizes as $size)
-                                <option value="{{ $size->SizeID }}">size {{ $size->Number }}</option>
+                                <option value="{{ $size->id }}">size {{ $size->size_number }}</option>
                             @endforeach 
                         </select>
                         <label class="focus-label">Sizes</label>
@@ -69,8 +67,6 @@
     @include('Admin.products.edit')
 
     @include('Admin.products.delete')
-
-    @include('Admin.products.size')
 
 </div>
 <!-- /Page Wrapper -->
