@@ -19,6 +19,7 @@ class CreateVouchersTable extends Migration
             $table->integer('percent');
             $table->integer('amount');
             $table->dateTime('expired_date');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

@@ -57,6 +57,12 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete-brand/{id}',[App\Http\Controllers\Admin\BrandProductController::class,'deleteBrand']);
         Route::get('/brand/{id}',[App\Http\Controllers\Admin\BrandProductController::class,'showBrand']);
         Route::post('/edit-brand/{id}',[App\Http\Controllers\Admin\BrandProductController::class,'editBrand']);
+        //voucher
+        Route::get('/voucher',[App\Http\Controllers\Admin\VoucherController::class,'index']);
+        Route::post('/add-voucher',[App\Http\Controllers\Admin\VoucherController::class,'addVoucher']);
+        Route::get('/delete-voucher/{id}',[App\Http\Controllers\Admin\VoucherController::class,'deleteVoucher']);
+        Route::get('/voucher/{id}',[App\Http\Controllers\Admin\VoucherController::class,'showVoucher']);
+        Route::post('/edit-voucher/{id}',[App\Http\Controllers\Admin\VoucherController::class,'editVoucher']);
 
     });
     

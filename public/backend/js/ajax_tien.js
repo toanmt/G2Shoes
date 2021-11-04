@@ -171,6 +171,7 @@ $(document).ready(function(){
             e.preventDefault();
             $.get('/admin/delete-product/'+$(this).data('id'),function(data){
                     if(data.ok){
+                        
                         location.reload();
                     }
                 }
@@ -202,4 +203,75 @@ $(document).ready(function(){
             }
         })
     });
+
+
+    //------Voucher-----------------
+    $('#frm-create-voucher').on('submit',function(e){
+        e.preventDefault();
+        var formData = $(this).serialize();
+        $.post($(this).attr('action'),formData,function(data){
+            if(data.errors != undefined){
+                alert(data.errors);
+            }
+            if(data.success != undefined){
+                alert(data.success);
+                setTimeout(function(){
+                    location.reload();
+                },1);
+            }
+        })
+    });
+
+    $('#voucher-table').on('click','.btn-edit-voucher',function(e){
+        var id = $(this).data('id');
+        $.get('/admin/voucher/'+id,function(data){
+
+            $('.edit-name-voucher').val(data.voucher_name);
+            $('.edit-percent-voucher').val(data.percent);
+            $('.edit-amount-voucher').val(data.amount);
+            var time = new Date(data.expired_date);
+            // var date_expired = date.getDay()+'/'+date.getMonth+'/'+date.getFullYear();
+            $(".edit-date-voucher").val(time.getDate()+'/'+(time.getMonth()+1)+'/'+time.getFullYear());
+            $('.edit-status-voucher').val(data.status).trigger('change');
+            
+            $('#frm-edit-voucher').attr('action',location.origin+'/admin/edit-voucher/'+id);
+        })
+    });
+
+    function editVoucher() 
+    {
+        $('#frm-edit-voucher').on('submit',function(e){
+            e.preventDefault();
+            $.post($(this).attr('action'),$(this).serialize(),function(data){
+                if(data.errors != undefined){
+                    alert(data.errors);
+                }
+                if(data.success != undefined){
+                    alert(data.success);
+                    setTimeout(function(){
+                        location.reload();
+                    },1);
+                }
+            });
+        })
+    };
+    editVoucher();
+
+    //delete
+    $('#voucher-table').on('click','.btn-delete-voucher',function(e){
+        var key = $(this).data('id');
+        $('.del-voucher').attr('data-id',key);
+    });
+
+    function delProduct(){
+        $('.del-voucher').click(function(e){
+            e.preventDefault();
+            $.get('/admin/delete-voucher/'+$(this).data('id'),function(data){
+                if(data.ok){
+                    location.reload();
+                }
+            });
+        })
+    };
+    delProduct();
 });
