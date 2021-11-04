@@ -35,7 +35,7 @@
                     <span>Quản lý kinh doanh</span>
                 </li>
                 <li>
-                    <a href="#"><i class="las la-ticket-alt"></i> <span> Mã giảm giá</span></a>
+                    <a href="{{ url('admin/voucher') }}"><i class="las la-ticket-alt"></i> <span> Mã giảm giá</span></a>
                 </li>
                 <li>
                     <a href="{{ url('admin/invoices') }}"><i class="las la-file-invoice-dollar"></i> <span> Hóa đơn </span></span></a>                    
