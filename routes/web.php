@@ -63,7 +63,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete-voucher/{id}',[App\Http\Controllers\Admin\VoucherController::class,'deleteVoucher']);
         Route::get('/voucher/{id}',[App\Http\Controllers\Admin\VoucherController::class,'showVoucher']);
         Route::post('/edit-voucher/{id}',[App\Http\Controllers\Admin\VoucherController::class,'editVoucher']);
-
+        //type
+        Route::post('/add-type/{id}',[App\Http\Controllers\Admin\TypeController::class,'addType']);
+        Route::get('/del-type/{id}',[App\Http\Controllers\Admin\TypeController::class,'delType']);
     });
     
 });

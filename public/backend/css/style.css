@@ -2299,13 +2299,6 @@ table.dataTable thead > tr > td.sorting {
     padding: 10px 20px;
     text-align: center;
 }
-.continue-btn:hover,
-.continue-btn:focus,
-.continue-btn:active {
-	background-color: #f43b48;
-	border: 1px solid #f43b48;
-	color: #fff;
-}
 .cancel-btn {
     background-color: #fff;
     border: 1px solid #f43b48;

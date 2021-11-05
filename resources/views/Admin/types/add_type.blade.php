@@ -1,22 +1,22 @@
-<!-- Edit Brand -->
-<div class="modal custom-modal fade" id="edit_brand" role="dialog">
+<!-- Add Type -->
+<div class="modal custom-modal fade" id="add_type" role="dialog">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Edit Brand</h5>
+				<h5 class="modal-title">Add New Type</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<form id= "submit_form_edit_brand" action="{{ url('admin/edit-brand') }}" method="POST" enctype="multipart/form-data">
+				<form id= "submit_form_add_type" method="POST" enctype="multipart/form-data">
 					@csrf
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>Brand Name</label>
-								<input name="brandName" type="text" class="form-control brand-Name">
-								<div class="text-danger" id="err_name_brand"></div>
+								<label>Type Name</label>
+								<input name="typeName" type="text" class="form-control">
+								<div class="text-danger" id="err_name_type"></div>
 							</div>
 						</div>
 					</div>
@@ -28,4 +28,4 @@
 		</div>
 	</div>
 </div>
-	<!-- /Edit Brand -->
+<!-- /Add Type -->

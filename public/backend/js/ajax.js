@@ -349,7 +349,6 @@ $('#frm-create-size').on('submit',function(e){
         $('.btn-edit-brand').click(function(){
             var id = $(this).data('id');
             $('#submit_form_edit_brand').attr('action',location.origin+'/admin/edit-brand/'+id);
-            $('.submit-edit-brand-btn').attr('data-id',id);
             $.ajax({
                 type: 'GET',
                 url: '/admin/brand/'+$(this).data('id'),
@@ -372,13 +371,14 @@ $('#frm-create-size').on('submit',function(e){
             contentType: false,
             processData: false,
             success: function(data){
-                if(data.error !== undefined){
-                    alert(data.error);
-                }else{
+                if(data.errorN !== undefined){
+                    $('#err_name_type').html(data.errorN);
+                    data.errorN.remove();
+                } else {
                     setTimeout(function(){
                         location.reload();
                     },1);
-                }  
+                } 
             },
             error: function(data){
                 console.log(data);
@@ -387,4 +387,65 @@ $('#frm-create-size').on('submit',function(e){
         })
     });
     // -------------------------- /Brand --------------------------------
+
+
+
+
+
+    // -------------------------- Type --------------------------------
+    //show add type
+    function addType(){
+        $('.btn-add-type').click(function(){
+            var id = $(this).data('id');
+            $('#submit_form_add_type').attr('action',location.origin+'/admin/add-type/'+id);
+        })
+    };
+    addType();
+    $('#submit_form_add_type').on('submit',function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',   
+            url: $(this).attr('action'),
+            data: new FormData(this),
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function(data){
+                if(data.errorN !== undefined){
+                    $('#err_name_type').html(data.errorN);
+                } else {
+                    setTimeout(function(){
+                        location.reload();
+                    },1);
+                }
+            },
+            error: function(data){
+                console.log(data);
+            }
+        })
+    });
+
+    //delete
+    function deltype(){
+        $('.btn-delete-type').click(function(){
+            var key = $(this).data('id');
+            $('.btn-del-type').attr('data-id',key);
+        })
+    };
+    deltype();
+
+    $('.btn-del-type').click(function(){
+        $.ajax({
+            type: 'GET',
+            url: '/admin/del-type/'+$(this).data('id'),
+            dataType: 'json',
+            success: function(data){
+                if(data.ok){
+                    location.reload();
+                }
+            }
+        });
+    });
+    // -------------------------- /Type --------------------------------
+
 })

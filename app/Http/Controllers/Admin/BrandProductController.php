@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Brand;
+use App\Models\Type;
 use DB;
 
 class BrandProductController extends Controller
 {
     public function index(){
         $brands= Brand::all();
-        return View('admin.BrandProduct.index')->with(['brands'=>(object)$brands]);
+        $types =Type::all();
+        return View('admin.BrandProduct.index')->with(['brands'=>(object)$brands,'types'=>(object)$types]);
     }
 
     public function addBrand(Request $request){
@@ -30,6 +32,7 @@ class BrandProductController extends Controller
 
     public function deleteBrand($id){
         Brand::where('id',$id)->delete();
+        Type::where('brand_id',$id)->delete();
         return response()->json(['ok'=>true]);
     }
     
