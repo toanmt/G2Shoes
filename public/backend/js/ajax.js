@@ -214,87 +214,89 @@ $('#frm-profile').on('submit',function(e){
 
 
 
-function editSize()
-{
-    $('.edit-size').on('click',function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-        var num = prompt('Nhập số size');
-        if(parseFloat(num) > 0){
-            $.ajax({
-                type: 'GET',
-                url: '/admin/edit-size/'+id,
-                data: {
-                    'size': num
-                },
-                dataType: 'json',
-                success: function(data){
-                    alert(data.output);
-                    $('#size-'+id).text(num);
-                },
-                error: function(data){
-                    console.log(data);
+    // -------------------------- Size --------------------------------
+    function editSize()
+    {
+        $('.edit-size').on('click',function(e){
+            e.preventDefault();
+            var id = $(this).data('id');
+            var num = prompt('Nhập số size');
+            if(parseFloat(num) > 0){
+                $.ajax({
+                    type: 'GET',
+                    url: '/admin/edit-size/'+id,
+                    data: {
+                        'size': num
+                    },
+                    dataType: 'json',
+                    success: function(data){
+                        alert(data.output);
+                        $('#size-'+id).text(num);
+                    },
+                    error: function(data){
+                        console.log(data);
 
-                }
-            })
-        }else{
-            alert('Vui lòng nhập đúng định dạng!!');
-        }
-
-    })
-}
-
-editSize();
-
-function delSize(){
-    $('.delete-size').on('click',function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-        var choose = confirm('Bạn có muốn xóa size này không?');
-        if(choose){
-            $.ajax({
-                type: 'GET',
-                url: '/admin/delete-size/'+id,
-                dataType: 'json',
-                success: function(data){
-                    alert(data.output);
-                    $('#del-'+id).remove();
-                },
-                error: function(data){
-                    console.log(data);
-                }
-            })
-        }
-    })
-}
-
-delSize();
-
-$('#frm-create-size').on('submit',function(e){
-    e.preventDefault();
-    var formData = $('#frm-create-size').serialize();
-    $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: formData,
-        dataType: 'json',
-        success: function(data){  
-            if(data.error !== undefined){
-                alert(data.error);
+                    }
+                })
             }else{
-                alert('Thêm hành công!!');
-                $('#table-size').append(data.output);
-                editSize();
-                delSize();
+                alert('Vui lòng nhập đúng định dạng!!');
             }
-        },
-        error: function(data){
-            console.log(data);
 
-        }
-    })
-});
+        })
+    }
 
+    editSize();
+
+    function delSize(){
+        $('.delete-size').on('click',function(e){
+            e.preventDefault();
+            var id = $(this).data('id');
+            var choose = confirm('Bạn có muốn xóa size này không?');
+            if(choose){
+                $.ajax({
+                    type: 'GET',
+                    url: '/admin/delete-size/'+id,
+                    dataType: 'json',
+                    success: function(data){
+                        alert(data.output);
+                        $('#del-'+id).remove();
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+                })
+            }
+        })
+    }
+
+    delSize();
+
+    $('#frm-create-size').on('submit',function(e){
+        e.preventDefault();
+        var formData = $('#frm-create-size').serialize();
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: formData,
+            dataType: 'json',
+            success: function(data){  
+                if(data.error !== undefined){
+                    alert(data.error);
+                }else{
+                    alert('Thêm hành công!!');
+                    $('#table-size').append(data.output);
+                    editSize();
+                    delSize();
+                }
+            },
+            error: function(data){
+                console.log(data);
+
+            }
+        })
+    });
+
+    // -------------------------- Size --------------------------------
 
     //-------------------- Brand---------------------
 
@@ -447,5 +449,6 @@ $('#frm-create-size').on('submit',function(e){
         });
     });
     // -------------------------- /Type --------------------------------
+
 
 })
