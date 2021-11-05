@@ -432,6 +432,7 @@ $('#frm-profile').on('submit',function(e){
         $('.btn-delete-type').click(function(){
             var key = $(this).data('id');
             $('.btn-del-type').attr('data-id',key);
+            $('.btn-edit-type').attr('data-id',key);
         })
     };
     deltype();
@@ -448,6 +449,30 @@ $('#frm-profile').on('submit',function(e){
             }
         });
     });
+
+    function editType()
+    {
+        $('.btn-edit-type').on('click',function(e){ 
+            e.preventDefault();
+            var id = $(this).data('id');
+            var name = prompt('Type name: ');
+            $.ajax({
+                type: 'GET',
+                url: '/admin/edit-type/'+$(this).data('id'),
+                data: {
+                    'typeName': name
+                },
+                dataType: 'json',
+                success: function(data){
+                    if(data.ok){
+                        location.reload();
+                    }
+                }
+            })
+        })
+    }
+
+    editType();
     // -------------------------- /Type --------------------------------
 
 

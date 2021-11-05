@@ -27,4 +27,9 @@ class TypeController extends Controller
         Type::where('id',$id)->delete();
         return response()->json(['ok'=>true]);
     }
+    
+    public function editType(Request $request,$id){
+        Type::where('id',$id)->update(['type_name'=>$request->get('typeName')]);
+        return response()->json(['ok'=>true]);
+    }
 }

@@ -44,7 +44,7 @@
 								<td>
 									@foreach ($types as $type)
 										@if ($type->brand_id == $brand->id)	
-											<a href="#" class="btn-delete-type" data-id="{{ $type->id}}" data-toggle="modal" data-target="#delete_type">
+											<a href="#" class="btn-delete-type" data-id="{{ $type->id}}" data-toggle="modal" data-target="#mgnt_type">
 												{{ $type->type_name}}
 											</a> <br>
 										@endif
@@ -74,7 +74,7 @@
 	@include('Admin.BrandProduct.edit_brand')
 	@include('Admin.BrandProduct.del_brand')
 	@include('Admin.types.add_type')
-	@include('Admin.types.del_type')
+	@include('Admin.types.mgnt_type')
 
 </div>
 <!-- /Page Wrapper -->

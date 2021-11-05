@@ -66,6 +66,7 @@ Route::prefix('admin')->group(function () {
         //type
         Route::post('/add-type/{id}',[App\Http\Controllers\Admin\TypeController::class,'addType']);
         Route::get('/del-type/{id}',[App\Http\Controllers\Admin\TypeController::class,'delType']);
+        Route::get('/edit-type/{id}',[App\Http\Controllers\Admin\TypeController::class,'editType']);
         
         //size
         Route::post('/add-size',[App\Http\Controllers\Admin\SizeController::class,'addSize']);
