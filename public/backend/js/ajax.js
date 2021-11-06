@@ -85,28 +85,6 @@ $(document).ready(function(){
         })
     });
 
-    // //delete
-    // function del(){
-    //     $('.btn-delete').click(function(){
-    //         var key = $(this).data('id');
-    //         $('.continue-btn').attr('data-id',key);
-    //     })
-    // };
-    // del();
-
-    // $('.continue-btn').click(function(){
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: '/admin/delete-user/'+$(this).data('id'),
-    //         dataType: 'json',
-    //         success: function(data){
-    //             if(data.ok){
-    //                 location.reload();
-    //             }
-    //         }
-    //     });
-    // })
-
     $('.btn-search-user').click(function(e){
         e.preventDefault();
         var formData = $('#frm-search').serialize();
@@ -283,7 +261,7 @@ $('#frm-profile').on('submit',function(e){
                 if(data.error !== undefined){
                     alert(data.error);
                 }else{
-                    alert('Thêm hành công!!');
+                    $('.number-size').val('');
                     $('#table-size').append(data.output);
                     editSize();
                     delSize();
