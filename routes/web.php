@@ -72,7 +72,13 @@ Route::prefix('admin')->group(function () {
         Route::post('/add-size',[App\Http\Controllers\Admin\SizeController::class,'addSize']);
         Route::get('/edit-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'editSize']);
         Route::get('/delete-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'deleteSize']);
-        
+
+        //invoices
+        Route::get('/invoices',[App\Http\Controllers\Admin\InvoiceController::class,'index']);
+        Route::get('/invoice-view/{id}',[App\Http\Controllers\Admin\InvoiceController::class,'showInvoice']);
+        Route::get('/edit-invoice/{id}',[App\Http\Controllers\Admin\InvoiceController::class,'editInvoice']);
+        Route::post('/search-invoice',[App\Http\Controllers\Admin\InvoiceController::class,'searchInvoice']);
+        Route::get('/send-invoice/{id}',[App\Http\Controllers\Admin\InvoiceController::class,'sendInvoice']);
     });
     
 });
