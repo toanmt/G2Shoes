@@ -18,8 +18,6 @@ class CreateProductsTable extends Migration
             $table->string('product_name');
             $table->float('price');
             $table->integer('discount');
-            $table->integer('amount');
-            $table->text('description');
             $table->integer('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

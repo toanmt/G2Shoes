@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ImageSeeder extends Seeder
+class Product_SizeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,243 +14,282 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('images')->insert([
-            'image_name' => 'cv_classic1_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '5',
             'product_id' => '1',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'cv_classic1_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '6',
             'product_id' => '1',
+            'amount' => '100',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'cv_classic2_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '8',
             'product_id' => '2',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'cv_classic2_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '9',
             'product_id' => '2',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'cv_classic3_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '1',
             'product_id' => '3',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'cv_classic3_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '3',
             'product_id' => '3',
+            'amount' => '150',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'cv_classic4_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '4',
             'product_id' => '4',
+            'amount' => '100',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'cv_classic4_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '7',
             'product_id' => '4',
+            'amount' => '100',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'vans_oldskool1_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '5',
             'product_id' => '5',
+            'amount' => '100',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'vans_oldskool1_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '8',
             'product_id' => '5',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'vans_oldskool2_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '9',
             'product_id' => '6',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'vans_oldskool2_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '10',
             'product_id' => '6',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'vans_oldskool3_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '11',
             'product_id' => '7',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'vans_oldskool3_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '12',
             'product_id' => '7',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'vans_oldskool4_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '14',
             'product_id' => '8',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'vans_oldskool4_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '15',
             'product_id' => '8',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'adidas_superstar1_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '10',
             'product_id' => '9',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'adidas_superstar1_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '16',
             'product_id' => '9',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'adidas_superstar2_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '15',
             'product_id' => '10',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'adidas_superstar2_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '16',
             'product_id' => '10',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'adidas_superstar3_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '16',
             'product_id' => '11',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'adidas_superstar3_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '17',
             'product_id' => '11',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'adidas_superstar4_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '5',
             'product_id' => '12',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'adidas_superstar4_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '6',
             'product_id' => '12',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'nike_airforced1_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '7',
             'product_id' => '13',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'nike_airforced1_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '8',
             'product_id' => '13',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'nike_airforced2_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '1',
             'product_id' => '14',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
-        ]);
-        DB::table('images')->insert([
-            'image_name' => 'nike_airforced2_anh2.webp',
+        ]);        DB::table('product_sizes')->insert([
+            'size_id' => '2',
             'product_id' => '14',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'nike_airforced3_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '13',
             'product_id' => '15',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'nike_airforced3_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '14',
             'product_id' => '15',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'nike_airforced4_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '16',
             'product_id' => '16',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'nike_airforced4_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '17',
             'product_id' => '16',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'puma_suede1_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '2',
             'product_id' => '17',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'puma_suede1_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '3',
             'product_id' => '17',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'puma_suede2_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '6',
             'product_id' => '18',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'puma_suede2_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '7',
             'product_id' => '18',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'domba_highpoint1_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '6',
             'product_id' => '19',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'domba_highpoint1_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '8',
             'product_id' => '19',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'domba_highpoint2_anh1.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '11',
             'product_id' => '20',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('images')->insert([
-            'image_name' => 'domba_highpoint2_anh2.webp',
+        DB::table('product_sizes')->insert([
+            'size_id' => '18',
             'product_id' => '20',
+            'amount' => '200',
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
         ]);
