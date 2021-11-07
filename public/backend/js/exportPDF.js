@@ -7,8 +7,8 @@ $(document).ready(function(){
             onrendered: function(canvas) {
                 var imgData = canvas.toDataURL(
                     'image/png');              
-                var doc = new jsPDF('p','mm',[w,h]);
-                doc.addImage(imgData,'PNG',0,0,w*0.6,h*0.6);
+                var doc = new jsPDF('l','pt',[w,h]);
+                doc.addImage(imgData,'PNG',0,0,w,h);
                 doc.save("hd-"+id+".pdf");
             }
           });

@@ -166,19 +166,19 @@ $(document).ready(function(){
         $('.del-product').attr('data-id',key);
     });
 
-    function delProduct(){
-        $('.del-product').click(function(e){
+    function deleteProduct(){
+        $('.del-product').on('click',function(e){
+            alert('click');
             e.preventDefault();
             $.get('/admin/delete-product/'+$(this).data('id'),function(data){
-                    if(data.ok){
-                        
-                        location.reload();
-                    }
+                console.log(data);
+                if(data.ok){
+                    location.reload();
                 }
-            );
-        })
+            });
+        });
     };
-    delProduct();
+    deleteProduct();
 
     $('#frm-search-product').on('submit',function(e){
         e.preventDefault();
@@ -274,4 +274,43 @@ $(document).ready(function(){
         })
     };
     delProduct();
+
+    //edit status invoice
+    function editInvoice(){$('#frm-table-invocie').on('click','.edit-status-invoice',function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        $.ajax({
+            type: 'GET',
+            url: '/admin/edit-invoice/'+id,
+            data:{
+                'status': $(this).attr('status')
+            },
+            success: function(data){
+                if(data.output !== undefined){
+                    $('#invoice-'+id).replaceWith(data.output);
+                }
+            }
+
+        })
+    })};
+    editInvoice();
+
+    $('#frm-search-invoice').on('submit',function(e){
+        e.preventDefault();
+        var formData = $(this).serialize();
+        $.post($(this).attr('action'),formData,function(data){
+            $('#data-show').empty();
+            $('#data-show').append(data.output);
+            editInvoice();
+        })
+    });
+
+    $('#frm-table-invocie').on('click','.send-mail-invoice',function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        $.get('/admin/send-invoice/'+id,function(data){
+            console.log(data);
+        })
+    });
+
 });
