@@ -35,10 +35,14 @@ class BrandSeeder extends Seeder
             'updated_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('brands') -> insert([
-            'brand_name' => 'Jordan'
+            'brand_name' => 'Puma',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('brands') -> insert([
-            'brand_name' => 'Puma'
+            'brand_name' => 'Domba',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
         ]);
     }
 }
