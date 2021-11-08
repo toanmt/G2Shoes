@@ -2,7 +2,7 @@
 <nav class="nav">
 	<div class="container">
 		<div class="nav-logo">
-			<a href="#">
+			<a href="/">
 				<h1 class="heading">g2 shoes</h1>
 			</a>
 		</div>
@@ -10,7 +10,7 @@
 			<ul class="nav-list">
 				@foreach($data as $brand)
 				<li class="nav-item">
-					<a href="#" class="nav-link">{{$brand->brand_name}}</a>
+					<a href="{{URL::to('/brand/'.$brand->id)}}" class="nav-link">{{$brand->brand_name}}</a>
 				</li>
 				@endforeach
 				<li class="nav-item">

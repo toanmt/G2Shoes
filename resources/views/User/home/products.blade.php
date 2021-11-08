@@ -1,12 +1,13 @@
-@foreach($type as $product_type)
+@foreach($data->take(3) as $brand)
 <section class="product">
   <div class="product-heading">
-    <h2 class="heading heading-title"><a href="#">{{$product_type->type_name}}</a></h2>
-    <a href="#" class="heading-view">Xem thêm</a>
+    <h2 class="heading heading-title"><a href="{{URL::to('/brand/'.$brand->id)}}">{{$brand->brand_name}}</a></h2>
+    <a href="{{URL::to('/brand/'.$brand->id)}}" class="heading-view">Xem thêm</a>
   </div>
+  @foreach($brand->types->take(8) as $type)
   <div class="product-list">
     <div class="container">
-      @foreach($product_type -> products_type as $product)
+      @foreach($type -> products as $product)
       <div class="product-item">
         <div class="product-image">
           <a href="#" class="product-image__link">
@@ -27,9 +28,9 @@
           </div>
           <div class="product-price">
             <p class="product-price__new">
-              {{$product->price}}
+              {{$product->price}}đ
               @if($product->discount > 0)
-              <span class="product-price__old">{{$product->price - ($product->price * $product->discount)/100}}</span>
+              <span class="product-price__old">{{$product->price - ($product->price * $product->discount)/100}}đ</span>
               @endif
             </p>
           </div>
@@ -38,6 +39,7 @@
       @endforeach
     </div>
   </div>
+  @endforeach
 </div>
 </section>
 @endforeach
