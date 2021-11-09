@@ -10,24 +10,27 @@
             <span>Sắp xếp: </span>
             <i class="bx bxs-chevron-down"></i>
           </div>
-          <div class="dropdown-list">
-            <div class="dropdown-item">
-              <span class="dropdown-text">Giá: Tăng dần</span>
-              <span><i class='bx bx-trending-up'></i></span>
+          <form>
+            @csrf
+            <div class="dropdown-list" id="sort">
+              <div class="dropdown-item">
+                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=gia_tang">Giá: Tăng dần</span>
+                <span><i class='bx bx-trending-up'></i></span>
+              </div>
+              <div class="dropdown-item">
+                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=gia_giam">Giá: Giảm dần</span>
+                <span><i class='bx bx-trending-down'></i></span>
+              </div>
+              <div class="dropdown-item">
+                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=kytu_az">Tên: A-Z</span>
+                <span><i class='bx bx-sort-a-z'></i></span>
+              </div>
+              <div class="dropdown-item">
+                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=kytu_za">Tên: Z-A</span>
+                <span><i class='bx bx-sort-z-a'></i></span>
+              </div>
             </div>
-            <div class="dropdown-item">
-              <span class="dropdown-text">Giá: Giảm dần</span>
-              <span><i class='bx bx-trending-down'></i></span>
-            </div>
-            <div class="dropdown-item">
-              <span class="dropdown-text">Tên: A-Z</span>
-              <span><i class='bx bx-sort-a-z'></i></span>
-            </div>
-            <div class="dropdown-item">
-              <span class="dropdown-text">Tên: Z-A</span>
-              <span><i class='bx bx-sort-z-a'></i></span>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
