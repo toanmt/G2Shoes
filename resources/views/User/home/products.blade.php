@@ -40,6 +40,5 @@
     </div>
   </div>
   @endforeach
-</div>
 </section>
 @endforeach
