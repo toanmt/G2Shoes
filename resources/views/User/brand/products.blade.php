@@ -39,7 +39,7 @@
         @foreach($type->products as $product)
         <div class="product-item">
           <div class="product-image">
-            <a href="#" class="product-image__link">
+            <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
               @foreach($product->images as $image) 
               <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
               @endforeach
@@ -52,7 +52,7 @@
           <div class="product-infor">
             <div class="product-name">
               <h3>
-                <a href="#" title="">{{$product->product_name}}</a>
+                <a href="{{ URL::to('/product_details/'.$product->id)}}" title="">{{$product->product_name}}</a>
               </h3>
             </div>
             <div class="product-price">
