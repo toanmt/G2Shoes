@@ -16,6 +16,7 @@
   href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
   rel="stylesheet"
   />
+  <link rel='stylesheet prefetch' href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
