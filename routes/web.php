@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('')->group(function () {
     Route::get('',[App\Http\Controllers\User\HomeController::class,'index']);
     Route::get('/brand/{id}',[App\Http\Controllers\User\BrandController::class,'index']);
+    Route::post('/search',[App\Http\Controllers\User\HomeController::class,'search']);
 });
 
 Route::prefix('admin')->group(function () {
