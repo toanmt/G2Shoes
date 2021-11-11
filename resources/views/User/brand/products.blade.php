@@ -38,8 +38,8 @@
         <div class="product-item">
           <div class="product-image">
             <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
-              @foreach($image as $image)
-              <img src="{{ asset('Image/'.$product->image_name) }}" alt="" />
+              @foreach($product->images as $image)
+              <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
               @endforeach
             </a>
             <div class="product-control">

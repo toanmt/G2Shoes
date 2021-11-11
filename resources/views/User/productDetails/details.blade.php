@@ -79,13 +79,15 @@
   </div>
   <div class="product-details-review">
     <div class="product-details-review__comment">
-      <div class="product-details-review__comment__description no-comment" style="display: none;">
+      <div class="product-details-review__comment__description no-comment" style="display: block;">
         <div class="product-details-review__comment__sender">
           <p style="margin: 25px 15px;">Hiện tại sản phẩm chưa có đánh giá nào, bạn hãy trở thành người đầu tiên đánh giá cho sản phẩm này</p>
-          <form class="review-form" action="">
+          <form class="review-form" action="{{ url('/add-comment') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="review-form-rating">
               <div class="review-form-rating-title">Đánh giá của bạn về sản phẩm:</div>
               <div class="review-form-rating-product">Giày {{ $product->product_name }}</div>
+              <input type="hidden" name="productId" value="{{ $product->id }}">
               <div class="review-form-rating-stars">
                 <input class="star star-5" id="star-5" type="radio" name="star"/>
                 <label class="star star-5" for="star-5"></label>
@@ -101,115 +103,14 @@
             </div>
             <div class="review-form-information">
               <div class="review-form-information-name">
-                <input type="text" maxlength="100" id="review_author" name="author" value="" placeholder="Nhập họ tên của bạn">
+                <input type="text" maxlength="100" id="review_author" name="author" placeholder="Nhập họ tên của bạn">
               </div>
               <div class="review-form-information-evaluate">
-                <textarea maxlength="1000" id="review_body" name="body" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này"></textarea>
+                <textarea maxlength="1000" id="review_body" name="content" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này"></textarea>
               </div>
             </div>
-            <button type="button" class="btn-new-review" onclick="">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-new-review" onclick="">Gửi đánh giá của bạn</button>
           </form>
-        </div>
-      </div>
-      <div class="product-details-review__comment__description have-comment" style="display: block;">
-        <div class="product-details-review__comment__sender">
-          <form class="review-form" action="">
-            <div class="review-form-rating">
-              <div class="review-form-rating-title">Đánh giá của bạn về sản phẩm:</div>
-              <div class="review-form-rating-product">Giày {{ $product->product_name }}</div>
-              <div class="review-form-rating-stars">
-                <input class="star star-5" id="star-5" type="radio" name="star"/>
-                <label class="star star-5" for="star-5"></label>
-                <input class="star star-4" id="star-4" type="radio" name="star"/>
-                <label class="star star-4" for="star-4"></label>
-                <input class="star star-3" id="star-3" type="radio" name="star"/>
-                <label class="star star-3" for="star-3"></label>
-                <input class="star star-2" id="star-2" type="radio" name="star"/>
-                <label class="star star-2" for="star-2"></label>
-                <input class="star star-1" id="star-1" type="radio" name="star"/>
-                <label class="star star-1" for="star-1"></label>
-              </div>
-            </div>
-            <div class="review-form-information">
-              <div class="review-form-information-name">
-                <input type="text" maxlength="100" id="review_author" name="author" value="" placeholder="Nhập họ tên của bạn">
-              </div>
-              <div class="review-form-information-evaluate">
-                <textarea maxlength="1000" id="review_body" name="body" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này"></textarea>
-              </div>
-            </div>
-            <button type="button" class="btn-new-review" onclick="">Gửi đánh giá của bạn</button>
-          </form>
-        </div>
-        <div class="product-details-review__comment__action">
-            <div class="rating-summary">
-              <meta content="5" itemprop="bestRating">
-              <meta content="1" itemprop="worstRating">
-              <div class="rating-summary-score">
-                  <span itemprop="ratingValue">5</span>
-                  <span class="max-score">/5</span>
-              </div>
-              <div data-number="5" data-score="5" class="rating-summary-star">
-                <i data-alt="1" class="fa fa-star" aria-hidden="true"></i>
-                <i data-alt="2" class="fa fa-star" aria-hidden="true"></i>
-                <i data-alt="3" class="fa fa-star" aria-hidden="true"></i>
-                <i data-alt="4" class="fa fa-star" aria-hidden="true"></i>
-                <i data-alt="5" class="fa fa-star" aria-hidden="true"></i>
-                <input name="score" type="hidden" value="5" readonly="">
-              </div>
-              <div>(<span itemprop="ratingCount">1</span> <span> đánh giá</span>)</div>
-              
-            </div>
-            <div class="rating-filter">
-              <div class="rating-filter-list">
-                <div class="select-rating">
-                  <input type="radio" id="FilterAll" name="filter" value="all" style="display: none;">
-                  <label class="rating-score" for="FilterAll">Tất cả</label>
-                </div>
-                <div class="select-rating">
-                  <input type="radio" id="FiveScore" name="filter" value="5" style="display: none;">
-                  <label class="rating-score" for="FiveScore">5 Điểm (<span class="count">1</span>)</label>
-                </div>
-                <div class="select-rating">
-                  <input type="radio" id="FourScore" name="filter" value="4" style="display: none;">
-                  <label class="rating-score" for="FourScore">4 Điểm (<span class="count">1</span>)</label>
-                </div>
-                <div class="select-rating">
-                  <input type="radio" id="ThreeScore" name="filter" value="3" style="display: none;">
-                  <label class="rating-score" for="ThreeScore">3 Điểm (<span class="count">1</span>)</label>
-                </div>
-                <div class="select-rating">
-                  <input type="radio" id="TwoScore" name="filter" value="2" style="display: none;">
-                  <label class="rating-score" for="TwoScore">2 Điểm (<span class="count">1</span>)</label>
-                </div>
-                <div class="select-rating">
-                  <input type="radio" id="OneScore" name="filter" value="1" style="display: none;">
-                  <label class="rating-score" for="OneScore">1 Điểm (<span class="count">1</span>)</label>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="product-details-review__comment__list">
-          <div class="product-details-review__comment__list-header">
-            <span id="author">LOL</span>&nbsp;
-            <div data-score="5" data-number="5">
-              <i data-alt="1" class="fa fa-star" aria-hidden="true"></i>
-              <i data-alt="2" class="fa fa-star" aria-hidden="true"></i>
-              <i data-alt="3" class="fa fa-star" aria-hidden="true"></i>
-              <i data-alt="4" class="fa fa-star" aria-hidden="true"></i>
-              <i data-alt="5" class="fa fa-star" aria-hidden="true"></i>
-            </div>
-          </div>
-          <div class="product-details-review__comment__list-body">
-            <span id="user_comment">sản phẩm tốt</span>
-          </div>
-          <div class="product-details-review__comment__list-action">
-            <ul>
-              <li>
-                <span class="review-time" id="datePublished">10:48 06/11/2021</span>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
       <div>
