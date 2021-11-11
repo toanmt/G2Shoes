@@ -16,11 +16,37 @@ class ProductController extends Controller
 {
 	public function index($id){
 		$data = Brand::all();
-		$sizes = Size::all();
 		$type = Type::all();
+        $sizes = Size::all();
 		$product = Product::with('type')->find($id);
-		$image_product = Image::where('product_id',$id)->get();
 		$product_size = ProductSize::where('product_id',$id)->with('sizes')->get();
-		return View('User.productDetails.main')->with(['data'=>(object)$data,'product'=>(object)$product,'product_size'=>(object)$product_size,'sizes'=>(object)$sizes,'type'=>(object)$type,'image_product'=>(object)$image_product]);
+		return View('User.productDetails.main')
+        ->with(
+            [
+            'data'=>(object)$data,
+            'type'=>(object)$type,
+            'sizes'=>(object)$sizes,
+            'product'=>(object)$product,
+            'product_size'=>(object)$product_size,
+            ]
+        );
 	}
+
+    public function addComment(Request $request){
+        if ($request->author =='') {
+            return response()->json(['errorN'=>'Full name cannot be left blank!']);
+        }
+        if ($request->content =='') {
+            return response()->json(['errorN'=>'Details content cannot be left blank!']);
+        }
+        else {
+            $comment=new Comment();
+            $comment->author = $request->author;
+            $comment->content = $request->content;
+            $comment->product_id = $request->productId;
+            $comment->save();
+            return response()->json(['success'=>'Success!!']);
+            // return response()->json(['author'=>$comment->author]);
+        } 
+    }
 }

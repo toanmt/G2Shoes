@@ -137,8 +137,10 @@ const navItems = document.querySelectorAll(".nav-item");
 });
 
  //slider product details page
- if(document.getElementsByClassName("slider-item")) {
+ if(document.getElementsByClassName("slider-item") !== "") {
+     console.log(document.getElementsByClassName("slider-item"));
      let slideIndex = 1;
+     showSlides(slideIndex);
      function currentSlide(n) {
         showSlides((slideIndex = n));
     }
