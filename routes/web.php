@@ -27,7 +27,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/logout',[App\Http\Controllers\Admin\LoginController::class,'logout']);
         //Home
         Route::get('',[App\Http\Controllers\Admin\HomeController::class,'index'])->name('home');
-        Route::get('/home',[App\Http\Controllers\Admin\HomeController::class,'index']);
+        Route::get('/chartMonth',[App\Http\Controllers\Admin\HomeController::class,'chartMonth']);
         //product
         Route::get('/products',[App\Http\Controllers\Admin\ProductController::class,'index']);
         Route::post('/add-product',[App\Http\Controllers\Admin\ProductController::class,'addProduct']);
@@ -35,12 +35,6 @@ Route::prefix('admin')->group(function () {
         Route::post('/edit-product/{id}',[App\Http\Controllers\Admin\ProductController::class,'editProduct']);
         Route::get('/delete-product/{id}',[App\Http\Controllers\Admin\ProductController::class,'deleteProduct']);
         Route::post('/product-search',[App\Http\Controllers\Admin\ProductController::class,'search']);
-        //size
-
-        Route::get('/sizes',[App\Http\Controllers\Admin\SizeController::class,'index']);
-        // Route::post('/add-size',[App\Http\Controllers\Admin\SizeController::class,'addSize']);
-        // Route::get('/edit-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'editSize']);
-        // Route::get('/delete-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'deleteSize']);
          //image
         Route::get('/image-product',[App\Http\Controllers\Admin\ImageController::class,'index']);
         Route::get('/image/{id}',[App\Http\Controllers\Admin\ImageController::class,'showImage']);
@@ -48,7 +42,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete-image/{id}',[App\Http\Controllers\Admin\ImageController::class,'deleteImage']);
         Route::post('/image-search',[App\Http\Controllers\Admin\ImageController::class,'searchImage']);
 
-        Route::post('/add-size',[App\Http\Controllers\Admin\SizeController::class,'addSize']);
         Route::get('/edit-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'editSize']);
         Route::get('/delete-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'deleteSize']);
         //brands
@@ -69,6 +62,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit-type/{id}',[App\Http\Controllers\Admin\TypeController::class,'editType']);
         
         //size
+
+        Route::get('/sizes',[App\Http\Controllers\Admin\SizeController::class,'index']);
         Route::post('/add-size',[App\Http\Controllers\Admin\SizeController::class,'addSize']);
         Route::get('/edit-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'editSize']);
         Route::get('/delete-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'deleteSize']);

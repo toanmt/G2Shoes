@@ -3,9 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-  <meta name="description" content="Smarthr - Bootstrap Admin Template">
-  <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
-  <meta name="author" content="Dreamguys - Bootstrap Admin Template">
   <meta name="robots" content="noindex, nofollow">
   <title>Dashboard</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
@@ -35,6 +32,8 @@
   <!-- Summernote CSS -->
   <link rel="stylesheet" href="{{ asset('backend/plugins/summernote/dist/summernote-bs4.css') }}">
   
+  <!-- Chart CSS -->
+  <link rel="stylesheet" href="{{ asset('backend/plugins/morris/morris.css') }}">
 </head>
 
 <body>
@@ -88,37 +87,43 @@
     $('.product-description').summernote();
   </script>
 
-<script>
-  $('.upload').change(function(e){
-    if(e.target.files.length <=2){
-      $('.edit-img').css('border','none');
-      $('.btn-text').hide();
-      $('.img-output').remove();
-      for(let image of e.target.files){        
-        $('.edit-img').append('<img class="img-output" src="'+URL.createObjectURL(image)+'">');
-      }
-    }else{
+  <script>
+    $('.upload').change(function(e){
+      if(e.target.files.length <=2){
+        $('.edit-img').css('border','none');
+        $('.btn-text').hide();
+        $('.img-output').remove();
+        for(let image of e.target.files){        
+          $('.edit-img').append('<img class="img-output" src="'+URL.createObjectURL(image)+'">');
+        }
+      }else{
         alert('chỉ nhận được tối đa 2 ảnh');
-    }
+      }
 
-    
-  });
 
-  $('.size-check').change(function(e){
-        if($(this).is(':checked')){
-            $('.amount-input-'+$(this).val()).removeAttr('disabled');
-        }else{
-            $('.amount-input-'+$(this).val()).attr('disabled','disabled');
-        } 
+    });
+
+    $('.size-check').change(function(e){
+      if($(this).is(':checked')){
+        $('.amount-input-'+$(this).val()).removeAttr('disabled');
+      }else{
+        $('.amount-input-'+$(this).val()).attr('disabled','disabled');
+      } 
     });
 
     $('.edit-size-check').change(function(e){
-                if($(this).is(':checked')){
-                    $('.edit-amount-input-'+$(this).val()).removeAttr('disabled');
-                }else{
-                    $('.edit-amount-input-'+$(this).val()).val('').attr('disabled','disabled');
-                } 
-            });
-</script>
+      if($(this).is(':checked')){
+        $('.edit-amount-input-'+$(this).val()).removeAttr('disabled');
+      }else{
+        $('.edit-amount-input-'+$(this).val()).val('').attr('disabled','disabled');
+      } 
+    });
+  </script>
+  
+  <!-- Chart JS -->
+  <script src="{{ asset('backend/plugins/morris/morris.min.js') }}"></script>
+  <script src="{{ asset('backend/plugins/raphael/raphael.min.js') }}"></script>
+  <script src="{{ asset('backend/js/chart.js') }}"></script>
+
 </body>
 </html>

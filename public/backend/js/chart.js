@@ -2,47 +2,32 @@ $(document).ready(function() {
 
 	// Bar Chart
 	
-	Morris.Bar({
+	var chart =  new Morris.Bar({
 		element: 'bar-charts',
-		data: [
-			{ y: '2006', a: 100, b: 90 },
-			{ y: '2007', a: 75,  b: 65 },
-			{ y: '2008', a: 50,  b: 40 },
-			{ y: '2009', a: 75,  b: 65 },
-			{ y: '2010', a: 50,  b: 40 },
-			{ y: '2011', a: 75,  b: 65 },
-			{ y: '2012', a: 100, b: 90 }
-		],
-		xkey: 'y',
-		ykeys: ['a', 'b'],
-		labels: ['Total Income', 'Total Outcome'],
-		lineColors: ['#f43b48','#453a94'],
+		xkey: 'day',
+		ykeys: ['Total'],
+		labels: ['Total Income'],
+		lineColors: ['#f43b48'],
 		lineWidth: '3px',
-		barColors: ['#f43b48','#453a94'],
+		barColors: ['#f43b48'],
 		resize: true,
 		redraw: true
 	});
 	
-	// Line Chart
-	
-	Morris.Line({
-		element: 'line-charts',
-		data: [
-			{ y: '2006', a: 50, b: 90 },
-			{ y: '2007', a: 75,  b: 65 },
-			{ y: '2008', a: 50,  b: 40 },
-			{ y: '2009', a: 75,  b: 65 },
-			{ y: '2010', a: 50,  b: 40 },
-			{ y: '2011', a: 75,  b: 65 },
-			{ y: '2012', a: 100, b: 50 }
-		],
-		xkey: 'y',
-		ykeys: ['a', 'b'],
-		labels: ['Total Sales', 'Total Revenue'],
-		lineColors: ['#f43b48','#453a94'],
-		lineWidth: '3px',
-		resize: true,
-		redraw: true
-	});
-		
+	function chartMonth()
+	{
+		$.ajax({
+            type: 'GET',
+            url: '/admin/chartMonth',
+            dataType: 'json',
+            success: function(data){
+                chart.setData(data); 
+            },
+            error: function(data){
+                console.log(data);
+                
+            }
+        })
+	}
+	chartMonth();
 });

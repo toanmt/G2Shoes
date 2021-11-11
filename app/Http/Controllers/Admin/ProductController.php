@@ -28,8 +28,6 @@ class ProductController extends Controller
 
     public function addProduct(Request $request){
         if(in_array(null, (array)$request->all(), true) 
-        || empty($request->sizes) || empty($request->size_amount)
-        || in_array(null, (array)$request->sizes, true) 
         || in_array(null, (array)$request->size_amount, true)){
             return response()->json(['error'=>'Vui lòng nhập đầy đủ thông tin!!']);
         }else{
@@ -61,14 +59,17 @@ class ProductController extends Controller
                         $image_product->image_name = $img->getClientOriginalName();
                         $image_product->save();
                     }
-    
-                    for($index = 0;$index < count($request->sizes) ; $index++){
-                        $product_size = new ProductSize();
-                        $product_size->product_id = $product->id;
-                        $product_size->size_id = $request->sizes[$index];
-                        $product_size->amount = $request->size_amount[$index];
-                        $product_size->save();
+                    
+                    if(isset($request->size)){
+                        for($index = 0;$index < count($request->sizes) ; $index++){
+                            $product_size = new ProductSize();
+                            $product_size->product_id = $product->id;
+                            $product_size->size_id = $request->sizes[$index];
+                            $product_size->amount = $request->size_amount[$index];
+                            $product_size->save();
+                        }
                     }
+                    
                     
                     return response()->json(['success'=>'Thêm thành công']);
                 }
@@ -128,7 +129,7 @@ class ProductController extends Controller
     }
 
     public function deleteProduct($id){
-        Product::find($id)->delete();
+        Product::where('id',$id)->delete();
         ProductSize::where('product_id',$id)->delete();
         Image::where('product_id',$id)->delete();
         return response()->json(['ok'=>true]);
@@ -196,6 +197,5 @@ class ProductController extends Controller
         }
         return ['output'=>$output];
     }
-
     
 }
