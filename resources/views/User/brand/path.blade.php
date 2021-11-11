@@ -1,4 +1,3 @@
-@foreach($brand as $brand)
 <div class="main-path">
   <div class="container">
     <ul class="main-path__list">
@@ -11,4 +10,3 @@
     </ul>
   </div>
 </div>
-@endforeach
