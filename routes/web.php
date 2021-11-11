@@ -39,12 +39,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/edit-product/{id}',[App\Http\Controllers\Admin\ProductController::class,'editProduct']);
         Route::get('/delete-product/{id}',[App\Http\Controllers\Admin\ProductController::class,'deleteProduct']);
         Route::post('/product-search',[App\Http\Controllers\Admin\ProductController::class,'search']);
-        //size
 
-        Route::get('/sizes',[App\Http\Controllers\Admin\SizeController::class,'index']);
-        // Route::post('/add-size',[App\Http\Controllers\Admin\SizeController::class,'addSize']);
-        // Route::get('/edit-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'editSize']);
-        // Route::get('/delete-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'deleteSize']);
          //image
         Route::get('/image-product',[App\Http\Controllers\Admin\ImageController::class,'index']);
         Route::get('/image/{id}',[App\Http\Controllers\Admin\ImageController::class,'showImage']);
@@ -73,6 +68,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit-type/{id}',[App\Http\Controllers\Admin\TypeController::class,'editType']);
         
         //size
+        Route::get('/sizes',[App\Http\Controllers\Admin\SizeController::class,'index']);
         Route::post('/add-size',[App\Http\Controllers\Admin\SizeController::class,'addSize']);
         Route::get('/edit-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'editSize']);
         Route::get('/delete-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'deleteSize']);
@@ -83,6 +79,10 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit-invoice/{id}',[App\Http\Controllers\Admin\InvoiceController::class,'editInvoice']);
         Route::post('/search-invoice',[App\Http\Controllers\Admin\InvoiceController::class,'searchInvoice']);
         Route::get('/send-invoice/{id}',[App\Http\Controllers\Admin\InvoiceController::class,'sendInvoice']);
+
+        //report
+        Route::get('/report',[App\Http\Controllers\Admin\ReportController::class,'index']);
+        Route::post('/filter',[App\Http\Controllers\Admin\ReportController::class,'filter']);
     });
     
 });

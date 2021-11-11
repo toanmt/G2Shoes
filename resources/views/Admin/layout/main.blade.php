@@ -121,6 +121,5 @@
   <!-- Chart JS -->
   <script src="{{ asset('backend/plugins/morris/morris.min.js') }}"></script>
   <script src="{{ asset('backend/plugins/raphael/raphael.min.js') }}"></script>
-  <script src="{{ asset('backend/js/chartHome.js') }}"></script>
 </body>
 </html>
