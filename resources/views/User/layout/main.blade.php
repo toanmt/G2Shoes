@@ -37,15 +37,15 @@
   <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
   <script src="{{ asset('frontend/js/main.js') }}"></script>
   <script type="text/javascript">
-    // $(document).ready(function(){
-    //   $('.dropdown-text').on('click',function(){
-    //     var url = $(this).data('value'); 
-    //       if (url) { 
-    //           window.location = url;
-    //       }
-    //     return false;
-    //   });
-    // });
+    $(document).ready(function(){
+      $('.dropdown-text').on('click',function(){
+        var url = $(this).data('value'); 
+          if (url) { 
+              window.location = url;
+          }
+        return false;
+      });
+    });
     // const dropdownItem = document.querySelectorAll('.dropdown-item');
     // [...dropdownItem].forEach((item) => {
     //   item.addEventListener('click', (e) => {

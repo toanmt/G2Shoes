@@ -15,12 +15,12 @@ use App\Models\Image;
 class ProductController extends Controller
 {
 	public function index($id){
-        $data = Brand::all();
-        $sizes = Size::all();
-        $type = Type::all();
+		$data = Brand::all();
+		$sizes = Size::all();
+		$type = Type::all();
 		$product = Product::with('type')->find($id);
-        $image_product = Image::where('product_id',$id)->get();
-        $product_size = ProductSize::where('product_id',$id)->with('sizes')->get();
-        return View('User.productDetails.main')->with(['data'=>(object)$data,'product'=>(object)$product,'product_size'=>(object)$product_size,'sizes'=>(object)$sizes,'type'=>(object)$type,'image_product'=>(object)$image_product]);
+		$image_product = Image::where('product_id',$id)->get();
+		$product_size = ProductSize::where('product_id',$id)->with('sizes')->get();
+		return View('User.productDetails.main')->with(['data'=>(object)$data,'product'=>(object)$product,'product_size'=>(object)$product_size,'sizes'=>(object)$sizes,'type'=>(object)$type,'image_product'=>(object)$image_product]);
 	}
 }

@@ -1,4 +1,3 @@
-@foreach($brand as $brand)
 <div class="brand-control">
   <div class="brand-control__item">
     <div class="brand-control__title">
@@ -63,4 +62,3 @@
     </div>
   </div>
 </div>
-@endforeach

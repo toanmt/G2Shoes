@@ -1,6 +1,4 @@
-@foreach($brand as $brand)
 <div class="brand-products">
-  @foreach($brand->types as $type)
   <section class="product">
     <div class="brand-products__heading">
       <h1 class="brand-products__title">{{$brand->brand_name}}</h1>
@@ -36,12 +34,12 @@
     </div>
     <div class="product-list">
       <div class="container">
-        @foreach($type->products as $product)
+        @foreach($product as $product)
         <div class="product-item">
           <div class="product-image">
             <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
-              @foreach($product->images as $image) 
-              <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
+              @foreach($image as $image)
+              <img src="{{ asset('Image/'.$product->image_name) }}" alt="" />
               @endforeach
             </a>
             <div class="product-control">
@@ -52,7 +50,7 @@
           <div class="product-infor">
             <div class="product-name">
               <h3>
-                <a href="{{ URL::to('/product_details/'.$product->id)}}" title="">{{$product->product_name}}</a>
+                <a href="{{ URL::to('/product_details/'.$product->id)}}" title="{{$product->product_name}}">{{$product->product_name}}</a>
               </h3>
             </div>
             <div class="product-price">
@@ -69,6 +67,4 @@
       </div>
     </div>
   </section>
-  @endforeach
 </div>
-@endforeach

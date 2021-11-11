@@ -12,25 +12,16 @@ window.addEventListener("load", () => {
     window.onscroll = () => {
         if (window.pageYOffset > 143) {
             nav.classList.add("active");
-            document.querySelector(".product-details-infomation").style.cssText = "top: 80px;";
+            if(document.querySelector(".product-details-infomation")) {
+                document.querySelector(".product-details-infomation").style = "top: 80px;";
+            }
         } else {
             nav.classList.remove("active");
-            document.querySelector(".product-details-infomation").style.cssText = "top: 0;";
+            if(document.querySelector(".product-details-infomation")) {
+                document.querySelector(".product-details-infomation").style = "top: 0;";
+            }
         }
     };
-
-    //handle click menu
-    // const navItems = document.querySelectorAll(".nav-item");
-    // [...navItems].forEach((item) => {
-    //     item.addEventListener("click", () => {
-    //         [...navItems].forEach((element) =>
-    //             element.classList.remove("active")
-    //         );
-    //         item.classList.add("active");
-    //         document.title = `${item.innerText} - G2 SHOES`;
-    //         console.log(item.innerText);
-    //     });
-    // });
 
     //handle slider
     if (main.querySelector(".banner")) {
@@ -106,15 +97,13 @@ window.addEventListener("load", () => {
 
                 [...sortItem].forEach((element) =>
                     element.classList.remove("active")
-                );
+                    );
                 item.classList.add("active");
                 sortSelect.innerText = textItem.innerText;
             });
         });
     }
-
-    // Start product-details
-
+    
     //select item-image
     const chooseImage = document.querySelectorAll(".demo");
     [...chooseImage].forEach((img) => 
@@ -122,50 +111,58 @@ window.addEventListener("load", () => {
             [...chooseImage].forEach((item) => item.classList.remove("active"));
             e.target.classList.add("active");
         })
-    )
-
-    //slider product details page
-    let slideIndex = 1;
-    showSlides(slideIndex);
-
-    function currentSlide(n) {
-    showSlides((slideIndex = n));
-    }
-
-    function showSlides(n) {
-    let i;
-    const slides = document.getElementsByClassName("slider-item");
-    if (n > slides.length) {
-        slideIndex = 1;
-    }
-    if (n < 1) {
-        slideIndex = slides.length;
-    }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slides[slideIndex - 1].style.display = "block";
-    }
+        )
 
     //select size of shoes
     const sizeElm = document.querySelectorAll(".size-item");
     [...sizeElm].forEach((elm) =>
-    elm.addEventListener("click", (e) => {
-        [...sizeElm].forEach((item) => item.classList.remove("active"));
-        e.target.classList.add("active");
-    })
-    );
-
-    
-
-    // End product-details
+        elm.addEventListener("click", (e) => {
+            [...sizeElm].forEach((item) => item.classList.remove("active"));
+            e.target.classList.add("active");
+        })
+        );
 });
+
+//handle click menu
+const navItems = document.querySelectorAll(".nav-item");
+[...navItems].forEach((item) => {
+    item.addEventListener("click", () => {
+        [...navItems].forEach((element) =>
+            element.classList.remove("active")
+            );
+        item.classList.add("active");
+        document.title = `${item.innerText} - G2 SHOES`;
+        console.log(item.innerText);
+    });
+});
+
+ //slider product details page
+ if(document.getElementsByClassName("slider-item")) {
+     let slideIndex = 1;
+     function currentSlide(n) {
+        showSlides((slideIndex = n));
+    }
+    function showSlides(n) {
+        let i;
+        const slides = document.getElementsByClassName("slider-item");
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+    }
+}
 
 //select rating star of shoes
 const rateElm = document.querySelectorAll(".rating-score");
 [...rateElm].forEach((elm) =>
-elm.addEventListener("click", (e) => {
-    [...rateElm].forEach((item) => item.classList.remove("active"));
-    e.target.classList.add("active");
-})
+    elm.addEventListener("click", (e) => {
+        [...rateElm].forEach((item) => item.classList.remove("active"));
+        e.target.classList.add("active");
+    })
 );
