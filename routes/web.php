@@ -30,7 +30,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/logout',[App\Http\Controllers\Admin\LoginController::class,'logout']);
         //Home
         Route::get('',[App\Http\Controllers\Admin\HomeController::class,'index'])->name('home');
-        Route::get('/home',[App\Http\Controllers\Admin\HomeController::class,'index']);
+        Route::get('/chartMonth',[App\Http\Controllers\Admin\HomeController::class,'chartMonth']);
         //product
         Route::get('/products',[App\Http\Controllers\Admin\ProductController::class,'index']);
         Route::post('/add-product',[App\Http\Controllers\Admin\ProductController::class,'addProduct']);
