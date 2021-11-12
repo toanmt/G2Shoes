@@ -26,6 +26,7 @@ Route::prefix('admin')->group(function () {
     Route::get('forgot-password',[App\Http\Controllers\Admin\LoginController::class,'forgotPass']);
     Route::post('send-mail',[App\Http\Controllers\Admin\LoginController::class,'sendMail']);
     Route::get('reset-password',[App\Http\Controllers\Admin\LoginController::class,'resetPass']);
+    Route::get('change-password',[App\Http\Controllers\Admin\HomeController::class,'changePass']);
     Route::post('reset-pass',[App\Http\Controllers\Admin\LoginController::class,'resetPassPost']);
     Route::middleware(['validate'])->group(function () {
         Route::get('/logout',[App\Http\Controllers\Admin\LoginController::class,'logout']);

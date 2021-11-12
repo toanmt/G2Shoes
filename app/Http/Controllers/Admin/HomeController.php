@@ -51,4 +51,8 @@ class HomeController extends Controller
         }
         echo $data = json_encode($chart_data);
     }
+
+    public function changePass (Request $request){
+        return View('Admin.home.changePassword');
+    }
 }

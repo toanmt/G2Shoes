@@ -444,4 +444,19 @@ $(document).ready(function(){
     }
 
     editType();
+    
+    $('#frm-change-pass').submit(function(e){
+            e.preventDefault();
+            var formData = $(this).serialize();
+            $.post($(this).attr('action'),formData,function(data){
+                if(data.error !== undefined){
+                    alert(data.error);
+                }
+
+                if(data.success !== undefined){
+                    alert(data.success);
+                    location.href = data.url;
+                }
+            });
+        });
 });

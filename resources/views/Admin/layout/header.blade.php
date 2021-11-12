@@ -27,25 +27,12 @@
 
   <!-- Header Menu -->
   <ul class="nav user-menu">
-
-    <!-- Search -->
-    <li class="nav-item">
-      <div class="top-nav-search">
-        <a href="javascript:void(0);" class="responsive-search">
-          <i class="fa fa-search"></i>
-        </a>
-        <form action="#">
-          <input class="form-control" type="text" placeholder="Search here">
-          <button class="btn" type="submit"><i class="fa fa-search"></i></button>
-        </form>
-      </div>
-    </li>
-    <!-- /Search -->
     <li class="nav-item dropdown has-arrow main-drop">
       <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
         <span>{{ json_decode(Cookie::get('admin_login'))->username }}</span>
       </a>
       <div class="dropdown-menu">
+        <a class="dropdown-item" href="{{ url('admin/change-password') }}">Change password</a>
         <a class="dropdown-item" href="{{ url('admin/logout') }}">Logout</a>
       </div>
     </li>
