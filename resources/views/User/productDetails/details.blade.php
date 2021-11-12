@@ -79,25 +79,61 @@
   </div>
   <div class="product-details-review">
     <div class="product-details-review__comment">
-      <div class="product-details-review__comment__description no-comment" style="display: block;">
+      @if(count($comment) == 0)
+      <div class="product-details-review__comment__description">
         <div class="product-details-review__comment__sender">
-          <p style="margin: 25px 15px;">Hiện tại sản phẩm chưa có đánh giá nào, bạn hãy trở thành người đầu tiên đánh giá cho sản phẩm này</p>
-          <form class="review-form" action="{{ url('/add-comment') }}" method="POST" enctype="multipart/form-data">
+            <p style="margin: 25px 15px;">Hiện tại sản phẩm chưa có đánh giá nào, bạn hãy trở thành người đầu tiên đánh giá cho sản phẩm này</p>
+          <form id="review-form" class="review-form" action="{{ url('/add-comment') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="review-form-rating">
               <div class="review-form-rating-title">Đánh giá của bạn về sản phẩm:</div>
               <div class="review-form-rating-product">Giày {{ $product->product_name }}</div>
               <input type="hidden" name="productId" value="{{ $product->id }}">
               <div class="review-form-rating-stars">
-                <input class="star star-5" id="star-5" type="radio" name="star"/>
+                <input name="rating" class="star star-5" id="star-5" type="radio" value="5"/>
                 <label class="star star-5" for="star-5"></label>
-                <input class="star star-4" id="star-4" type="radio" name="star"/>
+                <input name="rating" class="star star-4" id="star-4" type="radio" value="4"/>
                 <label class="star star-4" for="star-4"></label>
-                <input class="star star-3" id="star-3" type="radio" name="star"/>
+                <input name="rating" class="star star-3" id="star-3" type="radio" value="3"/>
                 <label class="star star-3" for="star-3"></label>
-                <input class="star star-2" id="star-2" type="radio" name="star"/>
+                <input name="rating" class="star star-2" id="star-2" type="radio" value="2"/>
                 <label class="star star-2" for="star-2"></label>
-                <input class="star star-1" id="star-1" type="radio" name="star"/>
+                <input name="rating" class="star star-1" id="star-1" type="radio" value="1"/>
+                <label class="star star-1" for="star-1"></label>
+              </div>
+            </div>
+            <div class="review-form-information">
+              <div class="review-form-information-name">
+                <input type="text" maxlength="100" id="review_author" name="author" placeholder="Nhập họ tên của bạn">
+              </div>
+              <div class="review-form-information-evaluate">
+                <textarea maxlength="1000" id="review_body" name="content" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này"></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn-new-review" onclick="return addComment()">Gửi đánh giá của bạn</button>
+          </form>
+        </div>
+      </div>
+      @endif
+      @if(count($comment) != 0)
+      <div class="product-details-review__comment__description">
+        <div class="product-details-review__comment__sender">
+          <form id="review-form" class="review-form" action="{{ url('/add-comment') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="review-form-rating">
+              <div class="review-form-rating-title">Đánh giá của bạn về sản phẩm:</div>
+              <div class="review-form-rating-product">Giày {{ $product->product_name }}</div>
+              <input type="hidden" name="productId" value="{{ $product->id }}">
+              <div class="review-form-rating-stars">
+                <input name="rating" class="star star-5" id="star-5" type="radio" value="5"/>
+                <label class="star star-5" for="star-5"></label>
+                <input name="rating" class="star star-4" id="star-4" type="radio" value="4"/>
+                <label class="star star-4" for="star-4"></label>
+                <input name="rating" class="star star-3" id="star-3" type="radio" value="3"/>
+                <label class="star star-3" for="star-3"></label>
+                <input name="rating" class="star star-2" id="star-2" type="radio" value="2"/>
+                <label class="star star-2" for="star-2"></label>
+                <input name="rating" class="star star-1" id="star-1" type="radio" value="1"/>
                 <label class="star star-1" for="star-1"></label>
               </div>
             </div>
@@ -112,7 +148,97 @@
             <button type="submit" class="btn-new-review" onclick="">Gửi đánh giá của bạn</button>
           </form>
         </div>
+        <div class="product-details-review__comment__action">
+            <div class="rating-summary">
+              <meta content="5" itemprop="bestRating">
+              <meta content="1" itemprop="worstRating">
+              <div class="rating-summary-score">
+                  <span itemprop="ratingValue">
+                    <?php
+                      $rate_score = 0;
+                      foreach($comment as $key => $cmt)
+                      {
+                        $rate_score += $cmt->rating;
+                      }
+                      $rate = $rate_score/count($comment);
+                      $rate_score = round($rate);
+                      echo round($rate, 1, PHP_ROUND_HALF_EVEN);
+                    ?>
+                  </span>
+                  <span class="max-score">/5</span>
+              </div>
+              <div data-number="{{ $rate_score }}" data-score="{{ $rate_score }}" class="rating-summary-star">
+                <?php
+                  for($i = 1; $i <= $rate_score; $i++)
+                  {
+                    ?>
+                      <i data-alt="{{ $i }}" class="fa fa-star" aria-hidden="true"></i>
+                    <?php
+                  }
+                ?>
+                <input name="score" type="hidden" value="{{ $rate_score }}" readonly="">
+              </div>
+              <div>(<span itemprop="ratingCount">{{ count($comment) }}</span> <span> đánh giá</span>)</div>
+              
+            </div>
+            <div class="rating-filter">
+              <div class="rating-filter-list">
+                <div class="select-rating">
+                  <input type="radio" id="FilterAll" name="filter" value="all" style="display: none;">
+                  <label class="rating-score" for="FilterAll">Tất cả (<span class="count">{{ count($comment) }}</span>)</label>
+                </div>
+                <div class="select-rating">
+                  <input type="radio" id="FiveScore" name="filter" value="5" style="display: none;">
+                  <label class="rating-score" for="FiveScore">5 Điểm (<span class="count">{{ count($comment->where('rating',5)) }}</span>)</label>
+                </div>
+                <div class="select-rating">
+                  <input type="radio" id="FourScore" name="filter" value="4" style="display: none;">
+                  <label class="rating-score" for="FourScore">4 Điểm (<span class="count">{{ count($comment->where('rating',4)) }}</span>)</label>
+                </div>
+                <div class="select-rating">
+                  <input type="radio" id="ThreeScore" name="filter" value="3" style="display: none;">
+                  <label class="rating-score" for="ThreeScore">3 Điểm (<span class="count">{{ count($comment->where('rating',3)) }}</span>)</label>
+                </div>
+                <div class="select-rating">
+                  <input type="radio" id="TwoScore" name="filter" value="2" style="display: none;">
+                  <label class="rating-score" for="TwoScore">2 Điểm (<span class="count">{{ count($comment->where('rating',2)) }}</span>)</label>
+                </div>
+                <div class="select-rating">
+                  <input type="radio" id="OneScore" name="filter" value="1" style="display: none;">
+                  <label class="rating-score" for="OneScore">1 Điểm (<span class="count">{{ count($comment->where('rating',1)) }}</span>)</label>
+                </div>
+              </div>
+            </div>
+        </div>
+        @foreach($comment->take(3) as $comment)
+        <div class="product-details-review__comment__list">
+          <div class="product-details-review__comment__list-header">
+            <span id="author">{{ $comment->author }}</span>&nbsp;
+            <div data-score="{{ $comment->rating }}" data-number="{{ $comment->rating }}">
+              <?php
+                for($i = 1; $i <= $comment->rating; $i++)
+                {
+                  ?>
+                    <i data-alt="{{ $i }}" class="fa fa-star" aria-hidden="true"></i>
+                  <?php
+                }
+              ?>
+            </div>
+          </div>
+          <div class="product-details-review__comment__list-body">
+            <span id="user_comment">{{ $comment->content }}</span>
+          </div>
+          <div class="product-details-review__comment__list-action">
+            <ul>
+              <li>
+                <span class="review-time" id="datePublished">{{ $comment->created_at }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        @endforeach
       </div>
+      @endif
       <div>
         <img src="{{ asset('Image/demo/shoes.png') }}" alt="Các thương hiệu">
       </div>

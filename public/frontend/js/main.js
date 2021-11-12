@@ -121,6 +121,35 @@ window.addEventListener("load", () => {
             e.target.classList.add("active");
         })
         );
+    
+    //Add comment
+    function addComment() 
+    {
+        $('#review-form').on('submit',function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: new FormData(this),
+            dataType: 'json',
+            contentType:false,
+            processData:false,
+            success: function(data){ 
+                if(data.error !== undefined){
+                    alert(data.error);
+                }else{
+                    alert(data.success);
+                    setTimeout(function(){
+                        location.reload();
+                    },1);
+                }
+            },
+            error: function(data){
+                console.log(data);
+            }
+        })
+    })};
+    addComment();
 });
 
 //handle click menu
