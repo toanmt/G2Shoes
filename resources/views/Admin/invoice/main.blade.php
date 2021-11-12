@@ -1,4 +1,9 @@
 @extends('Admin.layout.main')
+
+@section('title')
+<title>Hóa đơn</title>
+@endsection
+
 @section('content')
 <div class="page-wrapper">
 			

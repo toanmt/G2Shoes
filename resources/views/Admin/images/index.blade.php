@@ -1,4 +1,9 @@
 @extends('Admin.layout.main')
+
+@section('title')
+<title>Ảnh sản phẩm</title>
+@endsection
+
 @section('content')
 <!-- Page Wrapper -->
 <div class="page-wrapper">
