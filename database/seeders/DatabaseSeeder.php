@@ -16,7 +16,11 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(BrandSeeder::class);
         $this->call(TypeSeeder::class);
+        $this->call(SizeSeeder::class);
         $this->call(ProductSeeder::class);
+        // $this->call(Comment::class);
+        $this->call(VoucherSeeder::class);
+        $this->call(Product_SizeSeeder::class);
         $this->call(ImageSeeder::class);
     }
 }

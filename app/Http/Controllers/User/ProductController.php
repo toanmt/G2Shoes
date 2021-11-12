@@ -11,6 +11,7 @@ use App\Models\Size;
 use App\Models\Brand;
 use App\Models\Type;
 use App\Models\Image;
+use App\Models\Comment;
 
 class ProductController extends Controller
 {
@@ -40,7 +41,7 @@ class ProductController extends Controller
             return response()->json(['errorN'=>'Details content cannot be left blank!']);
         }
         else {
-            $comment=new Comment();
+            $comment= new Comment();
             $comment->author = $request->author;
             $comment->content = $request->content;
             $comment->product_id = $request->productId;
