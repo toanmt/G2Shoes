@@ -3,7 +3,6 @@ $(document).ready(function(){
     $('.btn-create').click(function(e){
         e.preventDefault();
         var formData = $('#frm-create').serialize();
-        
         $.ajax({
             type: 'POST',
             url: '/admin/add-user',
@@ -115,16 +114,17 @@ $(document).ready(function(){
         })
     });
 
-    function action(){$('.action').click(function(e){
-        e.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: '/admin/client-lists/action',
-            data: {
-                'status': $(this).attr('status'),
-                'id': $(this).data('id')
-            },
-            success: function(data){
+    function action(){
+        $('.action').click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'GET',
+                url: '/admin/client-lists/action',
+                data: {
+                    'status': $(this).attr('status'),
+                    'id': $(this).data('id')
+                },
+                success: function(data){
                     // $('#status').removeData();
                     $('#status').html(data.output);
                 },
@@ -133,63 +133,61 @@ $(document).ready(function(){
                     
                 }
             })
-    })
-};
-action();
+        })
+    }
+    action();
+    $('.btn-search-client').click(function(e){
+        e.preventDefault();
+        var formData = $('#frm-search').serialize();
 
-$('.btn-search-client').click(function(e){
-    e.preventDefault();
-    var formData = $('#frm-search').serialize();
+        $.ajax({
+            type: 'POST',
+            url: '/admin/client-search',
+            data: formData,
+            dataType: 'json',
+            success: function(data){
+                if(data.output != null){
+                    $('#data').removeData();
+                    $('#data').html(data.output);
+                    action();
+                }
+                if(data.result!= null){
+                    $('#data-show').removeData();
+                    $('#data-show').html(data.result);
+                }
+            },
+            error: function(data){
+                console.log(data);
 
-    $.ajax({
-        type: 'POST',
-        url: '/admin/client-search',
-        data: formData,
-        dataType: 'json',
-        success: function(data){
-            if(data.output != null){
-                $('#data').removeData();
-                $('#data').html(data.output);
-                action();
             }
-            if(data.result!= null){
-                $('#data-show').removeData();
-                $('#data-show').html(data.result);
+        })
+    });
+
+    $('#frm-profile').on('submit',function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: new FormData(this),
+            dataType: 'json',
+            contentType:false,
+            processData:false,
+            success: function(data){
+                if(data.error !== undefined){
+                    alert(data.error);
+                }else{
+                    alert(data.success);
+                    setTimeout(function(){
+                        location.reload();
+                    },1);
+                }
+            },
+            error: function(data){
+                console.log(data);
+
             }
-        },
-        error: function(data){
-            console.log(data);
-
-        }
-    })
-});
-
-$('#frm-profile').on('submit',function(e){
-    e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: new FormData(this),
-        dataType: 'json',
-        contentType:false,
-        processData:false,
-        success: function(data){
-            if(data.error !== undefined){
-                alert(data.error);
-            }else{
-                alert(data.success);
-                setTimeout(function(){
-                    location.reload();
-                },1);
-            }
-        },
-        error: function(data){
-            console.log(data);
-
-        }
-    })
-})
-
+        })
+    });
 
 
     // -------------------------- Size --------------------------------
@@ -274,7 +272,7 @@ $('#frm-profile').on('submit',function(e){
         })
     });
 
-    // -------------------------- Size --------------------------------
+    // -------------------------- /Size --------------------------------
 
     //-------------------- Brand---------------------
 
@@ -324,7 +322,6 @@ $('#frm-profile').on('submit',function(e){
             }
         });
     });
-    //show edit
     function editBrand(){
         $('.btn-edit-brand').click(function(){
             var id = $(this).data('id');
@@ -369,9 +366,6 @@ $('#frm-profile').on('submit',function(e){
     // -------------------------- /Brand --------------------------------
 
 
-
-
-
     // -------------------------- Type --------------------------------
     //show add type
     function addType(){
@@ -404,7 +398,6 @@ $('#frm-profile').on('submit',function(e){
             }
         })
     });
-
     //delete
     function deltype(){
         $('.btn-delete-type').click(function(){
@@ -451,35 +444,4 @@ $('#frm-profile').on('submit',function(e){
     }
 
     editType();
-    // -------------------------- /Type --------------------------------
-
-    // -------------------------- Home  -------------------------- 
-    var chartM = new Morris.Bar({
-        element: 'bar-charts',
-        xkey: 'day',
-        ykeys: ['Total'],
-        labels: ['Total Income'],
-        lineColors: ['#f43b48'],
-        lineWidth: '3px',
-        barColors: ['#f43b48'],
-        resize: true,
-        redraw: true
-    });
-    function chartMonth()
-    {
-        $.ajax({
-            type: 'GET',
-            url: '/admin/chartMonth',
-            dataType: 'json',
-            success: function(data){
-                chartM.setData(data);
-            },
-            error: function(data){
-                console.log(data);
-
-            }
-        })
-    }
-    chartMonth();
-    // -------------------------- /Home -------------------------- 
-})
+});

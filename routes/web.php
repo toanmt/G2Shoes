@@ -82,7 +82,8 @@ Route::prefix('admin')->group(function () {
 
         //report
         Route::get('/report',[App\Http\Controllers\Admin\ReportController::class,'index']);
-        Route::post('/filter',[App\Http\Controllers\Admin\ReportController::class,'filter']);
+        Route::post('/filterReport',[App\Http\Controllers\Admin\ReportController::class,'filter']);
+        Route::get('/data30day',[App\Http\Controllers\Admin\ReportController::class,'data30day']);
     });
     
 });

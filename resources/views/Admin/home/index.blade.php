@@ -1,4 +1,9 @@
 @extends('Admin.layout.main')
+
+@section('title')
+<title>Dashboard</title>
+@endsection
+
 @section('content')
 <!-- Page Wrapper -->
 <div class="page-wrapper">
@@ -53,5 +58,11 @@
   </div>
   <!-- /Page Content -->
 </div>
+
+
 <!-- /Page Wrapper -->
 @endsection
+
+@push('chart-script')
+  <script src="{{ asset('backend/js/chartHome.js') }}"></script>
+@endpush
