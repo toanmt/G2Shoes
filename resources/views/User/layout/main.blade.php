@@ -27,6 +27,10 @@
   />
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('frontend/css/app.css') }}" />
+  <link rel="stylesheet" href="{{ asset('frontend/css/pagination.css') }}" />
+
+  <!-- JQUERY -->
+  <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
 </head>
 <body>
   @include('User.layout.header')
@@ -35,7 +39,6 @@
     @yield('content')
   </main>
   @include('User.layout.footer')
-  <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
   <script src="{{ asset('frontend/js/main.js') }}"></script>
   <script type="text/javascript">
     $(document).ready(function(){

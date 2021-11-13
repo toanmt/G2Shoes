@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Product;
 use App\Models\ProductSize;
 use App\Models\Size;
@@ -18,8 +19,8 @@ class ProductController extends Controller
 		$data = Brand::all();
 		$type = Type::all();
         $sizes = Size::all();
-        $comment = Comment::where('product_id',$id)->get();
-		$product = Product::with('type')->find($id);
+        $comment = Comment::where('product_id',$id)->orderBy('rating','DESC')->get();
+        $product = Product::with('type')->find($id);
 		$product_size = ProductSize::where('product_id',$id)->with('sizes')->get();
 		return View('User.productDetails.main')
         ->with(
@@ -32,7 +33,5 @@ class ProductController extends Controller
                 'comment'=>(object)$comment,
             ]
         );
-	}
-
-
+	} 
 }

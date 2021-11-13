@@ -1315,4 +1315,9 @@ a {
   height: 214px;
 }
 
+.error-fields {
+  color: red;
+  margin-bottom: 10px;
+}
+
 /*# sourceMappingURL=app.css.map */
