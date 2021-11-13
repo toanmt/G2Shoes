@@ -924,9 +924,6 @@ a {
   padding: 25px 0;
   font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", sans-serif;
 }
-.product-details-review__comment .fa-star {
-  color: #ffbe00;
-}
 .product-details-review__comment__description {
   margin-right: 30px;
   width: 910px;

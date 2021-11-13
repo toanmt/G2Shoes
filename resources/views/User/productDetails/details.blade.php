@@ -178,7 +178,7 @@
                   for($i = 1; $i <= $rate_score; $i++)
                   {
                     ?>
-                      <i data-alt="{{ $i }}" class="fa fa-star" style="margin: 0 2px;" aria-hidden="true"></i>
+                      <i data-alt="{{ $i }}" class="bx bxs-star" style="margin: 0 2px; color: #ffbe00;" aria-hidden="true"></i>
                     <?php
                   }
                 ?>
@@ -230,7 +230,6 @@
     </div>
   </div>
   <script src="{{ asset('frontend/js/pagination.min.js') }}"></script>
-  <script src="{{ asset('frontend/js/product-details.js') }}"></script>
   <script>
     (function(name) {
     var container = $('#pagination-' + name);
@@ -257,7 +256,7 @@
         $.each(response, function (index, item) {
           for(i = 1; i <= item.rating; i++)
           {
-            rate += '<i data-alt="'+ i +'" class="fa fa-star" style="margin: 0 2px;" aria-hidden="true"></i>';
+            rate += '<i data-alt="'+ i +'" class="bx bxs-star" style="margin: 0 2px; color: #ffbe00;" aria-hidden="true"></i>';
           } 
           
           header += '<div class="product-details-review__comment__list-header">';
