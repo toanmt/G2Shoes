@@ -100,17 +100,20 @@
                 <label class="star star-2" for="star-2"></label>
                 <input name="rating" class="star star-1" id="star-1" type="radio" value="1"/>
                 <label class="star star-1" for="star-1"></label>
+                <div class="error-fields"></div class="error-fields">
               </div>
             </div>
             <div class="review-form-information">
               <div class="review-form-information-name">
-                <input type="text" maxlength="100" id="review_author" name="author" placeholder="Nhập họ tên của bạn">
+                <input type="text" maxlength="100" id="review_author" name="author" placeholder="Nhập họ tên của bạn" autocomplete="off">
+                <div class="error-fields"></div class="error-fields">
               </div>
               <div class="review-form-information-evaluate">
-                <textarea maxlength="1000" id="review_body" name="content" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này"></textarea>
+                <textarea maxlength="1000" id="review_body" name="content" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này" autocomplete="off"></textarea>
+                <div class="error-fields"></div class="error-fields">
               </div>
             </div>
-            <button type="submit" class="btn-new-review" onclick="return addComment()">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-new-review" onclick="" disabled="true">Gửi đánh giá của bạn</button>
           </form>
         </div>
       </div>
@@ -135,17 +138,20 @@
                 <label class="star star-2" for="star-2"></label>
                 <input name="rating" class="star star-1" id="star-1" type="radio" value="1"/>
                 <label class="star star-1" for="star-1"></label>
+                <div class="error-fields"></div class="error-fields">
               </div>
             </div>
             <div class="review-form-information">
               <div class="review-form-information-name">
-                <input type="text" maxlength="100" id="review_author" name="author" placeholder="Nhập họ tên của bạn">
+                <input type="text" maxlength="100" id="review_author" name="author" placeholder="Nhập họ tên của bạn" autocomplete="off">
+                <div class="error-fields"></div class="error-fields">
               </div>
               <div class="review-form-information-evaluate">
-                <textarea maxlength="1000" id="review_body" name="content" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này"></textarea>
+                <textarea maxlength="1000" id="review_body" name="content" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này" autocomplete="off"></textarea>
+                <div class="error-fields"></div class="error-fields">
               </div>
             </div>
-            <button type="submit" class="btn-new-review" onclick="">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-new-review" onclick="" disabled="true">Gửi đánh giá của bạn</button>
           </form>
         </div>
         <div class="product-details-review__comment__action">
@@ -172,7 +178,7 @@
                   for($i = 1; $i <= $rate_score; $i++)
                   {
                     ?>
-                      <i data-alt="{{ $i }}" class="fa fa-star" aria-hidden="true"></i>
+                      <i data-alt="{{ $i }}" class="fa fa-star" style="margin: 0 2px;" aria-hidden="true"></i>
                     <?php
                   }
                 ?>
@@ -209,39 +215,70 @@
                 </div>
               </div>
             </div>
+        </div>  
+        <div id="review_data">
+          
         </div>
-        @foreach($comment->take(3) as $comment)
-        <div class="product-details-review__comment__list">
-          <div class="product-details-review__comment__list-header">
-            <span id="author">{{ $comment->author }}</span>&nbsp;
-            <div data-score="{{ $comment->rating }}" data-number="{{ $comment->rating }}">
-              <?php
-                for($i = 1; $i <= $comment->rating; $i++)
-                {
-                  ?>
-                    <i data-alt="{{ $i }}" class="fa fa-star" aria-hidden="true"></i>
-                  <?php
-                }
-              ?>
-            </div>
-          </div>
-          <div class="product-details-review__comment__list-body">
-            <span id="user_comment">{{ $comment->content }}</span>
-          </div>
-          <div class="product-details-review__comment__list-action">
-            <ul>
-              <li>
-                <span class="review-time" id="datePublished">{{ $comment->created_at }}</span>
-              </li>
-            </ul>
-          </div>
+        <div id="pagination-review">
+          
         </div>
-        @endforeach
       </div>
       @endif
       <div>
         <img src="{{ asset('Image/demo/shoes.png') }}" alt="Các thương hiệu">
       </div>
     </div>
-  </div>  
+  </div>
+  <script src="{{ asset('frontend/js/pagination.min.js') }}"></script>
+  <script src="{{ asset('frontend/js/product-details.js') }}"></script>
+  <script>
+    (function(name) {
+    var container = $('#pagination-' + name);
+    container.pagination({
+      dataSource: <?php echo $comment;?>,
+      locator: '',
+      totalNumber: <?php echo $comment->count(); ?>,
+      pageSize: 2,
+      ajax: {
+        beforeSend: function() {
+          container.prev().html('Loading data from Database ...');
+        }
+      },
+      callback: function(response, pagination) {
+        window.console && console.log(22, response, pagination);
+        let header = '';
+        let rate = '';
+        let body = '';
+        let date = '';
+        let action = '';
+        let dataHtml = '';
+        let dataReview = [];
+
+        $.each(response, function (index, item) {
+          for(i = 1; i <= item.rating; i++)
+          {
+            rate += '<i data-alt="'+ i +'" class="fa fa-star" style="margin: 0 2px;" aria-hidden="true"></i>';
+          } 
+          
+          header += '<div class="product-details-review__comment__list-header">';
+          header += '<span id="author">' + item.author + '</span>&nbsp;';
+          header += '<div data-score="' + item.rating + '" data-number="' + item.rating + '">' + rate + '</div></div>';
+          date = new Date(item.created_at);
+          body += '<div class="product-details-review__comment__list-body"><span id="user_comment">' + item.content + '</span></div>';
+          action += '<div class="product-details-review__comment__list-action"><span class="review-time" id="datePublished">' + date.toLocaleString() + '</span></div>';
+          dataHtml += '<div class="product-details-review__comment__list">' + header + body + action + '</div>';
+          dataReview[index] = dataHtml;
+          header = '';
+          rate = '';
+          body = '';
+          date = '';
+          action = '';
+          dataHtml = '';
+        });
+
+        container.prev().html(dataReview);
+      }
+    })
+  })('review');
+  </script>
 </section>

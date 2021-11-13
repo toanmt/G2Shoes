@@ -33,6 +33,7 @@ class CommentController extends Controller
             return response()->json(
                 [
                     'success'=>'true',
+                    'message'=> 'Your review has been update!',
                     'product_id'=>$request->productId,
                     'author'=>$request->author,
                     'content'=>$request->content,
