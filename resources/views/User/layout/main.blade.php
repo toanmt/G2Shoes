@@ -47,22 +47,18 @@
         var url = $(this).data('value');
         window.location = url;
       });
-
       //handle filter product
       filterData();
-
       function filterData() {
         var action = 'get_data';
         var size = getFilter('filter-size');
         var type = getFilter('filter-type');
-
         $.ajax({
           url: "app/Http/Controllers/User/BrandController.php",
           method: "POST",
           data: {action:action, size:size, type:type}
         });
       }
-
       function getFilter(className) {
         var filter = [];
         $('.'+className+':checked').each(function(){
@@ -70,7 +66,6 @@
         });
         return filter;
       }
-
       $('.filter-label').click(function(){
         filterData();
         console.log(getFilter())
