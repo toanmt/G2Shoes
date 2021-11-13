@@ -5,26 +5,26 @@
       <div class="brand-products__sort">
         <div class="dropdown">
           <div class="dropdown-select">
-            <span>Sắp xếp: </span>
+            <span>{{$sort_name}}</span>
             <i class="bx bxs-chevron-down"></i>
           </div>
           <form>
             @csrf
-            <div class="dropdown-list" id="sort">
-              <div class="dropdown-item">
-                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=gia_tang">Giá: Tăng dần</span>
+            <div class="dropdown-list">
+              <div class="dropdown-item" data-value="{{Request::url()}}?sort_by=gia_tang">
+                <span class="dropdown-text">Giá: Tăng dần</span>
                 <span><i class='bx bx-trending-up'></i></span>
               </div>
-              <div class="dropdown-item">
-                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=gia_giam">Giá: Giảm dần</span>
+              <div class="dropdown-item" data-value="{{Request::url()}}?sort_by=gia_giam">
+                <span class="dropdown-text">Giá: Giảm dần</span>
                 <span><i class='bx bx-trending-down'></i></span>
               </div>
-              <div class="dropdown-item">
-                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=kytu_az">Tên: A-Z</span>
+              <div class="dropdown-item" data-value="{{Request::url()}}?sort_by=kytu_az">
+                <span class="dropdown-text">Tên: A-Z</span>
                 <span><i class='bx bx-sort-a-z'></i></span>
               </div>
-              <div class="dropdown-item">
-                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=kytu_za">Tên: Z-A</span>
+              <div class="dropdown-item" data-value="{{Request::url()}}?sort_by=kytu_za">
+                <span class="dropdown-text">Tên: Z-A</span>
                 <span><i class='bx bx-sort-z-a'></i></span>
               </div>
             </div>

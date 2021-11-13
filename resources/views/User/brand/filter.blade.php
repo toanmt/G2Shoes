@@ -8,8 +8,13 @@
       <ul class="brand-control__list">
         @foreach($brand->types as $type)
         <li>
-          <input type="checkbox" name="{{substr($type->type_name, 9).$type->id}}" id="{{substr($type->type_name, 9).$type->id}}"/>
-          <label for="{{substr($type->type_name, 9).$type->id}}">{{$type->type_name}}</label>
+          <input 
+            type="checkbox"
+            value="{{$type->type_name}}" 
+            name="Type{{$type->id}}" 
+            id="Type{{$type->id}}" 
+            class="filter-type" />
+          <label for="Type{{$type->id}}" class="filter-label">{{$type->type_name}}</label>
         </li>
         @endforeach
       </ul>
@@ -54,8 +59,14 @@
       <ul class="brand-control__list brand-control__size">
         @foreach($size as $size)
         <li>
-          <input type="checkbox" name="SZ{{$size->size_number}}" id="SZ{{$size->size_number}}" />
-          <label for="SZ{{$size->size_number}}">{{$size->size_number}}</label>
+          <input 
+            type="checkbox" 
+            value="{{$size->size_number}}" 
+            name="Size{{$size->size_number}}" 
+            id="Size{{$size->size_number}}"
+            class="filter-size" 
+          />
+          <label for="Size{{$size->size_number}}" class="filter-label">{{$size->size_number}}</label>
         </li>
         @endforeach
       </ul>

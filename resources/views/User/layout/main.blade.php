@@ -39,22 +39,39 @@
   <script src="{{ asset('frontend/js/main.js') }}"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-      $('.dropdown-text').on('click',function(){
-        var url = $(this).data('value'); 
-          if (url) { 
-              window.location = url;
-          }
-        return false;
+      //handle sort product
+      $('.dropdown-item').on('click',function(e){
+        var url = $(this).data('value');
+        window.location = url;
       });
+
+      //handle filter product
+      filterData();
+
+      function filterData() {
+        var action = 'get_data';
+        var size = getFilter('filter-size');
+        var type = getFilter('filter-type');
+
+        $.ajax({
+          url: "app/Http/Controllers/User/BrandController.php",
+          method: "POST",
+          data: {action:action, size:size, type:type}
+        });
+      }
+
+      function getFilter(className) {
+        var filter = [];
+        $('.'+className+':checked').each(function(){
+          filter.push($(this).val());
+        });
+        return filter;
+      }
+
+      $('.filter-label').click(function(){
+        filterData();
+        console.log(getFilter())
+      })
     });
-    // const dropdownItem = document.querySelectorAll('.dropdown-item');
-    // [...dropdownItem].forEach((item) => {
-    //   item.addEventListener('click', (e) => {
-    //     let url = e.target.dataset.value;
-    //     window.location = url;
-    //     let sort = url.lastIndexOf('sort_by=');
-    //     console.log(sort);
-    //   })
-    // })
   </script>
 </body>
