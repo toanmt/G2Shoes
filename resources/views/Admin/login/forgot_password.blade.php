@@ -5,12 +5,6 @@
             
         <div class="account-content">
             <div class="container">
-            
-                <!-- Account Logo -->
-                <div class="account-logo">
-                    <a href="index.html"><img src="{{ asset('backend/img/logo.png') }}" alt="Dreamguy's Technologies"></a>
-                </div>
-                <!-- /Account Logo -->
                 
                 <div class="account-box">
                     <div class="account-wrapper">

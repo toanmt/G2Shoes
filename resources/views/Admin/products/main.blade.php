@@ -1,4 +1,9 @@
 @extends('Admin.layout.main')
+
+@section('title')
+<title>Sản phẩm</title>
+@endsection
+
 @section('content')
 <!-- Page Wrapper -->
 <div class="page-wrapper">
@@ -12,7 +17,7 @@
                 <div class="col">
                     <h3 class="page-title">Products</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/login') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Products</li>
                     </ul>
                 </div>

@@ -40,12 +40,8 @@
                 <li>
                     <a href="{{ url('admin/invoices') }}"><i class="las la-file-invoice-dollar"></i> <span> Hóa đơn </span></span></a>                    
                 </li>
-                <li class="submenu">
-                    <a href="#"><i class="la la-pie-chart"></i> <span> Thống kê </span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="invoice-reports.html"> Invoice Report </a></li>
-                        <li><a href="payments-reports.html"> Payments Report </a></li>
-                    </ul>
+                <li>
+                    <a href="{{ url('admin/report') }}"><i class="la la-pie-chart"></i> <span> Thống kê </span> </a>
                 </li>
                 
 

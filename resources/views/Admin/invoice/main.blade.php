@@ -1,4 +1,9 @@
 @extends('Admin.layout.main')
+
+@section('title')
+<title>Hóa đơn</title>
+@endsection
+
 @section('content')
 <div class="page-wrapper">
 			
@@ -11,7 +16,7 @@
                 <div class="col">
                     <h3 class="page-title">Invoices</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/login') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Invoices</li>
                     </ul>
                 </div>

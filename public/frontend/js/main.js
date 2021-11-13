@@ -87,21 +87,6 @@ window.addEventListener("load", () => {
                 }
             });
         });
-
-        //handle sort
-        const sortItem = document.querySelectorAll(".dropdown-item");
-        const sortSelect = document.querySelector(".dropdown-select span");
-        [...sortItem].forEach((item) => {
-            item.addEventListener("click", () => {
-                const textItem = item.querySelector(".dropdown-text");
-
-                [...sortItem].forEach((element) =>
-                    element.classList.remove("active")
-                    );
-                item.classList.add("active");
-                sortSelect.innerText = textItem.innerText;
-            });
-        });
     }
     
     //select item-image
