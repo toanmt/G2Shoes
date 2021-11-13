@@ -87,21 +87,6 @@ window.addEventListener("load", () => {
                 }
             });
         });
-
-        //handle sort
-        const sortItem = document.querySelectorAll(".dropdown-item");
-        const sortSelect = document.querySelector(".dropdown-select span");
-        [...sortItem].forEach((item) => {
-            item.addEventListener("click", () => {
-                const textItem = item.querySelector(".dropdown-text");
-
-                [...sortItem].forEach((element) =>
-                    element.classList.remove("active")
-                    );
-                item.classList.add("active");
-                sortSelect.innerText = textItem.innerText;
-            });
-        });
     }
     
     //select item-image
@@ -124,41 +109,40 @@ window.addEventListener("load", () => {
 });
 
 //handle click menu
-const navItems = document.querySelectorAll(".nav-item");
-[...navItems].forEach((item) => {
-    item.addEventListener("click", () => {
-        [...navItems].forEach((element) =>
-            element.classList.remove("active")
-            );
-        item.classList.add("active");
-        document.title = `${item.innerText} - G2 SHOES`;
-        console.log(item.innerText);
-    });
-});
+// const navItems = document.querySelectorAll(".nav-item");
+// [...navItems].forEach((item) => {
+//     item.addEventListener("click", () => {
+//         [...navItems].forEach((element) =>
+//             element.classList.remove("active")
+//             );
+//         item.classList.add("active");
+//         document.title = `${item.innerText} - G2 SHOES`;
+//     });
+// });
 
  //slider product details page
- if(document.getElementsByClassName("slider-item") !== "") {
-     console.log(document.getElementsByClassName("slider-item"));
-     let slideIndex = 1;
-     showSlides(slideIndex);
-     function currentSlide(n) {
-        showSlides((slideIndex = n));
-    }
-    function showSlides(n) {
-        let i;
-        const slides = document.getElementsByClassName("slider-item");
-        if (n > slides.length) {
-            slideIndex = 1;
-        }
-        if (n < 1) {
-            slideIndex = slides.length;
-        }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        slides[slideIndex - 1].style.display = "block";
-    }
-}
+//  if(document.getElementsByClassName("slider-item") !== "") {
+//      console.log(document.getElementsByClassName("slider-item"));
+//      let slideIndex = 1;
+//      showSlides(slideIndex);
+//      function currentSlide(n) {
+//         showSlides((slideIndex = n));
+//     }
+//     function showSlides(n) {
+//         let i;
+//         const slides = document.getElementsByClassName("slider-item");
+//         if (n > slides.length) {
+//             slideIndex = 1;
+//         }
+//         if (n < 1) {
+//             slideIndex = slides.length;
+//         }
+//         for (i = 0; i < slides.length; i++) {
+//             slides[i].style.display = "none";
+//         }
+//         slides[slideIndex - 1].style.display = "block";
+//     }
+// }
 
 //select rating star of shoes
 const rateElm = document.querySelectorAll(".rating-score");
