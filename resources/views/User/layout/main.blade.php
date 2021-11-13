@@ -27,8 +27,6 @@
   />
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('frontend/css/app.css') }}" />
-  <link rel="stylesheet" href="{{ asset('frontend/css/pagination.css') }}" />
-
   <!-- JQUERY -->
   <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
 </head>
@@ -40,36 +38,4 @@
   </main>
   @include('User.layout.footer')
   <script src="{{ asset('frontend/js/main.js') }}"></script>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      //handle sort product
-      $('.dropdown-item').on('click',function(e){
-        var url = $(this).data('value');
-        window.location = url;
-      });
-      //handle filter product
-      filterData();
-      function filterData() {
-        var action = 'get_data';
-        var size = getFilter('filter-size');
-        var type = getFilter('filter-type');
-        $.ajax({
-          url: "app/Http/Controllers/User/BrandController.php",
-          method: "POST",
-          data: {action:action, size:size, type:type}
-        });
-      }
-      function getFilter(className) {
-        var filter = [];
-        $('.'+className+':checked').each(function(){
-          filter.push($(this).val());
-        });
-        return filter;
-      }
-      $('.filter-label').click(function(){
-        filterData();
-        console.log(getFilter())
-      })
-    });
-  </script>
 </body>
