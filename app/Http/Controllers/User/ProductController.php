@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
-use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Product;
 use App\Models\ProductSize;
 use App\Models\Size;
