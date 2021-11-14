@@ -18,6 +18,7 @@ Route::prefix('')->group(function () {
     Route::get('/product_details/{id}',[App\Http\Controllers\User\ProductController::class,'index']);
     Route::post('/search',[App\Http\Controllers\User\HomeController::class,'search']);
     Route::post('/add-comment',[App\Http\Controllers\User\CommentController::class,'addComment']);
+    Route::get('/brand/{id}/filter/{size_id}',[App\Http\Controllers\User\BrandController::class,'filter']);
 });
 
 Route::prefix('admin')->group(function () {

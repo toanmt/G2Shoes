@@ -113,7 +113,7 @@
                 <div class="error-fields"></div class="error-fields">
               </div>
             </div>
-            <button type="submit" class="btn-new-review" onclick="" disabled="true">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-new-review" onclick="">Gửi đánh giá của bạn</button>
           </form>
         </div>
       </div>
@@ -151,7 +151,7 @@
                 <div class="error-fields"></div class="error-fields">
               </div>
             </div>
-            <button type="submit" class="btn-new-review" onclick="" disabled="true">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-new-review" onclick="">Gửi đánh giá của bạn</button>
           </form>
         </div>
         <div class="product-details-review__comment__action">
@@ -244,7 +244,7 @@
         }
       },
       callback: function(response, pagination) {
-        window.console && console.log(22, response, pagination);
+        // window.console && console.log(22, response, pagination);
         let header = '';
         let rate = '';
         let body = '';

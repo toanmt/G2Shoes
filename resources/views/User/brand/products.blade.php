@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="product-list">
-      <div class="container">
+      <div class="container list-item">
         @foreach($product as $product)
         <div class="product-item">
           <div class="product-image">
@@ -67,4 +67,15 @@
       </div>
     </div>
   </section>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      //handle sort product
+      $('.dropdown-item').on('click',function(e){
+        var url = $(this).data('value');
+        window.location = url;
+      });
+      
+    });
+  </script>
+  <script src="{{ asset('frontend/js/filter.js') }}"></script>
 </div>

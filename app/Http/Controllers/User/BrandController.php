@@ -83,4 +83,18 @@ class BrandController extends Controller
 			]
 		);
 	}
+
+	public function filter($id , $size_id) {
+		$size_filter = explode(',', $size_id);
+		$product = Product::select('products.id','product_name','price','discount','type_id')
+		->join('types','types.id','=','products.type_id')
+		->join('brands','types.brand_id','=','brands.id')
+		->join('product_sizes','product_sizes.product_id','=','products.id')
+		->join('sizes','sizes.id','=','product_sizes.size_id')
+		->where('brands.id',$id)
+		->with('images')
+		->whereIn('sizes.id',$size_filter)->get();
+		
+		return response()->json($product);
+	}
 }
