@@ -4,10 +4,9 @@
     <h2 class="heading heading-title"><a href="{{URL::to('/brand/'.$brand->id)}}">{{$brand->brand_name}}</a></h2>
     <a href="{{URL::to('/brand/'.$brand->id)}}" class="heading-view">Xem thêm</a>
   </div>
-  @foreach($brand->types->take(8) as $type)
   <div class="product-list">
     <div class="container">
-      @foreach($type -> products as $product)
+      @foreach($brand->products->take(8) as $product)
       <div class="product-item">
         <div class="product-image">
           <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
@@ -39,6 +38,5 @@
       @endforeach
     </div>
   </div>
-  @endforeach
 </section>
 @endforeach

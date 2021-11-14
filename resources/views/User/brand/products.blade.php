@@ -35,7 +35,7 @@
     <div class="product-list">
       <div class="container list-item">
         @foreach($product as $product)
-        <div class="product-item">
+        <div class="product-item zoomIn animated">
           <div class="product-image">
             <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
               @foreach($product->images as $image)
@@ -74,7 +74,6 @@
         var url = $(this).data('value');
         window.location = url;
       });
-      
     });
   </script>
   <script src="{{ asset('frontend/js/filter.js') }}"></script>

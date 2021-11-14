@@ -3,21 +3,23 @@
     <div class="product-details-content">
       <div class="product-details-image">
         <div class="product-details-gallery">
-        <?php $count1=0; $count2=0; ?>
-        @foreach($product->images as $image)
-        <?php $count1++;?>
-          <div class="product-details-gallery__thumbs">
-            <img class="demo active" src="{{ asset('Image/'.$image->image_name) }}" onclick="currentSlide(<?php echo $count1; ?>)" alt="Product <?php echo $count1; ?>" />
-          </div>
+          <?php $count1=-1; $count2=0; ?>
+          @foreach($product->images as $image)
+            <?php $count1++;?>
+            <div class="product-details-gallery__thumbs">
+              <img class="slider-image" src="{{ asset('Image/'.$image->image_name) }}" data-index="<?php echo $count1; ?>" alt="Product <?php echo $count1; ?>" />
+            </div>
           @endforeach
         </div>
         <div class="product-details-slider">
-        @foreach($product->images as $image)
-        <?php $count2++;?>
-          <div class="slider-item">
-            <img src="{{ asset('Image/'.$image->image_name) }}" alt="Product <?php echo $count2; ?>" />
+          <div class="slider-main">
+            @foreach($product->images as $image)
+              <?php $count2++;?>
+              <div class="slider-item">
+                <img src="{{ asset('Image/'.$image->image_name) }}" alt="Product <?php echo $count2; ?>" />
+              </div>
+            @endforeach
           </div>
-        @endforeach
         </div>
       </div>
       <div class="product-details-description">
@@ -113,7 +115,7 @@
                 <div class="error-fields"></div class="error-fields">
               </div>
             </div>
-            <button type="submit" class="btn-new-review" onclick="">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-new-review">Gửi đánh giá của bạn</button>
           </form>
         </div>
       </div>
@@ -151,7 +153,7 @@
                 <div class="error-fields"></div class="error-fields">
               </div>
             </div>
-            <button type="submit" class="btn-new-review" onclick="">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-new-review" onclick="" disabled="true">Gửi đánh giá của bạn</button>
           </form>
         </div>
         <div class="product-details-review__comment__action">
@@ -244,7 +246,7 @@
         }
       },
       callback: function(response, pagination) {
-        // window.console && console.log(22, response, pagination);
+        window.console && console.log(22, response, pagination);
         let header = '';
         let rate = '';
         let body = '';
