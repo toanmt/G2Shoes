@@ -148,7 +148,7 @@ window.addEventListener("load", () => {
                     alert(data.message);
                     setTimeout(function(){
                         location.reload();
-                    },1);
+                    },1000);
                 }
             },
             error: function(data){
@@ -304,8 +304,8 @@ if(document.getElementsByClassName("slider-item") !== "") {
     showSlides(slideIndex);
     function currentSlide(n) {
        showSlides((slideIndex = n));
-   }
-   function showSlides(n) {
+    }
+    function showSlides(n) {
        let i;
        const slides = document.getElementsByClassName("slider-item");
        if (n > slides.length) {

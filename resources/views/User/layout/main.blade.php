@@ -26,6 +26,7 @@
   />
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('frontend/css/app.css') }}" />
+  <link rel="stylesheet" href="{{ asset('frontend/css/pagination.css') }}" />
   <!-- JQUERY -->
   <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
 </head>
