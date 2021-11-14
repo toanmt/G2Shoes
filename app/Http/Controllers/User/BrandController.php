@@ -58,20 +58,6 @@ class BrandController extends Controller
 			}
 		}
 
-		//filter
-		if(isset($_POST['action'])) {
-			if(isset($_POST['size'])) {
-				$size_filter = implode("','", $_POST['size']);
-				$product = Product::select('products.id','product_name','price','discount','type_id')
-				->join('types','types.id','=','products.type_id')
-				->join('brands','types.brand_id','=','brands.id')
-				->join('product_sizes','product_sizes.product_id','=','products.id')
-				->join('sizes','product_sizes.size_id','=','sizes.id')
-				->where('brands.id',$id)
-				->whereIn('size_number',$size_filter)->get();
-			}
-		}
-
 		return View('User.brand.main')
 		->with(
 			[

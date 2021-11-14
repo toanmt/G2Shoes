@@ -35,12 +35,12 @@ function fetchCauseAgainstCategory(id) {
             console.log(responses);
             $('.list-item').empty();
             if (responses.length == 0) {
-                $('.list-item').append('No Data Found');
+                $('.list-item').append('Không có giày phù hợp!');
             } else {
                 responses.forEach(product => {
                     if (product.discount > 0) {
                         $('.list-item').append(`
-                        <div class="product-item">
+                        <div class="product-item zoomIn animated">
                             <div class="product-image">
                                 <a href="${location.origin}/product_details/${product.id}" class="product-image__link">
                                     <img src="${location.origin}/Image/${product.images[0].image_name}" alt="" />
@@ -68,7 +68,7 @@ function fetchCauseAgainstCategory(id) {
                         `);
                     } else {
                         $('.list-item').append(`
-                        <div class="product-item">
+                        <div class="product-item zoomIn animated">
                             <div class="product-image">
                                 <a href="${location.origin}/product_details/${product.id}" class="product-image__link">
                                     <img src="${location.origin}/Image/${product.images[0].image_name}" alt="" />
@@ -94,8 +94,6 @@ function fetchCauseAgainstCategory(id) {
                         </div>
                         `);
                     }
-                    
-                
                 });
             }
         }
