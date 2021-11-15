@@ -84,7 +84,7 @@
       @if(count($comment) == 0)
       <div class="product-details-review__comment__description">
         <div class="product-details-review__comment__sender">
-            <p style="margin: 25px 15px;">Hiện tại sản phẩm chưa có đánh giá nào, bạn hãy trở thành người đầu tiên đánh giá cho sản phẩm này</p>
+          <p style="margin: 25px 15px;">Hiện tại sản phẩm chưa có đánh giá nào, bạn hãy trở thành người đầu tiên đánh giá cho sản phẩm này</p>
           <form id="review-form" class="review-form" action="{{ url('/add-comment') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="review-form-rating">
@@ -102,20 +102,28 @@
                 <label class="star star-2" for="star-2"></label>
                 <input name="rating" class="star star-1" id="star-1" type="radio" value="1"/>
                 <label class="star star-1" for="star-1"></label>
-                <div class="error-fields"></div class="error-fields">
+                <p class="error-fields"></p>
               </div>
             </div>
             <div class="review-form-information">
-              <div class="review-form-information-name">
-                <input type="text" maxlength="100" id="review_author" name="author" placeholder="Nhập họ tên của bạn" autocomplete="off">
-                <div class="error-fields"></div class="error-fields">
+              <div class="form-group">
+                <input id="review_author" name="author" type="text" class="form-control" placeholder=" " />
+                <label for="review_author" class="form-label">Họ và tên</label>
+                <span class="form-message"></span>
+                <span class="form-icon form-icon--warn">
+                  <i class="bx bxs-error"></i>
+                </span>
               </div>
-              <div class="review-form-information-evaluate">
-                <textarea maxlength="1000" id="review_body" name="content" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này" autocomplete="off"></textarea>
-                <div class="error-fields"></div class="error-fields">
+              <div class="form-group">
+                <textarea id="review_body" name="content" rows="5" placeholder=" " class="form-control"></textarea>
+                <label for="review_body" class="form-label">Nhập nội dung đánh giá của bạn về sản phẩm này</label>
+                <span class="form-message"></span>
+                <span class="form-icon form-icon--warn">
+                  <i class="bx bxs-error"></i>
+                </span>
               </div>
             </div>
-            <button type="submit" class="btn-new-review">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-action add-to-cart form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
           </form>
         </div>
       </div>
@@ -140,20 +148,28 @@
                 <label class="star star-2" for="star-2"></label>
                 <input name="rating" class="star star-1" id="star-1" type="radio" value="1"/>
                 <label class="star star-1" for="star-1"></label>
-                <div class="error-fields"></div class="error-fields">
+                <p class="error-fields"></p>
               </div>
             </div>
             <div class="review-form-information">
-              <div class="review-form-information-name">
-                <input type="text" maxlength="100" id="review_author" name="author" placeholder="Nhập họ tên của bạn" autocomplete="off">
-                <div class="error-fields"></div class="error-fields">
+              <div class="form-group">
+                <input id="review_author" name="author" type="text" class="form-control" placeholder=" " />
+                <label for="review_author" class="form-label">Họ và tên</label>
+                <span class="form-message"></span>
+                <span class="form-icon form-icon--warn">
+                  <i class="bx bxs-error"></i>
+                </span>
               </div>
-              <div class="review-form-information-evaluate">
-                <textarea maxlength="1000" id="review_body" name="content" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này" autocomplete="off"></textarea>
-                <div class="error-fields"></div class="error-fields">
+              <div class="form-group">
+                <textarea id="review_body" name="content" rows="5" placeholder=" " class="form-control"></textarea>
+                <label for="review_body" class="form-label">Nhập nội dung đánh giá của bạn về sản phẩm này</label>
+                <span class="form-message"></span>
+                <span class="form-icon form-icon--warn">
+                  <i class="bx bxs-error"></i>
+                </span>
               </div>
             </div>
-            <button type="submit" class="btn-new-review" onclick="" disabled="true">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-action add-to-cart form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
           </form>
         </div>
         <div class="product-details-review__comment__action">
@@ -161,8 +177,7 @@
               <meta content="5" itemprop="bestRating">
               <meta content="1" itemprop="worstRating">
               <div class="rating-summary-score">
-                  <span itemprop="ratingValue">
-                    <?php
+                  <span itemprop="ratingValue"><?php
                       $rate_score = 0;
                       foreach($comment as $key => $cmt)
                       {
@@ -171,9 +186,7 @@
                       $rate = $rate_score/count($comment);
                       $rate_score = round($rate);
                       echo round($rate, 1, PHP_ROUND_HALF_EVEN);
-                    ?>
-                  </span>
-                  <span class="max-score">/5</span>
+                    ?>/5</span>
               </div>
               <div data-number="{{ $rate_score }}" data-score="{{ $rate_score }}" class="rating-summary-star">
                 <?php
@@ -226,9 +239,6 @@
         </div>
       </div>
       @endif
-      <div>
-        <img src="{{ asset('Image/demo/shoes.png') }}" alt="Các thương hiệu">
-      </div>
     </div>
   </div>
   <script src="{{ asset('frontend/js/pagination.min.js') }}"></script>
