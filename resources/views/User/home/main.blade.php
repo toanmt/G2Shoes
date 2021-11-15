@@ -2,5 +2,4 @@
 @section('content')
 	@include('User.home.banner')
 	@include('User.home.products')
-	@include('User.home.gallery')
 @endsection

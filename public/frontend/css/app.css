@@ -607,8 +607,8 @@ a {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 }
-.gallery-list ul li {
-  padding: 0 2px;
+.gallery-list ul li:not(:last-child) {
+  padding-right: 4px;
 }
 .gallery-list ul li:hover .gallery-item::before {
   animation-name: inline-uzlbau4;
@@ -891,9 +891,11 @@ a {
 }
 .product-details-infomation__action .add-to-cart {
   width: 50%;
+}
+.add-to-cart {
   border: 1px solid #000000;
 }
-.product-details-infomation__action .add-to-cart::before {
+.add-to-cart::before {
   background-color: #000000;
 }
 .product-details-infomation__action .buy-now {
@@ -930,19 +932,18 @@ a {
   align-items: center;
   text-align: center;
   padding: 25px 0;
-  font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", sans-serif;
 }
 .product-details-review__comment .fa-star {
   color: #ffbe00;
 }
 .product-details-review__comment__description {
-  margin-right: 30px;
-  width: 910px;
+  width: 1000px;
+  margin: auto;
 }
 .product-details-review__comment__sender {
-  background-color: rgba(30, 136, 255, 0.1);
   border: 1px solid #c4cdd5;
   padding-bottom: 15px;
+  border-radius: 4px;
 }
 .product-details-review__comment__sender .review-form-rating {
   position: relative;
@@ -950,19 +951,23 @@ a {
 .product-details-review__comment__sender .review-form-rating-title {
   font-size: 1rem;
   font-weight: normal;
-  margin: 10px 0;
+  margin: 20px 0;
 }
 .product-details-review__comment__sender .review-form-rating-product {
   font-size: 1.2rem;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 20px 0;
 }
 .product-details-review__comment__sender .review-form-rating-stars {
   font-size: 1.2rem;
   font-weight: bold;
-  margin: 10px 0;
-  width: 270px;
-  display: inline-block;
+  margin: 10px auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  flex-flow: row-reverse wrap;
+  width: 280px;
 }
 .product-details-review__comment__sender .review-form-rating-stars input.star {
   display: none;
@@ -973,6 +978,7 @@ a {
   font-size: 36px;
   color: #444;
   transition: all 0.2s;
+  margin-bottom: 20px;
 }
 .product-details-review__comment__sender .review-form-rating-stars input.star:checked ~ label.star:before {
   content: "\f005";
@@ -985,27 +991,6 @@ a {
 .product-details-review__comment__sender .review-form-rating-stars label.star:before {
   content: "\f006";
   font-family: FontAwesome;
-}
-.product-details-review__comment__sender .review-form-information input {
-  margin: 0;
-  background: #fff;
-  border: 1px solid #c4cdd5;
-  border-radius: 5px;
-  height: 42px;
-  line-height: 42px;
-  width: 60%;
-  padding: 0 13px;
-  margin: 10px 0;
-}
-.product-details-review__comment__sender .review-form-information textarea {
-  font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", sans-serif;
-  min-height: 100px;
-  max-height: 180px;
-  border: 1px solid #c4cdd5;
-  border-radius: 5px;
-  width: 60%;
-  padding: 16px 13px 0;
-  margin: 10px 0;
 }
 .product-details-review__comment .have-comment .product-details-review__comment__action {
   display: flex;
@@ -1044,6 +1029,10 @@ a {
   color: #0088ff;
   margin: 0 0 3px;
 }
+.product-details-review__comment__action .rating-filter {
+  display: flex;
+  justify-content: center;
+}
 .product-details-review__comment__action .rating-filter label {
   margin: 0 10px 13px 0;
   font-weight: 400;
@@ -1067,10 +1056,7 @@ a {
   border: 1px solid #c4cdd5;
   border-radius: 3px;
   line-height: 36px;
-}
-.product-details-review__comment__action .rating-filter-list .active {
-  color: #0088ff;
-  border-color: #0088ff;
+  cursor: auto;
 }
 .product-details-review__comment__list {
   text-align: left;
@@ -1087,6 +1073,7 @@ a {
 .product-details-review__comment__list-header {
   display: flex;
   font-weight: bold;
+  align-items: center;
 }
 .product-details-review__comment__list-body {
   margin: 10px 0;
@@ -1332,5 +1319,148 @@ a {
   50% {
     opacity: 1;
   }
+}
+
+.review-form-information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review-form-information .form-group {
+  position: relative;
+  margin-bottom: 45px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.review-form-information .form-control {
+  border: 1px solid #b3b3b3;
+  border-radius: 4px;
+  width: 100%;
+  height: 50px;
+  padding: 0 45px 0 20px;
+  font-size: 18px;
+  transition: all 0.25s ease;
+  outline: none;
+  background: #ffffff;
+  font-family: "Quicksand", sans-serif;
+}
+
+.review-form-information textarea.form-control {
+  height: 178px;
+  resize: none;
+  padding-top: 18px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000000000s 0s, color 600000000000s 0s;
+}
+
+.review-form-information .form-control:focus {
+  border-color: #000000;
+}
+
+.review-form-information .form-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 21px;
+  user-select: none;
+  color: #999999;
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.review-form-information .form-control:not(:placeholder-shown) + .form-label,
+.review-form-information .form-control:focus + .form-label {
+  top: 0;
+  left: 11px;
+  padding: 0 10px;
+  display: inline-block;
+  background: #ffffff;
+  color: #000000;
+}
+
+.review-form-information .form-group.invalid .form-control {
+  border-color: #f33a58;
+}
+
+.review-form-information .form-group.invalid .form-icon--warn {
+  opacity: 1;
+  visibility: visible;
+}
+
+.review-form-information .form-group.invalid .form-message,
+.review-form-information .form-group.invalid .form-label,
+.review-form-information .form-group.invalid .form-icon--show {
+  color: #f33a58;
+}
+
+.review-form-information .form-message {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  font-size: 14px;
+  text-align: left;
+}
+
+.review-form-information .form-icon {
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  transition: all 0.25s linear;
+}
+
+.review-form-information .form-icon--warn {
+  color: #f33a58;
+  opacity: 0;
+  visibility: hidden;
+}
+.error-fields {
+  color: #f33a58;
+}
+.paginationjs {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; 
+}
+.paginationjs .paginationjs-pages li {
+  border: none;
+  margin-right: 25px;
+}
+.paginationjs .paginationjs-pages li>a {
+  font-size: 16px;
+  color: #272727;
+  min-width: 35px;
+  height: 35px;
+  line-height: 35px;
+  opacity: 0.4;
+}
+.paginationjs .paginationjs-pages li.active>a {
+  height: 35px;
+  line-height: 35px;
+  background-color: transparent;
+  color: #272727;
+  opacity: 1;
+}
+.paginationjs .paginationjs-pages li>a:hover {
+  background-color: transparent;
+  opacity: 1;
+}
+.paginationjs .paginationjs-pages li:last-child {
+  border-right: none;
+}
+.paginationjs .paginationjs-pages li:last-child>a, 
+.paginationjs .paginationjs-pages li:first-child>a {
+  font-size: 25px;
+  opacity: 1;
+}
+.paginationjs .paginationjs-pages li.disabled>a {
+  opacity: 0.4;
 }
 /*# sourceMappingURL=app.css.map */

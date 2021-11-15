@@ -9,14 +9,14 @@ use App\Models\Comment;
 class CommentController extends Controller
 {
     public function addComment(Request $request){
+        if ($request->rating =='') {
+            return response()->json(['error'=>'Sản phẩm cần được đánh giá']);
+        }
         if ($request->author =='') {
-            return response()->json(['error'=>'Full name cannot be left blank!']);
+            return response()->json(['error'=>'']);
         }
         if ($request->content =='') {
-            return response()->json(['error'=>'Details content cannot be left blank!']);
-        }
-        if ($request->rating =='') {
-            return response()->json(['error'=>'Rating cannot be left blank!']);
+            return response()->json(['error'=>'']);
         }
         else {
             $comment=new Comment();
@@ -28,7 +28,7 @@ class CommentController extends Controller
             return response()->json(
                 [
                     'success'=>'true',
-                    'message'=> 'Your review has been update!',
+                    'message'=> 'Đánh giá sản phẩm thành công',
                     'product_id'=>$request->productId,
                     'author'=>$request->author,
                     'content'=>$request->content,
