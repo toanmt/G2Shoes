@@ -14,10 +14,13 @@
 				</li>
 				@endforeach
 				<li class="nav-item">
-					<a href="./introduce.html" class="nav-link">giới thiệu</a>
+					<a href="{{URL::to('/sales')}}" class="nav-link">sales</a>
 				</li>
 				<li class="nav-item">
-					<a href="./contact.html" class="nav-link">liên hệ</a>
+					<a href="#" class="nav-link">giới thiệu</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">liên hệ</a>
 				</li>
 			</ul>
 		</div>

@@ -1,7 +1,7 @@
 <div class="brand-products">
   <section class="product">
     <div class="brand-products__heading">
-      <h1 class="brand-products__title">{{$brand->brand_name}}</h1>
+      <h1 class="brand-products__title">sales</h1>
       <div class="brand-products__sort">
         <div class="dropdown">
           <div class="dropdown-select">
