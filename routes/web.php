@@ -13,13 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::prefix('')->group(function () {
+    //Home
     Route::get('',[App\Http\Controllers\User\HomeController::class,'index']);
-    Route::get('/brand/{id}',[App\Http\Controllers\User\BrandController::class,'index']);
-    Route::get('/product_details/{id}',[App\Http\Controllers\User\ProductController::class,'index']);
     Route::post('/search',[App\Http\Controllers\User\HomeController::class,'search']);
-    Route::post('/add-comment',[App\Http\Controllers\User\CommentController::class,'addComment']);
+    //Brand
+    Route::get('/brand/{id}',[App\Http\Controllers\User\BrandController::class,'index']);
     Route::get('/brand/{id}/filter',[App\Http\Controllers\User\BrandController::class,'filter']);
+    //Product
+    Route::get('/product_details/{id}',[App\Http\Controllers\User\ProductController::class,'index']);
+    //Comment
+    Route::post('/add-comment',[App\Http\Controllers\User\CommentController::class,'addComment']);
+    //Sale
     Route::get('/sales',[App\Http\Controllers\User\SalesController::class,'index']);
+    Route::get('/sales/filter',[App\Http\Controllers\User\SalesController::class,'filter']);
 });
 
 Route::prefix('admin')->group(function () {

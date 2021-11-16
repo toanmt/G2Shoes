@@ -10,10 +10,13 @@
         <li>
           <input 
             type="checkbox"
+            data-url="{{Request::url()}}/filter?"
+            filter="{{$type->id}}"
+            data-search="type_list"
             value="{{$type->type_name}}" 
             name="Type{{$type->id}}" 
             id="Type{{$type->id}}" 
-            class="filter-type"
+            class="filter_type"
           />
           <label for="Type{{$type->id}}" class="filter-label">{{$type->type_name}}</label>
         </li>
@@ -68,7 +71,7 @@
             value="{{$size->size_number}}" 
             name="Size{{$size->size_number}}" 
             id="Size{{$size->size_number}}"
-            class="filter-size filter_checkbox" 
+            class="filter_size" 
           />
           <label for="Size{{$size->size_number}}" class="filter-label">{{$size->size_number}}</label>
         </li>
