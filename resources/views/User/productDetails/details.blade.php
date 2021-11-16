@@ -125,6 +125,7 @@
             </div>
             <button type="submit" class="btn-action add-to-cart form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
           </form>
+          <p class="success-fields"></p>
         </div>
       </div>
       @endif
@@ -171,6 +172,7 @@
             </div>
             <button type="submit" class="btn-action add-to-cart form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
           </form>
+          <p class="success-fields"></p>
         </div>
         <div class="product-details-review__comment__action">
             <div class="rating-summary">

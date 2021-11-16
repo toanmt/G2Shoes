@@ -134,6 +134,7 @@ window.addEventListener("load", () => {
     {
         $('#review-form').on('submit',function(e){
             e.preventDefault();
+            $('.error-fields').empty();
             $.ajax({
                 type: 'POST',
                 url: $(this).attr('action'),
@@ -148,11 +149,11 @@ window.addEventListener("load", () => {
                         alert(data.message);
                         setTimeout(function(){
                             location.reload();
-                        },1);
+                        },1000);
                     }
                 },
                 error: function(data){
-                    alert(data);
+                    $('.error-fields').append(data.error);
                 }
             })
         })

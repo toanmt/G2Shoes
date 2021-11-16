@@ -1,30 +1,40 @@
-$(document).ready(function() {
-    $(document).on('click', '.size_checkbox', function () {
-        var ids = [];
+function filter(name) 
+    {
+        $(document).on('click', '.' + name, function () {
+            $('.list-item').empty();
 
-        var counter = 0;
-        $('.size_checkbox').each(function () {
-            if ($(this).is(":checked")) {
-                ids.push($(this).attr('size-id'));
-                counter++;
+            let ids = [];
+            let url = $(this).data('url');
+            
+            let counter = 0;
+            $('.' + name).each(function () {
+                if ($(this).is(":checked")) {
+                    ids.push($(this).attr('filter'));
+                    counter++;
+                }
+            });
+
+            url += '&'+ $(this).data('search') + '=' + encodeURIComponent(ids);
+
+            if (counter == 0) {
+                fetchCauseAgainstFilter($(this).data('url'));
+            } else {
+                fetchCauseAgainstFilter(url);
             }
         });
 
-        if (counter == 0) {
-            $('.list-item').empty();
-            $('.list-item').append('No Data Found');
-        } else {
-            fetchCauseAgainstCategory(ids);
-        }
-    });
+    };
+$(document).ready(function() {
+    filter('filter_checkbox');
+    filter('filter_price');
 });
 
-function fetchCauseAgainstCategory(id) {
 
-    $('.list-item').empty();
+function fetchCauseAgainstFilter(url) {
+
     $.ajax({
         type: 'GET',
-        url: location.origin + location.pathname + '/filter/' + id,
+        url: url,
         success: function (response) {
             let responses = response
             .map(v => v['id'])
@@ -32,8 +42,6 @@ function fetchCauseAgainstCategory(id) {
             .filter(v => response[v])
             .map(v => response[v]);
 
-            console.log(responses);
-            $('.list-item').empty();
             if (responses.length == 0) {
                 $('.list-item').append('Không có giày phù hợp!');
             } else {
@@ -99,3 +107,4 @@ function fetchCauseAgainstCategory(id) {
         }
     });
 }
+
