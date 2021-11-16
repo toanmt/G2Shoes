@@ -27,9 +27,11 @@
           </div>
           <div class="product-price">
             <p class="product-price__new">
-              {{$product->price}}đ
               @if($product->discount > 0)
-              <span class="product-price__old">{{$product->price - ($product->price * $product->discount)/100}}đ</span>
+                {{$product->price - ($product->price * $product->discount)/100}}đ
+                <span class="product-price__old">{{$product->price}}đ</span>
+              @else
+                {{$product->price}}đ
               @endif
             </p>
           </div>

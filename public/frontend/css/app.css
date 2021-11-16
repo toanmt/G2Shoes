@@ -1262,6 +1262,11 @@ a {
 .brand-control__price li {
   font-size: 14px;
   margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+.brand-control__price li label{
+  margin-left: 5px;
 }
 .brand-control__size {
   display: flex;

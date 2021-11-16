@@ -19,6 +19,7 @@ Route::prefix('')->group(function () {
     Route::post('/search',[App\Http\Controllers\User\HomeController::class,'search']);
     Route::post('/add-comment',[App\Http\Controllers\User\CommentController::class,'addComment']);
     Route::get('/brand/{id}/filter',[App\Http\Controllers\User\BrandController::class,'filter']);
+    Route::get('/sales',[App\Http\Controllers\User\SalesController::class,'index']);
 });
 
 Route::prefix('admin')->group(function () {
