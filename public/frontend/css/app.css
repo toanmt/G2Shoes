@@ -1424,6 +1424,11 @@ input:-webkit-autofill:focus {
 .error-fields {
   color: #f33a58;
 }
+.success-fields {
+  font-size: 25px;
+  color: green;
+  padding: 25px 10px;
+}
 .paginationjs {
   display: flex;
   justify-content: center;

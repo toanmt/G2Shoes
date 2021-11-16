@@ -57,6 +57,7 @@ class BrandController extends Controller
 				$sort_name = "Tên: A-Z";
 			}
 		}
+		
 
 		return View('User.brand.main')
 		->with(
@@ -65,22 +66,49 @@ class BrandController extends Controller
 				'brand'=>(object)$brand,
 				'size'=>(object)$size,
 				'product'=>(object)$product,
-				'sort_name'=>(string)$sort_name
+				'sort_name'=>(string)$sort_name,
 			]
 		);
 	}
 
-	public function filter($id , $size_id) {
-		$size_filter = explode(',', $size_id);
+	public function filter($id) {
 		$product = Product::select('products.id','product_name','price','discount','type_id')
 		->join('types','types.id','=','products.type_id')
 		->join('brands','types.brand_id','=','brands.id')
-		->join('product_sizes','product_sizes.product_id','=','products.id')
-		->join('sizes','sizes.id','=','product_sizes.size_id')
-		->where('brands.id',$id)
-		->with('images')
-		->whereIn('sizes.id',$size_filter)->get();
-		
+		->where('brands.id',$id)->with('images');
+
+		// filter size
+		if(isset($_GET['size_list'])) {
+			$size_filter = explode(',', $_GET['size_list']);
+			$product = $product
+			->join('product_sizes','product_sizes.product_id','=','products.id')
+			->join('sizes','sizes.id','=','product_sizes.size_id')
+			->whereIn('sizes.id',$size_filter);
+		}
+
+		// filter price
+		if(isset($_GET['price_list'])) {
+			switch ($_GET['price_list']) {
+				case 1:
+					$product = $product->whereBetween('price', [0, 1000000]);
+					break;
+				case 2:
+					$product = $product->whereBetween('price', [1000000, 2000000]);
+					break;
+				case 3:
+					$product = $product->whereBetween('price', [2000000, 3500000]);
+					break;
+				case 4:
+					$product = $product->whereBetween('price', [3500000, 5000000]);
+					break;
+				case 5:
+					$product = $product->where('price', '>' , 5000000);
+					break;
+			}
+		}
+
+		$product = $product->get();
+
 		return response()->json($product);
 	}
 }

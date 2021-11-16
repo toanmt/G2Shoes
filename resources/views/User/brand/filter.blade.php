@@ -29,23 +29,23 @@
     <div class="brand-control__filter js-filter">
       <ul class="brand-control__list brand-control__price">
         <li>
-          <input type="checkbox" name="g1" id="g1" data-price="(price:product<=1000000)" />
+          <input class="filter_price" type="radio" name="price_range" id="g1" data-url="{{Request::url()}}/filter?" data-search="price_list" filter="1" />
           <label for="g1">Dưới 1,000,000đ</label>
         </li>
         <li>
-          <input type="checkbox" name="g2" id="g2" data-price="((price:product>1000000)&&(price:product<=2000000))" />
+          <input class="filter_price" type="radio" name="price_range" id="g2" data-url="{{Request::url()}}/filter?" data-search="price_list" filter="2" />
           <label for="g2">1,000,000₫ - 2,000,000₫</label>
         </li>
         <li>
-          <input type="checkbox" name="g3" id="g3" data-price="((price:product>2000000)&&(price:product<=3500000))" />
+          <input class="filter_price" type="radio" name="price_range" id="g3" data-url="{{Request::url()}}/filter?" data-search="price_list" filter="3" />
           <label for="g3">2,000,000₫ - 3,500,000₫</label>
         </li>
         <li>
-          <input type="checkbox" name="g4" id="g4" data-price="((price:product>3000000)&&(price:product<=5000000))" />
+          <input class="filter_price" type="radio" name="price_range" id="g4" data-url="{{Request::url()}}/filter?" data-search="price_list" filter="4" />
           <label for="g4">3,000,000₫ - 5,000,000₫</label>
         </li>
         <li>
-          <input type="checkbox" name="g5" id="g5" data-price="(price:product>=5000000)" />
+          <input class="filter_price" type="radio" name="price_range" id="g5" data-url="{{Request::url()}}/filter?" data-search="price_list" filter="5" />
           <label for="g5">Trên 5,000,000đ</label>
         </li>
       </ul>
@@ -62,11 +62,13 @@
         <li>
           <input 
             type="checkbox" 
-            size-id="{{$size->id}}"
+            data-url="{{Request::url()}}/filter?"
+            filter="{{$size->id}}"
+            data-search="size_list"
             value="{{$size->size_number}}" 
             name="Size{{$size->size_number}}" 
             id="Size{{$size->size_number}}"
-            class="filter-size size_checkbox" 
+            class="filter-size filter_checkbox" 
           />
           <label for="Size{{$size->size_number}}" class="filter-label">{{$size->size_number}}</label>
         </li>
