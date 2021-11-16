@@ -14,10 +14,11 @@ class SalesController extends Controller
 	public function index(){
 		$data = Brand::all();
 		$size = Size::all();
-		$product = Product::select('products.id','product_name','price','discount','type_id')
+		$product = Product::select('products.id','product_name','price','discount','type_id', Product::raw('sum(price - price*discount/100) as currentprice'))
+		->groupBy('products.id','product_name','price','discount','type_id')
 		->join('types','types.id','=','products.type_id')
 		->join('brands','types.brand_id','=','brands.id')
-		->where('discount','>',0)->get();
+		->where('discount','>',0);
 		$sort_name = "Sắp xếp";
 
 		//sort
@@ -25,36 +26,25 @@ class SalesController extends Controller
 			$sort_by = $_GET['sort_by'];
 
 			if($sort_by=='gia_giam') {
-				$product = Product::select('products.id','product_name','price','discount','type_id')
-				->join('types','types.id','=','products.type_id')
-				->join('brands','types.brand_id','=','brands.id')
-				->where('discount','>',0)
-				->orderBy('price - price*discount/100', 'DESC')->get();
+				$product = $product
+				->orderBy('currentprice', 'DESC');
 				$sort_name = "Giá: Giảm dần";
 			} else if($sort_by=='gia_tang') {
-				$product = Product::select('products.id','product_name','price','discount','type_id')
-				->join('types','types.id','=','products.type_id')
-				->join('brands','types.brand_id','=','brands.id')
-				->where('discount','>',0)
-				->orderBy('price', 'ASC')->get();
+				$product = $product
+				->orderBy('currentprice', 'ASC');
 				$sort_name = "Giá: Tăng dần";
 			} else if($sort_by=='kytu_za') {
-				$product = Product::select('products.id','product_name','price','discount','type_id')
-				->join('types','types.id','=','products.type_id')
-				->join('brands','types.brand_id','=','brands.id')
-				->where('discount','>',0)
-				->orderBy('product_name', 'DESC')->get();
+				$product = $product
+				->orderBy('product_name', 'DESC');
 				$sort_name = "Tên: Z-A";
 			} else if($sort_by=='kytu_az') {
-				$product = Product::select('products.id','product_name','price','discount','type_id')
-				->join('types','types.id','=','products.type_id')
-				->join('brands','types.brand_id','=','brands.id')
-				->where('discount','>',0)
-				->orderBy('product_name', 'ASC')->get();
+				$product = $product
+				->orderBy('product_name', 'ASC');
 				$sort_name = "Tên: A-Z";
 			}
 		}
-		
+
+		$product = $product->get();
 
 		return View('User.sales.main')
 		->with(
@@ -72,6 +62,14 @@ class SalesController extends Controller
 		->join('types','types.id','=','products.type_id')
 		->join('brands','types.brand_id','=','brands.id')
 		->with('images');
+
+
+		// filter type
+		if(isset($_GET['brand_list'])) {
+			$brand_filter = explode(',', $_GET['brand_list']);
+			$product = $product
+			->whereIn('brands.id',$brand_filter);
+		}
 
 		// filter size
 		if(isset($_GET['size_list'])) {

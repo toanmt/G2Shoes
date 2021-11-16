@@ -14,7 +14,7 @@ function filter(name)
                 }
             });
 
-            url += '&'+ $(this).data('search') + '=' + encodeURIComponent(ids);
+            url += $(this).data('search') + '=' + encodeURIComponent(ids);
 
             if (counter == 0) {
                 fetchCauseAgainstFilter($(this).data('url'));
@@ -25,8 +25,10 @@ function filter(name)
 
     };
 $(document).ready(function() {
-    filter('filter_checkbox');
+    filter('filter_size');
+    filter('filter_type');
     filter('filter_price');
+
 });
 
 
