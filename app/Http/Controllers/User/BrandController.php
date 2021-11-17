@@ -15,10 +15,11 @@ class BrandController extends Controller
 		$data = Brand::all();
 		$brand = $data->find($id);
 		$size = Size::all();
-		$product = Product::select('products.id','product_name','price','discount','type_id')
+		$product = Product::select('products.id','product_name','price','discount','type_id', Product::raw('sum(price - price*discount/100) as currentprice'))
+		->groupBy('products.id','product_name','price','discount','type_id')
 		->join('types','types.id','=','products.type_id')
 		->join('brands','types.brand_id','=','brands.id')
-		->where('brands.id',$id)->get();
+		->where('brands.id',$id);
 		$sort_name = "Sắp xếp";
 
 		//sort
@@ -26,36 +27,25 @@ class BrandController extends Controller
 			$sort_by = $_GET['sort_by'];
 
 			if($sort_by=='gia_giam') {
-				$product = Product::select('products.id','product_name','price','discount','type_id')
-				->join('types','types.id','=','products.type_id')
-				->join('brands','types.brand_id','=','brands.id')
-				->where('brands.id',$id)
-				->orderBy('price', 'DESC')->get();
+				$product = $product
+				->orderBy('currentprice', 'DESC');
 				$sort_name = "Giá: Giảm dần";
 			} else if($sort_by=='gia_tang') {
-				$product = Product::select('products.id','product_name','price','discount','type_id')
-				->join('types','types.id','=','products.type_id')
-				->join('brands','types.brand_id','=','brands.id')
-				->where('brands.id',$id)
-				->orderBy('price', 'ASC')->get();
+				$product = $product
+				->orderBy('currentprice', 'ASC');
 				$sort_name = "Giá: Tăng dần";
 			} else if($sort_by=='kytu_za') {
-				$product = Product::select('products.id','product_name','price','discount','type_id')
-				->join('types','types.id','=','products.type_id')
-				->join('brands','types.brand_id','=','brands.id')
-				->where('brands.id',$id)
-				->orderBy('product_name', 'DESC')->get();
+				$product = $product
+				->orderBy('product_name', 'DESC');
 				$sort_name = "Tên: Z-A";
 			} else if($sort_by=='kytu_az') {
-				$product = Product::select('products.id','product_name','price','discount','type_id')
-				->join('types','types.id','=','products.type_id')
-				->join('brands','types.brand_id','=','brands.id')
-				->where('brands.id',$id)
-				->orderBy('product_name', 'ASC')->get();
+				$product
+				->orderBy('product_name', 'ASC');
 				$sort_name = "Tên: A-Z";
 			}
 		}
 		
+		$product = $product->get();
 
 		return View('User.brand.main')
 		->with(
@@ -74,6 +64,15 @@ class BrandController extends Controller
 		->join('types','types.id','=','products.type_id')
 		->join('brands','types.brand_id','=','brands.id')
 		->where('brands.id',$id)->with('images');
+
+
+		// filter type
+		if(isset($_GET['type_list'])) {
+			$type_filter = explode(',', $_GET['type_list']);
+			$product = $product
+			->whereIn('types.id',$type_filter);
+		}
+
 
 		// filter size
 		if(isset($_GET['size_list'])) {
