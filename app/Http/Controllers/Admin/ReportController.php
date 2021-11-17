@@ -25,12 +25,13 @@ class ReportController extends Controller
         -> join('invoices', 'invoices.id', '=', 'invoice_details.invoice_id')
         -> join('vouchers', 'invoices.voucher_id', '=', 'vouchers.id')
         ->select(DB::raw(
-            "invoices.created_at, Day(invoices.created_at) as 'day',
+            "Day(invoices.created_at) as 'day',
             SUM(invoice_details.amount * products.price *(100 - vouchers.percent )/ 100 
             + invoices.shipping_cost ) as sum"
         ))
-        ->whereBetween('invoices.created_at',[$d30ago,now()])
-        ->groupBy(DB::raw('day,invoices.created_at'))
+        ->whereRaw("Month(invoices.created_at) = Month(NOW()) and
+            Year(invoices.created_at) = Year(NOW())")
+        ->groupBy(DB::raw('day'))
         ->get();
 
         foreach ($data_chart_Month as $value) {
@@ -64,7 +65,7 @@ class ReportController extends Controller
                 </tr>';
             }
         }
-        return response()->json(['chart'=>$chart_data,'listinvoice'=>$output]);
+        return response()->json(['chart'=>$chart_data,'listinvoice'=>$output]);  
     }
     public function filter(Request $request)
     {

@@ -14,6 +14,7 @@ $(document).ready(function(){
             }
         })
     });
+    
     function data30day()
     {
         $.ajax({
