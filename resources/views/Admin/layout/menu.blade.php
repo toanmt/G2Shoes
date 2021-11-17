@@ -9,13 +9,6 @@
                 <li>
                     <a href="{{ url('admin/login') }}"><i class="la la-dashboard"></i> <span> Dashboard</span></a>
                 </li>
-                <li class="submenu">
-                    <a href="#"><i class="la la-cube"></i> <span> Apps</span> <span class="menu-arrow"></span></a>
-                    <ul style="display: none;">
-                        <li><a href="chat.html">Chat</a></li>
-                        <li><a href="contacts.html">Contacts</a></li>
-                    </ul>
-                </li>
                 <li class="menu-title"> 
                     <span>Sản phẩm</span>
                 </li>
