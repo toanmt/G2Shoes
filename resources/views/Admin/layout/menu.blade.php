@@ -28,9 +28,6 @@
                 <li>
                     <a href="{{ url('admin/brand-product') }}"><i class="la la-tags"></i> <span> Thương hiệu</span></a>
                 </li>
-                <li>
-                    <a href="#"><i class="las la-comment"></i> <span>Đánh giá khách hàng</span></a>
-                </li>
                 <li class="menu-title"> 
                     <span>Quản lý kinh doanh</span>
                 </li>

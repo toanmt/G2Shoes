@@ -13,7 +13,7 @@
                     @csrf
                     <div class="row">
                         <div  class="col-md-12 text-center">
-                            <div class="edit-img">
+                            <div class="edit-img abc">
                                 <div class="fileupload btn">
                                     <span class="btn-text">edit images product</span>
                                     <input name="image_product[]" class="upload" type="file" multiple>
@@ -47,23 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">                        
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="col-form-label">Description <span class="text-danger">*</span></label>
-                                <textarea name="description" class="form-control product-description edit-description" cols="30" rows="10"></textarea>
-                                <div class="err_name text-danger"></div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Amount <span class="text-danger">*</span></label>
-                                <input name="amount" class="form-control amount edit-amount" type="text">
-                                <div class="err_amount text-danger"></div>
-                            </div>
-                        </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Type Product <span class="text-danger">*</span></label>

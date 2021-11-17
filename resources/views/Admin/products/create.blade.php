@@ -47,23 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">                        
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="col-form-label">Description <span class="text-danger">*</span></label>
-                                <textarea name="description" class="form-control product-description" cols="30" rows="10"></textarea>
-                                <div class="err_name text-danger"></div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Amount <span class="text-danger">*</span></label>
-                                <input name="amount" class="form-control amount" type="text">
-                                <div class="err_amount text-danger"></div>
-                            </div>
-                        </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Type Product <span class="text-danger">*</span></label>

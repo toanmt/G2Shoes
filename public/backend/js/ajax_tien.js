@@ -77,11 +77,11 @@ $(document).ready(function(){
         
         $.get('/admin/products/'+id,function(data){
             if(data.image_product.length > 0){
-                $('.edit-img').css('border','none');
+                $('.abc').css('border','none');
                 $('.btn-text').hide();
                 $('.img-output').remove();
                 for(let image of data.image_product){        
-                    $('.edit-img').append('<img class="img-output" src="'+location.origin+'/Image/'+image.image_name+'">');
+                    $('.abc').append('<img class="img-output" src="'+location.origin+'/Image/'+image.image_name+'">');
                 }
             }
             $('.edit-price').val(data.product.price);
@@ -190,10 +190,12 @@ $(document).ready(function(){
             dataType: 'json',
             success: function(data){
                 if(data.output != ''){
-                    $('#data').removeData();
+                    $('#product-table').DataTable().destroy();
+                    $('#data').empty();
                     $('#data').html(data.output);
                     editProduct();
                     delProduct();
+                    $('#product-table').DataTable();
                 }else{
                     alert('không tìm thấy sản phẩm nào');
                 }
