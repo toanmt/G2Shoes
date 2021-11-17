@@ -35,8 +35,8 @@
   @include('User.layout.menu')
   <main class="main">
     @yield('content')
+     @include('User.layout.gallery')
   </main>
-  @include('User.layout.gallery')
   @include('User.layout.footer')
   <!-- Messenger Plugin chat Code -->
   <div id="fb-root"></div>
@@ -74,6 +74,5 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script> --}}
-  <!-- Chatbox Zalo -->
   <script src="{{ asset('frontend/js/main.js') }}"></script>
 </body>

@@ -20,6 +20,8 @@ Route::prefix('')->group(function () {
     Route::post('/add-comment',[App\Http\Controllers\User\CommentController::class,'addComment']);
     Route::get('/brand/{id}/filter',[App\Http\Controllers\User\BrandController::class,'filter']);
     Route::get('/sales',[App\Http\Controllers\User\SalesController::class,'index']);
+    Route::get('/contact',[App\Http\Controllers\User\ContactController::class,'index']);
+    Route::get('/introduce',[App\Http\Controllers\User\IntroduceController::class,'index']);
 });
 
 Route::prefix('admin')->group(function () {

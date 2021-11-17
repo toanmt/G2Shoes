@@ -17,10 +17,10 @@
 					<a href="{{URL::to('/sales')}}" class="nav-link">sales</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link">giới thiệu</a>
+					<a href="{{URL::to('/introduce')}}" class="nav-link">giới thiệu</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link">liên hệ</a>
+					<a href="{{URL::to('/contact')}}" class="nav-link">liên hệ</a>
 				</li>
 			</ul>
 		</div>
