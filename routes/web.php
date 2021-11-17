@@ -25,6 +25,8 @@ Route::prefix('')->group(function () {
     Route::post('/add-comment',[App\Http\Controllers\User\CommentController::class,'addComment']);
     //Sale
     Route::get('/sales',[App\Http\Controllers\User\SalesController::class,'index']);
+    Route::get('/contact',[App\Http\Controllers\User\ContactController::class,'index']);
+    Route::get('/introduce',[App\Http\Controllers\User\IntroduceController::class,'index']);
     Route::get('/sales/filter',[App\Http\Controllers\User\SalesController::class,'filter']);
 });
 
