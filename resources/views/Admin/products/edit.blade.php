@@ -53,7 +53,7 @@
                                 <label>Type Product <span class="text-danger">*</span></label>
                                 <select name="type" class="select edit-type">
                                     @foreach ($types as $type)
-                                        <option value="{{ $type->id }}">{{ $type->type_name }}</option>
+                                    <option value="{{ $type->id }}">{{ $type->type_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -61,37 +61,53 @@
                     </div>
                     <label class="col-form-label">Size</label>
                     <div class="table-responsive m-t-15">
-                        <table class="table table-striped custom-table">
+                        <!-- <table class="table table-striped custom-table">
                             <thead>
                                 <th>Sizes</th>
 
-                                    @foreach ($sizes as $size)
-                                        <th class="text-center">{{ $size->size_number }}</th>
-                                    @endforeach
+                                @foreach ($sizes as $size)
+                                <th class="text-center">{{ $size->size_number }}</th>
+                                @endforeach
 
                             </thead>
                             <tbody>
-                                
+
                                 <tr>
                                     <td>Size</td>
                                     @foreach ($sizes as $size)
-                                        <td class="text-center">
-                                            <input name="sizes[]" class="edit-size-check check-{{ $size->id }}" type="checkbox" value="{{ $size->id }}">
-                                        </td>
+                                    <td class="text-center">
+                                        <input name="sizes[]" class="edit-size-check check-{{ $size->id }}" type="checkbox" value="{{ $size->id }}">
+                                    </td>
                                     @endforeach
                                 </tr>
                                 <tr>
                                     <td>Amount</td>
                                     @foreach ($sizes as $size)
-                                        <td class="text-center">
-                                            <input style="width:40px;" class="amount-size-{{ $size->id }} edit-amount-input-{{ $size->id }}" name="size_amount[]" type="text" disabled>
-                                        </td>
+                                    <td class="text-center">
+                                        <input style="width:40px;" class="amount-size-{{ $size->id }} edit-amount-input-{{ $size->id }}" name="size_amount[]" type="text" disabled>
+                                    </td>
                                     @endforeach
                                 </tr>
                             </tbody>
+                        </table> -->
+                        <table class="table table-bordered mb-0 custom-table">
+                            <thead>
+                                <th>Size</th>
+                                <th>Check</th>
+                                <th>Amount</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($sizes as $size)
+                                <tr>
+                                    <td>{{ $size->size_number }}</td>
+                                    <td><input name="sizes[]" class="edit-size-check check-{{ $size->id }}" type="checkbox" value="{{ $size->id }}"></td>
+                                    <td><input style="width:40px;" class="amount-size-{{ $size->id }} edit-amount-input-{{ $size->id }}" name="size_amount[]" type="text" disabled></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
-                        
+
                     <div class="submit-section">
                         <button type="submit" class="btn btn-primary submit-btn">Submit</button>
                     </div>

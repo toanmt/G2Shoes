@@ -6,7 +6,7 @@ $(document).ready(function(){
         $('.edit-size').on('click',function(e){
             e.preventDefault();
             var id = $(this).data('id');
-            var num = prompt('Nhập số size');
+            var num = prompt('Size: ');
             if(parseFloat(num) > 0){
                 $.ajax({
                     type: 'GET',
@@ -16,8 +16,9 @@ $(document).ready(function(){
                     },
                     dataType: 'json',
                     success: function(data){
-                        alert(data.output);
-                        $('#size-'+id).text(num);
+                        setTimeout(function(){
+                            location.reload();
+                        },1);
                     },
                     error: function(data){
                         console.log(data);
@@ -44,8 +45,9 @@ $(document).ready(function(){
                     url: '/admin/delete-size/'+id,
                     dataType: 'json',
                     success: function(data){
-                        alert(data.output);
-                        $('#del-'+id).remove();
+                        setTimeout(function(){
+                            location.reload();
+                        },1);
                     },
                     error: function(data){
                         console.log(data);
@@ -65,13 +67,10 @@ $(document).ready(function(){
             url: $(this).attr('action'),
             data: formData,
             dataType: 'json',
-            success: function(data){  
-                if(data.error !== undefined){
-                    alert(data.error);
-                }else{
-                    $('.number-size').val('');
-                    $('#table-size').append(data.output);
-                }
+            success: function(data){
+                setTimeout(function(){
+                    location.reload();
+                },1);
             },
             error: function(data){
                 console.log(data);
@@ -79,6 +78,33 @@ $(document).ready(function(){
             }
         })
     });
+    var index=0;
+    var ids=-1;
+    $('.add-size-product').click(function(){
+        var val =$('#opsize').val();
+        var text =$('#opsize :selected').text();
+        if(ids!=val){
+            var html ='<tr class="sizeadd sizeadd-' + index +'">' 
+            +' <td> <input name="sizes[]" type="text" value="' + val + '" style="display:none;">'+text+'</td>'
+            +' <td> <input class="form-control" name="size_amount[]" type="text"> </td> '
+            +' <td> '
+            +'<button type="button" class="btn btn-primary btn-del-row-size" data-id="'+index+'">'
+            +'<i class="fa fa-trash-o"></i></button> </td> </tr>';
+            $('.form-add-lisize').append(html);
+            index++;
+            ids =val;
+            $('.err_size_add').html('');
+        }else{
+            $('.err_size_add').html('Size already exists!');
+        }
+    })
+    $('.reset-create-product').click(function(){
+        $('.sizeadd').remove();
+    })
+    $(document).on('click', '.btn-del-row-size', function(e){
+        var id = $(this).data('id');
+        $('.sizeadd-'+id).remove();
+    })
 
     // -------------------------- /Size --------------------------------
 
@@ -254,17 +280,17 @@ $(document).ready(function(){
     editType();
     
     $('#frm-change-pass').submit(function(e){
-            e.preventDefault();
-            var formData = $(this).serialize();
-            $.post($(this).attr('action'),formData,function(data){
-                if(data.error !== undefined){
-                    alert(data.error);
-                }
+        e.preventDefault();
+        var formData = $(this).serialize();
+        $.post($(this).attr('action'),formData,function(data){
+            if(data.error !== undefined){
+                alert(data.error);
+            }
 
-                if(data.success !== undefined){
-                    alert(data.success);
-                    location.href = data.url;
-                }
-            });
+            if(data.success !== undefined){
+                alert(data.success);
+                location.href = data.url;
+            }
         });
+    });
 });

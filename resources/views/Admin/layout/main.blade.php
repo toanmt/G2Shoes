@@ -51,6 +51,7 @@
 
   <!-- jQuery -->
   <script src="{{ asset('backend/js/jquery-3.5.1.min.js') }}"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   
   <!-- Bootstrap Core JS -->

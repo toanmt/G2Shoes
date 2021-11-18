@@ -56,7 +56,7 @@ class ProductController extends Controller
                         $image_product->save();
                     }
                     
-                    if(isset($request->size)){
+                    if(isset($request->sizes)){
                         for($index = 0;$index < count($request->sizes) ; $index++){
                             $product_size = new ProductSize();
                             $product_size->product_id = $product->id;

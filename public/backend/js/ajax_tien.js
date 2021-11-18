@@ -168,7 +168,6 @@ $(document).ready(function(){
 
     function deleteProduct(){
         $('.del-product').on('click',function(e){
-            alert('click');
             e.preventDefault();
             $.get('/admin/delete-product/'+$(this).data('id'),function(data){
                 console.log(data);
