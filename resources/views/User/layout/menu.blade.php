@@ -26,7 +26,7 @@
 		</div>
 		<div class="nav-control">
 			<div class="nav-search">
-				<form action="{{URL::to('/search')}}" method="POST" class="form-control">
+				<form action="{{URL::to('/search')}}" method="POST" class="form-search">
 					{{csrf_field()}}
 					<input type="text" placeholder="Nhập từ khoá tìm kiếm..." name="keywords_submit"/>
 					<button type="submit">

@@ -144,18 +144,18 @@ window.addEventListener("load", () => {
                 processData:false,
                 success: function(data){ 
                     if(data.error !== undefined){
-                       $('.error-fields').append(data.error);
-                    }else{
-                        alert(data.message);
-                        setTimeout(function(){
-                            location.reload();
-                        },1000);
-                    }
-                },
-                error: function(data){
-                    $('.error-fields').append(data.error);
+                     $('.error-fields').append(data.error);
+                 }else{
+                    alert(data.message);
+                    setTimeout(function(){
+                        location.reload();
+                    },1000);
                 }
-            })
+            },
+            error: function(data){
+                $('.error-fields').append(data.error);
+            }
+        })
         })
     };
     addComment();
@@ -189,115 +189,108 @@ window.addEventListener("load", () => {
       str = str.replace(/đ/g, "d");
       str = str.replace(/Đ/g, "D");
       return str;
-    };
+  };
 
-    const Validator = (options) => {
-        const formElement = document.querySelector(options.form);
-        let ruleList = {};
+  const Validator = (options) => {
+    const formElement = document.querySelector(options.form);
+    let ruleList = {};
 
-        if (formElement) {
-            formElement.addEventListener("submit", () => {
-                options.rules.forEach((rule) => {
-                    const inputElement = formElement.querySelector(rule.selector);
-                    validateForm(inputElement, rule);
-                });
-            });
-
+    if (formElement) {
+        formElement.addEventListener("submit", (e) => {
+            e.preventDefault();
             options.rules.forEach((rule) => {
                 const inputElement = formElement.querySelector(rule.selector);
-
-                if (Array.isArray(ruleList[rule.selector])) {
-                    ruleList[rule.selector].push(rule.checkValue);
-                } else {
-                    ruleList[rule.selector] = [rule.checkValue];
-                }
-
-                if (inputElement) {
-                    inputElement.addEventListener("blur", () => {
-                      validateForm(inputElement, rule);
-                    });
-
-                    inputElement.addEventListener("input", () => {
-                      const formGroupElement = inputElement.parentElement;
-                      const errorElement = formGroupElement.querySelector(options.formMessage);
-                      errorElement.innerText = "";
-                      formGroupElement.classList.remove("invalid");
-                    });
-                }
+                validateForm(inputElement, rule);
             });
-        }
+        });
 
-        const validateForm = (inputElement, rule) => {
-            let message;
-            const formGroupElement = inputElement.parentElement;
-            const errorElement = formGroupElement.querySelector(options.formMessage);
-            const rules = ruleList[rule.selector];
+        options.rules.forEach((rule) => {
+            const inputElement = formElement.querySelector(rule.selector);
 
-            for (let i = 0; i < rules.length; i++) {
-              message = rules[i](inputElement.value);
-              if (message) break;
-            }
-
-            if (message) {
-              errorElement.innerText = message;
-              formGroupElement.classList.add("invalid");
+            if (Array.isArray(ruleList[rule.selector])) {
+                ruleList[rule.selector].push(rule.checkValue);
             } else {
-              errorElement.innerText = "";
-              formGroupElement.classList.remove("invalid");
+                ruleList[rule.selector] = [rule.checkValue];
             }
 
-            return !message;
-        };
-    };
+            if (inputElement) {
+                inputElement.addEventListener("blur", () => {
+                  validateForm(inputElement, rule);
+              });
 
-    Validator.isRequired = (selector, message) => {
-        return {
-            selector,
-            checkValue: (value) => {
-                return value.trim() ? undefined : message || "Vui lòng nhập trường này";
-            },
-        };
-    };
+                inputElement.addEventListener("input", () => {
+                  const formGroupElement = inputElement.parentElement;
+                  const errorElement = formGroupElement.querySelector(options.formMessage);
+                  errorElement.innerText = "";
+                  formGroupElement.classList.remove("invalid");
+              });
+            }
+        });
+    }
 
-    Validator.isFullName = (selector, message) => {
-        return {
-            selector,
-            checkValue: (value) => {
-              const reg = /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9\s]{2,}$/;
-              return reg.test(convertChars(value.trim())) ? undefined : message;
-            },
-        };
-    };
+    const validateForm = (inputElement, rule) => {
+        let message;
+        const formGroupElement = inputElement.parentElement;
+        const errorElement = formGroupElement.querySelector(options.formMessage);
+        const rules = ruleList[rule.selector];
 
-    Validator.stringLength = (selector, min, max, minMessage, maxMessage) => {
-        return {
-            selector,
-            checkValue: (value) => {
-                if (value.length < parseInt(min)) {
-                    return minMessage || `Vui lòng nhập tối thiểu ${min} ký tự`;
-                } else if (value.length > parseInt(max)) {
-                    return maxMessage || `Vui lòng nhập tối đa ${max} ký tự`;
-                } else {
-                    return undefined;
-                }
-            },
-        };
-    };
+        for (let i = 0; i < rules.length; i++) {
+          message = rules[i](inputElement.value);
+          if (message) break;
+      }
 
-    Validator({
-        form: ".review-form",
-        formMessage: ".form-message",
-        formButtonSubmit: ".form-submit",
-        rules: [
-            Validator.isRequired("#review_author", "Vui lòng nhập đầy đủ họ và tên"),
-            Validator.isFullName("#review_author", "Họ và tên không đúng định dạng"),
-            Validator.stringLength(
-              "#review_body",
-              1,
-              1000,
-              "Đánh giá phải chứa ít nhất 1 ký tự",
-              "Đánh giá chỉ chứa tối đa 1000 ký tự"
-            ),
-        ],
-    });
+      if (message) {
+          errorElement.innerText = message;
+          formGroupElement.classList.add("invalid");
+      } else {
+          errorElement.innerText = "";
+          formGroupElement.classList.remove("invalid");
+      }
+
+      return !message;
+  };
+};
+
+Validator.isRequired = (selector, message) => {
+    return {
+        selector,
+        checkValue: (value) => {
+            return value.trim() ? undefined : message || "Vui lòng nhập trường này";
+        },
+    };
+};
+
+Validator.isFullName = (selector, message) => {
+    return {
+        selector,
+        checkValue: (value) => {
+          const reg = /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9\s]{2,}$/;
+          return reg.test(convertChars(value.trim())) ? undefined : message;
+      },
+  };
+};
+
+Validator.isEmail = (selector, message) => {
+  return {
+    selector,
+    checkValue: (value) => {
+      const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return reg.test(value) ? undefined : message;
+  },
+};
+};
+
+Validator({
+    form: "#form-infor",
+    formMessage: ".form-message",
+    formButtonSubmit: ".form-submit",
+    rules: [
+    Validator.isRequired("#fullname", "Vui lòng nhập đầy đủ họ và tên"),
+    Validator.isRequired("#email", "Vui lòng nhập email"),
+    Validator.isRequired("#phone", "Vui lòng nhập số điện thoại"),
+    Validator.isRequired("#address", "Vui lòng nhập địa chỉ"),
+    Validator.isFullName("#fullname", "Họ và tên không đúng định dạng"),
+    Validator.isEmail("#email", "Email không đúng định dạng"),
+    ],
+});
 });
