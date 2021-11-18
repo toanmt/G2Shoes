@@ -28,6 +28,7 @@ Route::prefix('')->group(function () {
     Route::get('/contact',[App\Http\Controllers\User\ContactController::class,'index']);
     Route::get('/introduce',[App\Http\Controllers\User\IntroduceController::class,'index']);
     Route::get('/sales/filter',[App\Http\Controllers\User\SalesController::class,'filter']);
+    Route::get('/payment',[App\Http\Controllers\User\PaymentController::class,'index']);
 });
 
 Route::prefix('admin')->group(function () {
