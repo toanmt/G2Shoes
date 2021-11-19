@@ -13,7 +13,7 @@
                     @csrf
                     <div class="row">
                         <div  class="col-md-12 text-center">
-                            <div class="edit-img">
+                            <div class="edit-img edit-img-product">
                                 <div class="fileupload btn">
                                     <span class="btn-text">edit images product</span>
                                     <input name="image_product[]" class="upload" type="file" multiple>

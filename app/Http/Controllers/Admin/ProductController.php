@@ -193,9 +193,9 @@ class ProductController extends Controller
             </tr>';
             }
         }else{
-            return ['output'=>$output];
+            return ['output'=>$output,'products'=>$products];
         }
-        return ['output'=>$output];
+        return ['output'=>$output,'products'=>$products];
     }
 
     
