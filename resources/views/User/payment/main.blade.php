@@ -43,6 +43,7 @@
           <div class="payment-content">
             <div class="payment-content__title">Thông tin giao hàng</div>
             <form action="" class="form" method="POST" id="form-infor">
+              {{csrf_field()}}
               <div class="form-group">
                 <input
                   id="fullname"
@@ -101,7 +102,7 @@
               </div>
               <div class="form-direct">
                 <a href="#" class="form-cart">Giỏ hàng</a>
-                <button class="form-submit">
+                <button class="form-submit" type="submit">
                   Tiếp tục đến với phương thức thanh toán
                 </button>
               </div>
@@ -204,7 +205,7 @@
             </table>
           </div>
           <div class="payment-voucher">
-            <form action="" class="form-voucher" method="POST">
+            <form action="" class="form-voucher" method="GET">
               <div class="form-group">
                 <input
                   id="voucher"
