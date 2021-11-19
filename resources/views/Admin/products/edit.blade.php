@@ -101,7 +101,7 @@
                                 <tr>
                                     <td>{{ $size->size_number }}</td>
                                     <td><input name="sizes[]" class="edit-size-check check-{{ $size->id }}" type="checkbox" value="{{ $size->id }}"></td>
-                                    <td><input style="width:40px;" class="amount-size-{{ $size->id }} edit-amount-input-{{ $size->id }}" name="size_amount[]" type="text" disabled></td>
+                                    <td><input  class="amount-size-{{ $size->id }} edit-amount-input-{{ $size->id }}" name="size_amount[]" type="text" disabled></td>
                                 </tr>
                                 @endforeach
                             </tbody>

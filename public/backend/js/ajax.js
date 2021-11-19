@@ -78,21 +78,20 @@ $(document).ready(function(){
             }
         })
     });
-    var index=0;
-    var ids=-1;
+
+    const ids= [];
     $('.add-size-product').click(function(){
-        var val =$('#opsize').val();
-        var text =$('#opsize :selected').text();
-        if(ids!=val){
-            var html ='<tr class="sizeadd sizeadd-' + index +'">' 
+        const val =$('#opsize').val();
+        var text =$('#opsize :selected').text(); 
+        if(!ids.includes(val)){
+            var html ='<tr class="sizeadd sizeadd-' + val +'">' 
             +' <td> <input name="sizes[]" type="text" value="' + val + '" style="display:none;">'+text+'</td>'
-            +' <td> <input class="form-control" name="size_amount[]" type="text"> </td> '
+            +' <td> <input class="form-control" name="size_amount[]" type="number"> </td> '
             +' <td> '
-            +'<button type="button" class="btn btn-primary btn-del-row-size" data-id="'+index+'">'
+            +'<button type="button" class="btn btn-primary btn-del-row-size" data-id="'+val+'">'
             +'<i class="fa fa-trash-o"></i></button> </td> </tr>';
             $('.form-add-lisize').append(html);
-            index++;
-            ids =val;
+            ids.push(val);
             $('.err_size_add').html('');
         }else{
             $('.err_size_add').html('Size already exists!');
@@ -102,10 +101,13 @@ $(document).ready(function(){
         $('.sizeadd').remove();
     })
     $(document).on('click', '.btn-del-row-size', function(e){
-        var id = $(this).data('id');
+        const id = $(this).data('id') + '';
+        var i = ids.indexOf(id);
+        if (i > -1) {
+            ids.splice(i, 1);
+        }
         $('.sizeadd-'+id).remove();
     })
-
     // -------------------------- /Size --------------------------------
 
     //-------------------- Brand---------------------

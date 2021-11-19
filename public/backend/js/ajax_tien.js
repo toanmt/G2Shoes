@@ -87,9 +87,7 @@ $(document).ready(function(){
             $('.edit-price').val(data.product.price);
             $('.edit-discount').val(data.product.discount);
             $('.edit-name').val(data.product.product_name);
-            $('.edit-amount').val(data.product.amount);
             $('.edit-type').val(data.product.type.id).trigger('change');
-            $('.edit-description').summernote('code',data.product.description);
             
             if(data.product_size.length > 0){
                 for(let item of data.product_size){
