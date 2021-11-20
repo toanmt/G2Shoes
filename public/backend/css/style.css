@@ -1,12 +1,4 @@
 /*
-Author       : Dreamguys
-Template Name: SmartHR - Bootstrap Admin Template
-Version      : 3.6
-*/
-
-/*============================
- [Table of CSS]
-
 1. General
 2. Table
 3. Helper Class
@@ -8507,4 +8499,31 @@ ul.comment-list li ul.children {
 	align-items: center;
 	justify-content: center;
 	font-size: 11px;
+}
+.nav-cart {
+  position: relative;
+}
+.nav-cart__icon {
+  font-size: 21px;
+  color: #272727;
+  padding: 9px 10px;
+  border: 1px solid #e5e5e5;
+  display: inline-block;
+  border-radius: 4px;
+}
+.nav-cart__qty {
+  position: absolute;
+  right: calc(-10% - 5px);
+  top: -10%;
+  font-size: 12px;
+  background: #f94c43;
+  color: #ffffff;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 19px;
+}
+.nav-cart:hover .nav-cart__icon i {
+  transform: scale(1.2);
 }

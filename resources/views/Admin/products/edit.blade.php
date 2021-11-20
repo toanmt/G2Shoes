@@ -13,13 +13,9 @@
                     @csrf
                     <div class="row">
                         <div  class="col-md-12 text-center">
-<<<<<<< HEAD
-                            <div class="edit-img edit-img-product">
-=======
                             <div class="edit-img abc">
->>>>>>> 07c00e8399fc17759542088e61cecf37353033af
                                 <div class="fileupload btn">
-                                    <span class="btn-text">edit images product</span>
+                                    <span class="btn-text">add images product</span>
                                     <input name="image_product[]" class="upload" type="file" multiple>
                                 </div>
                             </div>
@@ -64,54 +60,18 @@
                         </div>
                     </div>
                     <label class="col-form-label">Size</label>
-                    <div class="table-responsive m-t-15">
-                        <!-- <table class="table table-striped custom-table">
-                            <thead>
-                                <th>Sizes</th>
-
-                                @foreach ($sizes as $size)
-                                <th class="text-center">{{ $size->size_number }}</th>
-                                @endforeach
-
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>Size</td>
-                                    @foreach ($sizes as $size)
-                                    <td class="text-center">
-                                        <input name="sizes[]" class="edit-size-check check-{{ $size->id }}" type="checkbox" value="{{ $size->id }}">
-                                    </td>
-                                    @endforeach
-                                </tr>
-                                <tr>
-                                    <td>Amount</td>
-                                    @foreach ($sizes as $size)
-                                    <td class="text-center">
-                                        <input style="width:40px;" class="amount-size-{{ $size->id }} edit-amount-input-{{ $size->id }}" name="size_amount[]" type="text" disabled>
-                                    </td>
-                                    @endforeach
-                                </tr>
-                            </tbody>
-                        </table> -->
-                        <table class="table table-bordered mb-0 custom-table">
-                            <thead>
-                                <th>Size</th>
-                                <th>Check</th>
-                                <th>Amount</th>
-                            </thead>
-                            <tbody>
-                                @foreach ($sizes as $size)
-                                <tr>
-                                    <td>{{ $size->size_number }}</td>
-                                    <td><input name="sizes[]" class="edit-size-check check-{{ $size->id }}" type="checkbox" value="{{ $size->id }}"></td>
-                                    <td><input  class="amount-size-{{ $size->id }} edit-amount-input-{{ $size->id }}" name="size_amount[]" type="text" disabled></td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                    <div class="row">
+                        @foreach ($sizes as $size)
+                        <div class="col-sm-5 col-md-3">
+                            {{ $size->size_number }}
+                            <input name="sizes[]" class="edit-size-check check-{{ $size->id }}" type="checkbox" value="{{ $size->id }}">
+                            <div class="form-group form-focus">
+                                <input  class="amount-size-{{ $size->id }} edit-amount-input-{{ $size->id }} form-control" name="size_amount[]" type="text" disabled>
+                                <label class="focus-label">Amount</label>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
-
                     <div class="submit-section">
                         <button type="submit" class="btn btn-primary submit-btn">Submit</button>
                     </div>

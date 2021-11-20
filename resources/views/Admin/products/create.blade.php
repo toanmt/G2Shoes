@@ -1,4 +1,4 @@
-Add Employee Modal -->
+<!--Add Employee Modal -->
 <div id="add_product" class="modal custom-modal fade" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -19,7 +19,6 @@ Add Employee Modal -->
                                     <input name="image_product[]" class="upload" type="file" multiple>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                     <div class="row">
