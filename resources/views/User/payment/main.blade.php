@@ -42,7 +42,7 @@
           </div>
           <div class="payment-content">
             <div class="payment-content__title">Thông tin giao hàng</div>
-            <form action="" class="form" method="POST" id="form-infor">
+            <form action="{{ url('invoice-infor') }}" class="form" method="POST" id="form-infor">
               {{csrf_field()}}
               <div class="form-group">
                 <input
@@ -136,6 +136,7 @@
                     name="payment"
                     id="payment-cod"
                     class="input-radio"
+                    value="0"
                   />
                   <img src="{{ asset('frontend/img/others/cod.svg') }}" alt="" />
                   <label for="payment-cod"
@@ -150,19 +151,20 @@
                     type="radio"
                     name="payment"
                     id="payment-bank"
+                    value="1"
                     class="input-radio"
                   />
                   <img src="{{ asset('frontend/img/others/other.svg') }}" alt="" />
                   <label for="payment-bank">Chuyển khoản qua ngân hàng</label>
                 </div>
-                <div class="payment-content__infor">
+                <div class="payment-content__infor payment-banking">
                   Chuyển khoản qua số tài khoản:
                 </div>
               </div>
             </div>
             <div class="form-direct">
               <a href="#" class="form-cart">Quay lại thông tin giao hàng</a>
-              <button class="form-submit">Hoàn tất đơn hàng</button>
+              <a href="{{ url('order') }}" class="form-submit" id="payment-button">Hoàn tất đơn hàng</a>
             </div>
           </div>
           <div class="payment-footer">Powered by G2 SHOES</div>
@@ -205,7 +207,8 @@
             </table>
           </div>
           <div class="payment-voucher">
-            <form action="" class="form-voucher" method="GET">
+            <form action="{{ url('voucher') }}" class="form-voucher" id="form-voucher" method="POST">
+              {{csrf_field()}}
               <div class="form-group">
                 <input
                   id="voucher"
@@ -221,7 +224,7 @@
                 </span>
               </div>
               <div class="form-direct">
-                <button class="form-submit">Sử dụng</button>
+                <button class="form-submit" type="submit">Sử dụng</button>
               </div>
             </form>
           </div>
@@ -234,14 +237,108 @@
               <span class="payment-price__title">Phí vận chuyển:</span>
               <span>40,000đ</span>
             </div>
+            <div class="payment-voucher__container"></div>
             <div class="payment-price__container">
               <span class="payment-price__title">Tổng tiền: </span>
               <span>13,940,000₫</span>
+              <input type="hidden" id="total_usd" value="<?php echo 13940000/22650; ?>">
             </div>
           </div>
         </div>
       </div>
     </main>
     <script src="{{ asset('frontend/js/payment.js') }}"></script>
+    
+    <!-- JQUERY -->
+    <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#form-voucher').submit(function(e){
+          e.preventDefault();
+          var voucher_name = $('#voucher').val();
+          $.post(location.origin+'/voucher',$(this).serialize(),function(data){
+            if(data.error){
+              alert(data.error);
+            }else{
+                alert(data.success);
+                $('.payment-voucher__container').empty();
+                $('.payment-voucher__container').append('<span class="payment-price__title">Giảm giá:</span><span>'+data.voucher_percent+'%</span>');
+                
+            }
+              
+          });
+        })
+        
+        $('#form-infor').submit(function(){
+            $.post($(this).attr('action'),$(this).serialize(),function(data){});
+        });
+        $('.input-radio').click(function(){
+          if($(this).val() == 0){
+            $('#payment-button').show();
+            $('.payment-banking').empty().text('Chuyển khoản qua số tài khoản:');
+            $('#payment-button').click(function(){
+              $.ajax({
+                url: location.origin+'/order',
+                type: 'GET',
+                data: {'status':0},
+                success: function(data){
+                  alert(data.message);
+                }
+              });
+            });
+          }else{
+            $('#payment-button').hide();
+            $('.payment-banking').empty().html('<div id="paypal-button"></div>');
+
+            paypal.Button.render({
+              // Configure environment
+              env: 'sandbox',
+              client: {
+                sandbox: 'AabvavzWy18f5DZiMcHDgrKoyKUQuYKrCva8vuNxMASjxuvW53xeku1w9yby4L5ofCCZe9dr3O4c8XbF',
+                production: 'demo_production_client_id'
+              },
+              // Customize button (optional)
+              locale: 'en_US',
+              style: {
+                size: 'small',
+                color: 'gold',
+                shape: 'pill',
+              },
+
+              // Enable Pay Now checkout flow (optional)
+              commit: true,
+
+              
+              // Set up a payment
+              payment: function(data, actions) {
+                  return actions.payment.create({
+                    transactions: [{
+                      amount: {
+                        total: parseFloat($('#total_usd').val()).toFixed(2),
+                        currency: 'USD'
+                      }
+                    }]
+                  });
+              },
+              // Execute the payment
+              onAuthorize: function(data, actions) {
+                return actions.payment.execute().then(function() {
+                  // Show a confirmation message to the buyer
+                  $.ajax({
+                    url: location.origin+'/order',
+                    type: 'GET',
+                    data: {'status':1},
+                    success: function(data){
+                      alert(data.message);
+                    }
+                  });
+                })
+              }
+            },'#paypal-button');
+          }
+        });
+      })
+    </script>
   </body>
 </html>

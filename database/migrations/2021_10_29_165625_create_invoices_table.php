@@ -16,12 +16,12 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('customer_name');
-            $table->string('phone')->unique();
+            $table->string('phone');
             $table->string('address');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->double('shipping_cost');
             $table->boolean('status');
-            $table->integer('voucher_id')->unsigned();
+            $table->integer('voucher_id')->unsigned()->nullable();
             $table->foreign('voucher_id')->references('id')->on('vouchers')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

@@ -30,8 +30,16 @@ Route::prefix('')->group(function () {
     Route::get('/contact',[App\Http\Controllers\User\ContactController::class,'index']);
     //Introduce
     Route::get('/introduce',[App\Http\Controllers\User\IntroduceController::class,'index']);
+    //voucher
+    Route::POST('/voucher',[App\Http\Controllers\User\PaymentController::class,'clientUseVoucher']);
     //Payment
     Route::get('/payment',[App\Http\Controllers\User\PaymentController::class,'index']);
+
+    Route::post('/invoice-infor',[App\Http\Controllers\User\PaymentController::class,'invoice_info']);
+
+    Route::get('/order',[App\Http\Controllers\User\PaymentController::class,'order']);
+
+    
 });
 
 Route::prefix('admin')->group(function () {

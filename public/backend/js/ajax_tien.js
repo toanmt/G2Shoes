@@ -77,6 +77,7 @@ $(document).ready(function(){
         
         $.get('/admin/products/'+id,function(data){
             if(data.image_product.length > 0){
+
                 $('.abc').css('border','none');
                 $('.btn-text').hide();
                 $('.img-output').remove();
