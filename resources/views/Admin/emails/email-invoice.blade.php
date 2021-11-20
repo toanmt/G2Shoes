@@ -1,368 +1,203 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <!-- Custom Style -->
-    <style>
-        :root {
-            --body-bg: rgb(204, 204, 204);
-            --white: #ffffff;
-            --darkWhite: #ccc;
-            --black: #000000;
-            --dark: #615c60;
-            --themeColor: #22b8d1;
-            --pageShadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
-        }
 
-        /* Font Include */
-        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<style>
+@media  only screen and (max-width: 600px) {
+.inner-body {
+width: 100% !important;
+}
 
-        body {
-            background-color: var(--body-bg);
-        }
+.footer {
+width: 100% !important;
+}
+}
 
-        .page {
-            background: var(--white);
-            display: block;
-            margin: 0 auto;
-            position: relative;
-            box-shadow: var(--pageShadow);
-        }
-
-        .page[size="A4"] {
-            width: 21cm;
-            height: 29.7cm;
-            overflow: hidden;
-        }
-
-        .bb {
-            border-bottom: 3px solid var(--darkWhite);
-        }
-
-        /* Top Section */
-        .top-content {
-            padding-bottom: 15px;
-        }
-
-        .logo img {
-            height: 60px;
-        }
-
-        .top-left p {
-            margin: 0;
-        }
-
-        .top-left .graphic-path {
-            height: 40px;
-            position: relative;
-        }
-
-        .top-left .graphic-path::before {
-            content: "";
-            height: 20px;
-            background-color: var(--dark);
-            position: absolute;
-            left: 15px;
-            right: 0;
-            top: -15px;
-            z-index: 2;
-        }
-
-        .top-left .graphic-path::after {
-            content: "";
-            height: 22px;
-            width: 17px;
-            background: var(--black);
-            position: absolute;
-            top: -13px;
-            left: 6px;
-            transform: rotate(45deg);
-        }
-
-        .top-left .graphic-path p {
-            color: var(--white);
-            height: 40px;
-            left: 0;
-            right: -100px;
-            text-transform: uppercase;
-            background-color: var(--themeColor);
-            font: 26px;
-            z-index: 3;
-            position: absolute;
-            padding-left: 10px;
-        }
-
-        /* User Store Section */
-        .store-user {
-            padding-bottom: 25px;
-        }
-
-        .store-user p {
-            margin: 0;
-            font-weight: 600;
-        }
-
-        .store-user .address {
-            font-weight: 400;
-        }
-
-        .store-user h2 {
-            color: var(--themeColor);
-            font-family: 'Rajdhani', sans-serif;
-        }
-
-        .extra-info p span {
-            font-weight: 400;
-        }
-
-        /* Product Section */
-        thead {
-            color: var(--white);
-            background: var(--themeColor);
-        }
-
-        .table td,
-        .table th {
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        tr th:first-child,
-        tr td:first-child {
-            text-align: left;
-        }
-
-        .media img {
-            height: 60px;
-            width: 60px;
-        }
-
-        .media p {
-            font-weight: 400;
-            margin: 0;
-        }
-
-        .media p.title {
-            font-weight: 600;
-        }
-
-        /* Balance Info Section */
-        .balance-info .table td,
-        .balance-info .table th {
-            padding: 0;
-            border: 0;
-        }
-
-        .balance-info tr td:first-child {
-            font-weight: 600;
-        }
-
-        tfoot {
-            border-top: 2px solid var(--darkWhite);
-        }
-
-        tfoot td {
-            font-weight: 600;
-        }
-
-        /* Cart BG */
-        .cart-bg {
-            height: 250px;
-            bottom: 32px;
-            left: -40px;
-            opacity: 0.3;
-            position: absolute;
-        }
-
-        /* Footer Section */
-        footer {
-            text-align: center;
-            position: absolute;
-            bottom: 30px;
-            left: 75px;
-        }
-
-        footer hr {
-            margin-bottom: -22px;
-            border-top: 3px solid var(--darkWhite);
-        }
-
-        footer a {
-            color: var(--themeColor);
-        }
-
-        footer p {
-            padding: 6px;
-            border: 3px solid var(--darkWhite);
-            background-color: var(--white);
-            display: inline-block;
-        }
-    </style>
+@media  only screen and (max-width: 500px) {
+.button {
+width: 100% !important;
+}
+}
+</style>
 </head>
+<body style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -webkit-text-size-adjust: none; background-color: #ffffff; color: #718096; height: 100%; line-height: 1.4; margin: 0; padding: 0; width: 100% !important;">
 
-<body>
-    <div class="my-5 page" size="A4">
-        <div class="p-5">
-            <section class="top-content bb d-flex justify-content-between">
-                <div class="logo">
-                    <img src="{{ asset('Iamge/demo/logo.png') }}" alt="" class="img-fluid">
-                </div>
-                <div class="top-left">
-                    <div class="graphic-path">
-                        <p>Invoice</p>
-                    </div>
-                    <div class="position-relative">
-                        <p>Invoice No. <span>XXXX</span></p>
-                    </div>
-                </div>
-            </section>
+<table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; background-color: #edf2f7; margin: 0; padding: 0; width: 100%;">
+<tr>
+<td align="center" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; margin: 0; padding: 0; width: 100%;">
+<tr>
+<td class="header" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; padding: 25px 0; text-align: center;">
+</td>
+</tr>
 
-            <section class="store-user mt-5">
-                <div class="col-10">
-                    <div class="row bb pb-3">
-                        <div class="col-7">
-                            <p>Supplier,</p>
-                            <h2>Your Store Name</h2>
-                            <p class="address"> 777 Brockton Avenue, <br> Abington MA 2351, <br>Vestavia Hills AL </p>
-                            <div class="txn mt-2">TXN: XXXXXXX</div>
-                        </div>
-                        <div class="col-5">
-                            <p>Client,</p>
-                            <h2>Sabur Ali</h2>
-                            <p class="address"> 777 Brockton Avenue, <br> Abington MA 2351, <br>Vestavia Hills AL </p>
-                            <div class="txn mt-2">TXN: XXXXXXX</div>
-                        </div>
-                    </div>
-                    <div class="row extra-info pt-3">
-                        <div class="col-7">
-                            <p>Payment Method: <span>bKash</span></p>
-                            <p>Order Number: <span>#868</span></p>
-                        </div>
-                        <div class="col-5">
-                            <p>Deliver Date: <span>10-04.2021</span></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+<!-- Email Body -->
+<tr>
+<td class="body" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; background-color: #edf2f7; border-bottom: 1px solid #edf2f7; border-top: 1px solid #edf2f7; margin: 0; padding: 0; width: 100%;">
+<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 570px; background-color: #ffffff; border-color: #e8e5ef; border-radius: 2px; border-width: 1px; box-shadow: 0 2px 0 rgba(0, 0, 150, 0.025), 2px 4px 0 rgba(0, 0, 150, 0.015); margin: 0 auto; padding: 0; width: 570px;">
+<!-- Body content -->
+<tr>
+<td class="content-cell" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
 
-            <section class="product-area mt-4">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <td>Item Description</td>
-                            <td>Price</td>
-                            <td>Quantity</td>
-                            <td>Total</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="media">
-                                    <img class="mr-3 img-fluid" src="{{ asset('Iamge/demo/mobile.jpg') }}" alt="Product 01">
-                                    <div class="media-body">
-                                        <p class="mt-0 title">Media heading</p>
-                                        Cras sit amet nibh libero, in gravida nulla.
-                                    </div>
-                                </div>
-                            </td>
-                            <td>200$</td>
-                            <td>1</td>
-                            <td>200$</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="media">
-                                    <img class="mr-3 img-fluid" src="{{ asset('Iamge/demo/mobile-2.jpg') }}" alt="Product 01">
-                                    <div class="media-body">
-                                        <p class="mt-0 title">Media heading</p>
-                                        Cras sit amet nibh libero, in gravida nulla.
-                                    </div>
-                                </div>
-                            </td>
-                            <td>300$</td>
-                            <td>2</td>
-                            <td>600$</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section class="balance-info">
-                <div class="row">
-                    <div class="col-8">
-                        <p class="m-0 font-weight-bold"> Note: </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In delectus, adipisci vero est dolore praesentium.</p>
-                    </div>
-                    <div class="col-4">
-                        <table class="table border-0 table-hover">
-                            <tr>
-                                <td>Sub Total:</td>
-                                <td>800$</td>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+      <tr>
+          <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"><img src="{{$message->embed(public_path().'/Image/logo/logo.png') }}" width="150" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100%;"></td>
+      </tr>
+      <tr>
+          <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"> </td>
+      </tr>
+      <tr>
+          <td width="49%" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                  <tr>
+                      <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                          <table width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                              <tr>
+                                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 15px;">
+                                      HÓA ĐƠN G2 SHOES
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;">
+                                      MÃ HÓA ĐƠN: #123
+                                  </td>
+                              </tr>
+                              <tr>
+                                <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;">
+                                    NGÀY ĐẶT: 22/12/2021
+                                </td>
                             </tr>
-                            <tr>
-                                <td>Tax:</td>
-                                <td>15$</td>
-                            </tr>
-                            <tr>
-                                <td>Deliver:</td>
-                                <td>10$</td>
-                            </tr>
-                            <tfoot>
-                                <tr>
-                                    <td>Total:</td>
-                                    <td>825$</td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                              <tr>
+                                  <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                                       
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+              </table>
+          </td>
+          <td width="51%" valign="top" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right"></td>
+                  
+                  <tr>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right"></td>
+                  </tr>
+                  <tr>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 15px;" align="right">Người đặt</td>
+                  </tr>
+                  <tr>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right">Lê Vũ Long</td>
+                  </tr>
+                  <tr>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right">03280266493</td>
+                  </tr>
+                  <tr>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right">levulong@gmail.com</td>
+                  </tr>
+              </table>
+          </td>
+      </tr>
+      <tr>
+          <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"> </td>
+      </tr>
+      <tr>
+          <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                  <tr>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 13px; border-top: 1px solid #333; border-bottom: 1px solid #333; border-left: 1px solid #333; border-right: 1px solid #333;" width="8%" height="32" align="center">STT</td>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 13px; border-top: 1px solid #333; border-bottom: 1px solid #333; border-right: 1px solid #333;" width="35%" align="center">Sản phẩm</td>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 13px; border-top: 1px solid #333; border-bottom: 1px solid #333; border-right: 1px solid #333;" width="15%" align="center">Số lượng</td>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 13px; border-top: 1px solid #333; border-bottom: 1px solid #333; border-right: 1px solid #333;" width="18%" align="center">Giá tiền</td>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 13px; border-top: 1px solid #333; border-bottom: 1px solid #333; border-right: 1px solid #333;" width="24%" align="center">Thành tiền</td>
+                  </tr>
+                  <tr>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-left: 1px solid #333; border-right: 1px solid #333;" height="32" align="center">1
+                      </td>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">Converse All Star White</td>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">1</td>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">2.300.000đ</td>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">2.300.000đ</td>
+                  </tr>
+                  <tr>
+                    <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-left: 1px solid #333; border-right: 1px solid #333;" height="32" align="center">2
+                    </td>
+                    <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">Air Force 1 Super</td>
+                    <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">1</td>
+                    <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">3.000.000đ</td>
+                    <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">3.000.000đ</td>
+                </tr>
+                <tr>
+                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-left: 1px solid #333; border-right: 1px solid #333;" height="32" align="center">3
+                  </td>
+                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">Vans Classic</td>
+                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">1</td>
+                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">300.000đ</td>
+                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">300.000đ</td>
+              </tr>
+              </table>
+          </td>
+      </tr>
+      <tr>
+          <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"> </td>
+      </tr>
+      <tr>
+          <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
+            Tổng thành tiền: 5.600.000đ</td>
+      </tr>
+      <tr>
+        <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
+            Khuyến mãi: 560.000đ</td>
+      </tr>
+      <tr>
+        <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
+            Phí vận chuyển: 40.000đ</td>
+      </tr>
+      <tr>
+        <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
+            Tiền phải trả: 5.070.000đ</td>
+      </tr>
+      <tr>
+          <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"> </td>
+      </tr>
+      <tr>
+          <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"> </td>
+      </tr>
+      <tr>
+          <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" colspan="2" align="center">
+            Cảm ơn bạn đã mua sản phẩm của cửa hàng chúng tôi!
+        </td>
+      </tr>
+  </table>
 
-                        <!-- Signature -->
-                        <div class="col-12">
-                            <img src="{{ asset('Iamge/demo/signature.png') }}" class="img-fluid" alt="">
-                            <p class="text-center m-0"> Director Signature </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <!-- Cart BG -->
-            <img src="{{ asset('Iamge/demo/cart.jpg') }}" class="img-fluid cart-bg" alt="">
 
-            <footer>
-                <hr>
-                <p class="m-0 text-center">
-                    View THis Invoice Online At - <a href="#!"> invoice/saburbd.com/#868 </a>
-                </p>
-                <div class="social pt-3">
-                    <span class="pr-2">
-                        <i class="fas fa-mobile-alt"></i>
-                        <span>0123456789</span>
-                    </span>
-                    <span class="pr-2">
-                        <i class="fas fa-envelope"></i>
-                        <span>me@saburali.com</span>
-                    </span>
-                    <span class="pr-2">
-                        <i class="fab fa-facebook-f"></i>
-                        <span>/sabur.7264</span>
-                    </span>
-                    <span class="pr-2">
-                        <i class="fab fa-youtube"></i>
-                        <span>/abdussabur</span>
-                    </span>
-                    <span class="pr-2">
-                        <i class="fab fa-github"></i>
-                        <span>/example</span>
-                    </span>
-                </div>
-            </footer>
-        </div>
-    </div>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 570px; margin: 0 auto; padding: 0; text-align: center; width: 570px;">
+<tr>
+<td class="content-cell" align="center" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
 </body>
 </html>

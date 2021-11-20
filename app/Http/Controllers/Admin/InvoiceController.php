@@ -125,7 +125,7 @@ class InvoiceController extends Controller
         
         Mail::send('Admin.emails.email-invoice', $data , function ($message) use ($to_email,$to_name) {
             $message->from('Nhom2pmmnm@gmail.com','Admin');
-            $message->to($to_email,$to_name)->subject('Invoice');
+            $message->to('vantienn740@gmail.com',$to_name)->subject('Invoice');
         });
         if (Mail::failures()) {
             return response()->json(['error'=>'Sorry! Please try again latter']);
