@@ -17,7 +17,6 @@
   rel="stylesheet"
   />
   <link rel='stylesheet prefetch' href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,35 +25,54 @@
   rel="stylesheet"
   />
   <!-- CSS -->
+  <link rel="stylesheet" href="{{ asset('frontend/css/pagination.css') }}" />
   <link rel="stylesheet" href="{{ asset('frontend/css/app.css') }}" />
+  <!-- JQUERY -->
+  <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
 </head>
 <body>
   @include('User.layout.header')
   @include('User.layout.menu')
   <main class="main">
     @yield('content')
+     @include('User.layout.gallery')
   </main>
   @include('User.layout.footer')
-  <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
-  <script src="{{ asset('frontend/js/main.js') }}"></script>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.dropdown-text').on('click',function(){
-        var url = $(this).data('value'); 
-          if (url) { 
-              window.location = url;
-          }
-        return false;
+  <!-- Messenger Plugin chat Code -->
+  <div id="fb-root"></div>
+
+  <!-- Your Plugin chat code -->
+  <div id="fb-customer-chat" class="fb-customerchat">
+  </div>
+
+  {{--
+  <!-- Chatbox Facebook -->
+  <!-- Messenger Plugin chat Code -->
+  <div id="fb-root"></div>
+
+  <!-- Your Plugin chat code -->
+  <div id="fb-customer-chat" class="fb-customerchat">
+  </div>
+
+  <script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "107854461718553");
+    chatbox.setAttribute("attribution", "biz_inbox");
+
+    window.fbAsyncInit = function() {
+      FB.init({
+        xfbml            : true,
+        version          : 'v12.0'
       });
-    });
-    // const dropdownItem = document.querySelectorAll('.dropdown-item');
-    // [...dropdownItem].forEach((item) => {
-    //   item.addEventListener('click', (e) => {
-    //     let url = e.target.dataset.value;
-    //     window.location = url;
-    //     let sort = url.lastIndexOf('sort_by=');
-    //     console.log(sort);
-    //   })
-    // })
-  </script>
+    };
+
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script> --}}
+  <script src="{{ asset('frontend/js/main.js') }}"></script>
 </body>

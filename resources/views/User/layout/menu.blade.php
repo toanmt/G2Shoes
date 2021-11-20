@@ -14,16 +14,19 @@
 				</li>
 				@endforeach
 				<li class="nav-item">
-					<a href="./introduce.html" class="nav-link">giới thiệu</a>
+					<a href="{{URL::to('/sales')}}" class="nav-link">sales</a>
 				</li>
 				<li class="nav-item">
-					<a href="./contact.html" class="nav-link">liên hệ</a>
+					<a href="{{URL::to('/introduce')}}" class="nav-link">giới thiệu</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{URL::to('/contact')}}" class="nav-link">liên hệ</a>
 				</li>
 			</ul>
 		</div>
 		<div class="nav-control">
 			<div class="nav-search">
-				<form action="{{URL::to('/search')}}" method="POST" class="form-control">
+				<form action="{{URL::to('/search')}}" method="POST" class="form-search">
 					{{csrf_field()}}
 					<input type="text" placeholder="Nhập từ khoá tìm kiếm..." name="keywords_submit"/>
 					<button type="submit">

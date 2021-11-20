@@ -3,21 +3,23 @@
     <div class="product-details-content">
       <div class="product-details-image">
         <div class="product-details-gallery">
-        <?php $count1=0; $count2=0; ?>
-        @foreach($product->images as $image)
-        <?php $count1++;?>
-          <div class="product-details-gallery__thumbs">
-            <img class="demo active" src="{{ asset('Image/'.$image->image_name) }}" onclick="currentSlide(<?php echo $count1; ?>)" alt="Product <?php echo $count1; ?>" />
-          </div>
+          <?php $count1=-1; $count2=0; ?>
+          @foreach($product->images as $image)
+            <?php $count1++;?>
+            <div class="product-details-gallery__thumbs">
+              <img class="slider-image" src="{{ asset('Image/'.$image->image_name) }}" data-index="<?php echo $count1; ?>" alt="Product <?php echo $count1; ?>" />
+            </div>
           @endforeach
         </div>
         <div class="product-details-slider">
-        @foreach($product->images as $image)
-        <?php $count2++;?>
-          <div class="slider-item">
-            <img src="{{ asset('Image/'.$image->image_name) }}" alt="Product <?php echo $count2; ?>" />
+          <div class="slider-main">
+            @foreach($product->images as $image)
+              <?php $count2++;?>
+              <div class="slider-item">
+                <img src="{{ asset('Image/'.$image->image_name) }}" alt="Product <?php echo $count2; ?>" />
+              </div>
+            @endforeach
           </div>
-        @endforeach
         </div>
       </div>
       <div class="product-details-description">
@@ -82,7 +84,7 @@
       @if(count($comment) == 0)
       <div class="product-details-review__comment__description">
         <div class="product-details-review__comment__sender">
-            <p style="margin: 25px 15px;">Hiện tại sản phẩm chưa có đánh giá nào, bạn hãy trở thành người đầu tiên đánh giá cho sản phẩm này</p>
+          <p style="margin: 25px 15px;">Hiện tại sản phẩm chưa có đánh giá nào, bạn hãy trở thành người đầu tiên đánh giá cho sản phẩm này</p>
           <form id="review-form" class="review-form" action="{{ url('/add-comment') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="review-form-rating">
@@ -100,17 +102,28 @@
                 <label class="star star-2" for="star-2"></label>
                 <input name="rating" class="star star-1" id="star-1" type="radio" value="1"/>
                 <label class="star star-1" for="star-1"></label>
+                <p class="error-fields"></p>
               </div>
             </div>
             <div class="review-form-information">
-              <div class="review-form-information-name">
-                <input type="text" maxlength="100" id="review_author" name="author" placeholder="Nhập họ tên của bạn">
+              <div class="form-group">
+                <input id="review_author" name="author" type="text" class="form-control" placeholder=" " />
+                <label for="review_author" class="form-label">Họ và tên</label>
+                <span class="form-message"></span>
+                <span class="form-icon form-icon--warn">
+                  <i class="bx bxs-error"></i>
+                </span>
               </div>
-              <div class="review-form-information-evaluate">
-                <textarea maxlength="1000" id="review_body" name="content" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này"></textarea>
+              <div class="form-group">
+                <textarea id="review_body" name="content" rows="5" placeholder=" " class="form-control"></textarea>
+                <label for="review_body" class="form-label">Nhập nội dung đánh giá của bạn về sản phẩm này</label>
+                <span class="form-message"></span>
+                <span class="form-icon form-icon--warn">
+                  <i class="bx bxs-error"></i>
+                </span>
               </div>
             </div>
-            <button type="submit" class="btn-new-review" onclick="return addComment()">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-action add-to-cart form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
           </form>
         </div>
       </div>
@@ -135,17 +148,28 @@
                 <label class="star star-2" for="star-2"></label>
                 <input name="rating" class="star star-1" id="star-1" type="radio" value="1"/>
                 <label class="star star-1" for="star-1"></label>
+                <p class="error-fields"></p>
               </div>
             </div>
             <div class="review-form-information">
-              <div class="review-form-information-name">
-                <input type="text" maxlength="100" id="review_author" name="author" placeholder="Nhập họ tên của bạn">
+              <div class="form-group">
+                <input id="review_author" name="author" type="text" class="form-control" placeholder=" " />
+                <label for="review_author" class="form-label">Họ và tên</label>
+                <span class="form-message"></span>
+                <span class="form-icon form-icon--warn">
+                  <i class="bx bxs-error"></i>
+                </span>
               </div>
-              <div class="review-form-information-evaluate">
-                <textarea maxlength="1000" id="review_body" name="content" rows="5" placeholder="Nhập nội dung đánh giá của bạn về sản phẩm này"></textarea>
+              <div class="form-group">
+                <textarea id="review_body" name="content" rows="5" placeholder=" " class="form-control"></textarea>
+                <label for="review_body" class="form-label">Nhập nội dung đánh giá của bạn về sản phẩm này</label>
+                <span class="form-message"></span>
+                <span class="form-icon form-icon--warn">
+                  <i class="bx bxs-error"></i>
+                </span>
               </div>
             </div>
-            <button type="submit" class="btn-new-review" onclick="">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-action add-to-cart form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
           </form>
         </div>
         <div class="product-details-review__comment__action">
@@ -153,8 +177,7 @@
               <meta content="5" itemprop="bestRating">
               <meta content="1" itemprop="worstRating">
               <div class="rating-summary-score">
-                  <span itemprop="ratingValue">
-                    <?php
+                  <span itemprop="ratingValue"><?php
                       $rate_score = 0;
                       foreach($comment as $key => $cmt)
                       {
@@ -163,16 +186,14 @@
                       $rate = $rate_score/count($comment);
                       $rate_score = round($rate);
                       echo round($rate, 1, PHP_ROUND_HALF_EVEN);
-                    ?>
-                  </span>
-                  <span class="max-score">/5</span>
+                    ?>/5</span>
               </div>
               <div data-number="{{ $rate_score }}" data-score="{{ $rate_score }}" class="rating-summary-star">
                 <?php
                   for($i = 1; $i <= $rate_score; $i++)
                   {
                     ?>
-                      <i data-alt="{{ $i }}" class="fa fa-star" aria-hidden="true"></i>
+                      <i data-alt="{{ $i }}" class="bx bxs-star" style="margin: 0 2px; color: #ffbe00;" aria-hidden="true"></i>
                     <?php
                   }
                 ?>
@@ -209,39 +230,66 @@
                 </div>
               </div>
             </div>
+        </div>  
+        <div id="review_data">
+          
         </div>
-        @foreach($comment->take(3) as $comment)
-        <div class="product-details-review__comment__list">
-          <div class="product-details-review__comment__list-header">
-            <span id="author">{{ $comment->author }}</span>&nbsp;
-            <div data-score="{{ $comment->rating }}" data-number="{{ $comment->rating }}">
-              <?php
-                for($i = 1; $i <= $comment->rating; $i++)
-                {
-                  ?>
-                    <i data-alt="{{ $i }}" class="fa fa-star" aria-hidden="true"></i>
-                  <?php
-                }
-              ?>
-            </div>
-          </div>
-          <div class="product-details-review__comment__list-body">
-            <span id="user_comment">{{ $comment->content }}</span>
-          </div>
-          <div class="product-details-review__comment__list-action">
-            <ul>
-              <li>
-                <span class="review-time" id="datePublished">{{ $comment->created_at }}</span>
-              </li>
-            </ul>
-          </div>
+        <div id="pagination-review">
+          
         </div>
-        @endforeach
       </div>
       @endif
-      <div>
-        <img src="{{ asset('Image/demo/shoes.png') }}" alt="Các thương hiệu">
-      </div>
     </div>
-  </div>  
+  </div>
+  <script src="{{ asset('frontend/js/pagination.min.js') }}"></script>
+  <script>
+    (function(name) {
+    var container = $('#pagination-' + name);
+    container.pagination({
+      dataSource: <?php echo $comment;?>,
+      locator: '',
+      totalNumber: <?php echo $comment->count(); ?>,
+      pageSize: 2,
+      ajax: {
+        beforeSend: function() {
+          container.prev().html('Loading data from Database ...');
+        }
+      },
+      callback: function(response, pagination) {
+        window.console && console.log(22, response, pagination);
+        let header = '';
+        let rate = '';
+        let body = '';
+        let date = '';
+        let action = '';
+        let dataHtml = '';
+        let dataReview = [];
+
+        $.each(response, function (index, item) {
+          for(i = 1; i <= item.rating; i++)
+          {
+            rate += '<i data-alt="'+ i +'" class="bx bxs-star" style="margin: 0 2px; color: #ffbe00;" aria-hidden="true"></i>';
+          } 
+          
+          header += '<div class="product-details-review__comment__list-header">';
+          header += '<span id="author">' + item.author + '</span>&nbsp;';
+          header += '<div data-score="' + item.rating + '" data-number="' + item.rating + '">' + rate + '</div></div>';
+          date = new Date(item.created_at);
+          body += '<div class="product-details-review__comment__list-body"><span id="user_comment">' + item.content + '</span></div>';
+          action += '<div class="product-details-review__comment__list-action"><span class="review-time" id="datePublished">' + date.toLocaleString() + '</span></div>';
+          dataHtml += '<div class="product-details-review__comment__list">' + header + body + action + '</div>';
+          dataReview[index] = dataHtml;
+          header = '';
+          rate = '';
+          body = '';
+          date = '';
+          action = '';
+          dataHtml = '';
+        });
+
+        container.prev().html(dataReview);
+      }
+    })
+  })('review');
+  </script>
 </section>

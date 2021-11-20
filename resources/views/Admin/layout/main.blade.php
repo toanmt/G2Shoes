@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="robots" content="noindex, nofollow">
-  <title>Dashboard</title>
+  @yield('title')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 
@@ -31,6 +31,9 @@
   <!-- Summernote CSS -->
   <link rel="stylesheet" href="{{ asset('backend/plugins/summernote/dist/summernote-bs4.css') }}">
   
+  <!-- Datetimepicker CSS -->
+  <link rel="stylesheet" href="{{ asset('backend/css/bootstrap-datetimepicker.min.css') }}">
+  
   <!-- Chart CSS -->
   <link rel="stylesheet" href="{{ asset('backend/plugins/morris/morris.css') }}">
 </head>
@@ -48,6 +51,7 @@
 
   <!-- jQuery -->
   <script src="{{ asset('backend/js/jquery-3.5.1.min.js') }}"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   
   <!-- Bootstrap Core JS -->
@@ -121,5 +125,7 @@
   <!-- Chart JS -->
   <script src="{{ asset('backend/plugins/morris/morris.min.js') }}"></script>
   <script src="{{ asset('backend/plugins/raphael/raphael.min.js') }}"></script>
+
+  @stack('chart-script')
 </body>
 </html>

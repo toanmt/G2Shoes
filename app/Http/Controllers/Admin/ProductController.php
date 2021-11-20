@@ -35,8 +35,6 @@ class ProductController extends Controller
                return response()->json(['error'=>'Price không đúng định dạng!!']);
             }else if((int)$request->discount <= 0){
                 return response()->json(['error'=>'Discount không đúng định dạng!!']);
-            }else if((int)$request->amount <= 0){
-                return response()->json(['error'=>'Amount không đúng định dạng!!']);
             }else{
                 if(!$request->hasFile('image_product')){
                     return response()->json(['error'=>'hãy chọn ảnh!!']);
@@ -45,10 +43,8 @@ class ProductController extends Controller
                     
                     $product = new Product();
                     $product->product_name = $request->name;
-                    $product->description = $request->description;
                     $product->price = $request->price;
                     $product->discount = $request->discount;
-                    $product->amount = $request->amount;
                     $product->type_id = $request->type;
                     $product->save();
 
@@ -60,7 +56,7 @@ class ProductController extends Controller
                         $image_product->save();
                     }
                     
-                    if(isset($request->size)){
+                    if(isset($request->sizes)){
                         for($index = 0;$index < count($request->sizes) ; $index++){
                             $product_size = new ProductSize();
                             $product_size->product_id = $product->id;
@@ -89,16 +85,12 @@ class ProductController extends Controller
                return response()->json(['error'=>'Price không đúng định dạng!!']);
             }else if((int)$request->discount <= 0){
                 return response()->json(['error'=>'Discount không đúng định dạng!!']);
-            }else if((int)$request->amount <= 0){
-                return response()->json(['error'=>'Amount không đúng định dạng!!']);
             }else{
                 //change product
                 $product = Product::find($id);
                 $product->product_name = $request->name;
-                $product->description = $request->description;
                 $product->price = $request->price;
                 $product->discount = $request->discount;
-                $product->amount = $request->amount;
                 $product->type_id = $request->type;
                 $product->save();
                 //xóa size cũ

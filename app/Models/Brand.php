@@ -17,6 +17,6 @@ class Brand extends Model
     }
 
     public function products() {
-    	return $this->belongsThrough(Product::class, Type::class,'brand_id','type_id','id','id');
+    	return $this->hasManyThrough(Product::class, Type::class,'brand_id','type_id','id','id');
     }
 }

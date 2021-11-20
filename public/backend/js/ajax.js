@@ -1,196 +1,4 @@
 $(document).ready(function(){
-    //handle create
-    $('.btn-create').click(function(e){
-        e.preventDefault();
-        var formData = $('#frm-create').serialize();
-        
-        $.ajax({
-            type: 'POST',
-            url: '/admin/add-user',
-            data: formData,
-            dataType: 'json',
-            success: function(data){
-                if(data.err_username !== undefined){
-                    $('.err_username').text(data.err_username);
-                }else if(data.err_email !== undefined){
-                    $('.err_email').text(data.err_email);
-                }else if(data.error !== undefined){
-                    alert(data.error);
-                }else{
-                    alert(data.success);
-                    setTimeout(function(){
-                        location.reload();
-                    },1);
-                } 
-            },
-            error: function(data){
-                console.log(data);
-                
-            }
-        })
-    });
-
-    //show edit
-    function edit(){
-        $('.btn-edit').click(function(){
-            var id = $(this).data('id');
-            $('#frm-edit').attr('action',location.origin+'/admin/edit-user/'+id);
-            $('.edit-sbm').attr('data-id',id);
-            
-            $.ajax({
-                type: 'GET',
-                url: '/admin/users/'+$(this).data('id'),
-                dataType: 'json',
-                success: function(data){
-                    var word = data.Name.split(' ');
-                    var lname = word.pop();
-                    $('.fname-edit').val(word.join(' '));
-                    $('.lname-edit').val(lname);
-                    $('.username-edit').val(data.Username);
-                    $('.email-edit').val(data.Email);
-                    $('.phone-edit').val(data.PhoneNumber);
-                    $('.address-edit').val(data.Address);
-                    
-                }
-            });
-        })
-    };
-    edit();
-
-    $('.edit-sbm').click(function(e){
-        //post action form edit
-        
-        e.preventDefault();
-        var formData = $('#frm-edit').serialize();
-        
-        $.ajax({
-            type: 'POST',
-            url: '/admin/edit-user/'+$(this).data('id'),
-            data: formData,
-            dataType: 'json',
-            success: function(data){
-                if(data.error !== undefined){
-                    alert(data.error);
-                }else{
-                    alert(data.success);
-                    setTimeout(function(){
-                        location.reload();
-                    },1);
-                }  
-            },
-            error: function(data){
-                console.log(data);
-                
-            }
-        })
-    });
-
-    $('.btn-search-user').click(function(e){
-        e.preventDefault();
-        var formData = $('#frm-search').serialize();
-        
-        $.ajax({
-            type: 'POST',
-            url: '/admin/user-search',
-            data: formData,
-            dataType: 'json',
-            success: function(data){
-                if(data.output != null){
-                    $('#data').removeData();
-                    $('#data').html(data.output);
-                    edit();
-                    del();
-                }
-                if(data.result != null){
-                    $('#data-show').removeData();
-                    $('#data-show').html(data.result);
-                    edit();
-                    del();
-                }
-            },
-            error: function(data){
-                console.log(data);
-                
-            }
-        })
-    });
-
-    function action(){$('.action').click(function(e){
-        e.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: '/admin/client-lists/action',
-            data: {
-                'status': $(this).attr('status'),
-                'id': $(this).data('id')
-            },
-            success: function(data){
-                    // $('#status').removeData();
-                    $('#status').html(data.output);
-                },
-                error: function(data){
-                    console.log(data);
-                    
-                }
-            })
-    })
-};
-action();
-
-$('.btn-search-client').click(function(e){
-    e.preventDefault();
-    var formData = $('#frm-search').serialize();
-
-    $.ajax({
-        type: 'POST',
-        url: '/admin/client-search',
-        data: formData,
-        dataType: 'json',
-        success: function(data){
-            if(data.output != null){
-                $('#data').removeData();
-                $('#data').html(data.output);
-                action();
-            }
-            if(data.result!= null){
-                $('#data-show').removeData();
-                $('#data-show').html(data.result);
-            }
-        },
-        error: function(data){
-            console.log(data);
-
-        }
-    })
-});
-
-$('#frm-profile').on('submit',function(e){
-    e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: new FormData(this),
-        dataType: 'json',
-        contentType:false,
-        processData:false,
-        success: function(data){
-            if(data.error !== undefined){
-                alert(data.error);
-            }else{
-                alert(data.success);
-                setTimeout(function(){
-                    location.reload();
-                },1);
-            }
-        },
-        error: function(data){
-            console.log(data);
-
-        }
-    })
-})
-
-
 
     // -------------------------- Size --------------------------------
     function editSize()
@@ -198,7 +6,7 @@ $('#frm-profile').on('submit',function(e){
         $('.edit-size').on('click',function(e){
             e.preventDefault();
             var id = $(this).data('id');
-            var num = prompt('Nhập số size');
+            var num = prompt('Size: ');
             if(parseFloat(num) > 0){
                 $.ajax({
                     type: 'GET',
@@ -208,8 +16,9 @@ $('#frm-profile').on('submit',function(e){
                     },
                     dataType: 'json',
                     success: function(data){
-                        alert(data.output);
-                        $('#size-'+id).text(num);
+                        setTimeout(function(){
+                            location.reload();
+                        },1);
                     },
                     error: function(data){
                         console.log(data);
@@ -236,8 +45,9 @@ $('#frm-profile').on('submit',function(e){
                     url: '/admin/delete-size/'+id,
                     dataType: 'json',
                     success: function(data){
-                        alert(data.output);
-                        $('#del-'+id).remove();
+                        setTimeout(function(){
+                            location.reload();
+                        },1);
                     },
                     error: function(data){
                         console.log(data);
@@ -257,15 +67,10 @@ $('#frm-profile').on('submit',function(e){
             url: $(this).attr('action'),
             data: formData,
             dataType: 'json',
-            success: function(data){  
-                if(data.error !== undefined){
-                    alert(data.error);
-                }else{
-                    $('.number-size').val('');
-                    $('#table-size').append(data.output);
-                    editSize();
-                    delSize();
-                }
+            success: function(data){
+                setTimeout(function(){
+                    location.reload();
+                },1);
             },
             error: function(data){
                 console.log(data);
@@ -273,8 +78,35 @@ $('#frm-profile').on('submit',function(e){
             }
         })
     });
+    var index=0;
+    var ids=-1;
+    $('.add-size-product').click(function(){
+        var val =$('#opsize').val();
+        var text =$('#opsize :selected').text();
+        if(ids!=val){
+            var html ='<tr class="sizeadd sizeadd-' + index +'">' 
+            +' <td> <input name="sizes[]" type="text" value="' + val + '" style="display:none;">'+text+'</td>'
+            +' <td> <input class="form-control" name="size_amount[]" type="text"> </td> '
+            +' <td> '
+            +'<button type="button" class="btn btn-primary btn-del-row-size" data-id="'+index+'">'
+            +'<i class="fa fa-trash-o"></i></button> </td> </tr>';
+            $('.form-add-lisize').append(html);
+            index++;
+            ids =val;
+            $('.err_size_add').html('');
+        }else{
+            $('.err_size_add').html('Size already exists!');
+        }
+    })
+    $('.reset-create-product').click(function(){
+        $('.sizeadd').remove();
+    })
+    $(document).on('click', '.btn-del-row-size', function(e){
+        var id = $(this).data('id');
+        $('.sizeadd-'+id).remove();
+    })
 
-    // -------------------------- Size --------------------------------
+    // -------------------------- /Size --------------------------------
 
     //-------------------- Brand---------------------
 
@@ -324,7 +156,6 @@ $('#frm-profile').on('submit',function(e){
             }
         });
     });
-    //show edit
     function editBrand(){
         $('.btn-edit-brand').click(function(){
             var id = $(this).data('id');
@@ -369,9 +200,6 @@ $('#frm-profile').on('submit',function(e){
     // -------------------------- /Brand --------------------------------
 
 
-
-
-
     // -------------------------- Type --------------------------------
     //show add type
     function addType(){
@@ -404,7 +232,6 @@ $('#frm-profile').on('submit',function(e){
             }
         })
     });
-
     //delete
     function deltype(){
         $('.btn-delete-type').click(function(){
@@ -451,35 +278,19 @@ $('#frm-profile').on('submit',function(e){
     }
 
     editType();
-    // -------------------------- /Type --------------------------------
-
-    // -------------------------- Home  -------------------------- 
-    var chartM = new Morris.Bar({
-        element: 'bar-charts',
-        xkey: 'day',
-        ykeys: ['Total'],
-        labels: ['Total Income'],
-        lineColors: ['#f43b48'],
-        lineWidth: '3px',
-        barColors: ['#f43b48'],
-        resize: true,
-        redraw: true
-    });
-    function chartMonth()
-    {
-        $.ajax({
-            type: 'GET',
-            url: '/admin/chartMonth',
-            dataType: 'json',
-            success: function(data){
-                chartM.setData(data);
-            },
-            error: function(data){
-                console.log(data);
-
+    
+    $('#frm-change-pass').submit(function(e){
+        e.preventDefault();
+        var formData = $(this).serialize();
+        $.post($(this).attr('action'),formData,function(data){
+            if(data.error !== undefined){
+                alert(data.error);
             }
-        })
-    }
-    chartMonth();
-    // -------------------------- /Home -------------------------- 
-})
+
+            if(data.success !== undefined){
+                alert(data.success);
+                location.href = data.url;
+            }
+        });
+    });
+});

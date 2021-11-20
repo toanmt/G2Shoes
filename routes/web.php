@@ -13,11 +13,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::prefix('')->group(function () {
+    //Home
     Route::get('',[App\Http\Controllers\User\HomeController::class,'index']);
-    Route::get('/brand/{id}',[App\Http\Controllers\User\BrandController::class,'index']);
-    Route::get('/product_details/{id}',[App\Http\Controllers\User\ProductController::class,'index']);
     Route::post('/search',[App\Http\Controllers\User\HomeController::class,'search']);
+    //Brand
+    Route::get('/brand/{id}',[App\Http\Controllers\User\BrandController::class,'index']);
+    Route::get('/brand/{id}/filter',[App\Http\Controllers\User\BrandController::class,'filter']);
+    //Product
+    Route::get('/product_details/{id}',[App\Http\Controllers\User\ProductController::class,'index']);
+    //Comment
     Route::post('/add-comment',[App\Http\Controllers\User\CommentController::class,'addComment']);
+    //Sale
+    Route::get('/sales',[App\Http\Controllers\User\SalesController::class,'index']);
+    Route::get('/sales/filter',[App\Http\Controllers\User\SalesController::class,'filter']);
+    //Contact
+    Route::get('/contact',[App\Http\Controllers\User\ContactController::class,'index']);
+    //Introduce
+    Route::get('/introduce',[App\Http\Controllers\User\IntroduceController::class,'index']);
+    //voucher
+    Route::POST('/voucher',[App\Http\Controllers\User\PaymentController::class,'clientUseVoucher']);
+    //Payment
+    Route::get('/payment',[App\Http\Controllers\User\PaymentController::class,'index']);
+
+    Route::post('/invoice-infor',[App\Http\Controllers\User\PaymentController::class,'invoice_info']);
+
+    Route::get('/order',[App\Http\Controllers\User\PaymentController::class,'order']);
+
+    
 });
 
 Route::prefix('admin')->group(function () {
@@ -26,6 +48,7 @@ Route::prefix('admin')->group(function () {
     Route::get('forgot-password',[App\Http\Controllers\Admin\LoginController::class,'forgotPass']);
     Route::post('send-mail',[App\Http\Controllers\Admin\LoginController::class,'sendMail']);
     Route::get('reset-password',[App\Http\Controllers\Admin\LoginController::class,'resetPass']);
+    Route::get('change-password',[App\Http\Controllers\Admin\HomeController::class,'changePass']);
     Route::post('reset-pass',[App\Http\Controllers\Admin\LoginController::class,'resetPassPost']);
     Route::middleware(['validate'])->group(function () {
         Route::get('/logout',[App\Http\Controllers\Admin\LoginController::class,'logout']);
@@ -82,7 +105,8 @@ Route::prefix('admin')->group(function () {
 
         //report
         Route::get('/report',[App\Http\Controllers\Admin\ReportController::class,'index']);
-        Route::post('/filter',[App\Http\Controllers\Admin\ReportController::class,'filter']);
+        Route::post('/filterReport',[App\Http\Controllers\Admin\ReportController::class,'filter']);
+        Route::get('/data30day',[App\Http\Controllers\Admin\ReportController::class,'data30day']);
     });
     
 });

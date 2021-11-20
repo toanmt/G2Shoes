@@ -7,5 +7,4 @@
 	    @include('User.brand.products')
 	  </div>
 	</section>
-	@include('User.home.gallery')
 @endsection

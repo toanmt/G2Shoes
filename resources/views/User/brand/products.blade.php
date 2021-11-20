@@ -5,26 +5,26 @@
       <div class="brand-products__sort">
         <div class="dropdown">
           <div class="dropdown-select">
-            <span>Sắp xếp: </span>
+            <span>{{$sort_name}}</span>
             <i class="bx bxs-chevron-down"></i>
           </div>
           <form>
             @csrf
-            <div class="dropdown-list" id="sort">
-              <div class="dropdown-item">
-                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=gia_tang">Giá: Tăng dần</span>
+            <div class="dropdown-list">
+              <div class="dropdown-item" data-value="{{Request::url()}}?sort_by=gia_tang">
+                <span class="dropdown-text">Giá: Tăng dần</span>
                 <span><i class='bx bx-trending-up'></i></span>
               </div>
-              <div class="dropdown-item">
-                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=gia_giam">Giá: Giảm dần</span>
+              <div class="dropdown-item" data-value="{{Request::url()}}?sort_by=gia_giam">
+                <span class="dropdown-text">Giá: Giảm dần</span>
                 <span><i class='bx bx-trending-down'></i></span>
               </div>
-              <div class="dropdown-item">
-                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=kytu_az">Tên: A-Z</span>
+              <div class="dropdown-item" data-value="{{Request::url()}}?sort_by=kytu_az">
+                <span class="dropdown-text">Tên: A-Z</span>
                 <span><i class='bx bx-sort-a-z'></i></span>
               </div>
-              <div class="dropdown-item">
-                <span class="dropdown-text" data-value="{{Request::url()}}?sort_by=kytu_za">Tên: Z-A</span>
+              <div class="dropdown-item" data-value="{{Request::url()}}?sort_by=kytu_za">
+                <span class="dropdown-text">Tên: Z-A</span>
                 <span><i class='bx bx-sort-z-a'></i></span>
               </div>
             </div>
@@ -33,9 +33,9 @@
       </div>
     </div>
     <div class="product-list">
-      <div class="container">
+      <div class="container list-item">
         @foreach($product as $product)
-        <div class="product-item">
+        <div class="product-item zoomIn animated">
           <div class="product-image">
             <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
               @foreach($product->images as $image)
@@ -55,9 +55,11 @@
             </div>
             <div class="product-price">
               <p class="product-price__new">
-                {{$product->price}}đ
                 @if($product->discount > 0)
-                <span class="product-price__old">{{$product->price - ($product->price * $product->discount)/100}}đ</span>
+                  {{$product->price - ($product->price * $product->discount)/100}}đ
+                  <span class="product-price__old">{{$product->price}}đ</span>
+                @else
+                  {{$product->price}}đ
                 @endif
               </p>
             </div>
@@ -67,4 +69,14 @@
       </div>
     </div>
   </section>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      //handle sort product
+      $('.dropdown-item').on('click',function(e){
+        var url = $(this).data('value');
+        window.location = url;
+      });
+    });
+  </script>
+  <script src="{{ asset('frontend/js/filter.js') }}"></script>
 </div>
