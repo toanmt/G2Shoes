@@ -37,43 +37,62 @@ window.addEventListener("load", () => {
     if (main.querySelector(".banner")) {
         const sliderMain = document.querySelector(".slider-main");
         const sliderItems = document.querySelectorAll(".slider-item");
-        const prevBtn = document.querySelector(".slider-prev");
-        const nextBtn = document.querySelector(".slider-next");
+        const sliderDots = document.querySelector(".slider-dots");
         const sliderItemWidth = sliderItems[0].offsetWidth;
         const slidersLength = sliderItems.length;
         let positionX = 0;
         let index = 0;
 
-        prevBtn.addEventListener("click", () => {
-            handleChangeSlide(-1);
-        });
+        if (sliderDots) {
+            for (let i = 0; i < slidersLength; i++) {
+              const sliderDotItem = document.createElement("li");
+              sliderDotItem.setAttribute("data-index", `${i}`);
+              sliderDotItem.classList.add("slider-dot-item");
+              sliderDots.appendChild(sliderDotItem);
+          }
 
-        nextBtn.addEventListener("click", () => {
-            handleChangeSlide(1);
-        });
+          const sliderDotItem = sliderDots.querySelectorAll(".slider-dot-item");
 
-        const handleChangeSlide = (direction) => {
-            if (direction === 1) {
-                if (index >= slidersLength - 1) {
-                    index = slidersLength - 1;
-                    return;
-                }
-                positionX = positionX - sliderItemWidth;
+          sliderDotItem[0].classList.add("active");
+          [...sliderDotItem].forEach((elm) => {
+              elm.addEventListener("click", (e) => {
+                sliderDots
+                .querySelector(".slider-dot-item.active")
+                .classList.remove("active");
+                e.target.classList.add("active");
+
+                index = parseInt(e.target.dataset.index);
+                positionX = -1 * index * sliderItemWidth;
                 sliderMain.style = `transform: translateX(${positionX}px)`;
-                index++;
-            } else if (direction === -1) {
-                if (index <= 0) {
-                    index = 0;
-                    return;
-                }
-                positionX = positionX + sliderItemWidth;
-                sliderMain.style = `transform: translateX(${positionX}px)`;
-                index--;
+            });
+          });
+        }
+
+        const handleChangeSlide = () => {
+            let turnBack = 0;
+            if (index >= slidersLength - 1) {
+              index = -1;
+              turnBack = 1;
+            }
+            positionX = turnBack === 1 ? 0 : positionX - sliderItemWidth;
+            sliderMain.style = `transform: translateX(${positionX}px);`;
+            index++;
+
+            if (sliderDots) {
+                const sliderDotItem = sliderDots.querySelectorAll(".slider-dot-item");
+                sliderDots
+                .querySelector(".slider-dot-item.active")
+                .classList.remove("active");
+                sliderDotItem[index].classList.add("active");
             }
         };
+
+        setInterval(() => {
+            handleChangeSlide();
+        }, 5000);
     }
 
-    if (main.querySelector(".brand")) {
+if (main.querySelector(".brand")) {
         //handle open/hide filter
         const filterBox = document.querySelectorAll(".js-filter");
         let openFilterBox = [];
@@ -127,6 +146,24 @@ window.addEventListener("load", () => {
                 e.target.classList.add("active");
             })
             );
+
+        //increase/decrease quantity
+        const btnMinus = document.querySelector('.btn-minus');
+        const btnPlus = document.querySelector('.btn-plus');
+        const input = document.querySelector('#product-quantity');
+        btnMinus.addEventListener('click', () => {
+          let qty = parseInt(input.value);
+          qty--;
+          if(qty === 0) {
+            qty = 1;
+          }
+          input.value = qty;
+        });
+        btnPlus.addEventListener('click', () => {
+          let qty = parseInt(input.value);
+          qty++;
+          input.value = qty;
+        });
     }
 
     //Add comment
@@ -144,8 +181,8 @@ window.addEventListener("load", () => {
                 processData:false,
                 success: function(data){ 
                     if(data.error !== undefined){
-                     $('.error-fields').append(data.error);
-                 }else{
+                       $('.error-fields').append(data.error);
+                   }else{
                     alert(data.message);
                     setTimeout(function(){
                         location.reload();

@@ -6,7 +6,7 @@
   </div>
   <div class="product-list">
     <div class="container">
-      @foreach($brand->products->take(8) as $product)
+      @foreach($brand->products->take(4) as $product)
       <div class="product-item">
         <div class="product-image">
           <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
@@ -15,7 +15,7 @@
             @endforeach
           </a>
           <div class="product-control">
-            <a href="#" class="product-btn">Mua ngay</a>
+            <a href="#" class="product-btn">Xem nhanh</a>
             <a href="#" class="product-btn">Thêm vào giỏ</a>
           </div>
         </div>
