@@ -31,5 +31,7 @@ class ProductController extends Controller
                 'comment'=>(object)$comment,
             ]
         );
-	} 
+	}
+    
+    
 }

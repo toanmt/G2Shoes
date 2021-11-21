@@ -21,6 +21,7 @@ Route::prefix('')->group(function () {
     Route::get('/brand/{id}/filter',[App\Http\Controllers\User\BrandController::class,'filter']);
     //Product
     Route::get('/product_details/{id}',[App\Http\Controllers\User\ProductController::class,'index']);
+    Route::get('/product_details/',[App\Http\Controllers\User\ProductController::class,'buyNow']);
     //Comment
     Route::post('/add-comment',[App\Http\Controllers\User\CommentController::class,'addComment']);
     //Sale

@@ -41,4 +41,8 @@
     </div>
   </div>
 </section>
+
+@foreach ($top_product as $item)
+{{ $item }}
+@endforeach
 @endforeach
