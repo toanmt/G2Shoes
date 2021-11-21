@@ -43,7 +43,7 @@
               @endforeach
             </a>
             <div class="product-control">
-              <a href="#" class="product-btn">Mua ngay</a>
+              <a href="#" class="product-btn">Xem nhanh</a>
               <a href="#" class="product-btn">Thêm vào giỏ</a>
             </div>
           </div>
