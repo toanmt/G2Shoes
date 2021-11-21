@@ -35,10 +35,12 @@
 				</form>
 			</div>
 			<div class="nav-cart">
-				<a href="" class="nav-cart__icon">
+				<a href="{{ route('showCart') }}" class="nav-cart__icon">
 					<i class="bx bx-cart"></i>
 				</a>
-				<a href="" class="nav-cart__qty">2</a>
+				@if(isset($session['cart']))
+				<a href="" class="nav-cart__qty">{{ count($session['cart']) }}</a>
+				@endif
 			</div>
 		</div>
 	</div>

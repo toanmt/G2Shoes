@@ -27,6 +27,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('frontend/css/pagination.css') }}" />
   <link rel="stylesheet" href="{{ asset('frontend/css/app.css') }}" />
+  <link rel="stylesheet" href="{{ asset('frontend/css/cart.css') }}" />
   <!-- JQUERY -->
   <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
 </head>
@@ -74,5 +75,29 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script> --}}
+  <script>
+    function addToCart(e) {
+      // e.prevenDefault();
+      let url = $(this).data('url');
+      $.ajax({
+        type: "GET",
+        url: url,
+        dataType: 'json',
+        success: function (data) {
+          if(data.code === 200) {
+            alert('Thêm sản phẩm vào giỏ hàng thành công!');
+          }
+        },
+        error: function () {
+
+        }
+      });
+    }
+
+    $(function () {
+      $('.add_to_cart').on('click', addToCart);
+
+    });
+  </script>
   <script src="{{ asset('frontend/js/main.js') }}"></script>
 </body>
