@@ -43,8 +43,20 @@
               @endforeach
             </a>
             <div class="product-control">
-              <a href="#" class="product-btn">Xem nhanh</a>
-              <a href="#" class="product-btn">Thêm vào giỏ</a>
+              <?php
+                $product_size = $product->find($product->id)->product_size;
+                if(isset($product_size)) {
+                  $product_size = $product_size->first();
+                }
+              ?>
+              @if(empty($product_size))
+              <a href="#" data-url="" class="product-btn">Xem nhanh</a>
+              <a href="#" data-url="" class="product-btn add_to_cart">Thêm vào giỏ</a>
+              @endif
+              @if(isset($product_size))
+              <a href="#" data-url="" class="product-btn">Xem nhanh</a>
+              <a href="#" data-url="{{ route('addToCart', ['id' => $product->id, 'size' => $product_size->size_id ]) }}" class="product-btn add_to_cart">Thêm vào giỏ</a>
+              @endif
             </div>
           </div>
           <div class="product-infor">

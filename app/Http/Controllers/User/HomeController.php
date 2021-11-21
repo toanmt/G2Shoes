@@ -12,6 +12,8 @@ use App\Models\InvoiceDetail;
 class HomeController extends Controller
 {
 	public function index(){
+		//Session
+		$session = session()->all();
 		//sản phẩm mới
 		$new_product = Product::orderBy('product_id','desc')->limit(4);
 
@@ -35,10 +37,14 @@ class HomeController extends Controller
 		$like_product = Product::whereIn('id',$arr_key)->get();
 
 		$data = Brand::all();
-		return View('User.home.main')->with(['data'=>(object)$data,
-		'new_product'=>$new_product,
-		'sale_off'=>$saleOff,
-		'top_product'=>$top_product]);
+		return View('User.home.main')->with(
+			[
+				'data' => (object)$data,
+				'new_product' => $new_product,
+				'sale_off' => $saleOff,
+				'top_product' => $top_product,
+				'session' => $session,
+	]);
 	}
 
 	public function search(Request $request){

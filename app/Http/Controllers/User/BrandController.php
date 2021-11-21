@@ -12,6 +12,9 @@ use App\Models\Product;
 class BrandController extends Controller
 {
 	public function index($id){
+		//Session
+		$session = session()->all();
+
 		$data = Brand::all();
 		$brand = $data->find($id);
 		$size = Size::all();
@@ -55,6 +58,7 @@ class BrandController extends Controller
 				'size'=>(object)$size,
 				'product'=>(object)$product,
 				'sort_name'=>(string)$sort_name,
+				'session' => $session,
 			]
 		);
 	}

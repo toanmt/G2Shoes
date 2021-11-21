@@ -148,6 +148,26 @@ if (main.querySelector(".brand")) {
             );
 
         //increase/decrease quantity
+        // const btnMinus = document.querySelector('.btn-minus');
+        // const btnPlus = document.querySelector('.btn-plus');
+        // const input = document.querySelector('#product-quantity');
+        // btnMinus.addEventListener('click', () => {
+        //   let qty = parseInt(input.value);
+        //   qty--;
+        //   if(qty === 0) {
+        //     qty = 1;
+        //   }
+        //   input.value = qty;
+        // });
+        // btnPlus.addEventListener('click', () => {
+        //   let qty = parseInt(input.value);
+        //   qty++;
+        //   input.value = qty;
+        // });
+    }
+
+    if(main.querySelector('.btn-quantity')) {
+        //increase/decrease quantity
         const btnMinus = document.querySelector('.btn-minus');
         const btnPlus = document.querySelector('.btn-plus');
         const input = document.querySelector('#product-quantity');
