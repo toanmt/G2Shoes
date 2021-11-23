@@ -69,11 +69,11 @@
       </div>
       <div class="product-details-infomation__quantity">
         <button class="btn-quantity btn-minus">-</button>
-        <input type="text" name="" value="1" min="1" class="quantity-box" id="product-quantity">
+        <input type="text" value="1" min="1" max="20" step="1" class="quantity-box" id="product-quantity">
         <button class="btn-quantity btn-plus">+</button>
       </div>
       <div class="product-details-infomation__action">
-        <a href="#" class="btn-action add-to-cart">Thêm vào giỏ</a>
+        <a href="#" data-url="{{ route('addToCart', ['id' => $product->id, 'size' => 1, 'quantity' => 1 ]) }}" class="btn-action add-to-cart add_to_cart">Thêm vào giỏ</a>
         <a href="#" class="btn-action buy-now">Mua ngay</a>
       </div>
       <a href="{{URL::to('/contact')}}" class="btn-action support">
@@ -245,54 +245,87 @@
   </div>
   <script src="{{ asset('frontend/js/pagination.min.js') }}"></script>
   <script>
-    (function(name) {
-      var container = $('#pagination-' + name);
-      container.pagination({
-        dataSource: <?php echo $comment;?>,
-        locator: '',
-        totalNumber: <?php echo $comment->count(); ?>,
-        pageSize: 2,
-        ajax: {
-          beforeSend: function() {
-            container.prev().html('Loading data from Database ...');
-          }
-        },
-        callback: function(response, pagination) {
-          window.console && console.log(22, response, pagination);
-          let header = '';
-          let rate = '';
-          let body = '';
-          let date = '';
-          let action = '';
-          let dataHtml = '';
-          let dataReview = [];
+    
 
-          $.each(response, function (index, item) {
-            for(i = 1; i <= item.rating; i++)
-            {
-              rate += '<i data-alt="'+ i +'" class="bx bxs-star" style="margin: 0 2px; color: #ffbe00;" aria-hidden="true"></i>';
-            } 
-            
-            header += '<div class="product-details-review__comment__list-header">';
-            header += '<span id="author">' + item.author + '</span>&nbsp;';
-            header += '<div data-score="' + item.rating + '" data-number="' + item.rating + '">' + rate + '</div></div>';
-            date = new Date(item.created_at);
-            body += '<div class="product-details-review__comment__list-body"><span id="user_comment">' + item.content + '</span></div>';
-            action += '<div class="product-details-review__comment__list-action"><span class="review-time" id="datePublished">' + date.toLocaleString() + '</span></div>';
-            dataHtml += '<div class="product-details-review__comment__list">' + header + body + action + '</div>';
-            dataReview[index] = dataHtml;
-            header = '';
-            rate = '';
-            body = '';
-            date = '';
-            action = '';
-            dataHtml = '';
-          });
+    $(document).ready(function () {
 
-          container.prev().html(dataReview);
+      $('.btn-quantity').off().click(function (e) {
+        e.preventDefault();
+        let qty = $(this).parents('.product-details-infomation__quantity').find('.quantity-box');
+        let quantity = parseInt(qty.val());
+        if($(this).hasClass('btn-minus')) {
+            quantity = quantity - 1;
         }
-      })
-    })('review');
+        if($(this).hasClass('btn-plus')) {
+            quantity = quantity + 1;
+        }
+        if (quantity.length == 0) {
+            alert("Số lượng nhập không được để trống!");
+        }
+        else if (isNaN(quantity)) {
+            alert("Số lượng nhập không được phép chứa ký tự khác số!");
+        }
+        else if (parseInt(quantity) < 1) {
+            alert("Số lượng nhập không được bé hơn 1!");
+        }
+        else if (parseInt(quantity) > 20) {
+            alert("Số lượng nhập không được lớn hơn 20!");
+        }
+        else {
+            qty.val(quantity);
+        }
+      });
+
+      (function(name) {
+          var container = $('#pagination-' + name);
+          container.pagination({
+            dataSource: <?php echo $comment;?>,
+            locator: '',
+            totalNumber: <?php echo $comment->count(); ?>,
+            pageSize: 2,
+            ajax: {
+              beforeSend: function() {
+                container.prev().html('Loading data from Database ...');
+              }
+            },
+            callback: function(response, pagination) {
+              window.console && console.log(22, response, pagination);
+              let header = '';
+              let rate = '';
+              let body = '';
+              let date = '';
+              let action = '';
+              let dataHtml = '';
+              let dataReview = [];
+
+              $.each(response, function (index, item) {
+                for(i = 1; i <= item.rating; i++)
+                {
+                  rate += '<i data-alt="'+ i +'" class="bx bxs-star" style="margin: 0 2px; color: #ffbe00;" aria-hidden="true"></i>';
+                } 
+                
+                header += '<div class="product-details-review__comment__list-header">';
+                header += '<span id="author">' + item.author + '</span>&nbsp;';
+                header += '<div data-score="' + item.rating + '" data-number="' + item.rating + '">' + rate + '</div></div>';
+                date = new Date(item.created_at);
+                body += '<div class="product-details-review__comment__list-body"><span id="user_comment">' + item.content + '</span></div>';
+                action += '<div class="product-details-review__comment__list-action"><span class="review-time" id="datePublished">' + date.toLocaleString() + '</span></div>';
+                dataHtml += '<div class="product-details-review__comment__list">' + header + body + action + '</div>';
+                dataReview[index] = dataHtml;
+                header = '';
+                rate = '';
+                body = '';
+                date = '';
+                action = '';
+                dataHtml = '';
+              });
+
+              container.prev().html(dataReview);
+            }
+          })
+        })('review');
+
+    });
   </script>
   <script type="text/javascript">
     if(document.querySelector('.product-details')) {

@@ -14,6 +14,7 @@ use App\Models\Comment;
 class ProductController extends Controller
 {
 	public function index($id){
+        $session = session()->all();
 		$data = Brand::all();
 		$type = Type::all();
         $sizes = Size::all();
@@ -29,6 +30,7 @@ class ProductController extends Controller
                 'product'=>(object)$product,
                 'product_size'=>(object)$product_size,
                 'comment'=>(object)$comment,
+                'session'=>$session,
             ]
         );
 	}

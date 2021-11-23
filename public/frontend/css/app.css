@@ -53,7 +53,7 @@ body {
 }
 
 .btn-action {
-  display: block;
+  display: inline-block;
   position: relative;
   font-size: 12px;
   color: #ffffff;
@@ -899,6 +899,15 @@ a {
   border: 1px solid #000000;
 }
 .add-to-cart::before {
+  background-color: #000000;
+}
+.return-home {
+  display: block;
+  margin: 10px auto;
+  border: 1px solid #000000;
+  width: 25%;
+}
+.return-home::before {
   background-color: #000000;
 }
 .product-details-infomation__action .buy-now {
