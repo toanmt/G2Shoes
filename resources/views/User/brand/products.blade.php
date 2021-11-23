@@ -38,18 +38,20 @@
         <div class="product-item zoomIn animated">
           <div class="product-image">
             <div class="product-noti">
-              <?php 
+              <?php
+              if(!empty($product_size)) {
                 $size_amount = $product_size->where('product_id',$product->id)->first();
                 if(!empty($size_amount)) {
                   $size_amount = $size_amount->amount;
                 }
+              }
               ?>
               @if(empty($size_amount) || $size_amount == 0)
-                <span class="product-noti__show product-noti__sold-out">Hết</span>
+              <span class="product-noti__show product-noti__sold-out">Hết</span>
               @else
-                @if($product->discount > 0)
-                  <span class="product-noti__show product-noti__sale">-{{$product->discount}}%</span>
-                @endif
+              @if($product->discount > 0)
+              <span class="product-noti__show product-noti__sale">-{{$product->discount}}%</span>
+              @endif
               @endif
             </div>
             <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
@@ -70,10 +72,10 @@
                 >
               </form>
               <?php
-                $product_size = $product->find($product->id)->product_size;
-                if(isset($product_size)) {
-                  $product_size = $product_size->first();
-                }
+              $product_size = $product->find($product->id)->product_size;
+              if(isset($product_size)) {
+                $product_size = $product_size->first();
+              }
               ?>
               @if(empty($product_size))
               <a href="#" data-url="" class="product-btn add_to_cart">Thêm vào giỏ</a>
