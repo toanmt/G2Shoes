@@ -60,7 +60,7 @@ class BrandController extends Controller
 				'size'=>(object)$size,
 				'product'=>(object)$product,
 				'sort_name'=>(string)$sort_name,
-				'product_size'=>$product_size,
+				'product_size'=>(object)$product_size,
 				'session' => $session,
 			]
 		);
