@@ -248,7 +248,7 @@
       </div>
     </main>
     <script src="{{ asset('frontend/js/payment.js') }}"></script>
-    
+
     <!-- JQUERY -->
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
@@ -264,12 +264,11 @@
                 alert(data.success);
                 $('.payment-voucher__container').empty();
                 $('.payment-voucher__container').append('<span class="payment-price__title">Giảm giá:</span><span>'+data.voucher_percent+'%</span>');
-                
             }
-              
+
           });
         })
-        
+
         $('#form-infor').submit(function(){
             $.post($(this).attr('action'),$(this).serialize(),function(data){});
         });
@@ -277,13 +276,15 @@
           if($(this).val() == 0){
             $('#payment-button').show();
             $('.payment-banking').empty().text('Chuyển khoản qua số tài khoản:');
-            $('#payment-button').click(function(){
+            $('#payment-button').click(function(e){
+                e.preventDefault();
               $.ajax({
                 url: location.origin+'/order',
                 type: 'GET',
                 data: {'status':0},
                 success: function(data){
                   alert(data.message);
+                  window.location.href = location.origin;
                 }
               });
             });
@@ -309,7 +310,7 @@
               // Enable Pay Now checkout flow (optional)
               commit: true,
 
-              
+
               // Set up a payment
               payment: function(data, actions) {
                   return actions.payment.create({

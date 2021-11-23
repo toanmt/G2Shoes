@@ -21,7 +21,7 @@ $(document).ready(function(){
             dataType: 'json',
             contentType:false,
             processData:false,
-            success: function(data){  
+            success: function(data){
                 alert(data.success);
                 setTimeout(function(){
                     location.reload();
@@ -29,7 +29,7 @@ $(document).ready(function(){
             },
             error: function(data){
                 console.log(data);
-    
+
             }
 
         })
@@ -74,14 +74,14 @@ $(document).ready(function(){
 
     $('#product-table').on('click','.btn-edit-product',function(e){
         var id = $(this).data('id');
-        
+
         $.get('/admin/products/'+id,function(data){
             if(data.image_product.length > 0){
 
                 $('.abc').css('border','none');
                 $('.btn-text').hide();
                 $('.img-output').remove();
-                for(let image of data.image_product){        
+                for(let image of data.image_product){
                     $('.abc').append('<img class="img-output" src="'+location.origin+'/Image/'+image.image_name+'">');
                 }
             }
@@ -89,7 +89,7 @@ $(document).ready(function(){
             $('.edit-discount').val(data.product.discount);
             $('.edit-name').val(data.product.product_name);
             $('.edit-type').val(data.product.type.id).trigger('change');
-            
+
             if(data.product_size.length > 0){
                 for(let item of data.product_size){
                     $('.check-'+item.size_id).attr('checked','checked');
@@ -102,9 +102,9 @@ $(document).ready(function(){
         })
     });
 
-    
-    
-    
+
+
+
     $('#frm-create-product').on('submit',function(e){
         e.preventDefault();
         $.ajax({
@@ -114,7 +114,7 @@ $(document).ready(function(){
             dataType: 'json',
             contentType:false,
             processData:false,
-            success: function(data){  
+            success: function(data){
                 if(data.error !== undefined){
                     alert(data.error);
                 }else{
@@ -126,12 +126,12 @@ $(document).ready(function(){
             },
             error: function(data){
                 console.log(data);
-    
+
             }
         })
     });
-    
-    function editProduct() 
+
+    function editProduct()
     {
         $('#frm-edit-product').on('submit',function(e){
         e.preventDefault();
@@ -142,7 +142,7 @@ $(document).ready(function(){
             dataType: 'json',
             contentType:false,
             processData:false,
-            success: function(data){ 
+            success: function(data){
                 if(data.error !== undefined){
                     alert(data.error);
                 }else{
@@ -158,7 +158,7 @@ $(document).ready(function(){
         })
     })};
     editProduct();
-    
+
     // //delete
     $('#product-table').on('click','.btn-delete-product',function(e){
         var key = $(this).data('id');
@@ -193,7 +193,7 @@ $(document).ready(function(){
                     $('#data').html(data.output);
                     editProduct();
                     delProduct();
-                    $('#product-table').DataTable();
+                    $('#product-table').DataTable({searching:false});
                 }else{
                     alert('không tìm thấy sản phẩm nào');
                 }
@@ -233,12 +233,12 @@ $(document).ready(function(){
             // var date_expired = date.getDay()+'/'+date.getMonth+'/'+date.getFullYear();
             $(".edit-date-voucher").val(time.getDate()+'/'+(time.getMonth()+1)+'/'+time.getFullYear());
             $('.edit-status-voucher').val(data.status).trigger('change');
-            
+
             $('#frm-edit-voucher').attr('action',location.origin+'/admin/edit-voucher/'+id);
         })
     });
 
-    function editVoucher() 
+    function editVoucher()
     {
         $('#frm-edit-voucher').on('submit',function(e){
             e.preventDefault();

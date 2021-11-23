@@ -56,7 +56,7 @@ class InvoiceController extends Controller
                         <a class="dropdown-item edit-status-invoice" status="1" data-id="'.$invoice->id.'"  href="#"><i class="fa fa-dot-circle-o text-success"></i> Hoàn thành</a>
                         <a class="dropdown-item edit-status-invoice" status="2" data-id="'.$invoice->id.'" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Đã hủy</a>
                     </div>
-                </div>  
+                </div>
             </td>
             <td class="text-right">
                 <div class="dropdown dropdown-action">
@@ -95,7 +95,7 @@ class InvoiceController extends Controller
                             <a class="dropdown-item edit-status-invoice" status="1" data-id="'.$invoice->id.'"  href="#"><i class="fa fa-dot-circle-o text-success"></i> Hoàn thành</a>
                             <a class="dropdown-item edit-status-invoice" status="2" data-id="'.$invoice->id.'" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Đã hủy</a>
                         </div>
-                    </div>  
+                    </div>
                 </td>
                 <td class="text-right">
                     <div class="dropdown dropdown-action">
@@ -119,13 +119,13 @@ class InvoiceController extends Controller
         $invoice = Invoice::find($id);
         if($invoice){
             $to_name = 'admin';
-            $to_email = $invoice->email;//to email 
+            $to_email = $invoice->email;//to email
         }
         $data = ['invoice'=>$invoice];
-        
+
         Mail::send('Admin.emails.email-invoice', $data , function ($message) use ($to_email,$to_name) {
             $message->from('Nhom2pmmnm@gmail.com','Admin');
-            $message->to('vantienn740@gmail.com',$to_name)->subject('Invoice');
+            $message->to($to_email,$to_name)->subject('Invoice');
         });
         if (Mail::failures()) {
             return response()->json(['error'=>'Sorry! Please try again latter']);
@@ -134,5 +134,5 @@ class InvoiceController extends Controller
         }
     }
 
-    
+
 }
