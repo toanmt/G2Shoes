@@ -46,6 +46,7 @@ class CartController extends Controller
     public function updateCart(Request $request) {
         if ($request->id && $request->quantity) {
             $cart = session()->get('cart');
+            $discount = Product::find($cart[$request->id]['id'])->discount;
             $product_size = ProductSize::where('product_id',$cart[$request->id]['id'])
             ->where('product_sizes.size_id',$cart[$request->id]['size'])->first();
             if ($request->quantity > $product_size->amount) {
@@ -57,10 +58,11 @@ class CartController extends Controller
             else if ($request->quantity <= $product_size->amount) {
                 $cart[$request->id]['quantity'] = $request->quantity;
                 session()->put('cart', $cart);
+                $total_price = $cart[$request->id]['price'] - $cart[$request->id]['price'] * $discount/100;
                 return response()->json([
                     'code' => 200,
                     'message' => 'success',
-                    'total_price' => $cart[$request->id]['price'] * $request->quantity,
+                    'total_price' => $total_price * $request->quantity,
                 ], 200);
             }
         }
