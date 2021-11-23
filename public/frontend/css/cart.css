@@ -111,10 +111,10 @@
     background: #fff;
     font-weight: 500;
     font-size: 15px;
+    width: 30px;
     height: 25px;
     padding: 0;
     text-align: center;
-    width: 35px;
     border: 1px solid #f3f4f4;
     border-left: none;
     border-right: none;
@@ -272,5 +272,9 @@
   
   .support::before {
     background-color: #29dbd2;
+  }
+
+  .empty-cart-message {
+    text-align: center;
   }
   /* End Cart */

@@ -38,9 +38,11 @@
 				<a href="{{ route('showCart') }}" class="nav-cart__icon">
 					<i class="bx bx-cart"></i>
 				</a>
-				@if(isset($session['cart']))
-				<a href="" class="nav-cart__qty">{{ count($session['cart']) }}</a>
-				@endif
+				<span class="nav-cart__span">
+					@if(isset($session['cart']) && count($session['cart']) > 0)
+					<a href="" class="nav-cart__qty">{{ count($session['cart']) }}</a>
+					@endif
+				</span>
 			</div>
 		</div>
 	</div>

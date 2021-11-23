@@ -25,7 +25,9 @@ Route::prefix('')->group(function () {
     //Comment
     Route::post('/add-comment',[App\Http\Controllers\User\CommentController::class,'addComment']);
     //Cart
-    Route::get('/add-to-cart/{id}/{size}',[App\Http\Controllers\User\CartController::class,'addToCart'])->name('addToCart');
+    Route::get('/add-to-cart/{id}/{size}/{quantity}',[App\Http\Controllers\User\CartController::class,'addToCart'])->name('addToCart');
+    Route::get('/update-cart',[App\Http\Controllers\User\CartController::class,'updateCart'])->name('updateCart');
+    Route::get('/remove-cart',[App\Http\Controllers\User\CartController::class,'removeCart'])->name('removeCart');
     Route::get('/cart',[App\Http\Controllers\User\CartController::class,'showCart'])->name('showCart');
     //Sale
     Route::get('/sales',[App\Http\Controllers\User\SalesController::class,'index']);
