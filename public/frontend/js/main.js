@@ -1,219 +1,177 @@
 window.addEventListener("load", () => {
-    const main = document.querySelector(".main");
+  const main = document.querySelector(".main");
     //handle scroll menu
     const nav = document.querySelector(".nav");
 
     if (window.pageYOffset > 143) {
-        nav.classList.add("active");
+      nav.classList.add("active");
     } else {
-        nav.classList.remove("active");
+      nav.classList.remove("active");
     }
 
     window.onscroll = () => {
-        if (window.pageYOffset > 143) {
-            nav.classList.add("active");
-            if(document.querySelector(".product-details-infomation")) {
-                document.querySelector(".product-details-infomation").style = "top: 80px;";
-            }
-        } else {
-            nav.classList.remove("active");
-            if(document.querySelector(".product-details-infomation")) {
-                document.querySelector(".product-details-infomation").style = "top: 0;";
-            }
+      if (window.pageYOffset > 143) {
+        nav.classList.add("active");
+        if(document.querySelector(".product-details-infomation")) {
+          document.querySelector(".product-details-infomation").style = "top: 80px;";
         }
+      } else {
+        nav.classList.remove("active");
+        if(document.querySelector(".product-details-infomation")) {
+          document.querySelector(".product-details-infomation").style = "top: 0;";
+        }
+      }
     };
 
     //handle click menu
     const navLinks = document.querySelectorAll(".nav-link");
     [...navLinks].forEach((item) => {
-        if(item.href === window.location.href) {
-            const navItem = item.parentElement; 
-            navItem.classList.add('active');
-            document.title = `${item.innerText} - G2 SHOES`;
-        }
+      if(item.href === window.location.href) {
+        const navItem = item.parentElement; 
+        navItem.classList.add('active');
+        document.title = `${item.innerText} - G2 SHOES`;
+      }
     });
+
+    //open/hide modal product
+    if (main.querySelector(".js-modal")) {
+      const btnInfor = document.querySelectorAll(".product-quickview");
+      const modal = document.querySelector(".js-modal");
+      const modalContainer = document.querySelector(".js-modal-container");
+      const modalClose = document.querySelector(".js-modal-close");
+
+      [...btnInfor].forEach((btn) => {
+        btn.addEventListener("click", () => {
+          modal.classList.add("open");
+        });
+      });
+
+      modalClose.addEventListener("click", () => {
+        modal.classList.remove("open");
+      });
+
+      modal.addEventListener("click", () => {
+        modal.classList.remove("open");
+      });
+
+      modalContainer.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+    }
 
     //handle slider
     if (main.querySelector(".banner")) {
-        const sliderMain = document.querySelector(".slider-main");
-        const sliderItems = document.querySelectorAll(".slider-item");
-        const sliderDots = document.querySelector(".slider-dots");
-        const sliderItemWidth = sliderItems[0].offsetWidth;
-        const slidersLength = sliderItems.length;
-        let positionX = 0;
-        let index = 0;
+      const banner = main.querySelector(".banner");
+      const sliderMain = banner.querySelector(".slider-main");
+      const sliderItems = banner.querySelectorAll(".slider-item");
+      const sliderDots = banner.querySelector(".slider-dots");
+      const sliderItemWidth = sliderItems[0].offsetWidth;
+      const slidersLength = sliderItems.length;
+      let positionX = 0;
+      let index = 0;
 
-        if (sliderDots) {
-            for (let i = 0; i < slidersLength; i++) {
-              const sliderDotItem = document.createElement("li");
-              sliderDotItem.setAttribute("data-index", `${i}`);
-              sliderDotItem.classList.add("slider-dot-item");
-              sliderDots.appendChild(sliderDotItem);
-          }
-
-          const sliderDotItem = sliderDots.querySelectorAll(".slider-dot-item");
-
-          sliderDotItem[0].classList.add("active");
-          [...sliderDotItem].forEach((elm) => {
-              elm.addEventListener("click", (e) => {
-                sliderDots
-                .querySelector(".slider-dot-item.active")
-                .classList.remove("active");
-                e.target.classList.add("active");
-
-                index = parseInt(e.target.dataset.index);
-                positionX = -1 * index * sliderItemWidth;
-                sliderMain.style = `transform: translateX(${positionX}px)`;
-            });
-          });
+      if (sliderDots) {
+        for (let i = 0; i < slidersLength; i++) {
+          const sliderDotItem = document.createElement("li");
+          sliderDotItem.setAttribute("data-index", `${i}`);
+          sliderDotItem.classList.add("slider-dot-item");
+          sliderDots.appendChild(sliderDotItem);
         }
 
-        const handleChangeSlide = () => {
-            let turnBack = 0;
-            if (index >= slidersLength - 1) {
-              index = -1;
-              turnBack = 1;
-            }
-            positionX = turnBack === 1 ? 0 : positionX - sliderItemWidth;
-            sliderMain.style = `transform: translateX(${positionX}px);`;
-            index++;
+        const sliderDotItem = sliderDots.querySelectorAll(".slider-dot-item");
 
-            if (sliderDots) {
-                const sliderDotItem = sliderDots.querySelectorAll(".slider-dot-item");
-                sliderDots
-                .querySelector(".slider-dot-item.active")
-                .classList.remove("active");
-                sliderDotItem[index].classList.add("active");
-            }
-        };
+        sliderDotItem[0].classList.add("active");
+        [...sliderDotItem].forEach((elm) => {
+          elm.addEventListener("click", (e) => {
+            sliderDots
+            .querySelector(".slider-dot-item.active")
+            .classList.remove("active");
+            e.target.classList.add("active");
 
-        setInterval(() => {
-            handleChangeSlide();
-        }, 5000);
+            index = parseInt(e.target.dataset.index);
+            positionX = -1 * index * sliderItemWidth;
+            sliderMain.style = `transform: translateX(${positionX}px)`;
+          });
+        });
+      }
+
+      const handleChangeSlide = () => {
+        let turnBack = 0;
+        if (index >= slidersLength - 1) {
+          index = -1;
+          turnBack = 1;
+        }
+        positionX = turnBack === 1 ? 0 : positionX - sliderItemWidth;
+        sliderMain.style = `transform: translateX(${positionX}px);`;
+        index++;
+
+        if (sliderDots) {
+          const sliderDotItem = sliderDots.querySelectorAll(".slider-dot-item");
+          sliderDots.querySelector(".slider-dot-item.active").classList.remove("active");
+          sliderDotItem[index].classList.add("active");
+        }
+      };
+
+      setInterval(() => {
+        handleChangeSlide();
+      }, 5000);
     }
 
-if (main.querySelector(".brand")) {
+    if (main.querySelector(".brand")) {
         //handle open/hide filter
-        const filterBox = document.querySelectorAll(".js-filter");
+        const brand = main.querySelector(".brand");
+        const filterBox = brand.querySelectorAll(".js-filter");
         let openFilterBox = [];
         for (let i = 0; i < filterBox.length; i++) {
-            openFilterBox.push(true);
+          openFilterBox.push(true);
         }
 
         [...filterBox].forEach((element, index) => {
-            const iconElm = element.parentElement.querySelector(".bx");
-            iconElm.addEventListener("click", () => {
-                if (!openFilterBox[index]) {
-                    iconElm.classList.add("bx-minus");
-                    iconElm.classList.remove("bx-plus");
-                    element.style = "display: block";
-                    openFilterBox[index] = true;
-                } else {
-                    iconElm.classList.remove("bx-minus");
-                    iconElm.classList.add("bx-plus");
-                    element.style = "display: none";
-                    openFilterBox[index] = false;
-                }
-            });
-        });
-    }
-
-    if(main.querySelector('.product-details')) {
-        //handle slider
-        const sliderMain = document.querySelector(".slider-main");
-        const sliderItems = document.querySelectorAll(".slider-item");
-        const sliderImgs = document.querySelectorAll(".slider-image");
-        const sliderItemWidth = sliderItems[0].offsetWidth;
-        const slidersLength = sliderItems.length;
-        let positionX = 0;
-
-        sliderImgs[0].classList.add("active");
-        [...sliderImgs].forEach((item) => {
-            item.addEventListener("click", (e) => {
-                document.querySelector(".slider-image.active").classList.remove("active");
-                e.target.classList.add("active");
-                const slideIndex = parseInt(e.target.dataset.index);
-                positionX = -1 * slideIndex * sliderItemWidth;
-                sliderMain.style = `transform: translateX(${positionX}px)`;
-            });
-        });
-
-        //select size of shoes
-        const sizeElm = document.querySelectorAll(".size-item");
-        [...sizeElm].forEach((elm) =>
-            elm.addEventListener("click", (e) => {
-                [...sizeElm].forEach((item) => item.classList.remove("active"));
-                e.target.classList.add("active");
-            })
-            );
-
-        //increase/decrease quantity
-        // const btnMinus = document.querySelector('.btn-minus');
-        // const btnPlus = document.querySelector('.btn-plus');
-        // const input = document.querySelector('#product-quantity');
-        // btnMinus.addEventListener('click', () => {
-        //   let qty = parseInt(input.value);
-        //   qty--;
-        //   if(qty === 0) {
-        //     qty = 1;
-        //   }
-        //   input.value = qty;
-        // });
-        // btnPlus.addEventListener('click', () => {
-        //   let qty = parseInt(input.value);
-        //   qty++;
-        //   input.value = qty;
-        // });
-    }
-
-    // if(main.querySelector('.btn-quantity')) {
-    //     //increase/decrease quantity
-    //     const btnMinus = document.querySelector('.btn-minus');
-    //     const btnPlus = document.querySelector('.btn-plus');
-    //     const input = document.querySelector('#product-quantity');
-    //     btnMinus.addEventListener('click', () => {
-    //       let qty = parseInt(input.value);
-    //       qty--;
-    //       if(qty === 0) {
-    //         qty = 1;
-    //       }
-    //       input.value = qty;
-    //     });
-    //     btnPlus.addEventListener('click', () => {
-    //       let qty = parseInt(input.value);
-    //       qty++;
-    //       input.value = qty;
-    //     });
-    // }
+          const iconElm = element.parentElement.querySelector(".bx");
+          iconElm.addEventListener("click", () => {
+            if (!openFilterBox[index]) {
+              iconElm.classList.add("bx-minus");
+              iconElm.classList.remove("bx-plus");
+              element.style = "display: block";
+              openFilterBox[index] = true;
+            } else {
+              iconElm.classList.remove("bx-minus");
+              iconElm.classList.add("bx-plus");
+              element.style = "display: none";
+              openFilterBox[index] = false;
+            }
+          });
+      });
+      }
 
     //Add comment
     function addComment() 
     {
-        $('#review-form').on('submit',function(e){
-            e.preventDefault();
-            $('.error-fields').empty();
-            $.ajax({
-                type: 'POST',
-                url: $(this).attr('action'),
-                data: new FormData(this),
-                dataType: 'json',
-                contentType:false,
-                processData:false,
-                success: function(data){ 
-                    if(data.error !== undefined){
-                       $('.error-fields').append(data.error);
-                   }else{
-                    alert(data.message);
-                    setTimeout(function(){
-                        location.reload();
-                    },1000);
-                }
-            },
-            error: function(data){
-                $('.error-fields').append(data.error);
-            }
-        })
-        })
+      $('#review-form').on('submit',function(e){
+        e.preventDefault();
+        $('.error-fields').empty();
+        $.ajax({
+          type: 'POST',
+          url: $(this).attr('action'),
+          data: new FormData(this),
+          dataType: 'json',
+          contentType:false,
+          processData:false,
+          success: function(data){ 
+            if(data.error !== undefined){
+             $('.error-fields').append(data.error);
+           }else{
+            alert(data.message);
+            setTimeout(function(){
+              location.reload();
+            },1000);
+          }
+        },
+        error: function(data){
+          $('.error-fields').append(data.error);
+        }
+      })
+      })
     };
     addComment();
 
@@ -221,13 +179,13 @@ if (main.querySelector(".brand")) {
     let ratingScore = document.querySelectorAll('input[name=rating]:not(:checked)');
     let star = 0;
     [...ratingScore].forEach((elm) =>
-        elm.addEventListener("change", (e) => {
-            if(e.target.value > 0)
-            {
-                star = e.target.value;
-            }
-        })
-        );
+      elm.addEventListener("change", (e) => {
+        if(e.target.value > 0)
+        {
+          star = e.target.value;
+        }
+      })
+      );
 
     //validate form
     const convertChars = (str) => {
@@ -246,46 +204,46 @@ if (main.querySelector(".brand")) {
       str = str.replace(/đ/g, "d");
       str = str.replace(/Đ/g, "D");
       return str;
-  };
+    };
 
-  const Validator = (options) => {
-    const formElement = document.querySelector(options.form);
-    let ruleList = {};
+    const Validator = (options) => {
+      const formElement = document.querySelector(options.form);
+      let ruleList = {};
 
-    if (formElement) {
+      if (formElement) {
         formElement.addEventListener("submit", (e) => {
-            e.preventDefault();
-            options.rules.forEach((rule) => {
-                const inputElement = formElement.querySelector(rule.selector);
-                validateForm(inputElement, rule);
-            });
+          e.preventDefault();
+          options.rules.forEach((rule) => {
+            const inputElement = formElement.querySelector(rule.selector);
+            validateForm(inputElement, rule);
+          });
         });
 
         options.rules.forEach((rule) => {
-            const inputElement = formElement.querySelector(rule.selector);
+          const inputElement = formElement.querySelector(rule.selector);
 
-            if (Array.isArray(ruleList[rule.selector])) {
-                ruleList[rule.selector].push(rule.checkValue);
-            } else {
-                ruleList[rule.selector] = [rule.checkValue];
-            }
+          if (Array.isArray(ruleList[rule.selector])) {
+            ruleList[rule.selector].push(rule.checkValue);
+          } else {
+            ruleList[rule.selector] = [rule.checkValue];
+          }
 
-            if (inputElement) {
-                inputElement.addEventListener("blur", () => {
-                  validateForm(inputElement, rule);
-              });
+          if (inputElement) {
+            inputElement.addEventListener("blur", () => {
+              validateForm(inputElement, rule);
+            });
 
-                inputElement.addEventListener("input", () => {
-                  const formGroupElement = inputElement.parentElement;
-                  const errorElement = formGroupElement.querySelector(options.formMessage);
-                  errorElement.innerText = "";
-                  formGroupElement.classList.remove("invalid");
-              });
-            }
+            inputElement.addEventListener("input", () => {
+              const formGroupElement = inputElement.parentElement;
+              const errorElement = formGroupElement.querySelector(options.formMessage);
+              errorElement.innerText = "";
+              formGroupElement.classList.remove("invalid");
+            });
+          }
         });
-    }
+      }
 
-    const validateForm = (inputElement, rule) => {
+      const validateForm = (inputElement, rule) => {
         let message;
         const formGroupElement = inputElement.parentElement;
         const errorElement = formGroupElement.querySelector(options.formMessage);
@@ -294,60 +252,60 @@ if (main.querySelector(".brand")) {
         for (let i = 0; i < rules.length; i++) {
           message = rules[i](inputElement.value);
           if (message) break;
-      }
+        }
 
-      if (message) {
+        if (message) {
           errorElement.innerText = message;
           formGroupElement.classList.add("invalid");
-      } else {
+        } else {
           errorElement.innerText = "";
           formGroupElement.classList.remove("invalid");
-      }
+        }
 
-      return !message;
-  };
-};
+        return !message;
+      };
+    };
 
-Validator.isRequired = (selector, message) => {
-    return {
+    Validator.isRequired = (selector, message) => {
+      return {
         selector,
         checkValue: (value) => {
-            return value.trim() ? undefined : message || "Vui lòng nhập trường này";
+          return value.trim() ? undefined : message || "Vui lòng nhập trường này";
         },
+      };
     };
-};
 
-Validator.isFullName = (selector, message) => {
-    return {
+    Validator.isFullName = (selector, message) => {
+      return {
         selector,
         checkValue: (value) => {
           const reg = /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9\s]{2,}$/;
           return reg.test(convertChars(value.trim())) ? undefined : message;
-      },
-  };
-};
+        },
+      };
+    };
 
-Validator.isEmail = (selector, message) => {
-  return {
-    selector,
-    checkValue: (value) => {
-      const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      return reg.test(value) ? undefined : message;
-  },
-};
-};
+    Validator.isEmail = (selector, message) => {
+      return {
+        selector,
+        checkValue: (value) => {
+          const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          return reg.test(value) ? undefined : message;
+        },
+      };
+    };
 
-Validator({
-    form: "#form-infor",
-    formMessage: ".form-message",
-    formButtonSubmit: ".form-submit",
-    rules: [
-    Validator.isRequired("#fullname", "Vui lòng nhập đầy đủ họ và tên"),
-    Validator.isRequired("#email", "Vui lòng nhập email"),
-    Validator.isRequired("#phone", "Vui lòng nhập số điện thoại"),
-    Validator.isRequired("#address", "Vui lòng nhập địa chỉ"),
-    Validator.isFullName("#fullname", "Họ và tên không đúng định dạng"),
-    Validator.isEmail("#email", "Email không đúng định dạng"),
-    ],
-});
-});
+    Validator({
+      form: "#form-infor",
+      formMessage: ".form-message",
+      formButtonSubmit: ".form-submit",
+      rules: [
+      Validator.isRequired("#fullname", "Vui lòng nhập đầy đủ họ và tên"),
+      Validator.isRequired("#email", "Vui lòng nhập email"),
+      Validator.isRequired("#phone", "Vui lòng nhập số điện thoại"),
+      Validator.isRequired("#address", "Vui lòng nhập địa chỉ"),
+      Validator.isFullName("#fullname", "Họ và tên không đúng định dạng"),
+      Validator.isEmail("#email", "Email không đúng định dạng"),
+      ],
+    });
+  });

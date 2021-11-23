@@ -3,37 +3,6 @@ $(document).ready(function(){
     // -------------------------- Size --------------------------------
     function editSize()
     {
-        $('.edit-size').on('click',function(e){
-            e.preventDefault();
-            var id = $(this).data('id');
-            var num = prompt('Size: ');
-            if(parseFloat(num) > 0){
-                $.ajax({
-                    type: 'GET',
-                    url: '/admin/edit-size/'+id,
-                    data: {
-                        'size': num
-                    },
-                    dataType: 'json',
-                    success: function(data){
-                        setTimeout(function(){
-                            location.reload();
-                        },1);
-                    },
-                    error: function(data){
-                        console.log(data);
-
-                    }
-                })
-            }else{
-                alert('Vui lòng nhập đúng định dạng!!');
-            }
-
-        })
-    }
-
-    editSize();
-
     function delSize(){
         $('.delete-size').on('click',function(e){
             e.preventDefault();

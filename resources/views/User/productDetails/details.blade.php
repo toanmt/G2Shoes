@@ -234,10 +234,10 @@
           </div>
         </div>  
         <div id="review_data">
-          
+
         </div>
         <div id="pagination-review">
-          
+
         </div>
       </div>
       @endif
@@ -327,4 +327,35 @@
 
     });
   </script>
-</section>
+  <script type="text/javascript">
+    if(document.querySelector('.product-details')) {
+        //handle slider
+        const details = document.querySelector('.product-details');
+        const sliderMain = details.querySelector(".slider-main");
+        const sliderImgs = details.querySelectorAll(".slider-image");
+        const sliderItems = details.querySelectorAll(".slider-item");
+        const sliderItemWidth = sliderItems[0].offsetWidth;
+        let positionX = 0;
+
+        sliderImgs[0].classList.add("active");
+        [...sliderImgs].forEach((item) => {
+          item.addEventListener("click", (e) => {
+            document.querySelector(".slider-image.active").classList.remove("active");
+            e.target.classList.add("active");
+            const slideIndex = parseInt(e.target.dataset.index);
+            positionX = -1 * slideIndex * sliderItemWidth;
+            sliderMain.style = `transform: translateX(${positionX}px)`;
+          });
+        });
+
+        //select size of shoes
+        const sizeElm = document.querySelectorAll(".size-item");
+        [...sizeElm].forEach((elm) =>
+          elm.addEventListener("click", (e) => {
+            [...sizeElm].forEach((item) => item.classList.remove("active"));
+            e.target.classList.add("active");
+          })
+          );
+      }
+    </script>
+  </section>

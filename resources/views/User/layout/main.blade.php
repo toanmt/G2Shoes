@@ -31,12 +31,11 @@
         @include('User.layout.gallery')
     </main>
     @include('User.layout.footer')
-
-
     {{--
     <!-- Chatbox Facebook -->
     <!-- Messenger Plugin chat Code -->
     <div id="fb-root"></div>
+
 
     <!-- Your Plugin chat code -->
     <div id="fb-customer-chat" class="fb-customerchat">
