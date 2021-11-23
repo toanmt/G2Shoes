@@ -59,6 +59,37 @@
 </div>
 
 <script type="text/javascript">
+
+
+    $(document).ready(function () {
+      $('.btn-quantity').off().click(function (e) {
+        e.preventDefault();
+        let qty = $(this).parents('.product-details-infomation__quantity').find('.quantity-box');
+        let quantity = parseInt(qty.val());
+        if($(this).hasClass('btn-minus')) {
+            quantity = quantity - 1;
+        }
+        if($(this).hasClass('btn-plus')) {
+            quantity = quantity + 1;
+        }
+        if (quantity.length == 0) {
+            alert("Số lượng nhập không được để trống!");
+        }
+        else if (isNaN(quantity)) {
+            alert("Số lượng nhập không được phép chứa ký tự khác số!");
+        }
+        else if (parseInt(quantity) < 1) {
+            alert("Số lượng nhập không được bé hơn 1!");
+        }
+        else if (parseInt(quantity) > 20) {
+            alert("Số lượng nhập không được lớn hơn 20!");
+        }
+        else {
+            qty.val(quantity);
+        }
+      });
+    });
+
   $('.product-quickview').click(function() {
     var product_id = $(this).data('id_product');
     var _token = $('input[name="_token"]').val();
