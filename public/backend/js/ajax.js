@@ -1,8 +1,6 @@
 $(document).ready(function(){
 
     // -------------------------- Size --------------------------------
-    function editSize()
-    {
     function delSize(){
         $('.delete-size').on('click',function(e){
             e.preventDefault();
@@ -51,9 +49,9 @@ $(document).ready(function(){
     const ids= [];
     $('.add-size-product').click(function(){
         const val =$('#opsize').val();
-        var text =$('#opsize :selected').text(); 
+        var text =$('#opsize :selected').text();
         if(!ids.includes(val)){
-            var html ='<tr class="sizeadd sizeadd-' + val +'">' 
+            var html ='<tr class="sizeadd sizeadd-' + val +'">'
             +' <td> <input name="sizes[]" type="text" value="' + val + '" style="display:none;">'+text+'</td>'
             +' <td> <input class="form-control" name="size_amount[]" type="number"> </td> '
             +' <td> '
@@ -160,11 +158,11 @@ $(document).ready(function(){
                     setTimeout(function(){
                         location.reload();
                     },1);
-                } 
+                }
             },
             error: function(data){
                 console.log(data);
-                
+
             }
         })
     });
@@ -183,7 +181,7 @@ $(document).ready(function(){
     $('#submit_form_add_type').on('submit',function(e){
         e.preventDefault();
         $.ajax({
-            type: 'POST',   
+            type: 'POST',
             url: $(this).attr('action'),
             data: new FormData(this),
             dataType: 'json',
@@ -228,7 +226,7 @@ $(document).ready(function(){
 
     function editType()
     {
-        $('.btn-edit-type').on('click',function(e){ 
+        $('.btn-edit-type').on('click',function(e){
             e.preventDefault();
             var id = $(this).data('id');
             var name = prompt('Type name: ');
@@ -249,7 +247,7 @@ $(document).ready(function(){
     }
 
     editType();
-    
+
     $('#frm-change-pass').submit(function(e){
         e.preventDefault();
         var formData = $(this).serialize();

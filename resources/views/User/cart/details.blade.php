@@ -10,10 +10,10 @@
         <div id="cartformpage">
             <div class="cart__list-row">
                 <div class="cart__list-title">
-                    Bạn đang có <span>{{ count($carts) }} sản phẩm</span> trong giỏ hàng
+                    Bạn đang có <span>{{ count($carts) }} sản phẩm</span> trong giỏ hàng.
                 </div>
                 <div class="cart__list-table update_cart_url" data-url="{{ route('updateCart') }}">
-                  @foreach($carts as $key => $product)  
+                  @foreach($carts as $key => $product)
                     <div class="cart__list-item" data-variant-id="{{ $product['id'] }}">
                         <div class="left">
                             <div class="item-img">
@@ -62,7 +62,7 @@
             </div>
             <div class="cart__list-row">
                 <div class="policy_return">
-                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chính sách Đổi/Trả</h4>
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chính sách đổi/trả</h4>
                     <ul>
                         <li>Sản phẩm được đổi 1 lần duy nhất, không hỗ trợ trả.</li>
                         <li>Sản phẩm còn đủ tem mác, chưa qua sử dụng.</li>
@@ -76,7 +76,7 @@
         @if(empty($session['cart']))
         <div id="cartformpage">
             <div class="empty-cart-message">
-				Giỏ hàng của bạn đang trống 
+				Giỏ hàng của bạn đang trống!
 			</div>
             <div class="empty-cart-btn">
                 <a href="/" class="btn-action return-home"><i class='bx bx-undo'></i>Tiếp tục mua hàng</a>
@@ -138,7 +138,7 @@ $(document).ready(function () {
         let id = $(this).closest('.item-quan').find('.item-quan-fields').data('id');
         let qty = $(this).closest('.item-quan').find('.quantity-box');
         let quantity = parseInt(qty.val());
-        
+
         if (quantity.length == 0) {
             alert("Số lượng nhập không được để trống!");
         }
@@ -148,9 +148,9 @@ $(document).ready(function () {
         else if (parseInt(quantity) < 1) {
             alert("Số lượng nhập không được bé hơn 1!");
         }
-        else if (parseInt(quantity) > 20) {
-            alert("Số lượng nhập không được lớn hơn 20!");
-        }
+        // else if (parseInt(quantity) > 20) {
+        //     alert("Số lượng nhập không được lớn hơn 20!");
+        // }
         else {
             updateCart(urlUpdateCart, id, quantity, $(this));
         }
@@ -177,9 +177,9 @@ $(document).ready(function () {
         else if (parseInt(quantity) < 1) {
             alert("Số lượng nhập không được bé hơn 1!");
         }
-        else if (parseInt(quantity) > 20) {
-            alert("Số lượng nhập không được lớn hơn 20!");
-        }
+        // else if (parseInt(quantity) > 20) {
+        //     alert("Số lượng nhập không được lớn hơn 20!");
+        // }
         else {
             qty.val(quantity);
             updateCart(urlUpdateCart, id, quantity, $(this));
