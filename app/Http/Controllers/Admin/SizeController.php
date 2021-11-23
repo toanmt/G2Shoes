@@ -21,12 +21,6 @@ class SizeController extends Controller
             return ['error'=>$output];
         }
     }
-
-    public function editSize(Request $request,$id){
-        Size::where('id',$id)->update(['size_number'=>(double)$request->get('size')]);
-       return ['output'=>'Sửa thành công'];
-    }
-
     public function deleteSize(Request $request,$id){
         Size::where('id',$id)->delete();
         return ['output'=>'xóa thành công'];

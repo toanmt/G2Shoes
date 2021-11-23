@@ -141,7 +141,6 @@ window.addEventListener("load", () => {
               openFilterBox[index] = false;
             }
           });
-        });
       }
 
     //Add comment

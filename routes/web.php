@@ -22,8 +22,12 @@ Route::prefix('')->group(function () {
     Route::get('/brand/{id}/filter',[App\Http\Controllers\User\BrandController::class,'filter']);
     //Product
     Route::get('/product_details/{id}',[App\Http\Controllers\User\ProductController::class,'index']);
+    Route::get('/product_details',[App\Http\Controllers\User\ProductController::class,'buyNow']);
     //Comment
     Route::post('/add-comment',[App\Http\Controllers\User\CommentController::class,'addComment']);
+    //Cart
+    Route::get('/add-to-cart/{id}/{size}',[App\Http\Controllers\User\CartController::class,'addToCart'])->name('addToCart');
+    Route::get('/cart',[App\Http\Controllers\User\CartController::class,'showCart'])->name('showCart');
     //Sale
     Route::get('/sales',[App\Http\Controllers\User\SalesController::class,'index']);
     Route::get('/sales/filter',[App\Http\Controllers\User\SalesController::class,'filter']);

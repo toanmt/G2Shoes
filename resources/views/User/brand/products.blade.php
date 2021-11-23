@@ -57,8 +57,8 @@
               <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
               @endforeach
             </a>
-            <div>
-              <form class="product-control">
+            <div class="product-control">
+              <form>
                 @csrf
                 <input 
                 type="button" 
@@ -68,14 +68,19 @@
                 id="product-quickview" 
                 value="Xem nhanh"
                 >
-                <input 
-                type="button" 
-                name="add-to-cart" 
-                class="product-btn" 
-                data-id_product="{{$product -> id}}" 
-                value="Thêm vào giỏ"
-                >
               </form>
+              <?php
+                $product_size = $product->find($product->id)->product_size;
+                if(isset($product_size)) {
+                  $product_size = $product_size->first();
+                }
+              ?>
+              @if(empty($product_size))
+              <a href="#" data-url="" class="product-btn add_to_cart">Thêm vào giỏ</a>
+              @endif
+              @if(isset($product_size))
+              <a href="#" data-url="{{ route('addToCart', ['id' => $product->id, 'size' => $product_size->size_id ]) }}" class="product-btn add_to_cart">Thêm vào giỏ</a>
+              @endif
             </div>
           </div>
           <div class="product-infor">

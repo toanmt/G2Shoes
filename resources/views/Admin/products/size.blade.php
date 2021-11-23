@@ -25,35 +25,19 @@
                         </div>
                     </div>
                 </form>
-                <div class="table-responsive m-t-15">
-                    <table class="table table-striped custom-table">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Number</th>
-                                <th class="text-right">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-size">
-                            <?php $count = 0; ?>
-                            @foreach ($sizes as $size)
-                                <tr id="del-{{ $size->id }}">
-                                    <td class="text-center" id="size-{{ $size->id}}">
-                                        {{ $size->size_number }}
-                                    </td>
-                                    <td class="text-right">
-                                        <div class="dropdown dropdown-action">
-                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item edit-size" href="#" data-toggle="modal" data-id="{{ $size->id}}" ><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                <a class="dropdown-item delete-size" href="#" data-toggle="modal" data-id="{{ $size->id}}" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach                            
-                            
-                        </tbody>
-                    </table>
+                <div class="row">
+                    @foreach ($sizes as $size)
+                    <div style="margin: 12px;">
+                        <div class="card" style="width:100px;">
+                            <button type="button" class="close delete-size" href="#" data-toggle="modal" data-id="{{ $size->id}}" style="background-color: red;">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div class="card-body">
+                                <h3>{{ $size->size_number }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

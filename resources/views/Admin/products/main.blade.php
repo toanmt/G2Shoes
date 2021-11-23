@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#size_manage"><i class="fa fa-arrows-h" aria-hidden="true"></i> Add Size</a>  
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#size_manage"><i class="fa fa-arrows-h" aria-hidden="true"></i> Size</a>  
                 </div>
                 <div class="col-auto float-right ml-auto">
                     <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_product"><i class="fa fa-plus"></i> Add Product</a>  

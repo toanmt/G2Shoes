@@ -13,6 +13,9 @@ use App\Models\ProductSize;
 class BrandController extends Controller
 {
 	public function index($id){
+		//Session
+		$session = session()->all();
+
 		$data = Brand::all();
 		$brand = $data->find($id);
 		$size = Size::all();
@@ -58,6 +61,7 @@ class BrandController extends Controller
 				'product'=>(object)$product,
 				'sort_name'=>(string)$sort_name,
 				'product_size'=>$product_size,
+				'session' => $session,
 			]
 		);
 	}
