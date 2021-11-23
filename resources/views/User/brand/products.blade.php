@@ -37,14 +37,45 @@
         @foreach($product as $product)
         <div class="product-item zoomIn animated">
           <div class="product-image">
+            <div class="product-noti">
+              <?php 
+                $size_amount = $product_size->where('product_id',$product->id)->first();
+                if(!empty($size_amount)) {
+                  $size_amount = $size_amount->amount;
+                }
+              ?>
+              @if(empty($size_amount) || $size_amount == 0)
+                <span class="product-noti__show product-noti__sold-out">Hết</span>
+              @else
+                @if($product->discount > 0)
+                  <span class="product-noti__show product-noti__sale">-{{$product->discount}}%</span>
+                @endif
+              @endif
+            </div>
             <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
               @foreach($product->images as $image)
               <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
               @endforeach
             </a>
-            <div class="product-control">
-              <a href="#" class="product-btn">Xem nhanh</a>
-              <a href="#" class="product-btn">Thêm vào giỏ</a>
+            <div>
+              <form class="product-control">
+                @csrf
+                <input 
+                type="button" 
+                name="quick-view" 
+                class="product-btn product-quickview" 
+                data-id_product="{{$product -> id}}" 
+                id="product-quickview" 
+                value="Xem nhanh"
+                >
+                <input 
+                type="button" 
+                name="add-to-cart" 
+                class="product-btn" 
+                data-id_product="{{$product -> id}}" 
+                value="Thêm vào giỏ"
+                >
+              </form>
             </div>
           </div>
           <div class="product-infor">
@@ -56,10 +87,10 @@
             <div class="product-price">
               <p class="product-price__new">
                 @if($product->discount > 0)
-                  {{$product->price - ($product->price * $product->discount)/100}}đ
-                  <span class="product-price__old">{{$product->price}}đ</span>
+                {{$product->price - ($product->price * $product->discount)/100}}đ
+                <span class="product-price__old">{{$product->price}}đ</span>
                 @else
-                  {{$product->price}}đ
+                {{$product->price}}đ
                 @endif
               </p>
             </div>

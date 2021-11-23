@@ -16,6 +16,7 @@ Route::prefix('')->group(function () {
     //Home
     Route::get('',[App\Http\Controllers\User\HomeController::class,'index']);
     Route::post('/search',[App\Http\Controllers\User\HomeController::class,'search']);
+    Route::post('/quickview',[App\Http\Controllers\User\HomeController::class,'quickview']);
     //Brand
     Route::get('/brand/{id}',[App\Http\Controllers\User\BrandController::class,'index']);
     Route::get('/brand/{id}/filter',[App\Http\Controllers\User\BrandController::class,'filter']);
@@ -34,12 +35,8 @@ Route::prefix('')->group(function () {
     Route::POST('/voucher',[App\Http\Controllers\User\PaymentController::class,'clientUseVoucher']);
     //Payment
     Route::get('/payment',[App\Http\Controllers\User\PaymentController::class,'index']);
-
     Route::post('/invoice-infor',[App\Http\Controllers\User\PaymentController::class,'invoice_info']);
-
     Route::get('/order',[App\Http\Controllers\User\PaymentController::class,'order']);
-
-    
 });
 
 Route::prefix('admin')->group(function () {
