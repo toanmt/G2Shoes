@@ -156,7 +156,11 @@ Validator({
   ],
 });
 
+const getBackUserInfor = document.querySelector("#form-user-infor");
+getBackUserInfor.addEventListener("click", () => {
+  paymentContent[1].style.display = "none";
+  paymentContent[0].style.display = "block";
+})
 
 
-  
 

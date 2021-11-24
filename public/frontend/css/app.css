@@ -530,6 +530,10 @@ a {
   visibility: hidden;
   transition: all ease 0.5s;
 }
+.product-control form {
+  width: 100%;
+  margin-right: 5px;
+}
 .product-btn {
   color: #ffffff;
   font-weight: 500;
@@ -539,13 +543,9 @@ a {
   background: #191919;
   width: 100%;
   padding: 8px 5px;
-  margin-right: 5px;
   outline: none;
   display: block;
   text-align: center;
-}
-.product-btn:last-child {
-  margin-right: 0;
 }
 .product-infor {
   padding: 20px 0;
@@ -941,7 +941,6 @@ a {
 }
 .product-details-review__comment {
   display: flex;
-  align-items: center;
   text-align: center;
   padding: 25px 0;
 }
@@ -949,8 +948,8 @@ a {
   color: #ffbe00;
 }
 .product-details-review__comment__description {
-  width: 1000px;
-  margin: auto;
+  width: 970px;
+  margin-right: 30px;
 }
 .product-details-review__comment__sender {
   border: 1px solid #c4cdd5;
@@ -1356,7 +1355,7 @@ a {
   font-size: 18px;
   transition: all 0.25s ease;
   outline: none;
-  background: #ffffff;
+  background: #ffffff !important;
   font-family: "Quicksand", sans-serif;
 }
 
@@ -1366,8 +1365,17 @@ textarea.form-control {
   padding-top: 18px;
 }
 
+input.my-input:-internal-autofill-selected {
+  background-color: rgb(255, 255, 255) !important;
+  background-image: none !important;
+  appearance: none !important;
+}
+
 input:-webkit-autofill,
-input:-webkit-autofill:focus {
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
   transition: background-color 600000000000s 0s, color 600000000000s 0s;
 }
 
@@ -1826,11 +1834,17 @@ input:-webkit-autofill:focus {
 .payment-price__container:nth-child(2) {
   padding: 1.5em 0 1em;
 }
+.payment-voucher__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 0 1.5em;
+}
 .payment-price__container:last-child {
   padding-top: 1.5em;
   border-top: 1px solid #e1e1e1;
 }
-.payment-price__container:last-child > span:last-child{
+.payment-price__container:last-child > span:nth-child(2){
   font-size: 1.71429em;
   font-weight: 500;
   color: #4b4b4b;
@@ -1902,5 +1916,60 @@ input:-webkit-autofill:focus {
 }
 .modal .product-details-infomation {
   height: auto;
+}
+.product-related {
+  width: 300px;
+}
+.product-related__title {
+  border-bottom: 1px solid #e5e5e5;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  background: #000;
+}
+.product-related__title h2 {
+  font-size: 18px;
+  line-height: 40px;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 3px 22px;
+}
+.product-related__list {
+  display: flex;
+  flex-direction: column;
+}
+.product-related__item {
+  display: flex;
+  border: 1px solid #e5e5e5;
+  padding: 10px;
+  text-align: left;
+  align-items: center;
+}
+.product-related__item:last-child {
+  border-radius: 0 0 4px 4px;
+}
+.product-related__img a {
+  width: 100px;
+  margin-right: 10px;
+  display: inline-block;
+}
+.product-related__img a img{
+  max-width: 100%;
+}
+.product-related__img a img:last-child{
+  display: none;
+}
+.product-related__name {
+  margin-bottom: 10px;
+}
+.product-related__name a{
+  color: #000000;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-size: 14px;
+}
+.product-related__name a:hover{
+  color: #ff0000;
 }
 /*# sourceMappingURL=app.css.map */
