@@ -241,11 +241,46 @@
         </div>
       </div>
       @endif
+      <div class="product-related">
+        <div class="product-related__title">
+          <h2>Có thể bạn sẽ thích</h2>
+        </div>
+        <div class="product-related__list">
+          @foreach($like_product as $product)
+          <div class="product-related__item">
+            <div class="product-related__img">
+              <a href="{{ URL::to('/product_details/'.$product->id)}}">
+                @foreach($product->images as $image) 
+                <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
+                @endforeach
+              </a>
+            </div>
+            <div class="product-related__infor">
+              <div class="product-related__name">
+                <h3>
+                  <a href="{{ URL::to('/product_details/'.$product->id)}}">{{$product->product_name}}</a>
+                </h3>
+              </div>
+              <div class="product-related__price">
+                <p class="product-price__new">
+                  @if($product->discount > 0)
+                  {{$product->price - ($product->price * $product->discount)/100}}đ
+                  <span class="product-price__old">{{$product->price}}đ</span>
+                  @else
+                  {{$product->price}}đ
+                  @endif
+                </p>
+              </div>
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </div>
     </div>
   </div>
   <script src="{{ asset('frontend/js/pagination.min.js') }}"></script>
   <script>
-    
+
 
     $(document).ready(function () {
 
@@ -254,76 +289,76 @@
         let qty = $(this).parents('.product-details-infomation__quantity').find('.quantity-box');
         let quantity = parseInt(qty.val());
         if($(this).hasClass('btn-minus')) {
-            quantity = quantity - 1;
+          quantity = quantity - 1;
         }
         if($(this).hasClass('btn-plus')) {
-            quantity = quantity + 1;
+          quantity = quantity + 1;
         }
         if (quantity.length == 0) {
-            alert("Số lượng nhập không được để trống!");
+          alert("Số lượng nhập không được để trống!");
         }
         else if (isNaN(quantity)) {
-            alert("Số lượng nhập không được phép chứa ký tự khác số!");
+          alert("Số lượng nhập không được phép chứa ký tự khác số!");
         }
         else if (parseInt(quantity) < 1) {
-            alert("Số lượng nhập không được bé hơn 1!");
+          alert("Số lượng nhập không được bé hơn 1!");
         }
         else if (parseInt(quantity) > 20) {
-            alert("Số lượng nhập không được lớn hơn 20!");
+          alert("Số lượng nhập không được lớn hơn 20!");
         }
         else {
-            qty.val(quantity);
+          qty.val(quantity);
         }
       });
 
       (function(name) {
-          var container = $('#pagination-' + name);
-          container.pagination({
-            dataSource: <?php echo $comment;?>,
-            locator: '',
-            totalNumber: <?php echo $comment->count(); ?>,
-            pageSize: 2,
-            ajax: {
-              beforeSend: function() {
-                container.prev().html('Loading data from Database ...');
-              }
-            },
-            callback: function(response, pagination) {
-              window.console && console.log(22, response, pagination);
-              let header = '';
-              let rate = '';
-              let body = '';
-              let date = '';
-              let action = '';
-              let dataHtml = '';
-              let dataReview = [];
-
-              $.each(response, function (index, item) {
-                for(i = 1; i <= item.rating; i++)
-                {
-                  rate += '<i data-alt="'+ i +'" class="bx bxs-star" style="margin: 0 2px; color: #ffbe00;" aria-hidden="true"></i>';
-                } 
-                
-                header += '<div class="product-details-review__comment__list-header">';
-                header += '<span id="author">' + item.author + '</span>&nbsp;';
-                header += '<div data-score="' + item.rating + '" data-number="' + item.rating + '">' + rate + '</div></div>';
-                date = new Date(item.created_at);
-                body += '<div class="product-details-review__comment__list-body"><span id="user_comment">' + item.content + '</span></div>';
-                action += '<div class="product-details-review__comment__list-action"><span class="review-time" id="datePublished">' + date.toLocaleString() + '</span></div>';
-                dataHtml += '<div class="product-details-review__comment__list">' + header + body + action + '</div>';
-                dataReview[index] = dataHtml;
-                header = '';
-                rate = '';
-                body = '';
-                date = '';
-                action = '';
-                dataHtml = '';
-              });
-
-              container.prev().html(dataReview);
+        var container = $('#pagination-' + name);
+        container.pagination({
+          dataSource: <?php echo $comment;?>,
+          locator: '',
+          totalNumber: <?php echo $comment->count(); ?>,
+          pageSize: 2,
+          ajax: {
+            beforeSend: function() {
+              container.prev().html('Loading data from Database ...');
             }
-          })
-        })('review');
+          },
+          callback: function(response, pagination) {
+            window.console && console.log(22, response, pagination);
+            let header = '';
+            let rate = '';
+            let body = '';
+            let date = '';
+            let action = '';
+            let dataHtml = '';
+            let dataReview = [];
+
+            $.each(response, function (index, item) {
+              for(i = 1; i <= item.rating; i++)
+              {
+                rate += '<i data-alt="'+ i +'" class="bx bxs-star" style="margin: 0 2px; color: #ffbe00;" aria-hidden="true"></i>';
+              } 
+
+              header += '<div class="product-details-review__comment__list-header">';
+              header += '<span id="author">' + item.author + '</span>&nbsp;';
+              header += '<div data-score="' + item.rating + '" data-number="' + item.rating + '">' + rate + '</div></div>';
+              date = new Date(item.created_at);
+              body += '<div class="product-details-review__comment__list-body"><span id="user_comment">' + item.content + '</span></div>';
+              action += '<div class="product-details-review__comment__list-action"><span class="review-time" id="datePublished">' + date.toLocaleString() + '</span></div>';
+              dataHtml += '<div class="product-details-review__comment__list">' + header + body + action + '</div>';
+              dataReview[index] = dataHtml;
+              header = '';
+              rate = '';
+              body = '';
+              date = '';
+              action = '';
+              dataHtml = '';
+            });
+
+            container.prev().html(dataReview);
+          }
+        })
+      })('review');
 
     });
   </script>

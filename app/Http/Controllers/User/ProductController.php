@@ -21,6 +21,12 @@ class ProductController extends Controller
         $comment = Comment::where('product_id',$id)->orderBy('rating','DESC')->get();
         $product = Product::with('type')->find($id);
 		$product_size = ProductSize::where('product_id',$id)->with('sizes')->get();
+        //sản phẩm đề cử
+        $arr_key = [];
+        for($i = 0;$i<4;$i++)
+            array_push($arr_key,rand(1,10));
+
+        $like_product = Product::whereIn('id',$arr_key)->get();
 		return View('User.productDetails.main')
         ->with(
             [
@@ -31,6 +37,7 @@ class ProductController extends Controller
                 'product_size'=>(object)$product_size,
                 'comment'=>(object)$comment,
                 'session'=>$session,
+                'like_product'=>(object)$like_product,
             ]
         );
 	}

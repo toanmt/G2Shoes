@@ -121,7 +121,7 @@
                     checked
                   />
                   <label for="shipping-code" style="padding-left: 0.75em"
-                    >40000</label
+                    >Phí vận chuyển</label
                   >
                 </div>
                 <span>40,000đ</span>
@@ -155,15 +155,15 @@
                     class="input-radio"
                   />
                   <img src="{{ asset('frontend/img/others/other.svg') }}" alt="" />
-                  <label for="payment-bank">Chuyển khoản qua ngân hàng</label>
+                  <label for="payment-bank">Thanh toán online (Internet Banking)</label>
                 </div>
                 <div class="payment-content__infor payment-banking">
-                  Chuyển khoản qua số tài khoản:
+                  Các cổng thành toán: VNPay, PayPal
                 </div>
               </div>
             </div>
             <div class="form-direct">
-              <a href="#" class="form-cart">Quay lại thông tin giao hàng</a>
+              <a href="#" class="form-cart" id="form-user-infor">Quay lại thông tin giao hàng</a>
               <a href="{{ url('order') }}" class="form-submit" id="payment-button">Hoàn tất đơn hàng</a>
             </div>
           </div>
@@ -275,7 +275,7 @@
         $('.input-radio').click(function(){
           if($(this).val() == 0){
             $('#payment-button').show();
-            $('.payment-banking').empty().text('Chuyển khoản qua số tài khoản:');
+            $('.payment-banking').empty().text('Các cổng thành toán: VNPay, PayPal');
             $('#payment-button').click(function(e){
                 e.preventDefault();
               $.ajax({
