@@ -31,11 +31,11 @@
       <div class="container">
         <div class="payment-details">
           <div class="payment-header">
-            <a href="#" class="payment-header__title">
+            <a href="{{ URL::to('/') }}" class="payment-header__title">
               <h4>g2 shoes</h4>
             </a>
             <ul class="payment-nav">
-              <li><a href="#">Giỏ hàng</a></li>
+              <li><a href="{{ URL::to('/cart') }}">Giỏ hàng</a></li>
               <li><a href="#">Thông tin giao hàng</a></li>
               <li><a href="#">Phương thức thanh toán</a></li>
             </ul>
@@ -101,7 +101,7 @@
                 </span>
               </div>
               <div class="form-direct">
-                <a href="#" class="form-cart">Giỏ hàng</a>
+                <a href="{{ URL::to('/cart') }}" class="form-cart">Giỏ hàng</a>
                 <button class="form-submit" type="submit">
                   Tiếp tục đến với phương thức thanh toán
                 </button>
@@ -173,36 +173,27 @@
           <div class="payment-product">
             <table class="payment-product__table">
               <tbody>
-                <tr class="product">
-                  <td class="product-image">
-                    <div class="product-thumbnail">
-                      <img src="{{ asset('Image/adidas_superstar1_anh1.webp') }}" alt="" />
-                    </div>
-                    <span class="product-qty">1</span>
-                  </td>
-                  <td class="product-desc">
-                    <span class="product-name"
-                      >NIKE AIR FORCE 1 SHADOW CRIMSON TINT
-                    </span>
-                    <span class="product-size">36.5</span>
-                  </td>
-                  <td class="product-price">5,780,000₫</td>
-                </tr>
-                <tr class="product">
-                  <td class="product-image">
-                    <div class="product-thumbnail">
-                      <img src="{{ asset('Image/adidas_superstar2_anh1.webp') }}" alt="" />
-                    </div>
-                    <span class="product-qty">2</span>
-                  </td>
-                  <td class="product-desc">
-                    <span class="product-name"
-                      >NIKE AIR FORCE 1 SHADOW CRIMSON TINT
-                    </span>
-                    <span class="product-size">38.5</span>
-                  </td>
-                  <td class="product-price">4,650,000₫</td>
-                </tr>
+              <?php $total_price = 0 ?>
+              @if(isset($session['cart']) && count($carts) > 0)
+                @foreach($carts as $key => $product)
+                  <tr class="product" data-variant-id="{{ $product['id'] }}">
+                    <td class="product-image">
+                      <div class="product-thumbnail">
+                        <img src="{{ asset('Image/'.$product['image']->first()->image_name) }}" alt="{{ $product['product_name'] }}" />
+                      </div>
+                      <span class="product-qty">{{ $product['quantity'] }}</span>
+                    </td>
+                    <td class="product-desc">
+                      <div class="product-name"
+                        >{{ $product['product_name'] }}
+                      </div>
+                      <div class="product-size">{{ $product['product_size'] }}</div>
+                    </td>
+                    <td class="product-price">{{ number_format($product['price'] - ($product['price'] * $product['discount'])/100) }}₫</td>
+                  </tr>
+                <?php $total_price = $total_price + $product['quantity'] * ($product['price'] - ($product['price'] * $product['discount'])/100); ?>
+                @endforeach
+              @endif
               </tbody>
             </table>
           </div>
@@ -231,7 +222,7 @@
           <div class="payment-price">
             <div class="payment-price__container">
               <span class="payment-price__title">Tạm tính:</span>
-              <span>13,940,000đ</span>
+              <span>{{ number_format($total_price) }}đ</span>
             </div>
             <div class="payment-price__container">
               <span class="payment-price__title">Phí vận chuyển:</span>
@@ -240,8 +231,8 @@
             <div class="payment-voucher__container"></div>
             <div class="payment-price__container">
               <span class="payment-price__title">Tổng tiền: </span>
-              <span>13,940,000₫</span>
-              <input type="hidden" id="total_usd" value="<?php echo 13940000/22650; ?>">
+              <span>{{ number_format($total_price + 40000) }}₫</span>
+              <input type="hidden" id="total_usd" value="{{ $total_price/22650 }}">
             </div>
           </div>
         </div>
