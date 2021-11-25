@@ -55,17 +55,17 @@ class HomeController extends Controller
 		$product = Product::find($product_id);
 		$product_size = ProductSize::where('product_id',$product_id)->join('sizes','sizes.id','=','product_sizes.size_id')->get();
 		$product_image = Image::where('product_id', $product_id)->get();
-
 		$output['product_name'] = $product->product_name;
 		$output['product_id'] = $product->id;
-		$output['product_price'] = number_format($product->price,0,',',',').'đ';
+		$output['product_price'] = $product->price;
 		$output['product_discount'] = $product->discount;
+		$output['product_size'] = $product_size;
 		$output['product_sizes'] = '';
 
 		foreach ($product_size as $key => $size) {
 			$output['product_sizes'] .= '
 			<div class="select-size__list">
-			<input id="size-'.$size->size_number.'" type="radio" name="option" />
+			<input id="size-'.$size->size_number.'" type="radio" name="product_size" value="'.$size->size_id.'" />
 			<label class="size-item" for="size-'.$size->size_number.'">'.$size->size_number.'</label>
 			</div>
 			';
