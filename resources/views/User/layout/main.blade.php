@@ -90,7 +90,6 @@
             });
         }
         $(document).ready(function () {
-
             // Add to cart
             $('.add_to_cart').off().click(function (e) {
                 e.preventDefault();
@@ -106,7 +105,18 @@
                     addToCart($(this).data('url'), id, size, quantity);
                 }
             });
-
+            
+            $('.buy-now').off().click(function (e) {
+                e.preventDefault();
+                const productDetails = document.querySelector('.product-details');
+                if(productDetails.querySelector('.product-details-infomation')) {
+                    let id = $(this).closest('.product-details-infomation').find('input[name="product_id"]').val();
+                    let size = $(this).closest('.product-details-infomation').find('input[name="product_size"]:checked').val();
+                    let quantity = $(this).closest('.product-details-infomation').find('input[name="product_quantity"]').val();
+                    addToCart($(this).data('url'), id, size, quantity);
+                    window.location = $('.product-details-infomation__action').find('.buy-now')[0].href;
+                }
+            });
             
         });
     </script>
