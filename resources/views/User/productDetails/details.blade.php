@@ -35,6 +35,7 @@
       </div>
     </div>
     <div class="product-details-infomation">
+    <input type="hidden" name="product_id" value="{{ $product->id }}">
       <div class="product-details-infomation__title">
         <div class="product-details-infomation__name">
           {{ $product->product_name }}
@@ -42,38 +43,42 @@
         <div class="product-details-infomation__sku">SKU: {{ $product->id }}</div>
       </div>
       <div class="product-details-infomation__price">
+        
         <p class="product-price__new">
           @if($product->discount > 0)
-          {{$product->price - ($product->price * $product->discount)/100}}đ
-          <span class="product-price__old">{{$product->price}}đ</span>
+          <span class="product-price__sale">-7%</span>
+          {{ number_format($product->price - ($product->price * $product->discount)/100) }}đ
+          <span class="product-price__old">{{ number_format($product->price) }}đ</span>
           @else
           {{$product->price}}đ
           @endif
         </p>
       </div>
-      <div class="product-details-infomation__size">
-        <div class="select-size">
-          @foreach($product_size as $key => $size)
-          <div class="select-size__list">
-            <input id="{{ $size->size_id}}" type="radio" name="option" />
-            <label class="size-item" for="{{ $size->size_id}}">
-              @foreach($sizes as $key => $sizes_id)
-              @if($sizes_id->id==$size->size_id)
-              {{ $sizes_id->size_number }}
-              @endif
-              @endforeach
-            </label>
+      @if(count($product_size) != 0)
+        <div class="product-details-infomation__size">
+          <div class="select-size">
+            @foreach($product_size as $key => $size)
+            <div class="select-size__list">
+              <input id="{{ $size->size_id }}" type="radio" name="product_size" value="{{ $size->size_id }}" />
+              <label class="size-item" for="{{ $size->size_id }}">
+                @foreach($sizes as $key => $sizes_id)
+                @if($sizes_id->id==$size->size_id)
+                {{ $sizes_id->size_number }}
+                @endif
+                @endforeach
+              </label>
+            </div>
+            @endforeach 
           </div>
-          @endforeach 
         </div>
-      </div>
+      @endif
       <div class="product-details-infomation__quantity">
         <button class="btn-quantity btn-minus">-</button>
-        <input type="text" value="1" min="1" max="20" step="1" class="quantity-box" id="product-quantity">
+        <input type="text" value="1" name="product_quantity" min="1" max="20" step="1" class="quantity-box" id="product-quantity">
         <button class="btn-quantity btn-plus">+</button>
       </div>
       <div class="product-details-infomation__action">
-        <a href="#" data-url="{{ route('addToCart', ['id' => $product->id, 'size' => 1, 'quantity' => 1 ]) }}" class="btn-action add-to-cart add_to_cart">Thêm vào giỏ</a>
+        <a href="#" data-url="{{ route('addToCart') }}" class="btn-action add-to-cart add_to_cart">Thêm vào giỏ</a>
         <a href="#" class="btn-action buy-now">Mua ngay</a>
       </div>
       <a href="{{URL::to('/contact')}}" class="btn-action support">
@@ -357,5 +362,12 @@
           })
           );
       }
+
+    $(document).ready(function () {
+      if(document.querySelector('.size-item')) {
+        $('.select-size__list').find('.size-item')[0].classList.add("active");
+        $('.select-size__list').find('input[name="product_size"]')[0].checked = true;
+      }
+    });
     </script>
   </section>

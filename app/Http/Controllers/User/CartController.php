@@ -12,64 +12,71 @@ use App\Models\Size;
 
 class CartController extends Controller
 {
-    public function addToCart($id, $size, $quantity) {
-        // session()->flush();
-        $product = Product::find($id);
-        $product_size = Size::find($size)->size_number;
-        $cart = session()->get('cart');
-        if (isset($cart["$id-$size"])) {
-            $cart["$id-$size"]['quantity'] = $cart["$id-$size"]['quantity'] + $quantity;
-            $cart["$id-$size"]['total_price'] = $cart["$id-$size"]['quantity'] * $cart["$id-$size"]['price'];
-        } else {
-            $cart["$id-$size"] = [
-                'id' => $id,
-                'size' => $size,
-                'product_name' => $product->product_name,
-                'product_size' => $product_size,
-                'price' => $product->price,
-                'total_price' => $product->price,
-                'discount' => $product->discount,
-                'image' => $product->images,
-                'quantity' => $quantity,
-            ];
+    public function addToCart(Request $request) {
+        if ($request->id && $request->quantity) {
+            // session()->flush();
+            $id = $request->id;
+            $size = $request->size;
+            $quantity = $request->quantity;
+            $product = Product::find($id);
+            $product_size = Size::find($size)->size_number;
+            $cart = session()->get('cart');
+            if (isset($cart["$id-$size"])) {
+                $cart["$id-$size"]['quantity'] = $cart["$id-$size"]['quantity'] + $quantity;
+                $cart["$id-$size"]['total_price'] = $cart["$id-$size"]['quantity'] * $cart["$id-$size"]['price'];
+            } else {
+                $cart["$id-$size"] = [
+                    'id' => $id,
+                    'size' => $size,
+                    'product_name' => $product->product_name,
+                    'product_size' => $product_size,
+                    'price' => $product->price,
+                    'total_price' => $product->price,
+                    'discount' => $product->discount,
+                    'image' => $product->images,
+                    'quantity' => $quantity,
+                ];
+            }
+            session()->put('cart', $cart);
+            $count = count($cart);
+            return response()->json([
+                'code' => 200,
+                'message' => 'success',
+                'cart' => $cart,
+                'item' => $count,
+            ], 200);
         }
-        session()->put('cart', $cart);
-        $count = count($cart);
-        return response()->json([
-            'code' => 200,
-            'message' => 'success',
-            'cart' => $cart,
-            'item' => $count,
-        ], 200);
     }
 
     public function updateCart(Request $request) {
         if ($request->id && $request->quantity) {
+            $id = $request->id;
+            $quantity = $request->quantity;
             $cart = session()->get('cart');
-            $discount = Product::find($cart[$request->id]['id'])->discount;
-            $product_size = ProductSize::where('product_id',$cart[$request->id]['id'])
-            ->where('product_sizes.size_id',$cart[$request->id]['size'])->first();
-            if ($request->quantity > $product_size->amount) {
+            $discount = Product::find($cart[$id]['id'])->discount;
+            $product_size = ProductSize::where('product_id',$cart[$id]['id'])
+            ->where('product_sizes.size_id',$cart[$id]['size'])->first();
+            if ($quantity > $product_size->amount) {
                 return response()->json([
                     'code' => 400,
                     'message' => 'Không đủ hàng!',
                 ], 200);
             }
-            else if ($request->quantity <= $product_size->amount) {
-                $cart[$request->id]['quantity'] = $request->quantity;
+            else if ($quantity <= $product_size->amount) {
+                $cart[$id]['quantity'] = $quantity;
                 session()->put('cart', $cart);
-                $total_price = $cart[$request->id]['price'] - $cart[$request->id]['price'] * $discount/100;
+                $total_price = $cart[$id]['price'] - $cart[$id]['price'] * $discount/100;
                 return response()->json([
                     'code' => 200,
                     'message' => 'success',
-                    'total_price' => $total_price * $request->quantity,
+                    'total_price' => $total_price * $quantity,
                 ], 200);
             }
         }
     }
 
     public function removeCart(Request $request) {
-        if (isset($request->id)) {
+        if ($request->id) {
             $cart = session()->get('cart');
             unset($cart[$request->id]);
             session()->put('cart', $cart);
@@ -88,7 +95,7 @@ class CartController extends Controller
         return View('User.cart.main')
         ->with(
             [
-                'data' => (object)$data,
+                'data' => $data,
                 'session'=> $session,
                 'carts' => $carts,
             ]

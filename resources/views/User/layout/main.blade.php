@@ -24,6 +24,7 @@
 </head>
 
 <body>
+    <div class="response"></div>
     @include('User.layout.header')
     @include('User.layout.menu')
     <main class="main">
@@ -63,35 +64,52 @@
         }(document, 'script', 'facebook-jssdk'));
     </script> --}}
     <script type="text/javascript">
-
+        function addToCart(url, id, size, quantity) {
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: {
+                    id: id,
+                    size: size,
+                    quantity: quantity,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.code === 200) {
+                        $.notify("Thêm vào giỏ hàng thành công!", "success");
+                        $('.nav-cart__span').empty();
+                        $('.nav-cart__span').append(`<a href="" class="nav-cart__qty">${data.item}</a>`);
+                    }
+                    else if (data.code === 400) {
+                        alert(data.message);
+                    }
+                },
+                error: function () {
+                    $.notify("Lỗi thêm giỏ hàng!", null, null, 'danger');
+                }
+            });
+        }
         $(document).ready(function () {
 
             // Add to cart
             $('.add_to_cart').off().click(function (e) {
                 e.preventDefault();
-                let urlAddToCart = $(this).data('url');
-                console.log(urlAddToCart)
-                $.ajax({
-                    type: "GET",
-                    url: urlAddToCart,
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.code === 200) {
-                            $('.nav-cart__span').empty();
-                            $('.nav-cart__span').append(`<a href="" class="nav-cart__qty">${data.item}</a>`);
-                        }
-                        else if (data.code === 400) {
-                            alert(data.message);
-                        }
-                    },
-                    error: function () {
-                        alert('Lỗi thêm giỏ hàng!');
-                    }
-                });
+                if(document.querySelector('.product-control')) {
+                    let id = $(this).closest('.product-control').find('input[name="product_id"]').val();
+                    let size = $(this).closest('.product-control').find('input[name="product_size"]').val();
+                    addToCart($(this).data('url'), id, size, 1);
+                }
+                else if(document.querySelector('.product-details-infomation')) {
+                    let id = $(this).closest('.product-details-infomation').find('input[name="product_id"]').val();
+                    let size = $(this).closest('.product-details-infomation').find('input[name="product_size"]:checked').val();
+                    let quantity = $(this).closest('.product-details-infomation').find('input[name="product_quantity"]').val();
+                    addToCart($(this).data('url'), id, size, quantity);
+                }
             });
 
             
         });
     </script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <script src="{{ asset('frontend/js/notify.min.js') }}"></script>
 </body>

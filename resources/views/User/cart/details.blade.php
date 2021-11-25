@@ -7,7 +7,7 @@
       <div class="cart__list">
       <?php $total_price = 0 ?>
         @if(isset($session['cart']) && count($carts) > 0)
-        <div id="cartformpage">
+        <form id="cartformpage">
             <div class="cart__list-row">
                 <div class="cart__list-title">
                     Bạn đang có <span>{{ count($carts) }} sản phẩm</span> trong giỏ hàng.
@@ -40,13 +40,13 @@
                             </div>
                             <div class="item-price">
                                 <p>
-                                    <span>{{ $product['price'] - ($product['price'] * $product['discount'])/100 }}₫</span>
+                                    <span>{{ number_format($product['price'] - ($product['price'] * $product['discount'])/100) }}₫</span>
                                 </p>
                             </div>
                             <div class="item-total-price">
                                 <div class="price">
                                     <span class="text">Thành tiền:</span>
-                                    <span class="line-item-total">{{ $product['quantity'] * ($product['price'] - ($product['price'] * $product['discount'])/100) }}₫</span>
+                                    <span class="line-item-total">{{ number_format($product['quantity'] * ($product['price'] - ($product['price'] * $product['discount'])/100)) }}₫</span>
                                 </div>
                                 <div class="remove">
                                     <a href="#" class="remove_cart" data-url="{{ route('removeCart') }}" data-id="{{ $key }}">
@@ -71,7 +71,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </form>
         @endif
         @if(empty($session['cart']))
         <div id="cartformpage">
@@ -90,12 +90,12 @@
         <div class="order-summary-block">
             <h2 class="order-summary-title">Thông tin đơn hàng</h2>
             <div class="summary-total">
-                <p class="total-price">Tổng tiền: <span>{{ $total_price }}₫</span>
+                <p class="total-price">Tổng tiền: <span>{{ number_format($total_price) }}₫</span>
                 </p>
             </div>
             <div class="summary-action">
                 <p>Bạn có thể nhập mã giảm giá ở trang thanh toán</p>
-                <a class="checkout-btn" href="#">THANH TOÁN</a>
+                <a class="checkout-btn" href="{{ URL::to('payment') }}">THANH TOÁN</a>
             </div>
         </div>
         <div class="btn-action support">
@@ -116,15 +116,17 @@ function updateCart(urlUpdateCart, id, quantity, changeFields) {
         dataType: 'json',
         success: function (data) {
             if (data.code === 200) {
-                changeFields.closest('.right').find('.line-item-total').text(data.total_price);
+                let currencyFormat = Intl.NumberFormat('en-US');
+                $.notify("Cập nhật giỏ hàng thành công!", "success");
+                changeFields.closest('.right').find('.line-item-total').text(currencyFormat.format(data.total_price)+"₫");
                 $('.summary-total').load(location.href + ' .total-price')
             }
             else if (data.code === 400) {
-                alert(data.message);
+                $.notify(data.message, "warn");
             }
         },
         error: function () {
-            alert('Lỗi cập nhật giỏ hàng!');
+            $.notify("Lỗi cập nhật giỏ hàng!", "danger");
         }
     });
 }
@@ -140,17 +142,14 @@ $(document).ready(function () {
         let quantity = parseInt(qty.val());
 
         if (quantity.length == 0) {
-            alert("Số lượng nhập không được để trống!");
+            $.notify("Số lượng nhập không được để trống!", "warn");
         }
         else if (isNaN(quantity)) {
-            alert("Số lượng nhập không được phép chứa ký tự khác số!");
+            $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
         }
         else if (parseInt(quantity) < 1) {
-            alert("Số lượng nhập không được bé hơn 1!");
+            $.notify("Số lượng nhập không được bé hơn 1!", "warn");
         }
-        // else if (parseInt(quantity) > 20) {
-        //     alert("Số lượng nhập không được lớn hơn 20!");
-        // }
         else {
             updateCart(urlUpdateCart, id, quantity, $(this));
         }
@@ -169,17 +168,14 @@ $(document).ready(function () {
             quantity = quantity + 1;
         }
         if (quantity.length == 0) {
-            alert("Số lượng nhập không được để trống!");
+            $.notify("Số lượng nhập không được để trống!", "warn");
         }
         else if (isNaN(quantity)) {
-            alert("Số lượng nhập không được phép chứa ký tự khác số!");
+            $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
         }
         else if (parseInt(quantity) < 1) {
-            alert("Số lượng nhập không được bé hơn 1!");
+            $.notify("Số lượng nhập không được bé hơn 1!", "warn");
         }
-        // else if (parseInt(quantity) > 20) {
-        //     alert("Số lượng nhập không được lớn hơn 20!");
-        // }
         else {
             qty.val(quantity);
             updateCart(urlUpdateCart, id, quantity, $(this));
@@ -198,14 +194,14 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.code === 200) {
-                    alert('Xoá sản phẩm thành công!');
+                    $.notify("Xoá sản phẩm thành công!", 'success');
                     setTimeout(function () {
                         location.reload();
-                    }, 300);
+                    }, 1000);
                 }
             },
             error: function () {
-                alert('Lỗi xoá giỏ hàng!');
+                $.notify("Lỗi xoá sản phẩm!", null, null, 'danger');
             }
         });
     });

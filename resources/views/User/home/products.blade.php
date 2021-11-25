@@ -53,7 +53,11 @@
             <a href="#" data-url="" class="product-btn add_to_cart">Thêm vào giỏ</a>
             @endif
             @if(isset($product_size))
-            <a href="#" data-url="{{ route('addToCart', ['id' => $product->id, 'size' => $product_size->size_id, 'quantity' => 1 ]) }}" class="product-btn add_to_cart">Thêm vào giỏ</a>
+            <a href="#" data-url="{{ route('addToCart') }}" class="product-btn add_to_cart">Thêm vào giỏ</a>
+            <div class="add_to_cart_fields">
+              <input type="hidden" name="product_id" value="{{ $product->id }}">
+              <input type="hidden" name="product_size" value="{{ $product_size->size_id }}">
+            </div>
             @endif
           </div>
         </div>
@@ -66,10 +70,10 @@
           <div class="product-price">
             <p class="product-price__new">
               @if($product->discount > 0)
-              {{$product->price - ($product->price * $product->discount)/100}}đ
-              <span class="product-price__old">{{$product->price}}đ</span>
+              {{ number_format($product->price - ($product->price * $product->discount)/100) }}đ
+              <span class="product-price__old">{{ number_format($product->price) }}đ</span>
               @else
-              {{$product->price}}đ
+              {{ number_format($product->price) }}đ
               @endif
             </p>
           </div>

@@ -12,11 +12,13 @@ window.addEventListener("load", () => {
     window.onscroll = () => {
       if (window.pageYOffset > 143) {
         nav.classList.add("active");
+        document.querySelector('.response').style = "top: 80px;";
         if(document.querySelector(".product-details-infomation")) {
           document.querySelector(".product-details-infomation").style = "top: 80px;";
         }
       } else {
         nav.classList.remove("active");
+        document.querySelector('.response').style = "top: 0;";
         if(document.querySelector(".product-details-infomation")) {
           document.querySelector(".product-details-infomation").style = "top: 0;";
         }

@@ -12,7 +12,15 @@ use App\Models\InvoiceDetail;
 class PaymentController extends Controller
 {
 	public function index(){
-		return View('User.payment.main');
+        $session = session()->all();
+        $carts = session()->get('cart');
+        return View('User.payment.main')
+        ->with(
+            [
+                'session'=> $session,
+                'carts' => $carts,
+            ]
+        );
 	}
 
 	public function clientUseVoucher(Request $request){
