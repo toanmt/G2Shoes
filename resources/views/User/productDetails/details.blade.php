@@ -44,10 +44,12 @@
       <div class="product-details-infomation__price">
         <p class="product-price__new">
           @if($product->discount > 0)
-          {{$product->price - ($product->price * $product->discount)/100}}đ
-          <span class="product-price__old">{{$product->price}}đ</span>
+          <span class="product-price_discount">
+            {{number_format($product->price - ($product->price * $product->discount)/100)}}đ
+          </span>
+          <span class="product-price__old">{{number_format($product->price)}}đ</span>
           @else
-          {{$product->price}}đ
+          {{number_format($product->price)}}đ
           @endif
         </p>
       </div>
@@ -264,10 +266,12 @@
               <div class="product-related__price">
                 <p class="product-price__new">
                   @if($product->discount > 0)
-                  {{$product->price - ($product->price * $product->discount)/100}}đ
-                  <span class="product-price__old">{{$product->price}}đ</span>
+                  <span class="product-price_discount">
+                    {{number_format($product->price - ($product->price * $product->discount)/100)}}đ
+                  </span>
+                  <span class="product-price__old">{{number_format($product->price)}}đ</span>
                   @else
-                  {{$product->price}}đ
+                  {{number_format($product->price)}}đ
                   @endif
                 </p>
               </div>

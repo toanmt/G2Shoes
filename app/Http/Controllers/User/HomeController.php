@@ -58,7 +58,7 @@ class HomeController extends Controller
 
 		$output['product_name'] = $product->product_name;
 		$output['product_id'] = $product->id;
-		$output['product_price'] = $product->price;
+		$output['product_price'] = number_format($product->price,0,',',',').'đ';
 		$output['product_discount'] = $product->discount;
 		$output['product_sizes'] = '';
 
