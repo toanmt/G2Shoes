@@ -43,7 +43,6 @@
         <div class="product-details-infomation__sku">SKU: {{ $product->id }}</div>
       </div>
       <div class="product-details-infomation__price">
-        
         <p class="product-price__new">
           @if($product->discount > 0)
           <span class="product-price_discount">

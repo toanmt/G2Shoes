@@ -585,15 +585,7 @@ a {
   font-weight: 400;
   text-decoration: line-through;
 }
-.product-price__sale {
-  padding: 5px 15px;
-  margin-right: 10px;
-  background: #f2f5fa;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 12px;
-  color: #f94c43;
-}
+
 .gallery .product-heading {
   padding-top: 80px;
 }
