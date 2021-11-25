@@ -1,4 +1,5 @@
 const paymentContent = document.querySelectorAll('.payment-content');
+const paymentNav = document.querySelector('.payment-nav');
 //validate form
 const convertChars = (str) => {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -37,6 +38,8 @@ const Validator = (options) => {
       if (isFormValid) {
         paymentContent[0].style.display = "none";
         paymentContent[1].style.display = "block";
+        paymentNav.querySelector('li:nth-child(2)').classList.add('active');
+        paymentNav.querySelector('li:last-child').classList.add('active');
       }
     });
 
@@ -160,6 +163,7 @@ const getBackUserInfor = document.querySelector("#form-user-infor");
 getBackUserInfor.addEventListener("click", () => {
   paymentContent[1].style.display = "none";
   paymentContent[0].style.display = "block";
+  paymentNav.querySelector('li:nth-child(2)').classList.remove('active');
 })
 
 
