@@ -1972,4 +1972,7 @@ input:-webkit-autofill:active{
 .product-related__name a:hover{
   color: #ff0000;
 }
+.product-price_discount {
+  color: #f94c43;
+}
 /*# sourceMappingURL=app.css.map */
