@@ -95,7 +95,7 @@
       </div>
       <div class="product-details-infomation__action">
         <a href="#" data-url="{{ route('addToCart') }}" class="btn-action add-to-cart add_to_cart">Thêm vào giỏ</a>
-        <a href="#" class="btn-action buy-now">Mua ngay</a>
+        <a href="{{URL::to('/payment')}}" class="btn-action buy-now">Mua ngay</a>
       </div>
       <a href="{{URL::to('/contact')}}" class="btn-action support">
         Nhấn vào đây để hỗ trợ nhanh nhất

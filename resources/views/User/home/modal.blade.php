@@ -42,7 +42,7 @@
             </div>
             <div class="product-details-infomation__action">
               <a href="#" class="btn-action add-to-cart">Thêm vào giỏ</a>
-              <a href="#" class="btn-action buy-now">Mua ngay</a>
+              <a href="{{URL::to('/payment')}}" class="btn-action buy-now">Mua ngay</a>
             </div>
             <a href="{{URL::to('/contact')}}" class="btn-action support">
               Nhấn vào đây để hỗ trợ nhanh nhất
@@ -142,11 +142,11 @@
           $('#product-quickview-noti').empty();
           $('#product-quickview-noti').append('<span class="product-details__noti">Tình trạng: <strong>Hết hàng</strong></span>');
         }
-
         if(data.product_size.length > 0) {
           $('#product-quickview-noti').empty();
-          $('.product-details-infomation__action').find('.add-to-cart')[0].classList.add("add_to_cart");
           $('.product-details-infomation__action').find('.add-to-cart').attr("data-url","{{ route('addToCart') }}");
+          $('.product-details-infomation__action').find('.buy-now').attr("data-url","{{ route('addToCart') }}");
+          // const paymentLink = $('.product-details-infomation__action').find('.buy-now')[0].href;
           // Choose default size
           if(document.querySelector('.size-item')) {
             $('.select-size__list').find('.size-item')[0].classList.add("active");
@@ -155,7 +155,7 @@
           $('#product-quickview-noti').append('<span class="product-details__noti">Tình trạng: <strong>Còn hàng</strong></span>')
         }
 
-        $('.add_to_cart').off().click(function (e) {
+        $('.add-to-cart').off().click(function (e) {
           e.preventDefault();
           const modal = document.querySelector('.modal-main');
           if(modal.querySelector('.product-details-infomation')) {
@@ -163,6 +163,17 @@
             let size = $(this).closest('.product-details-infomation').find('input[name="product_size"]:checked').val();
             let quantity = $(this).closest('.product-details-infomation').find('input[name="product_quantity"]').val();
             addToCart($(this).data('url'), id, size, quantity);
+          }
+        });
+        $('.buy-now').off().click(function (e) {
+          e.preventDefault();
+          const modal = document.querySelector('.modal-main');
+          if(modal.querySelector('.product-details-infomation')) {
+            let id = $(this).closest('.product-details-infomation').find('input[name="product_id"]').val();
+            let size = $(this).closest('.product-details-infomation').find('input[name="product_size"]:checked').val();
+            let quantity = $(this).closest('.product-details-infomation').find('input[name="product_quantity"]').val();
+            addToCart($(this).data('url'), id, size, quantity);
+            window.location = $('.product-details-infomation__action').find('.buy-now')[0].href;
           }
         });
         //handle slider
