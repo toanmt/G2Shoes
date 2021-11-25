@@ -5,6 +5,7 @@
 	  <div class="container">
 	    @include('User.sales.filter')
 	    @include('User.sales.products')
+	    @include('User.home.modal')
 	  </div>
 	</section>
 @endsection

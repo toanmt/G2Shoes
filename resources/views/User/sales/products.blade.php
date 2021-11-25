@@ -37,13 +37,40 @@
         @foreach($product as $product)
         <div class="product-item zoomIn animated">
           <div class="product-image">
+            <div class="product-noti">
+              <?php
+              if(!empty($product_size)) {
+                $size_amount = $product_size->where('product_id',$product->id)->first();
+                if(!empty($size_amount)) {
+                  $size_amount = $size_amount->amount;
+                }
+              }
+              ?>
+              @if(empty($size_amount) || $size_amount == 0)
+              <span class="product-noti__show product-noti__sold-out">Hết</span>
+              @else
+              @if($product->discount > 0)
+              <span class="product-noti__show product-noti__sale">-{{$product->discount}}%</span>
+              @endif
+              @endif
+            </div>
             <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
               @foreach($product->images as $image)
               <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
               @endforeach
             </a>
             <div class="product-control">
-              <a href="#" class="product-btn">Mua ngay</a>
+              <form>
+                @csrf
+                <input 
+                type="button" 
+                name="quick-view" 
+                class="product-btn product-quickview" 
+                data-id_product="{{$product -> id}}" 
+                id="product-quickview" 
+                value="Xem nhanh"
+                >
+              </form>
               <?php
               $product_size = $product->find($product->id)->product_size;
               if(isset($product_size)) {
@@ -71,10 +98,12 @@
             <div class="product-price">
               <p class="product-price__new">
                 @if($product->discount > 0)
-                  {{ number_format($product->price - ($product->price * $product->discount)/100) }}đ
-                  <span class="product-price__old">{{ number_format($product->price) }}đ</span>
+                <span class="product-price_discount">
+                  {{number_format($product->price - ($product->price * $product->discount)/100)}}đ
+                </span>
+                <span class="product-price__old">{{number_format($product->price)}}đ</span>
                 @else
-                  {{ number_format($product->price) }}đ
+                {{number_format($product->price)}}đ
                 @endif
               </p>
             </div>

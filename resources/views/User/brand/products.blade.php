@@ -98,10 +98,12 @@
             <div class="product-price">
               <p class="product-price__new">
                 @if($product->discount > 0)
-                {{ number_format($product->price - ($product->price * $product->discount)/100) }}đ
-                <span class="product-price__old">{{ number_format($product->price) }}đ</span>
+                <span class="product-price_discount">
+                  {{number_format($product->price - ($product->price * $product->discount)/100)}}đ
+                </span>
+                <span class="product-price__old">{{number_format($product->price)}}đ</span>
                 @else
-                {{ number_format($product->price) }}đ
+                {{number_format($product->price)}}đ
                 @endif
               </p>
             </div>

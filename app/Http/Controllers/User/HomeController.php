@@ -16,12 +16,12 @@ class HomeController extends Controller
 	public function index(){
 		//Session
 		$session = session()->all();
+
 		//sản phẩm mới
-		$new_product = Product::orderBy('product_id','desc')->limit(4);
+		$new_product = Product::orderBy('id','desc')->limit(4)->get();
 
 		//sản phẩm sale off
-		$saleOff = Product::where('discount','>',0)->limit(4);
-
+		$saleOff = Product::where('discount','>',0)->limit(4)->get();
 
 		//sản phẩm bán chạy
 		$top_product = Product::selectRaw("products.* ,sum(invoice_details.amount) as Tong")
@@ -29,14 +29,6 @@ class HomeController extends Controller
 		->groupBy("invoice_details.product_id")
 		->orderBy("Tong","desc")
 		->get();
-
-
-		//sản phẩm đề cử
-		$arr_key = [];
-		for($i = 0;$i<4;$i++)
-			array_push($arr_key,rand(1,10));
-
-		$like_product = Product::whereIn('id',$arr_key)->get();
 
 		$data = Brand::all();
 		$product_size = ProductSize::join('sizes','sizes.id','=','product_sizes.size_id')->get();
@@ -66,7 +58,7 @@ class HomeController extends Controller
 
 		$output['product_name'] = $product->product_name;
 		$output['product_id'] = $product->id;
-		$output['product_price'] = $product->price;
+		$output['product_price'] = number_format($product->price,0,',',',').'đ';
 		$output['product_discount'] = $product->discount;
 		$output['product_sizes'] = '';
 

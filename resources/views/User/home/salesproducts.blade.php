@@ -1,12 +1,11 @@
-@foreach($data->take(2) as $brand)
 <section class="product">
   <div class="product-heading">
-    <h2 class="heading heading-title"><a href="{{URL::to('/brand/'.$brand->id)}}">{{$brand->brand_name}}</a></h2>
-    <a href="{{URL::to('/brand/'.$brand->id)}}" class="heading-view">Xem thêm</a>
+    <h2 class="heading heading-title">Sales Off</h2>
+    <a href="{{URL::to('/sales')}}" class="heading-view">Xem thêm</a>
   </div>
   <div class="product-list">
     <div class="container">
-      @foreach($brand->products->take(4) as $product)
+      @foreach($sale_off as $product)
       <div class="product-item">
         <div class="product-image">
           <div class="product-noti">
@@ -53,11 +52,7 @@
             <a href="#" data-url="" class="product-btn add_to_cart">Thêm vào giỏ</a>
             @endif
             @if(isset($product_size))
-            <a href="#" data-url="{{ route('addToCart') }}" class="product-btn add_to_cart">Thêm vào giỏ</a>
-            <div class="add_to_cart_fields">
-              <input type="hidden" name="product_id" value="{{ $product->id }}">
-              <input type="hidden" name="product_size" value="{{ $product_size->size_id }}">
-            </div>
+            <a href="#" data-url="{{ route('addToCart', ['id' => $product->id, 'size' => $product_size->size_id, 'quantity' => 1 ]) }}" class="product-btn add_to_cart">Thêm vào giỏ</a>
             @endif
           </div>
         </div>
@@ -85,4 +80,3 @@
     </div>
   </div>
 </section>
-@endforeach
