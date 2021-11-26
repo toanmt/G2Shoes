@@ -73,7 +73,7 @@ width: 100% !important;
                             </tr>
                               <tr>
                                   <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                       
+                                    &nbsp;
                                   </td>
                               </tr>
                           </table>
@@ -84,7 +84,7 @@ width: 100% !important;
           <td width="51%" valign="top" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
                       <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right"></td>
-                  
+
                   <tr>
                       <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right"></td>
                   </tr>
@@ -99,6 +99,11 @@ width: 100% !important;
                   </tr>
                   <tr>
                       <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right">{{ $invoice->email }}</td>
+                  </tr>
+                  <tr>
+                      <td>
+                        &nbsp;
+                      </td>
                   </tr>
               </table>
           </td>
@@ -132,7 +137,9 @@ width: 100% !important;
           </td>
       </tr>
       <tr>
-          <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"> </td>
+          <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+            &nbsp;
+        </td>
       </tr>
       <tr>
           <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
@@ -162,7 +169,8 @@ width: 100% !important;
           <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"> </td>
       </tr>
       <tr>
-          <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"> </td>
+          <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+            &nbsp;</td>
       </tr>
       <tr>
           <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" colspan="2" align="center">

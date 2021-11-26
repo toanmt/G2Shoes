@@ -243,6 +243,7 @@
     <!-- JQUERY -->
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script src="{{ asset('frontend/js/notify.min.js') }}"></script>
     <script>
       $(document).ready(function(){
         $('#form-voucher').submit(function(e){
@@ -250,9 +251,9 @@
           var voucher_name = $('#voucher').val();
           $.post(location.origin+'/voucher',$(this).serialize(),function(data){
             if(data.error){
-              alert(data.error);
+              $.notify(data.error, "danger");
             }else{
-                alert(data.success);
+                $.notify(data.success, "success");
                 $('.payment-voucher__container').empty();
                 $('.payment-voucher__container').append('<span class="payment-price__title">Giảm giá:</span><span>'+data.voucher_percent+'%</span>');
             }
@@ -274,7 +275,7 @@
                 type: 'GET',
                 data: {'status':0},
                 success: function(data){
-                  alert(data.message);
+                  $.notify(data.message, "success");
                   window.location.href = location.origin;
                 }
               });
@@ -322,7 +323,7 @@
                     type: 'GET',
                     data: {'status':1},
                     success: function(data){
-                      alert(data.message);
+                      $.notify(data.message, "success");
                     }
                   });
                 })
