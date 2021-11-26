@@ -59,8 +59,8 @@
           <div class="select-size">
             @foreach($product_size as $key => $size)
             <div class="select-size__list">
-              <input id="{{ $size->size_id }}" type="radio" name="product_size" value="{{ $size->size_id }}" />
-              <label class="size-item" for="{{ $size->size_id }}">
+              <input id="size-{{ $size->size_number }}" type="radio" name="product_size" value="{{ $size->size_id }}" />
+              <label class="size-item" for="size-{{ $size->size_id }}">
                 @foreach($sizes as $key => $sizes_id)
                 @if($sizes_id->id==$size->size_id)
                 {{ $sizes_id->size_number }}
@@ -291,6 +291,25 @@
 
     $(document).ready(function () {
 
+      $(".quantity-box").off().change(function (e) {
+        e.preventDefault();
+        let urlUpdateCart = $('.update_cart_url').data('url');
+        let id = $(this).closest('.item-quan').find('.item-quan-fields').data('id');
+        let qty = $(this).closest('.item-quan').find('.quantity-box');
+        let quantity = parseInt(qty.val());
+
+        if (quantity.length == 0) {
+            $.notify("Số lượng nhập không được để trống!", "warn");
+        }
+        else if (isNaN(quantity)) {
+            $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
+        }
+        else if (parseInt(quantity) < 1) {
+            $.notify("Số lượng nhập không được bé hơn 1!", "warn");
+        }
+
+      });
+
       $('.btn-quantity').off().click(function (e) {
         e.preventDefault();
         let qty = $(this).parents('.product-details-infomation__quantity').find('.quantity-box');
@@ -302,21 +321,23 @@
           quantity = quantity + 1;
         }
         if (quantity.length == 0) {
-          alert("Số lượng nhập không được để trống!");
+            $.notify("Số lượng nhập không được để trống!", "warn");
         }
         else if (isNaN(quantity)) {
-          alert("Số lượng nhập không được phép chứa ký tự khác số!");
+            $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
         }
         else if (parseInt(quantity) < 1) {
-          alert("Số lượng nhập không được bé hơn 1!");
-        }
-        else if (parseInt(quantity) > 20) {
-          alert("Số lượng nhập không được lớn hơn 20!");
+            $.notify("Số lượng nhập không được bé hơn 1!", "warn");
         }
         else {
           qty.val(quantity);
         }
       });
+
+      if(document.querySelector('.size-item')) {
+        $('.select-size__list').find('.size-item')[0].classList.add("active");
+        $('.select-size__list').find('input[name="product_size"]')[0].checked = true;
+      }
 
       (function(name) {
         var container = $('#pagination-' + name);
@@ -400,11 +421,5 @@
           );
       }
 
-    $(document).ready(function () {
-      if(document.querySelector('.size-item')) {
-        $('.select-size__list').find('.size-item')[0].classList.add("active");
-        $('.select-size__list').find('input[name="product_size"]')[0].checked = true;
-      }
-    });
     </script>
   </section>

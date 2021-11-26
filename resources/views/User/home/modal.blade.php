@@ -26,7 +26,7 @@
               </div>
             </div>
             <div class="product-details-infomation__price">
-              <span class="product-price__new" id="product-quickview-new"></span>
+              <span class="product-price_discount" id="product-quickview-new"></span>
               <span class="product-price__old" id="product-quickview-old"></span>
             </div>
             <div class="product-details-infomation__size">
@@ -34,19 +34,12 @@
             </div>
             <div class="product-details-infomation__quantity">
               <button class="btn-quantity btn-minus">-</button>
-              <input
-              type="text"
-              name=""
-              value="1"
-              min="1"
-              class="quantity-box"
-              id="product-quantity"
-              />
+              <input type="text" value="1" name="product_quantity" min="1" max="20" step="1" class="quantity-box" id="product-quantity">
               <button class="btn-quantity btn-plus">+</button>
             </div>
             <div class="product-details-infomation__action">
-              <a href="" class="btn-action add-to-cart">Thêm vào giỏ</a>
-              <a href="" class="btn-action buy-now">Mua ngay</a>
+              <a href="#" class="btn-action add-to-cart">Thêm vào giỏ</a>
+              <a href="#" class="btn-action buy-now">Mua ngay</a>
             </div>
             <a href="" class="btn-action support">
               Nhấn vào đây để hỗ trợ nhanh nhất
@@ -59,9 +52,29 @@
 </div>
 
 <script type="text/javascript">
-
+  
 
     $(document).ready(function () {
+
+      $(".quantity-box").off().change(function (e) {
+        e.preventDefault();
+        let urlUpdateCart = $('.update_cart_url').data('url');
+        let id = $(this).closest('.item-quan').find('.item-quan-fields').data('id');
+        let qty = $(this).closest('.item-quan').find('.quantity-box');
+        let quantity = parseInt(qty.val());
+
+        if (quantity.length == 0) {
+            $.notify("Số lượng nhập không được để trống!", "warn");
+        }
+        else if (isNaN(quantity)) {
+            $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
+        }
+        else if (parseInt(quantity) < 1) {
+            $.notify("Số lượng nhập không được bé hơn 1!", "warn");
+        }
+
+      });
+
       $('.btn-quantity').off().click(function (e) {
         e.preventDefault();
         let qty = $(this).parents('.product-details-infomation__quantity').find('.quantity-box');
@@ -73,21 +86,22 @@
             quantity = quantity + 1;
         }
         if (quantity.length == 0) {
-            alert("Số lượng nhập không được để trống!");
+            $.notify("Số lượng nhập không được để trống!", "warn");
         }
         else if (isNaN(quantity)) {
-            alert("Số lượng nhập không được phép chứa ký tự khác số!");
+            $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
         }
         else if (parseInt(quantity) < 1) {
-            alert("Số lượng nhập không được bé hơn 1!");
-        }
-        else if (parseInt(quantity) > 20) {
-            alert("Số lượng nhập không được lớn hơn 20!");
+            $.notify("Số lượng nhập không được bé hơn 1!", "warn");
         }
         else {
             qty.val(quantity);
         }
       });
+
+
+      
+
     });
 
   $('.product-quickview').click(function() {
@@ -102,18 +116,44 @@
       success: function(data) {
         $('#product-quickview-name').html(data.product_name);
         $('#product-quickview-id').html(data.product_id);
+        const currencyFormat = Intl.NumberFormat('en-US');
         if(data.product_discount > 0) {
           var price_new = data.product_price - data.product_price * data.product_discount/100;
-          $('#product-quickview-new').html(price_new);
-          $('#product-quickview-old').html(data.product_price);
+          $('#product-quickview-new').html(currencyFormat.format(price_new)+"₫");
+          $('#product-quickview-old').html(currencyFormat.format(data.product_price)+"₫");
         } else {
-          $('#product-quickview-new').html(data.product_price);
+          $('#product-quickview-new').html(currencyFormat.format(data.product_price)+"₫");
           $('#product-quickview-old').html('');
         }
         $('.select-size').html(data.product_sizes);
         $('#product-quickview-dots').html(data.product_dots);
         $('#product-quickview-image').html(data.product_images);
+        $('.product-details-infomation').append(`<input type="hidden" name="product_id" value="${data.product_id}">`);
 
+        if(data.product_size.length == 0) {
+          $('.product-details-infomation__size').remove();
+        }
+
+        if(data.product_size.length > 0) {
+          $('.product-details-infomation__action').find('.add-to-cart')[0].classList.add("add_to_cart");
+          $('.product-details-infomation__action').find('.add-to-cart').attr("data-url","{{ route('addToCart') }}")
+          // Choose default size
+          if(document.querySelector('.size-item')) {
+              $('.select-size__list').find('.size-item')[0].classList.add("active");
+              $('.select-size__list').find('input[name="product_size"]')[0].checked = true;
+          }
+        }
+
+        $('.add_to_cart').off().click(function (e) {
+            e.preventDefault();
+            const modal = document.querySelector('.modal-main');
+            if(modal.querySelector('.product-details-infomation')) {
+                let id = $(this).closest('.product-details-infomation').find('input[name="product_id"]').val();
+                let size = $(this).closest('.product-details-infomation').find('input[name="product_size"]:checked').val();
+                let quantity = $(this).closest('.product-details-infomation').find('input[name="product_quantity"]').val();
+                addToCart($(this).data('url'), id, size, quantity);
+            }
+        });
         //handle slider
         const sliderMain = document.querySelector("#product-quickview-image");
         const sliderImgs = document.querySelectorAll(".slider-image");

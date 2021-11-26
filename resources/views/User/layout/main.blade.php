@@ -81,11 +81,11 @@
                         $('.nav-cart__span').append(`<a href="" class="nav-cart__qty">${data.item}</a>`);
                     }
                     else if (data.code === 400) {
-                        alert(data.message);
+                        $.notify(data.message, "warn");
                     }
                 },
                 error: function () {
-                    $.notify("Lỗi thêm giỏ hàng!", null, null, 'danger');
+                    $.notify("Lỗi thêm giỏ hàng!", "danger");
                 }
             });
         }
