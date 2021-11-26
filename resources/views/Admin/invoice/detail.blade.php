@@ -70,7 +70,7 @@
                                         @foreach ($invoice->invoice_details as $item)
                                             <tr>
                                                 <td><?php $count++; echo $count ?></td>
-                                                <td>{{ $item->products->product_name }}</td>
+                                                <td>{{ $item->products->product_name.'-Size '.$item->sizes->size_number }}</td>
                                                 <td>{{ $item->products->price*(1-($item->products->discount)/100) }}</td>
                                                 <td>{{ $item->amount }}</td>
                                                 <td class="text-right">{{ $item->products->price*(1-($item->products->discount)/100)*$item->amount }}</td>
@@ -98,16 +98,16 @@
                                                             <th>Shipping Cost: </th>
                                                             <td class="text-right">{{ $invoice->shipping_cost }}</td>
                                                         </tr>
-                                                        @if ($invoice->voucher)
+                                                        @if (isset($voucher))
                                                         <tr>
                                                             <th>Voucher (%): </th>
-                                                            <td class="text-right">{{ $invoice->voucher->percent }}%</td>
+                                                            <td class="text-right">{{ $voucher->percent }}%</td>
                                                         </tr>
                                                         @endif
                                                         <tr>
                                                             <th>Total:</th>
-                                                            @if ($invoice->voucher)
-                                                                <td class="text-right text-primary"><h5>{{  $total*(1-($invoice->voucher->percent)/100)+$invoice->shipping_cost }}</h5></td>
+                                                            @if (isset($voucher))
+                                                                <td class="text-right text-primary"><h5>{{  $total*(1-($voucher->percent)/100)+$invoice->shipping_cost }}</h5></td>
                                                             @else
                                                                 <td class="text-right text-primary"><h5>{{  $total+$invoice->shipping_cost }}</h5></td>
                                                             @endif

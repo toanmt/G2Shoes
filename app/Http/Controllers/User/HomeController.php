@@ -61,6 +61,7 @@ class HomeController extends Controller
 		$output['product_discount'] = $product->discount;
 		$output['product_size'] = $product_size;
 		$output['product_sizes'] = '';
+		$output['product_discount_display'] = '<span class="product-price__discount">- '.$product->discount.'%</span>';
 
 		foreach ($product_size as $key => $size) {
 			$output['product_sizes'] .= '

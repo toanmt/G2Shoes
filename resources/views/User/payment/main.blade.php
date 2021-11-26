@@ -158,7 +158,7 @@
                   <label for="payment-bank">Thanh toán online (Internet Banking)</label>
                 </div>
                 <div class="payment-content__infor payment-banking">
-                  Các cổng thành toán: VNPay, PayPal
+                  Các cổng thành toán: PayPal
                 </div>
               </div>
             </div>
@@ -187,7 +187,7 @@
                       <div class="product-name"
                         >{{ $product['product_name'] }}
                       </div>
-                      <div class="product-size">{{ $product['product_size'] }}</div>
+                      <div class="product-size">Size: {{ $product['product_size'] }}</div>
                     </td>
                     <td class="product-price">{{ number_format($product['price'] - ($product['price'] * $product['discount'])/100) }}₫</td>
                   </tr>
@@ -266,9 +266,9 @@
         $('.input-radio').click(function(){
           if($(this).val() == 0){
             $('#payment-button').show();
-            $('.payment-banking').empty().text('Các cổng thành toán: VNPay, PayPal');
+            $('.payment-banking').empty().text('Các cổng thành toán: PayPal');
             $('#payment-button').click(function(e){
-                e.preventDefault();
+              e.preventDefault();
               $.ajax({
                 url: location.origin+'/order',
                 type: 'GET',

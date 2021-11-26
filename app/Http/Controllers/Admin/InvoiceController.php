@@ -17,10 +17,14 @@ class InvoiceController extends Controller
 
     public function showInvoice($id){
         $invoice = Invoice::find($id);
-        $voucher = Voucher::where('status',0)->first();
-        if($voucher){
-            $invoice->voucher_id = $voucher->id;
-            $invoice->save();
+        if($invoice){
+            
+            if(!empty($voucher->voucher_id)){
+                $voucher = Voucher::find($invoice->voucher_id);
+                return View('Admin.invoice.detail')->with(['invoice'=>$invoice,'voucher'=>$voucher]);
+            }else{
+                return View('Admin.invoice.detail')->with(['invoice'=>$invoice]); 
+            }
         }
         return View('Admin.invoice.detail')->with(['invoice'=>$invoice]);
     }
@@ -120,9 +124,13 @@ class InvoiceController extends Controller
         if($invoice){
             $to_name = 'admin';
             $to_email = $invoice->email;//to email
+            if(!empty($invoice->voucher_id)){
+                $voucher = Voucher::find($invoice->voucher_id);
+                $data = ['invoice'=>$invoice,'voucher'=>$voucher];
+            }else{
+                $data = ['invoice'=>$invoice];
+            }
         }
-        $data = ['invoice'=>$invoice];
-
         Mail::send('Admin.emails.email-invoice', $data , function ($message) use ($to_email,$to_name) {
             $message->from('Nhom2pmmnm@gmail.com','Admin');
             $message->to($to_email,$to_name)->subject('Invoice');
@@ -130,7 +138,7 @@ class InvoiceController extends Controller
         if (Mail::failures()) {
             return response()->json(['error'=>'Sorry! Please try again latter']);
         }else{
-            return  response()->json(['success'=>'Great! Successfully send in your mail','url'=>url('admin/invoice')]);
+            return response()->json(['success'=>'Great! Successfully send in your mail']);
         }
     }
 

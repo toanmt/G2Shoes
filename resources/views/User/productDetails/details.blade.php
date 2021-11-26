@@ -35,12 +35,27 @@
       </div>
     </div>
     <div class="product-details-infomation">
-    <input type="hidden" name="product_id" value="{{ $product->id }}">
+      <input type="hidden" name="product_id" value="{{ $product->id }}">
       <div class="product-details-infomation__title">
         <div class="product-details-infomation__name">
           {{ $product->product_name }}
         </div>
-        <div class="product-details-infomation__sku">SKU: {{ $product->id }}</div>
+        <div class="product-details-infomation__sku">
+          <span>SKU: {{ $product->id }}</span>
+          <?php
+          if(!empty($product_size)) {
+            $size_amount = $product_size->where('product_id',$product->id)->first();
+            if(!empty($size_amount)) {
+              $size_amount = $size_amount->amount;
+            }
+          }
+          ?>
+          @if(empty($size_amount) || $size_amount == 0)
+            <span class="product-details__noti">Tình trạng: <strong>Hết hàng</strong></span>
+          @else
+            <span class="product-details__noti">Tình trạng: <strong>Còn hàng</strong></span>
+          @endif
+        </div>
       </div>
       <div class="product-details-infomation__price">
         <p class="product-price__new">
@@ -53,24 +68,25 @@
           {{number_format($product->price)}}đ
           @endif
         </p>
+        <span class="product-price__discount">- {{$product->discount}}%</span>
       </div>
       @if(count($product_size) != 0)
-        <div class="product-details-infomation__size">
-          <div class="select-size">
-            @foreach($product_size as $key => $size)
-            <div class="select-size__list">
-              <input id="size-{{ $size->size_number }}" type="radio" name="product_size" value="{{ $size->size_id }}" />
-              <label class="size-item" for="size-{{ $size->size_id }}">
-                @foreach($sizes as $key => $sizes_id)
-                @if($sizes_id->id==$size->size_id)
-                {{ $sizes_id->size_number }}
-                @endif
-                @endforeach
-              </label>
-            </div>
-            @endforeach 
+      <div class="product-details-infomation__size">
+        <div class="select-size">
+          @foreach($product_size as $key => $size)
+          <div class="select-size__list">
+            <input id="size-{{ $size->size_number }}" type="radio" name="product_size" value="{{ $size->size_id }}" />
+            <label class="size-item" for="size-{{ $size->size_id }}">
+              @foreach($sizes as $key => $sizes_id)
+              @if($sizes_id->id==$size->size_id)
+              {{ $sizes_id->size_number }}
+              @endif
+              @endforeach
+            </label>
           </div>
+          @endforeach 
         </div>
+      </div>
       @endif
       <div class="product-details-infomation__quantity">
         <button class="btn-quantity btn-minus">-</button>
@@ -299,13 +315,13 @@
         let quantity = parseInt(qty.val());
 
         if (quantity.length == 0) {
-            $.notify("Số lượng nhập không được để trống!", "warn");
+          $.notify("Số lượng nhập không được để trống!", "warn");
         }
         else if (isNaN(quantity)) {
-            $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
+          $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
         }
         else if (parseInt(quantity) < 1) {
-            $.notify("Số lượng nhập không được bé hơn 1!", "warn");
+          $.notify("Số lượng nhập không được bé hơn 1!", "warn");
         }
 
       });
@@ -321,13 +337,13 @@
           quantity = quantity + 1;
         }
         if (quantity.length == 0) {
-            $.notify("Số lượng nhập không được để trống!", "warn");
+          $.notify("Số lượng nhập không được để trống!", "warn");
         }
         else if (isNaN(quantity)) {
-            $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
+          $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
         }
         else if (parseInt(quantity) < 1) {
-            $.notify("Số lượng nhập không được bé hơn 1!", "warn");
+          $.notify("Số lượng nhập không được bé hơn 1!", "warn");
         }
         else {
           qty.val(quantity);
