@@ -63,12 +63,12 @@ width: 100% !important;
                               </tr>
                               <tr>
                                   <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;">
-                                      MÃ HÓA ĐƠN: #123
+                                      MÃ HÓA ĐƠN: {{ $invoice->id }}
                                   </td>
                               </tr>
                               <tr>
                                 <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;">
-                                    NGÀY ĐẶT: 22/12/2021
+                                    NGÀY ĐẶT: {{ $invoice->created_at->format('jS F Y') }}
                                 </td>
                             </tr>
                               <tr>
@@ -92,13 +92,13 @@ width: 100% !important;
                       <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 15px;" align="right">Người đặt</td>
                   </tr>
                   <tr>
-                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right">Lê Vũ Long</td>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right">{{ $invoice->customer_name }}</td>
                   </tr>
                   <tr>
-                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right">03280266493</td>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right">{{ $invoice->phone }}</td>
                   </tr>
                   <tr>
-                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right">levulong@gmail.com</td>
+                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px;" align="right">{{ $invoice->email }}</td>
                   </tr>
               </table>
           </td>
@@ -116,30 +116,18 @@ width: 100% !important;
                       <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 13px; border-top: 1px solid #333; border-bottom: 1px solid #333; border-right: 1px solid #333;" width="18%" align="center">Giá tiền</td>
                       <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 13px; border-top: 1px solid #333; border-bottom: 1px solid #333; border-right: 1px solid #333;" width="24%" align="center">Thành tiền</td>
                   </tr>
-                  <tr>
-                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-left: 1px solid #333; border-right: 1px solid #333;" height="32" align="center">1
-                      </td>
-                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">Converse All Star White</td>
-                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">1</td>
-                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">2.300.000đ</td>
-                      <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">2.300.000đ</td>
-                  </tr>
-                  <tr>
-                    <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-left: 1px solid #333; border-right: 1px solid #333;" height="32" align="center">2
-                    </td>
-                    <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">Air Force 1 Super</td>
-                    <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">1</td>
-                    <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">3.000.000đ</td>
-                    <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">3.000.000đ</td>
-                </tr>
-                <tr>
-                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-left: 1px solid #333; border-right: 1px solid #333;" height="32" align="center">3
-                  </td>
-                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">Vans Classic</td>
-                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">1</td>
-                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">300.000đ</td>
-                  <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">300.000đ</td>
-              </tr>
+                  <?php $count = 1; $subTotal = 0; ?>
+                  @foreach ($invoice->invoice_details as $item)
+                    <tr>
+                        <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-left: 1px solid #333; border-right: 1px solid #333;" height="32" align="center"><?php $count++; echo $count; ?>
+                        </td>
+                        <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">{{ $item->products->product_name.'-Size '.$item->sizes->size_number }}</td>
+                        <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">{{ $item->amount }}</td>
+                        <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">{{ number_format($item->products->price) }}đ</td>
+                        <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-right: 1px solid #333;" align="center">{{ number_format($item->products->price*(1-($item->products->discount)/100)*$item->amount) }}đ</td>
+                        <?php $subTotal += $item->products->price*(1-($item->products->discount)/100)*$item->amount; ?>
+                    </tr>
+                  @endforeach
               </table>
           </td>
       </tr>
@@ -148,19 +136,27 @@ width: 100% !important;
       </tr>
       <tr>
           <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
-            Tổng thành tiền: 5.600.000đ</td>
+            Tổng thành tiền: {{ $subTotal }}đ</td>
       </tr>
+      @if (isset($voucher))
       <tr>
         <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
-            Khuyến mãi: 560.000đ</td>
+            Khuyến mãi: {{ $voucher->percent }}%</td>
       </tr>
+      @endif
+      
       <tr>
         <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
             Phí vận chuyển: 40.000đ</td>
       </tr>
       <tr>
-        <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
-            Tiền phải trả: 5.070.000đ</td>
+          @if (isset($voucher))
+            <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
+                Tiền phải trả: {{ ($subTotal+40000)*(1-($voucher->percent)/100) }}đ</td>
+          @else
+            <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
+            Tiền phải trả: {{ ($subTotal+40000) }}</td>
+          @endif
       </tr>
       <tr>
           <td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"> </td>

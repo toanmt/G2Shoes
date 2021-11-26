@@ -268,7 +268,7 @@
             $('#payment-button').show();
             $('.payment-banking').empty().text('Các cổng thành toán: PayPal');
             $('#payment-button').click(function(e){
-                e.preventDefault();
+              e.preventDefault();
               $.ajax({
                 url: location.origin+'/order',
                 type: 'GET',

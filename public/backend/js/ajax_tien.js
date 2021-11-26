@@ -309,8 +309,12 @@ $(document).ready(function(){
         e.preventDefault();
         var id = $(this).data('id');
         $.get('/admin/send-invoice/'+id,function(data){
-            console.log(data);
-        })
+            if(data.error != undefined){
+                alert(data.error);
+            }else{
+                alert(data.success);
+            }
+        });
     });
 
 });

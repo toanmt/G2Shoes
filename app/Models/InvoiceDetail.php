@@ -15,4 +15,9 @@ class InvoiceDetail extends Model
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
+
+    public function sizes()
+    {
+        return $this->belongsTo(Size::class,'size_id', 'id');
+    }
 }

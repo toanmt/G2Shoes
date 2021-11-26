@@ -11,9 +11,9 @@ use App\Models\InvoiceDetail;
 
 class PaymentController extends Controller
 {
-	public function index(){
+	public function index(Request $request){
         $session = session()->all();
-        $carts = session()->get('cart');
+        $carts = session()->get('cart');;
         return View('User.payment.main')
         ->with(
             [
@@ -61,6 +61,8 @@ class PaymentController extends Controller
 
 	public function order(Request $request){
 			$customer = $request->session()->get('invoice_info');
+			//gio hàng
+			$carts = $request->session()->get('cart');
 
 			$invoice = new Invoice();
 			$invoice->customer_name = $customer['fullname'];
@@ -68,10 +70,16 @@ class PaymentController extends Controller
 			$invoice->phone = $customer['phone'];
 			$invoice->shipping_cost = 40000;
 			$invoice->address = $customer['address'];
+
+			if(($request->session()->get('invoice_info')) ){
+				$request->session()->forget('invoice_info');
+			}
+
 			if($request->session()->get('voucher_id')){
 				$invoice->voucher_id = $request->session()->get('voucher_id');
+				$request->session()->forget('voucher_id');
 			}else{
-				$invoice->voucher_id = 0;
+				$invoice->voucher_id = null;
 			}
 			
 			if($request->get('status') == 0){
@@ -81,6 +89,20 @@ class PaymentController extends Controller
 			if($request->get('status') == 1){
 				$invoice->status = 1;
 				$invoice->save();
+			}
+
+			foreach($carts as $cart){
+				$invoice_detail = new InvoiceDetail();
+				$invoice_detail->invoice_id = $invoice->id;
+				$invoice_detail->product_id = $cart['id'];
+				$invoice_detail->size_id = $cart['size'];
+				$invoice_detail->amount = $cart['quantity'];
+				$invoice_detail->save();
+			}
+
+			//xóa session cũ
+			if(($request->session()->get('cart')) ){
+				$request->session()->forget('cart');
 			}
 			return response()->json(['message'=>'Đơn hàng đã được đặt']);
 		
