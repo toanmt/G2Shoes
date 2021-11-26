@@ -243,6 +243,7 @@
     <!-- JQUERY -->
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script src="{{ asset('frontend/js/notify.min.js') }}"></script>
     <script>
       $(document).ready(function(){
         $('#form-voucher').submit(function(e){
