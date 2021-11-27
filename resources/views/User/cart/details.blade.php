@@ -185,7 +185,7 @@ $(document).ready(function () {
     // Remove from cart
     $('.remove_cart').off().click(function (e) {
         e.preventDefault();
-        let urlRemoveCart = $(this).data('url');
+        let urlRemoveCart = location.origin + "remove-cart";
         let id = $(this).data('id');
         $.ajax({
             type: "GET",

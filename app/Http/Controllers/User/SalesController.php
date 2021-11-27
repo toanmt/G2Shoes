@@ -12,6 +12,7 @@ use App\Models\Product;
 class SalesController extends Controller
 {
 	public function index(){
+		$session = session()->all();
 		$data = Brand::all();
 		$size = Size::all();
 		$product = Product::select('products.id','product_name','price','discount','type_id', Product::raw('sum(price - price*discount/100) as currentprice'))
@@ -53,6 +54,7 @@ class SalesController extends Controller
 				'size'=>(object)$size,
 				'product'=>(object)$product,
 				'sort_name'=>(string)$sort_name,
+				'session' => $session,
 			]
 		);
 	}
