@@ -113,14 +113,5 @@
       </div>
     </div>
   </section>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      //handle sort product
-      $('.dropdown-item').on('click',function(e){
-        var url = $(this).data('value');
-        window.location = url;
-      });
-    });
-  </script>
   <script src="{{ asset('frontend/js/filter.js') }}"></script>
 </div>

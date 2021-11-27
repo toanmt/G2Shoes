@@ -25,6 +25,11 @@ function filter(name)
 
     };
 $(document).ready(function() {
+    $('.dropdown-item').on('click',function(e){
+        var url = $(this).data('value');
+        window.location = url;
+    });
+    
     filter('filter_size');
     filter('filter_type');
     filter('filter_price');
