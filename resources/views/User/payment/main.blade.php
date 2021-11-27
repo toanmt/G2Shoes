@@ -252,11 +252,10 @@
             if(data.error){
               alert(data.error);
             }else{
-                alert(data.success);
-                $('.payment-voucher__container').empty();
-                $('.payment-voucher__container').append('<span class="payment-price__title">Giảm giá:</span><span>'+data.voucher_percent+'%</span>');
+              alert(data.success);
+              $('.payment-voucher__container').empty();
+              $('.payment-voucher__container').append('<span class="payment-price__title">Giảm giá:</span><span>'+data.voucher_percent+'%</span>');
             }
-
           });
         })
 
@@ -275,7 +274,10 @@
                 data: {'status':0},
                 success: function(data){
                   alert(data.message);
-                  window.location.href = location.origin;
+                  setTimeout(() => {
+                    window.location.href = location.origin;
+                  }, 1000);
+                  
                 }
               });
             });
@@ -323,6 +325,9 @@
                     data: {'status':1},
                     success: function(data){
                       alert(data.message);
+                      setTimeout(() => {
+                        window.location.href = location.origin;
+                      }, 1000);
                     }
                   });
                 })

@@ -13,14 +13,19 @@ class PaymentController extends Controller
 {
 	public function index(Request $request){
         $session = session()->all();
-        $carts = session()->get('cart');;
-        return View('User.payment.main')
-        ->with(
-            [
-                'session'=> $session,
-                'carts' => $carts,
-            ]
-        );
+        $carts = session()->get('cart');
+
+		if(!empty(session()->get('cart'))){
+			return View('User.payment.main')
+			->with(
+				[
+					'session'=> $session,
+					'carts' => $carts,
+				]
+			);
+		}
+		return abort(404);
+        
 	}
 
 	public function clientUseVoucher(Request $request){
