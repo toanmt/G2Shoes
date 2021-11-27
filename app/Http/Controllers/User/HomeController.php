@@ -66,8 +66,8 @@ class HomeController extends Controller
 		foreach ($product_size as $key => $size) {
 			$output['product_sizes'] .= '
 			<div class="select-size__list">
-			<input id="size-'.$size->size_number.'" type="radio" name="product_size" value="'.$size->size_id.'" />
-			<label class="size-item" for="size-'.$size->size_number.'">'.$size->size_number.'</label>
+			<input id="size-'.$size->size_id.'" type="radio" name="product_size" value="'.$size->size_id.'" />
+			<label class="size-item" for="size-'.$size->size_id.'">'.$size->size_number.'</label>
 			</div>
 			';
 		}
