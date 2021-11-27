@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Invoice;
 use App\Models\Voucher;
 use App\Models\InvoiceDetail;
+use App\Models\ProductSize;
 
 class PaymentController extends Controller
 {
@@ -40,15 +41,15 @@ class PaymentController extends Controller
 		}else{
 			
 			if($voucher){
-				if($voucher->amount =< 0){
+				if($voucher->amount <= 0){
 					return response()->json(['error'=>'voucher đã hết']);
 				}else{
 					$clientVoucher = Voucher::find($voucher->id);
 					$clientVoucher->amount = $clientVoucher->amount - 1;
 					$clientVoucher->save();
 					//tạo session mới
-					$request->session()->put('voucher_id', $voucher->id);
-					return response()->json(['success'=>'voucher đã được cập nhật','voucher_percent'=>$voucher->percent]);
+					$request->session()->put('voucher_id', $clientVoucher->id);
+					return response()->json(['success'=>'voucher đã được cập nhật','voucher_percent'=>$clientVoucher->percent]);
 				}	
 			}
 			else{
@@ -106,6 +107,10 @@ class PaymentController extends Controller
 				$invoice_detail->product_id = $cart['id'];
 				$invoice_detail->size_id = $cart['size'];
 				$invoice_detail->amount = $cart['quantity'];
+				$product_size = ProductSize::where('product_id',$cart['id'])->where('size_id',$cart['size'])->first();
+				$a = $product_size->amount - $cart['quantity'];
+				ProductSize::where('product_id',$cart['id'])->where('size_id',$cart['size'])->
+				update(['amount'=>$a]);
 				$invoice_detail->save();
 			}
 
