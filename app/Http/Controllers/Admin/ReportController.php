@@ -30,7 +30,8 @@ class ReportController extends Controller
             + invoices.shipping_cost ) as sum"
         ))
         ->whereRaw("Month(invoices.created_at) = Month(NOW()) and
-            Year(invoices.created_at) = Year(NOW())")
+            Year(invoices.created_at) = Year(NOW())and 
+            invoices.status = 1")
         ->groupBy(DB::raw('day'))
         ->get();
 
@@ -81,7 +82,7 @@ class ReportController extends Controller
             SUM(invoice_details.amount * products.price *(100 - vouchers.percent )/ 100 
             + invoices.shipping_cost ) as sum"
         ))
-        ->whereBetween('invoices.created_at',[$start,$end])
+        ->whereRaw('invoices.created_at Between "' .$start.'" and "'.$end . '" and invoices.status = 1')
         ->groupBy(DB::raw('day,invoices.created_at'))
         ->get();
 

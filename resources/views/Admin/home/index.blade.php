@@ -23,7 +23,7 @@
     </div>
     <!-- /Page Header -->
     
-    <h2>Today</h2>
+    <h2>Today {{$data_today->datenow}}</h2>
     <div class="row">
       <div class="col-md-6 col-sm-6 col-lg-6">
         <div class="card dash-widget">
