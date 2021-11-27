@@ -42,7 +42,7 @@
             </div>
             <div class="product-details-infomation__action">
               <a href="#" class="btn-action add-to-cart">Thêm vào giỏ</a>
-              <a href="{{URL::to('/payment')}}" class="btn-action buy-now">Mua ngay</a>
+              <a href="#" class="btn-action buy-now">Mua ngay</a>
             </div>
             <a href="{{URL::to('/contact')}}" class="btn-action support">
               Nhấn vào đây để hỗ trợ nhanh nhất
@@ -144,9 +144,7 @@
         }
         if(data.product_size.length > 0) {
           $('#product-quickview-noti').empty();
-          $('.product-details-infomation__action').find('.add-to-cart').attr("data-url","{{ route('addToCart') }}");
-          $('.product-details-infomation__action').find('.buy-now').attr("data-url","{{ route('addToCart') }}");
-          // const paymentLink = $('.product-details-infomation__action').find('.buy-now')[0].href;
+
           // Choose default size
           if(document.querySelector('.size-item')) {
             $('.select-size__list').find('.size-item')[0].classList.add("active");
@@ -162,7 +160,7 @@
             let id = $(this).closest('.product-details-infomation').find('input[name="product_id"]').val();
             let size = $(this).closest('.product-details-infomation').find('input[name="product_size"]:checked').val();
             let quantity = $(this).closest('.product-details-infomation').find('input[name="product_quantity"]').val();
-            addToCart($(this).data('url'), id, size, quantity);
+            addToCart(location.origin + "/add-to-cart", id, size, quantity);
           }
         });
         $('.buy-now').off().click(function (e) {
@@ -172,8 +170,7 @@
             let id = $(this).closest('.product-details-infomation').find('input[name="product_id"]').val();
             let size = $(this).closest('.product-details-infomation').find('input[name="product_size"]:checked').val();
             let quantity = $(this).closest('.product-details-infomation').find('input[name="product_quantity"]').val();
-            addToCart($(this).data('url'), id, size, quantity);
-            window.location = $('.product-details-infomation__action').find('.buy-now')[0].href;
+            addToCart(location.origin + "/add-to-cart", id, size, quantity, 1);
           }
         });
         //handle slider

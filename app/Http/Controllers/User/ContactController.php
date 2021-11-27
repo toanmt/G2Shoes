@@ -10,7 +10,8 @@ use App\Models\Brand;
 class ContactController extends Controller
 {
 	public function index(){
+		$session = session()->all();
 		$data = Brand::all();
-		return View('User.contact.main')->with(['data'=>(object)$data]);
+		return View('User.contact.main')->with(['data'=>(object)$data, 'session' => $session]);
 	}
 }
