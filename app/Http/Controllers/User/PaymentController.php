@@ -40,7 +40,7 @@ class PaymentController extends Controller
 		}else{
 			
 			if($voucher){
-				if($voucher->amount =< 0){
+				if($voucher->amount <= 0){
 					return response()->json(['error'=>'voucher đã hết']);
 				}else{
 					$clientVoucher = Voucher::find($voucher->id);

@@ -77,8 +77,8 @@
                                 <th>Customer</th>
                                 <th>Email</th>
                                 <th>Created Date</th>
-                                <th>Shipping Cost</th>
                                 <th>Status</th>
+                                <th class="text-right">Action</th>
                             </tr>
                         </thead>
                         <tbody id="data-invoice-report-show">
