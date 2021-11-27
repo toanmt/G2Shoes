@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Brand;
 use App\Models\Size;
 use App\Models\Product;
+use App\Models\ProductSize;
 
 class SalesController extends Controller
 {
@@ -21,6 +22,7 @@ class SalesController extends Controller
 		->join('brands','types.brand_id','=','brands.id')
 		->where('discount','>',0);
 		$sort_name = "Sắp xếp";
+		$product_size = ProductSize::join('sizes','sizes.id','=','product_sizes.size_id')->get();
 
 		//sort
 		if(isset($_GET['sort_by'])) {
@@ -55,6 +57,7 @@ class SalesController extends Controller
 				'product'=>(object)$product,
 				'sort_name'=>(string)$sort_name,
 				'session' => $session,
+				'product_size' => $product_size,
 			]
 		);
 	}
