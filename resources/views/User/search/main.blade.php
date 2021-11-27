@@ -51,10 +51,10 @@
 						}
 						?>
 						@if(empty($product_size))
-						<a href="#" data-url="" class="product-btn add-to-cart">Thêm vào giỏ</a>
+						<a href="#" class="product-btn add-to-cart">Thêm vào giỏ</a>
 						@endif
 						@if(isset($product_size))
-						<a href="#" data-url="{{ route('addToCart') }}" data-quantity="1" class="product-btn add-to-cart">Thêm vào giỏ</a>
+						<a href="#" class="product-btn add-to-cart">Thêm vào giỏ</a>
 						<div class="add_to_cart_fields">
 							<input type="hidden" name="product_id" value="{{ $product->id }}">
 							<input type="hidden" name="product_size" value="{{ $product_size->size_id }}">
