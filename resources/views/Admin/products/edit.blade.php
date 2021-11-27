@@ -66,8 +66,8 @@
                             {{ $size->size_number }}
                             <input name="sizes[]" class="edit-size-check check-{{ $size->id }}" type="checkbox" value="{{ $size->id }}">
                             <div class="form-group form-focus">
-                                <input  class="amount-size-{{ $size->id }} edit-amount-input-{{ $size->id }} form-control" name="size_amount[]" type="text" disabled>
-                                <label class="focus-label">Amount</label>
+                                <input  class="amount-size amount-size-{{ $size->id }} edit-amount-input-{{ $size->id }} form-control" data-id ="{{ $size->id }}" name="size_amount[]" type="text" disabled>
+                                <label class="focus-label text-amount-{{ $size->id }}">Amount</label>
                             </div>
                         </div>
                         @endforeach

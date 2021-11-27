@@ -41,7 +41,7 @@
           <div class="card-body">
             <span class="dash-widget-icon"><i class="fa fa-usd"></i></span>
             <div class="dash-widget-info">
-              <h3>{{$data_today->sum}}</h3>
+              <h3>{{number_format($data_today->sum)}} đ</h3>
               <span>Total of all bills</span>
             </div>
           </div>

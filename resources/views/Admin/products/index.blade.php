@@ -27,7 +27,7 @@
                                 @endforeach
                             </td>
                             <td>{{ $product->product_name }}</td>
-                            <td>{{ $product->price }}</td>
+                            <td>{{ number_format($product->price) }}</td>
                             <td>{{ $product->discount }}</td>
                             <td>@foreach ($product->product_size as $product_size)
                                 <button><?php echo $product_size->sizes->size_number ?></button>
