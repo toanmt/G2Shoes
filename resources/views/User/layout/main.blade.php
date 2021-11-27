@@ -64,7 +64,7 @@
         }(document, 'script', 'facebook-jssdk'));
     </script> --}}
     <script type="text/javascript">
-        function addToCart(url, id, size, quantity) {
+        function addToCart(url, id, size, quantity, redirect = 0) {
             $.ajax({
                 type: "GET",
                 url: url,
@@ -79,6 +79,11 @@
                         $.notify("Thêm vào giỏ hàng thành công!", "success");
                         $('.nav-cart__span').empty();
                         $('.nav-cart__span').append(`<a href="" class="nav-cart__qty">${data.item}</a>`);
+                        if(redirect == 1) {
+                            setTimeout(function () {
+                                window.location = location.origin + "/payment";
+                            }, 1000);
+                        }
                     }
                     else if (data.code === 400) {
                         $.notify(data.message, "warn");
@@ -89,24 +94,34 @@
                 }
             });
         }
-        $(document).ready(function () {
 
+        $(document).ready(function () {
             // Add to cart
-            $('.add_to_cart').off().click(function (e) {
+            $('.add-to-cart').off().click(function (e) {
                 e.preventDefault();
                 if(document.querySelector('.product-control')) {
                     let id = $(this).closest('.product-control').find('input[name="product_id"]').val();
                     let size = $(this).closest('.product-control').find('input[name="product_size"]').val();
-                    addToCart($(this).data('url'), id, size, 1);
+                    addToCart(location.origin + "/add-to-cart", id, size, 1);
                 }
                 else if(document.querySelector('.product-details-infomation')) {
                     let id = $(this).closest('.product-details-infomation').find('input[name="product_id"]').val();
                     let size = $(this).closest('.product-details-infomation').find('input[name="product_size"]:checked').val();
                     let quantity = $(this).closest('.product-details-infomation').find('input[name="product_quantity"]').val();
-                    addToCart($(this).data('url'), id, size, quantity);
+                    addToCart(location.origin + "/add-to-cart", id, size, quantity);
                 }
             });
-
+            
+            $('.buy-now').off().click(function (e) {
+                e.preventDefault();
+                const productDetails = document.querySelector('.product-details');
+                if(productDetails.querySelector('.product-details-infomation')) {
+                    let id = $(this).closest('.product-details-infomation').find('input[name="product_id"]').val();
+                    let size = $(this).closest('.product-details-infomation').find('input[name="product_size"]:checked').val();
+                    let quantity = $(this).closest('.product-details-infomation').find('input[name="product_quantity"]').val();
+                    addToCart(location.origin + "/add-to-cart", id, size, quantity, 1);
+                }
+            });
             
         });
     </script>

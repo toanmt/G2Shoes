@@ -75,7 +75,7 @@
         <div class="select-size">
           @foreach($product_size as $key => $size)
           <div class="select-size__list">
-            <input id="size-{{ $size->size_number }}" type="radio" name="product_size" value="{{ $size->size_id }}" />
+            <input id="size-{{ $size->size_id }}" type="radio" name="product_size" value="{{ $size->size_id }}" />
             <label class="size-item" for="size-{{ $size->size_id }}">
               @foreach($sizes as $key => $sizes_id)
               @if($sizes_id->id==$size->size_id)
@@ -94,7 +94,7 @@
         <button class="btn-quantity btn-plus">+</button>
       </div>
       <div class="product-details-infomation__action">
-        <a href="#" data-url="{{ route('addToCart') }}" class="btn-action add-to-cart add_to_cart">Thêm vào giỏ</a>
+        <a href="#" class="btn-action add-to-cart">Thêm vào giỏ</a>
         <a href="#" class="btn-action buy-now">Mua ngay</a>
       </div>
       <a href="{{URL::to('/contact')}}" class="btn-action support">

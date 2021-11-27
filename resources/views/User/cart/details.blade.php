@@ -98,9 +98,9 @@
                 <a class="checkout-btn" href="{{ URL::to('payment') }}">THANH TOÁN</a>
             </div>
         </div>
-        <div class="btn-action support">
+        <a href="{{URL::to('/contact')}}" class="btn-action support">
             Nhấn vào đây để hỗ trợ nhanh nhất
-        </div>
+        </a>
     </div>
   </div>
 <script type="text/javascript">
@@ -185,7 +185,7 @@ $(document).ready(function () {
     // Remove from cart
     $('.remove_cart').off().click(function (e) {
         e.preventDefault();
-        let urlRemoveCart = $(this).data('url');
+        let urlRemoveCart = location.origin + "/remove-cart";
         let id = $(this).data('id');
         $.ajax({
             type: "GET",
