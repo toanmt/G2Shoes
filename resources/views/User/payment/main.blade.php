@@ -137,6 +137,7 @@
                     id="payment-cod"
                     class="input-radio"
                     value="0"
+                    checked
                   />
                   <img src="{{ asset('frontend/img/others/cod.svg') }}" alt="" />
                   <label for="payment-cod"
@@ -164,7 +165,7 @@
             </div>
             <div class="form-direct">
               <a href="#" class="form-cart" id="form-user-infor">Quay lại thông tin giao hàng</a>
-              <a href="{{ url('order') }}" class="form-submit" id="payment-button">Hoàn tất đơn hàng</a>
+              <a class="form-submit" id="payment-button">Hoàn tất đơn hàng</a>
             </div>
           </div>
           <div class="payment-footer">Powered by G2 SHOES</div>
@@ -222,17 +223,17 @@
           <div class="payment-price">
             <div class="payment-price__container">
               <span class="payment-price__title">Tạm tính:</span>
-              <span>{{ number_format($total_price) }}đ</span>
+              <span id="subTotal" data-value="{{ $total_price }}">{{ number_format($total_price) }}đ</span>
             </div>
             <div class="payment-price__container">
               <span class="payment-price__title">Phí vận chuyển:</span>
               <span>40,000đ</span>
             </div>
             <div class="payment-voucher__container"></div>
-            <div class="payment-price__container">
+            <div class="payment-price__container" id="total">
               <span class="payment-price__title">Tổng tiền: </span>
               <span>{{ number_format($total_price + 40000) }}₫</span>
-              <input type="hidden" id="total_usd" value="{{ $total_price/22650 }}">
+              <input type="hidden" id="total_usd" value="{{ ($total_price+40000)/22650 }}">
             </div>
           </div>
         </div>
@@ -243,7 +244,6 @@
     <!-- JQUERY -->
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-    <script src="{{ asset('frontend/js/notify.min.js') }}"></script>
     <script>
       $(document).ready(function(){
         $('#form-voucher').submit(function(e){
@@ -251,13 +251,23 @@
           var voucher_name = $('#voucher').val();
           $.post(location.origin+'/voucher',$(this).serialize(),function(data){
             if(data.error){
-              $.notify(data.error, "danger");
+              alert(data.error);
             }else{
+              alert(data.success);
+              let currencyFormat = Intl.NumberFormat('en-US');
+              var total = $('#subTotal').data('value')*
+              (1-parseInt(data.voucher_percent)/100)
+              +40000;
               $('.payment-voucher__container').empty();
               $('.payment-voucher__container').append('<span class="payment-price__title">Giảm giá:</span><span>'+data.voucher_percent+'%</span>');
-                $.notify(data.success, "success");
-                $('.payment-voucher__container').empty();
-                $('.payment-voucher__container').append('<span class="payment-price__title">Giảm giá:</span><span>'+data.voucher_percent+'%</span>');
+              $('#total').empty();
+              $('#total').append('<span class="payment-price__title">Tổng tiền: </span>'+
+              '<span>'+
+                currencyFormat.format(total)
+              +'₫</span>'+
+              '<input type="hidden" id="total_usd" value="'+
+              currencyFormat.format(total)/22650
+              +'">');
             }
           });
         })
@@ -269,18 +279,7 @@
           if($(this).val() == 0){
             $('#payment-button').show();
             $('.payment-banking').empty().text('Các cổng thành toán: PayPal');
-            $('#payment-button').click(function(e){
-              e.preventDefault();
-              $.ajax({
-                url: location.origin+'/order',
-                type: 'GET',
-                data: {'status':0},
-                success: function(data){
-                  $.notify(data.message, "success");
-                  window.location.href = location.origin;
-                }
-              });
-            });
+            
           }else{
             $('#payment-button').hide();
             $('.payment-banking').empty().html('<div id="paypal-button"></div>');
@@ -324,13 +323,33 @@
                     type: 'GET',
                     data: {'status':1},
                     success: function(data){
-                      $.notify(data.message, "success");
+                      alert(data.message);
+                      setTimeout(() => {
+                      
+                        window.location.href = location.origin;
+                      }, 1000);
                     }
                   });
                 })
               }
             },'#paypal-button');
           }
+        });
+
+        $('#payment-button').click(function(e){
+          e.preventDefault();
+          $.ajax({
+            url: location.origin+'/order',
+            type: 'GET',
+            data: {'status':0},
+            success: function(data){
+              alert(data.message);
+              setTimeout((data) => {
+                window.location.href = location.origin;
+              }, 1000);
+              
+            }
+          });
         });
       })
     </script>
