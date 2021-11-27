@@ -275,11 +275,30 @@
         $('#form-infor').submit(function(){
             $.post($(this).attr('action'),$(this).serialize(),function(data){});
         });
+        function payment(){
+          $('#payment-button').click(function(e){
+            e.preventDefault();
+            $.ajax({
+              url: location.origin+'/order',
+              type: 'GET',
+              data: {'status':0},
+              success: function(data){
+                alert(data.message);
+                setTimeout((data) => {
+                  window.location.href = location.origin;
+                }, 1000);
+                
+              }
+            });
+          })
+        }
+
+        payment();
         $('.input-radio').click(function(){
           if($(this).val() == 0){
             $('#payment-button').show();
             $('.payment-banking').empty().text('Các cổng thành toán: PayPal');
-            
+            payment();
           }else{
             $('#payment-button').hide();
             $('.payment-banking').empty().html('<div id="paypal-button"></div>');
@@ -334,22 +353,6 @@
               }
             },'#paypal-button');
           }
-        });
-
-        $('#payment-button').click(function(e){
-          e.preventDefault();
-          $.ajax({
-            url: location.origin+'/order',
-            type: 'GET',
-            data: {'status':0},
-            success: function(data){
-              alert(data.message);
-              setTimeout((data) => {
-                window.location.href = location.origin;
-              }, 1000);
-              
-            }
-          });
         });
       })
     </script>
