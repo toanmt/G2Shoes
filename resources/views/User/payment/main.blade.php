@@ -292,7 +292,6 @@
             });
           })
         }
-
         payment();
         $('.input-radio').click(function(){
           if($(this).val() == 0){
