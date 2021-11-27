@@ -253,11 +253,12 @@
             if(data.error){
               $.notify(data.error, "danger");
             }else{
+              $('.payment-voucher__container').empty();
+              $('.payment-voucher__container').append('<span class="payment-price__title">Giảm giá:</span><span>'+data.voucher_percent+'%</span>');
                 $.notify(data.success, "success");
                 $('.payment-voucher__container').empty();
                 $('.payment-voucher__container').append('<span class="payment-price__title">Giảm giá:</span><span>'+data.voucher_percent+'%</span>');
             }
-
           });
         })
 
