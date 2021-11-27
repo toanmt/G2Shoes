@@ -40,12 +40,16 @@ class PaymentController extends Controller
 		}else{
 			
 			if($voucher){
-				//giảm số lượng voucher
-				$clientVoucher = Voucher::find($voucher->id);
-				$clientVoucher->amount = $clientVoucher->amount - 1;
-				$clientVoucher->save();
-				//tạo session mới
-				$request->session()->put('voucher_id', $voucher->id);
+				if($voucher->amount =< 0){
+					return response()->json(['error'=>'voucher đã hết']);
+				}else{
+					$clientVoucher = Voucher::find($voucher->id);
+					$clientVoucher->amount = $clientVoucher->amount - 1;
+					$clientVoucher->save();
+					//tạo session mới
+					$request->session()->put('voucher_id', $voucher->id);
+					return response()->json(['success'=>'voucher đã được cập nhật','voucher_percent'=>$voucher->percent]);
+				}	
 			}
 			else{
 				return response()->json(['error'=>'voucher không đúng']);
