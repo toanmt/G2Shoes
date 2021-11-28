@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Size;
+use App\Models\ProductSize;
 use DB;
 
 class SizeController extends Controller
@@ -23,6 +24,7 @@ class SizeController extends Controller
     }
     public function deleteSize(Request $request,$id){
         Size::where('id',$id)->delete();
+        ProductSize::where('size_id',$id)->delete();
         return ['output'=>'xóa thành công'];
     }
 }

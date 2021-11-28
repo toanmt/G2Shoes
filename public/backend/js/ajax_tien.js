@@ -13,28 +13,28 @@ $(document).ready(function(){
     //edit
     function editImage(){
         $('#submit_form_edit_image').submit(function(e){
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'),
-            data: new FormData(this),
-            dataType: 'json',
-            contentType:false,
-            processData:false,
-            success: function(data){
-                alert(data.success);
-                setTimeout(function(){
-                    location.reload();
-                },1);
-            },
-            error: function(data){
-                console.log(data);
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: new FormData(this),
+                dataType: 'json',
+                contentType:false,
+                processData:false,
+                success: function(data){
+                    alert(data.success);
+                    setTimeout(function(){
+                        location.reload();
+                    },1);
+                },
+                error: function(data){
+                    console.log(data);
 
-            }
+                }
 
-        })
-    })};
-    editImage();
+            })
+        })};
+        editImage();
 
     //delete
     $('.btn-delete-image').click(function(e){
@@ -134,30 +134,30 @@ $(document).ready(function(){
     function editProduct()
     {
         $('#frm-edit-product').on('submit',function(e){
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('action'),
-            data: new FormData(this),
-            dataType: 'json',
-            contentType:false,
-            processData:false,
-            success: function(data){
-                if(data.error !== undefined){
-                    alert(data.error);
-                }else{
-                    alert(data.success);
-                    setTimeout(function(){
-                        location.reload();
-                    },1);
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: new FormData(this),
+                dataType: 'json',
+                contentType:false,
+                processData:false,
+                success: function(data){
+                    if(data.error !== undefined){
+                        alert(data.error);
+                    }else{
+                        alert(data.success);
+                        setTimeout(function(){
+                            location.reload();
+                        },1);
+                    }
+                },
+                error: function(data){
+                    console.log(data);
                 }
-            },
-            error: function(data){
-                console.log(data);
-            }
-        })
-    })};
-    editProduct();
+            })
+        })};
+        editProduct();
 
     // //delete
     $('#product-table').on('click','.btn-delete-product',function(e){
@@ -263,17 +263,15 @@ $(document).ready(function(){
         $('.del-voucher').attr('data-id',key);
     });
 
-    function delProduct(){
-        $('.del-voucher').click(function(e){
+    function delVoucher(){
+        $('.del-voucher').on('click',function(e){
             e.preventDefault();
             $.get('/admin/delete-voucher/'+$(this).data('id'),function(data){
-                if(data.ok){
-                    location.reload();
-                }
+                location.reload();
             });
-        })
+        });
     };
-    delProduct();
+    delVoucher();
 
     //edit status invoice
     function editInvoice(){$('#frm-table-invocie').on('click','.edit-status-invoice',function(e){

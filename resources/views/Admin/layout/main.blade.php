@@ -121,6 +121,7 @@
         $('.edit-amount-input-'+$(this).val()).val('').attr('disabled','disabled');
       } 
     });
+
   </script>
   <!-- Chart JS -->
   <script src="{{ asset('backend/plugins/morris/morris.min.js') }}"></script>
