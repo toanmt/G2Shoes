@@ -1,8 +1,6 @@
 <section class="gallery">
   <div class="product-heading">
-    <h2 class="heading heading-title">
-      <a href="">Khách hàng và G2 SHOES</a>
-    </h2>
+    <h2 class="heading heading-title">Khách hàng và G2 SHOES</h2>
   </div>
   <div class="gallery-list">
     <ul>

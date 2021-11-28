@@ -10,8 +10,6 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'products';
-    protected $fillable = ['id','product_name','price','discount','type_id'];
-    protected $primaryKey = 'id';
     
     public function product_size(){
         return $this->hasMany(ProductSize::class,'product_id','id');

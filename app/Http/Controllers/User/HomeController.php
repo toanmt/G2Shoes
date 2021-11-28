@@ -32,7 +32,6 @@ class HomeController extends Controller
 		->get();
 
 		$data = Brand::all();
-		$product_size = ProductSize::join('sizes','sizes.id','=','product_sizes.size_id')->get();
 		return View('User.home.main')->with(
 			[
 				'data' => (object)$data,
@@ -40,7 +39,6 @@ class HomeController extends Controller
 				'sale_off' => $saleOff,
 				'top_product' => $top_product,
 				'session' => $session,
-        'product_size'=>(object)$product_size,
 	]);
 	}
 

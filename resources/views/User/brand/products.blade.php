@@ -39,14 +39,16 @@
           <div class="product-image">
             <div class="product-noti">
               <?php
+              $product_size = $product->find($product->id)->product_size;
+              $size_amount = 0;
               if(!empty($product_size)) {
-                $size_amount = $product_size->where('product_id',$product->id)->first();
-                if(!empty($size_amount)) {
-                  $size_amount = $size_amount->amount;
+                $product_sizes = $product_size->first();
+                if(!empty($product_sizes)) {
+                  $size_amount = $product_sizes->amount;
                 }
               }
               ?>
-              @if(empty($size_amount) || $size_amount == 0)
+              @if($size_amount == 0)
               <span class="product-noti__show product-noti__sold-out">Hết</span>
               @else
               @if($product->discount > 0)
@@ -71,20 +73,14 @@
                 value="Xem nhanh"
                 >
               </form>
-              <?php
-              $product_size = $product->find($product->id)->product_size;
-              if(isset($product_size)) {
-                $product_size = $product_size->first();
-              }
-              ?>
-              @if(empty($product_size))
+              @if(empty($product_sizes))
               <a href="#" class="product-btn add-to-cart">Thêm vào giỏ</a>
               @endif
-              @if(isset($product_size))
+              @if(isset($product_sizes))
               <a href="#" class="product-btn add-to-cart">Thêm vào giỏ</a>
               <div class="add_to_cart_fields">
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                <input type="hidden" name="product_size" value="{{ $product_size->size_id }}">
+                <input type="hidden" name="product_size" value="{{ $product_sizes->size_id }}">
               </div>
               @endif
             </div>

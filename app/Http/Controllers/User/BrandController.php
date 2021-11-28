@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\View;
 use App\Models\Brand;
 use App\Models\Size;
 use App\Models\Product;
-use App\Models\ProductSize;
 
 class BrandController extends Controller
 {
@@ -24,7 +23,6 @@ class BrandController extends Controller
 		->join('types','types.id','=','products.type_id')
 		->join('brands','types.brand_id','=','brands.id')
 		->where('brands.id',$id);
-		$product_size = ProductSize::join('sizes','sizes.id','=','product_sizes.size_id')->get();
 		$sort_name = "Sắp xếp";
 
 		//sort
@@ -60,7 +58,6 @@ class BrandController extends Controller
 				'size'=>(object)$size,
 				'product'=>(object)$product,
 				'sort_name'=>(string)$sort_name,
-				'product_size'=>(object)$product_size,
 				'session' => $session,
 			]
 		);
