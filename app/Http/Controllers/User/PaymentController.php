@@ -26,7 +26,7 @@ class PaymentController extends Controller
 			);
 		}
 		return abort(404);
-        
+
 	}
 
 	public function clientUseVoucher(Request $request){
@@ -34,12 +34,12 @@ class PaymentController extends Controller
 		if(($request->session()->get('voucher_id'))){
 			$request->session()->forget('voucher_id');
 		}
-		
+
 		$voucher = Voucher::where('voucher_name',$request->voucher)->where('status',0)->first();
 		if(empty($voucher)){
 			return response()->json(['error'=>'voucher không đúng']);
 		}else{
-			
+
 			if($voucher){
 				if($voucher->amount <= 0){
 					return response()->json(['error'=>'voucher đã hết']);
@@ -66,7 +66,7 @@ class PaymentController extends Controller
 		}
 		//tạo session mới
 		$request->session()->put('invoice_info', $request->all());
-		
+
 	}
 
 	public function order(Request $request){
@@ -91,7 +91,7 @@ class PaymentController extends Controller
 			}else{
 				$invoice->voucher_id = null;
 			}
-			
+
 			if($request->get('status') == 0){
 				$invoice->status = 0;
 				$invoice->save();
@@ -119,8 +119,8 @@ class PaymentController extends Controller
 				$request->session()->forget('cart');
 			}
 			return response()->json(['message'=>'Đơn hàng đã được đặt']);
-		
-		
+
+
 	}
 
 

@@ -84,7 +84,7 @@
               @endforeach
             </label>
           </div>
-          @endforeach 
+          @endforeach
         </div>
       </div>
       @endif
@@ -146,7 +146,7 @@
                 </span>
               </div>
             </div>
-            <button type="submit" class="btn-action add-to-cart form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-action form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
           </form>
         </div>
       </div>
@@ -192,7 +192,7 @@
                 </span>
               </div>
             </div>
-            <button type="submit" class="btn-action add-to-cart form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-action form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
           </form>
         </div>
         <div class="product-details-review__comment__action">
@@ -223,7 +223,7 @@
               <input name="score" type="hidden" value="{{ $rate_score }}" readonly="">
             </div>
             <div>(<span itemprop="ratingCount">{{ count($comment) }}</span> <span> đánh giá</span>)</div>
-            
+
           </div>
           <div class="rating-filter">
             <div class="rating-filter-list">
@@ -253,7 +253,7 @@
               </div>
             </div>
           </div>
-        </div>  
+        </div>
         <div id="review_data">
 
         </div>
@@ -271,7 +271,7 @@
           <div class="product-related__item">
             <div class="product-related__img">
               <a href="{{ URL::to('/product_details/'.$product->id)}}">
-                @foreach($product->images as $image) 
+                @foreach($product->images as $image)
                 <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
                 @endforeach
               </a>
@@ -381,7 +381,7 @@
               for(i = 1; i <= item.rating; i++)
               {
                 rate += '<i data-alt="'+ i +'" class="bx bxs-star" style="margin: 0 2px; color: #ffbe00;" aria-hidden="true"></i>';
-              } 
+              }
 
               header += '<div class="product-details-review__comment__list-header">';
               header += '<span id="author">' + item.author + '</span>&nbsp;';

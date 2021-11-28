@@ -45,7 +45,7 @@ width: 100% !important;
 
   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
       <tr>
-          <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"><img src="{{$message->embed(public_path().'/Image/logo/logo.png') }}" width="150" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100%;"></td>
+          <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"><img src="{{$message->embed(public_path().'/Image/demo/logo.png') }}" width="150" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100%;"></td>
       </tr>
       <tr>
           <td colspan="2" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;"> </td>
@@ -151,7 +151,7 @@ width: 100% !important;
             Khuyến mãi: {{ $voucher->percent }}%</td>
       </tr>
       @endif
-      
+
       <tr>
         <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; text-align: right;" colspan="2">
             Phí vận chuyển: 40.000đ</td>
