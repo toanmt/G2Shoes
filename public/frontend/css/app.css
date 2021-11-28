@@ -899,10 +899,10 @@ a {
 .product-details-infomation__action .add-to-cart {
   width: 50%;
 }
-.add-to-cart {
+.add-to-cart, .btn-add-comment {
   border: 1px solid #000000;
 }
-.add-to-cart::before {
+.add-to-cart::before, .btn-add-comment::before {
   background-color: #000000;
 }
 .return-home {
@@ -1981,7 +1981,7 @@ input:-webkit-autofill:active{
   font-size: 14px;
 }
 .product-related__name a:hover{
-  color: #ff0000;
+  color: #29dbd2;
 }
 .product-price_discount {
   color: #f94c43;

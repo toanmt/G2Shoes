@@ -43,17 +43,19 @@
         <div class="product-details-infomation__sku">
           <span>SKU: {{ $product->id }}</span>
           <?php
+          $product_size = $product->find($product->id)->product_size;
+          $size_amount = 0;
           if(!empty($product_size)) {
-            $size_amount = $product_size->where('product_id',$product->id)->first();
-            if(!empty($size_amount)) {
-              $size_amount = $size_amount->amount;
+            $product_sizes = $product_size->first();
+            if(!empty($product_sizes)) {
+              $size_amount = $product_sizes->amount;
             }
           }
           ?>
-          @if(empty($size_amount) || $size_amount == 0)
-            <span class="product-details__noti">Tình trạng: <strong>Hết hàng</strong></span>
+          @if($size_amount == 0)
+          <span class="product-details__noti">Tình trạng: <strong>Hết hàng</strong></span>
           @else
-            <span class="product-details__noti">Tình trạng: <strong>Còn hàng</strong></span>
+          <span class="product-details__noti">Tình trạng: <strong>Còn hàng</strong></span>
           @endif
         </div>
       </div>
@@ -68,7 +70,9 @@
           {{number_format($product->price)}}đ
           @endif
         </p>
+        @if($product->discount > 0)
         <span class="product-price__discount">- {{$product->discount}}%</span>
+        @endif
       </div>
       @if(count($product_size) != 0)
       <div class="product-details-infomation__size">
@@ -146,7 +150,7 @@
                 </span>
               </div>
             </div>
-            <button type="submit" class="btn-action form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-action form-submit btn-add-comment" style="font-weight: 600">Gửi đánh giá của bạn</button>
           </form>
         </div>
       </div>
@@ -192,7 +196,7 @@
                 </span>
               </div>
             </div>
-            <button type="submit" class="btn-action form-submit" style="font-weight: 600">Gửi đánh giá của bạn</button>
+            <button type="submit" class="btn-action form-submit btn-add-comment" style="font-weight: 600">Gửi đánh giá của bạn</button>
           </form>
         </div>
         <div class="product-details-review__comment__action">

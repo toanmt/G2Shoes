@@ -318,6 +318,7 @@ window.addEventListener("load", () => {
         rules: [
         Validator.isRequired("#review_author", "Vui lòng nhập đầy đủ họ và tên"),
         Validator.isFullName("#review_author", "Họ và tên không đúng định dạng"),
+        Validator.isRequired("#review_body", "Vui lòng nhập đánh giá"),
         ],
       });
   });

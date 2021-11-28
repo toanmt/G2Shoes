@@ -20,7 +20,6 @@ class ProductController extends Controller
         $sizes = Size::all();
         $comment = Comment::where('product_id',$id)->orderBy('rating','DESC')->get();
         $product = Product::with('type')->find($id);
-		$product_size = ProductSize::where('product_id',$id)->with('sizes')->get();
         //sản phẩm đề cử
         $arr_key = [];
         for($i = 0;$i<4;$i++)
@@ -34,7 +33,6 @@ class ProductController extends Controller
                 'type'=>(object)$type,
                 'sizes'=>(object)$sizes,
                 'product'=>(object)$product,
-                'product_size'=>(object)$product_size,
                 'comment'=>(object)$comment,
                 'session'=>$session,
                 'like_product'=>(object)$like_product,
