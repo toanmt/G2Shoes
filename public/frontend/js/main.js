@@ -29,7 +29,7 @@ window.addEventListener("load", () => {
     const navLinks = document.querySelectorAll(".nav-link");
     [...navLinks].forEach((item) => {
       if(item.href === window.location.href) {
-        const navItem = item.parentElement; 
+        const navItem = item.parentElement;
         navItem.classList.add('active');
         document.title = `${item.innerText} - G2 SHOES`;
       }
@@ -147,7 +147,7 @@ window.addEventListener("load", () => {
       }
 
     //Add comment
-    function addComment() 
+    function addComment()
     {
       $('#review-form').on('submit',function(e){
         e.preventDefault();
@@ -159,7 +159,7 @@ window.addEventListener("load", () => {
           dataType: 'json',
           contentType:false,
           processData:false,
-          success: function(data){ 
+          success: function(data){
             if(data.error !== undefined){
              $('.error-fields').append(data.error);
            }else{
@@ -310,4 +310,14 @@ window.addEventListener("load", () => {
       Validator.isEmail("#email", "Email không đúng định dạng"),
       ],
     });
+
+    Validator({
+        form: "#review-form",
+        formMessage: ".form-message",
+        formButtonSubmit: ".form-submit",
+        rules: [
+        Validator.isRequired("#review_author", "Vui lòng nhập đầy đủ họ và tên"),
+        Validator.isFullName("#review_author", "Họ và tên không đúng định dạng"),
+        ],
+      });
   });

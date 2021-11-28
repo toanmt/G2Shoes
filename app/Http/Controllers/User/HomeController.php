@@ -28,6 +28,7 @@ class HomeController extends Controller
 		->join('invoice_details','products.id','=','invoice_details.product_id')
 		->groupBy("invoice_details.product_id")
 		->orderBy("Tong","desc")
+        ->limit(4)
 		->get();
 
 		$data = Brand::all();
