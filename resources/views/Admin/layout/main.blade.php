@@ -80,7 +80,6 @@
 
   <!-- Ajax -->
   <script src="{{ asset('backend/js/ajax.js') }}"></script>
-  <script src="{{ asset('backend/js/ajax_tien.js') }}"></script>
   <!-- Export To PDF -->
   <script src="{{ asset('backend/js/exportPDF.js') }}"></script>
 
