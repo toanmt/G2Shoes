@@ -1,53 +1,141 @@
-function filter(name) 
-    {
-        $(document).on('click', '.' + name, function () {
-            $('.list-item').empty();
+// function filter(name) 
+//     {   var type_list = '';
+//         var size_list = '';
+//         var price_list = '';
+//         $(document).on('click', '.' + name, function () {
+//             $('.list-item').empty();
+//             let url = $(this).data('url');
 
-            let ids = [];
-            let url = $(this).data('url');
+//             console.log($(this)[0].classList)
+//             if($(this)[0].classList.contains('filter_type')) {
+//                 let ids = [];
+//                 let counter = 0;
+//                 $('.filter_type').each(function () {
+//                     if ($(this).is(":checked")) {
+//                         ids.push($(this).attr('filter'));
+//                         counter++;
+//                     }
+//                 });
+//                 type_list += ids;
+//             }
             
-            let counter = 0;
-            $('.' + name).each(function () {
-                if ($(this).is(":checked")) {
-                    ids.push($(this).attr('filter'));
-                    counter++;
-                }
-            });
+//             if($(this)[0].classList.contains('filter_size')) {
+//                 let ids = [];
+//                 let counter = 0;
+//                 $('.filter_size').each(function () {
+//                     if ($(this).is(":checked")) {
+//                         ids.push($(this).attr('filter'));
+//                         counter++;
+//                     }
+//                 });
+//                 size_list += ids;
+//             }
+            
+//             if($(this)[0].classList.contains('filter_price')) {
+//                 let ids = [];
+//                 let counter = 0;
+//                 $('.filter_price').each(function () {
+//                     if ($(this).is(":checked")) {
+//                         ids.push($(this).attr('filter'));
+//                         counter++;
+//                     }
+//                 });
+//                 price_list += ids;
+//             }
 
-            url += $(this).data('search') + '=' + encodeURIComponent(ids);
+//             fetchCauseAgainstFilter(url, type_list, size_list, price_list);
+            
+//             // let counter = 0;
+//             // $('.' + name).each(function () {
+//             //     if ($(this).is(":checked")) {
+//             //         ids.push($(this).attr('filter'));
+//             //         counter++;
+//             //     }
+//             // });
 
-            if (counter == 0) {
-                fetchCauseAgainstFilter($(this).data('url'));
-            } else {
-                fetchCauseAgainstFilter(url);
-            }
-        });
+//             // url += $(this).data('search') + '=' + encodeURIComponent(ids);
 
-    };
+//             // if (counter == 0) {
+//             //     fetchCauseAgainstFilter($(this).data('url'));
+//             // } else {
+//             //     fetchCauseAgainstFilter(url);
+//             // }
+            
+//         });
+
+//     };
 $(document).ready(function() {
     $('.dropdown-item').on('click',function(e){
         var url = $(this).data('value');
         window.location = url;
     });
-    
-    filter('filter_size');
-    filter('filter_type');
-    filter('filter_price');
-
+    var type_list = '';
+    var size_list = '';
+    var price_list = '';
+    $(document).on('click', '.filter', function () {
+        $('.list-item').empty();
+        let url = $(this).data('url');
+        if($(this)[0].classList.contains('filter_type')) {
+            let ids = [];
+            let counter = 0;
+            $('.filter_type').each(function () {
+                if ($(this).is(":checked")) {
+                    ids.push($(this).attr('filter'));
+                    counter++;
+                }
+            });
+            type_list = '';
+            type_list  += ids;
+        }
+        
+        if($(this)[0].classList.contains('filter_size')) {
+            let ids = [];
+            let counter = 0;
+            $('.filter_size').each(function () {
+                if ($(this).is(":checked")) {
+                    ids.push($(this).attr('filter'));
+                    counter++;
+                }
+            });
+            size_list = '';
+            size_list += ids;
+        }
+        
+        if($(this)[0].classList.contains('filter_price')) {
+            let ids = [];
+            let counter = 0;
+            $('.filter_price').each(function () {
+                if ($(this).is(":checked")) {
+                    ids.push($(this).attr('filter'));
+                    counter++;
+                }
+            });
+            price_list = '';
+            price_list += ids;
+        }
+        fetchCauseAgainstFilter(url, type_list, size_list, price_list);
+    });
 });
 
 
-function fetchCauseAgainstFilter(url) {
-
+function fetchCauseAgainstFilter(url, type_list, size_list, price_list) {
     $.ajax({
         type: 'GET',
         url: url,
+        data: {
+            type_list: type_list,
+            size_list: size_list,
+            price_list: price_list,
+        },
+        dataType: 'json',
         success: function (response) {
             let responses = response
             .map(v => v['id'])
             .map((v, i, array) => array.indexOf(v) === i && i)
             .filter(v => response[v])
             .map(v => response[v]);
+
+            $('.list-item').empty();
 
             if (responses.length == 0) {
                 $('.list-item').append('Không có giày phù hợp!');

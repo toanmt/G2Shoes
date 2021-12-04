@@ -63,7 +63,7 @@ class BrandController extends Controller
 		);
 	}
 
-	public function filter($id) {
+	public function filter(Request $request, $id) {
 		$product = Product::select('products.id','product_name','price','discount','type_id')
 		->join('types','types.id','=','products.type_id')
 		->join('brands','types.brand_id','=','brands.id')
@@ -71,16 +71,16 @@ class BrandController extends Controller
 
 
 		// filter type
-		if(isset($_GET['type_list'])) {
-			$type_filter = explode(',', $_GET['type_list']);
+		if($request->type_list) {
+			$type_filter = explode(',', $request->type_list);
 			$product = $product
 			->whereIn('types.id',$type_filter);
 		}
 
 
 		// filter size
-		if(isset($_GET['size_list'])) {
-			$size_filter = explode(',', $_GET['size_list']);
+		if($request->size_list) {
+			$size_filter = explode(',', $request->size_list);
 			$product = $product
 			->join('product_sizes','product_sizes.product_id','=','products.id')
 			->join('sizes','sizes.id','=','product_sizes.size_id')
@@ -88,28 +88,35 @@ class BrandController extends Controller
 		}
 
 		// filter price
-		if(isset($_GET['price_list'])) {
-			switch ($_GET['price_list']) {
-				case 1:
-					$product = $product->whereBetween('price', [0, 1000000]);
-					break;
-				case 2:
-					$product = $product->whereBetween('price', [1000000, 2000000]);
-					break;
-				case 3:
-					$product = $product->whereBetween('price', [2000000, 3500000]);
-					break;
-				case 4:
-					$product = $product->whereBetween('price', [3500000, 5000000]);
-					break;
-				case 5:
-					$product = $product->where('price', '>' , 5000000);
-					break;
+		if($request->price_list) {
+			$price_filter = explode(',', $request->price_list);
+			if(in_array(1, $price_filter)) {
+				$product = $product->whereBetween('price', [0, 1000000]);
+			}
+			if(in_array(2, $price_filter)) {
+				$product = $product->whereBetween('price', [1000000, 2000000]);
+			}
+			if(in_array(3, $price_filter)) {
+				$product = $product->whereBetween('price', [2000000, 3500000]);
+			}
+			if(in_array(4, $price_filter)) {
+				$product = $product->whereBetween('price', [3500000, 5000000]);
+			}
+			if(in_array(5, $price_filter)) {
+				$product = $product->where('price', '>' , 5000000);
 			}
 		}
 
 		$product = $product->get();
+		$arr = array();
+		$i = 0;
+		foreach($product as $key => $value) {
+			if(!in_array($value, $arr)) {
+				$arr[$i] = $product[$key];
+				$i++;
+			}
+		}
 
-		return response()->json($product);
+		echo json_encode($arr, true);
 	}
 }
