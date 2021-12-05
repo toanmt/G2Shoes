@@ -10,7 +10,7 @@
                             <th>Customer</th>
                             <th>Email</th>
                             <th>Created Date</th>
-                            <th>Shipping Cost</th>
+                            <th>Total</th>
                             <th>Status</th>
                             <th class="text-right">Action</th>
                         </tr>
@@ -22,7 +22,17 @@
                                 <td>{{ $invoice->customer_name }}</td>
                                 <td>{{ $invoice->email }}</td>
                                 <td>{{ $invoice->created_at->format('jS F Y') }}</td>
-                                <td>{{ $invoice->shipping_cost }}</td>
+                                @if(count($invoice->invoice_details) > 0)
+                                    <?php $total = 0; ?>
+                                    @foreach ($invoice->invoice_details as $item)
+                                        <?php $total += $item->products->price*(1-($item->products->discount)/100)*$item->amount ?></td>
+                                    @endforeach
+                                    <td>{{ $total }}</td>
+                                @else
+                                <td>chưa có sản phẩm</td>
+                                @endif
+                                
+                                
                                 <td>
                                     <div class="dropdown action-label">
                                     @if ($invoice->status == 0)

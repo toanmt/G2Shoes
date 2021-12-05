@@ -93,17 +93,16 @@
   <script>
     $('.upload').change(function(e){
       if(e.target.files.length <=2){
-        $('.edit-img').css('border','none');
+        $('.edit-img-product').css('border','none');
         $('.btn-text').hide();
         $('.img-output').remove();
         for(let image of e.target.files){        
-          $('.edit-img').append('<img class="img-output" src="'+URL.createObjectURL(image)+'">');
+          $('.edit-img-product').append('<img class="img-output" src="'+URL.createObjectURL(image)+'">');
+          $('.image-product').attr('src',URL.createObjectURL(image));
         }
       }else{
         alert('chỉ nhận được tối đa 2 ảnh');
       }
-
-      
     });
 
     $('.size-check').change(function(e){

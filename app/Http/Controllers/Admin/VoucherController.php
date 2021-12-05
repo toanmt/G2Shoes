@@ -22,10 +22,16 @@ class VoucherController extends Controller
         if(in_array(null, (array)$request->all(), true)){
             return response()->json(['errors'=>'vui lòng nhập đầy đủ thông tin']);
         }else{
-            if((int)$request->percent <= 0){
+            if(!is_numeric($request->percent)){
                 return response()->json(['errors'=>'percent không đúng định dạng']);
-            }else if((int)$request->amount <= 0){
+            }elseif((int)$request->percent < 0){
+                return response()->json(['errors'=>'percent không được giá trị âm']);
+            }elseif((int)$request->percent >50){
+                return response()->json(['errors'=>'percent không được quá 50%']);
+            }elseif(!is_numeric($request->amount)){
                 return response()->json(['errors'=>'amount không đúng định dạng']);
+            }elseif((int)$request->amount < 0){
+                return response()->json(['errors'=>'amount không được giá trị âm']);
             }else{
                 $voucher = new Voucher();
                 $voucher->voucher_name = $request->voucher_name;
@@ -49,10 +55,16 @@ class VoucherController extends Controller
         if(in_array(null, (array)$request->all(), true)){
             return response()->json(['errors'=>'vui lòng nhập đầy đủ thông tin']);
         }else{
-            if((int)$request->percent <= 0){
+            if(!is_numeric($request->percent)){
                 return response()->json(['errors'=>'percent không đúng định dạng']);
-            }else if((int)$request->amount <= 0){
+            }elseif((int)$request->percent < 0){
+                return response()->json(['errors'=>'percent không được giá trị âm']);
+            }elseif((int)$request->percent >50){
+                return response()->json(['errors'=>'percent không được quá 50%']);
+            }elseif(!is_numeric($request->amount)){
                 return response()->json(['errors'=>'amount không đúng định dạng']);
+            }elseif((int)$request->amount < 0){
+                return response()->json(['errors'=>'amount không được giá trị âm']);
             }else{
                 $voucher = Voucher::find($id);
                 $voucher->voucher_name = $request->voucher_name;
