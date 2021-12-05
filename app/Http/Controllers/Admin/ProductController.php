@@ -31,10 +31,17 @@ class ProductController extends Controller
         || in_array(null, (array)$request->size_amount, true)){
             return response()->json(['error'=>'Vui lòng nhập đầy đủ thông tin!!']);
         }else{
-            if((double)$request->price <= 0){
-               return response()->json(['error'=>'Price không đúng định dạng!!']);
-            }else if((int)$request->discount <= 0){
+            if(!is_numeric($request->discount)){
+                return response()->json(['error'=>'Price hông đúng định dạng!!']);
+            }
+            elseif((double)$request->price <= 0){
+               return response()->json(['error'=>'Price không được giá trị âm!!']);
+            }elseif(!is_numeric($request->discount)){
                 return response()->json(['error'=>'Discount không đúng định dạng!!']);
+            }else if((int)$request->discount < 0){
+                return response()->json(['error'=>'Discount không được giá trị âm!!']);
+            }elseif((int)$request->discount >= 50){
+                return response()->json(['error'=>'Discount không được quá 50%!!']);
             }else{
                 if(!$request->hasFile('image_product')){
                     return response()->json(['error'=>'hãy chọn ảnh!!']);
@@ -81,10 +88,17 @@ class ProductController extends Controller
         || in_array(null, (array)$request->size_amount, true)){
             return response()->json(['error'=>'Vui lòng nhập đầy đủ thông tin!!']);
         }else{
-            if((double)$request->price <= 0){
-               return response()->json(['error'=>'Price không đúng định dạng!!']);
-            }else if((int)$request->discount <= 0){
+            if(!is_numeric($request->discount)){
+                return response()->json(['error'=>'Price hông đúng định dạng!!']);
+            }
+            elseif((double)$request->price <= 0){
+               return response()->json(['error'=>'Price không được giá trị âm!!']);
+            }elseif(!is_numeric($request->discount)){
                 return response()->json(['error'=>'Discount không đúng định dạng!!']);
+            }else if((int)$request->discount < 0){
+                return response()->json(['error'=>'Discount không được giá trị âm!!']);
+            }elseif((int)$request->discount >= 50){
+                return response()->json(['error'=>'Discount không được quá 50%!!']);
             }else{
                 //change product
                 $product = Product::find($id);
