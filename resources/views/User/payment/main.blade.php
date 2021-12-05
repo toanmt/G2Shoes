@@ -266,7 +266,7 @@
                 currencyFormat.format(total)
               +'₫</span>'+
               '<input type="hidden" id="total_usd" value="'+
-              currencyFormat.format(total)/22650
+              currencyFormat.format(total/22650)
               +'">');
             }
           });
@@ -287,7 +287,7 @@
                 setTimeout((data) => {
                   window.location.href = location.origin;
                 }, 1000);
-                
+
               }
             });
           })
@@ -343,7 +343,7 @@
                     success: function(data){
                       alert(data.message);
                       setTimeout(() => {
-                      
+
                         window.location.href = location.origin;
                       }, 1000);
                     }

@@ -1376,8 +1376,8 @@ input.my-input:-internal-autofill-selected {
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
   -webkit-box-shadow: 0 0 0 30px white inset !important;
   transition: background-color 600000000000s 0s, color 600000000000s 0s;
@@ -1450,7 +1450,7 @@ input:-webkit-autofill:active{
 .paginationjs {
   display: flex;
   justify-content: center;
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 .paginationjs .paginationjs-pages li {
   border: none;
@@ -1478,7 +1478,7 @@ input:-webkit-autofill:active{
 .paginationjs .paginationjs-pages li:last-child {
   border-right: none;
 }
-.paginationjs .paginationjs-pages li:last-child>a, 
+.paginationjs .paginationjs-pages li:last-child>a,
 .paginationjs .paginationjs-pages li:first-child>a {
   font-size: 25px;
   opacity: 1;
@@ -2013,13 +2013,13 @@ input:-webkit-autofill:active{
   position: relative;
   background-color: #000000;
   color: #ffffff;
-  margin-left: 20px;
+  margin-left: 23px;
   height: 22px;
   line-height: 22px;
-  width: 40px;
+  width: 46px;
   font-size: 14px;
   text-align: center;
-  display: inline-block; 
+  display: inline-block;
 }
 .product-price__discount::after {
   content: '';
@@ -2033,6 +2033,6 @@ input:-webkit-autofill:active{
   border-color: rgba(136,183,213,0);
   border-right-color: #000000;
   border-width: 11px;
-  margin-top: -11px; 
+  margin-top: -11px;
 }
 /*# sourceMappingURL=app.css.map */
