@@ -1,71 +1,5 @@
-// function filter(name) 
-//     {   var type_list = '';
-//         var size_list = '';
-//         var price_list = '';
-//         $(document).on('click', '.' + name, function () {
-//             $('.list-item').empty();
-//             let url = $(this).data('url');
-
-//             console.log($(this)[0].classList)
-//             if($(this)[0].classList.contains('filter_type')) {
-//                 let ids = [];
-//                 let counter = 0;
-//                 $('.filter_type').each(function () {
-//                     if ($(this).is(":checked")) {
-//                         ids.push($(this).attr('filter'));
-//                         counter++;
-//                     }
-//                 });
-//                 type_list += ids;
-//             }
-            
-//             if($(this)[0].classList.contains('filter_size')) {
-//                 let ids = [];
-//                 let counter = 0;
-//                 $('.filter_size').each(function () {
-//                     if ($(this).is(":checked")) {
-//                         ids.push($(this).attr('filter'));
-//                         counter++;
-//                     }
-//                 });
-//                 size_list += ids;
-//             }
-            
-//             if($(this)[0].classList.contains('filter_price')) {
-//                 let ids = [];
-//                 let counter = 0;
-//                 $('.filter_price').each(function () {
-//                     if ($(this).is(":checked")) {
-//                         ids.push($(this).attr('filter'));
-//                         counter++;
-//                     }
-//                 });
-//                 price_list += ids;
-//             }
-
-//             fetchCauseAgainstFilter(url, type_list, size_list, price_list);
-            
-//             // let counter = 0;
-//             // $('.' + name).each(function () {
-//             //     if ($(this).is(":checked")) {
-//             //         ids.push($(this).attr('filter'));
-//             //         counter++;
-//             //     }
-//             // });
-
-//             // url += $(this).data('search') + '=' + encodeURIComponent(ids);
-
-//             // if (counter == 0) {
-//             //     fetchCauseAgainstFilter($(this).data('url'));
-//             // } else {
-//             //     fetchCauseAgainstFilter(url);
-//             // }
-            
-//         });
-
-//     };
-$(document).ready(function() {
-    $('.dropdown-item').on('click',function(e){
+$(document).ready(function () {
+    $('.dropdown-item').on('click', function (e) {
         var url = $(this).data('value');
         window.location = url;
     });
@@ -75,7 +9,7 @@ $(document).ready(function() {
     $(document).on('click', '.filter', function () {
         $('.list-item').empty();
         let url = $(this).data('url');
-        if($(this)[0].classList.contains('filter_type')) {
+        if ($(this)[0].classList.contains('filter_type')) {
             let ids = [];
             let counter = 0;
             $('.filter_type').each(function () {
@@ -85,10 +19,10 @@ $(document).ready(function() {
                 }
             });
             type_list = '';
-            type_list  += ids;
+            type_list += ids;
         }
-        
-        if($(this)[0].classList.contains('filter_size')) {
+
+        if ($(this)[0].classList.contains('filter_size')) {
             let ids = [];
             let counter = 0;
             $('.filter_size').each(function () {
@@ -100,8 +34,8 @@ $(document).ready(function() {
             size_list = '';
             size_list += ids;
         }
-        
-        if($(this)[0].classList.contains('filter_price')) {
+
+        if ($(this)[0].classList.contains('filter_price')) {
             let ids = [];
             let counter = 0;
             $('.filter_price').each(function () {
@@ -129,11 +63,12 @@ function fetchCauseAgainstFilter(url, type_list, size_list, price_list) {
         },
         dataType: 'json',
         success: function (response) {
+            const currencyFormat = Intl.NumberFormat('en-US');
             let responses = response
-            .map(v => v['id'])
-            .map((v, i, array) => array.indexOf(v) === i && i)
-            .filter(v => response[v])
-            .map(v => response[v]);
+                .map(v => v['id'])
+                .map((v, i, array) => array.indexOf(v) === i && i)
+                .filter(v => response[v])
+                .map(v => response[v]);
 
             $('.list-item').empty();
 
@@ -145,6 +80,9 @@ function fetchCauseAgainstFilter(url, type_list, size_list, price_list) {
                         $('.list-item').append(`
                         <div class="product-item zoomIn animated">
                             <div class="product-image">
+                            <div class="product-noti">
+                                <span class="product-noti__show product-noti__sale">-${product.discount}%</span>
+                            </div>
                                 <a href="${location.origin}/product_details/${product.id}" class="product-image__link">
                                     <img src="${location.origin}/Image/${product.images[0].image_name}" alt="" />
                                     <img src="${location.origin}/Image/${product.images[1].image_name}" alt="" />
@@ -161,10 +99,12 @@ function fetchCauseAgainstFilter(url, type_list, size_list, price_list) {
                                     </h3>
                                 </div>
                                 <div class="product-price">
-                                    <p class="product-price__new">
-                                        ${product.price}đ
-                                        <span class="product-price__old">${product.price - (product.price * product.discount)/100}đ</span>
-                                    </p>
+                                <p class="product-price__new">
+                                <span class="product-price_discount">
+                                  ${currencyFormat.format(product.price - (product.price * product.discount)/100)}đ
+                                </span>
+                                <span class="product-price__old">${currencyFormat.format(product.price)}đ</span>
+                                </p>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +130,7 @@ function fetchCauseAgainstFilter(url, type_list, size_list, price_list) {
                                 </div>
                                 <div class="product-price">
                                     <p class="product-price__new">
-                                        ${product.price}đ
+                                        ${currencyFormat.format(product.price)}đ
                                     </p>
                                 </div>
                             </div>

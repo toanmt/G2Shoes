@@ -121,7 +121,7 @@ width: 100% !important;
                       <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 13px; border-top: 1px solid #333; border-bottom: 1px solid #333; border-right: 1px solid #333;" width="18%" align="center">Giá tiền</td>
                       <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 600; font-size: 13px; border-top: 1px solid #333; border-bottom: 1px solid #333; border-right: 1px solid #333;" width="24%" align="center">Thành tiền</td>
                   </tr>
-                  <?php $count = 1; $subTotal = 0; ?>
+                  <?php $count = 0; $subTotal = 0; ?>
                   @foreach ($invoice->invoice_details as $item)
                     <tr>
                         <td style="box-sizing: border-box; position: relative; font-family: Verdana, Geneva, sans-serif; font-weight: 300; font-size: 13px; border-bottom: 1px solid #333; border-left: 1px solid #333; border-right: 1px solid #333;" height="32" align="center"><?php $count++; echo $count; ?>
