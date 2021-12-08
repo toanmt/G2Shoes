@@ -23,14 +23,14 @@
     </div>
     <!-- /Page Header -->
     
-    <h2>Today {{$data_today->datenow}}</h2>
+    <h2>Today </h2>
     <div class="row">
       <div class="col-md-6 col-sm-6 col-lg-6">
         <div class="card dash-widget">
           <div class="card-body">
             <span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
             <div class="dash-widget-info">
-              <h3>{{$data_today->count}}</h3>
+              <h3>{{$count}}</h3>
               <span>Order</span>
             </div>
           </div>
@@ -41,7 +41,7 @@
           <div class="card-body">
             <span class="dash-widget-icon"><i class="fa fa-usd"></i></span>
             <div class="dash-widget-info">
-              <h3>{{number_format($data_today->sum)}} đ</h3>
+              <h3>{{number_format($sum)}} đ</h3>
               <span>Total of all bills</span>
             </div>
           </div>

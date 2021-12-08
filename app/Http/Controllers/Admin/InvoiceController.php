@@ -19,7 +19,7 @@ class InvoiceController extends Controller
         $invoice = Invoice::find($id);
         if($invoice){
             
-            if(!empty($voucher->voucher_id)){
+            if(!empty($invoice->voucher_id)){
                 $voucher = Voucher::find($invoice->voucher_id);
                 return View('Admin.invoice.detail')->with(['invoice'=>$invoice,'voucher'=>$voucher]);
             }else{
