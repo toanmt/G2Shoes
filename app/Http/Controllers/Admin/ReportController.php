@@ -23,11 +23,9 @@ class ReportController extends Controller
         //Tổng hóa đơn trong 30 ngày trở lại đây
         $data_chart_Month = InvoiceDetail::join('products', 'invoice_details.product_id', '=', 'products.id')
         -> join('invoices', 'invoices.id', '=', 'invoice_details.invoice_id')
-        -> join('vouchers', 'invoices.voucher_id', '=', 'vouchers.id')
         ->select(DB::raw(
             "Day(invoices.created_at) as 'day',
-            SUM(invoice_details.amount * products.price *(100 - vouchers.percent )/ 100 
-            + invoices.shipping_cost ) as sum"
+            SUM(invoice_details.amount * products.price + invoices.shipping_cost ) as sum"
         ))
         ->whereRaw("Month(invoices.created_at) = Month(NOW()) and
             Year(invoices.created_at) = Year(NOW())and 
