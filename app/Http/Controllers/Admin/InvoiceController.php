@@ -47,12 +47,17 @@ class InvoiceController extends Controller
             $invoice->status = $request->get('status');
             $invoice->save();
         }
+
+        $total = 0;
+        foreach ($invoice->invoice_details as $item)
+            $total += $item->products->price*(1-($item->products->discount)/100)*$item->amount;
+
         $output = '<tr id="invoice-'.$invoice->id.'">
             <td><a href="invoice-view.html">'.$invoice->id.'</a></td>
             <td>'.$invoice->customer_name.'</td>
             <td>'.$invoice->email.'</td>
             <td>'.$invoice->created_at->format('jS F Y').'</td>
-            <td>'.$invoice->shipping_cost.'</td>
+            <td>'.$total.'</td>
             <td>
                 <div class="dropdown action-label">'
                     .$this->changeStatus($invoice).'<div class="dropdown-menu">
@@ -115,7 +120,7 @@ class InvoiceController extends Controller
 
             return response()->json(['output'=>$output]);
         }else{
-            return response()->json(['output'=>'không thìm thấy thông tin này!!!']);
+            return response()->json(['output'=>'không tìm thấy thông tin này!!!']);
         }
     }
 
