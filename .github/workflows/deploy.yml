@@ -1,5 +1,7 @@
-name: Deploy
-
+name: Deploy using Laravel Vapor
+      env:
+        VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
+      run: /home/runner/.composer/vendor/bin/vapor deploy production --commit="${{ github.event.head_commit.id }}" --message="${{ github.event.head_commit.message }}"
 on:
   push:
     branches: [ main ]
