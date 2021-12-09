@@ -35,67 +35,67 @@
 
 
     {{--
-    <!-- Chatbox Facebook -->
-    <!-- Messenger Plugin chat Code -->
-    <div id="fb-root"></div>
+        <!-- Chatbox Facebook -->
+        <!-- Messenger Plugin chat Code -->
+        <div id="fb-root"></div>
 
-    <!-- Your Plugin chat code -->
-    <div id="fb-customer-chat" class="fb-customerchat">
-    </div>
+        <!-- Your Plugin chat code -->
+        <div id="fb-customer-chat" class="fb-customerchat">
+        </div>
 
-    <script>
-        var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "107854461718553");
-        chatbox.setAttribute("attribution", "biz_inbox");
+        <script>
+            var chatbox = document.getElementById('fb-customer-chat');
+            chatbox.setAttribute("page_id", "107854461718553");
+            chatbox.setAttribute("attribution", "biz_inbox");
 
-        window.fbAsyncInit = function () {
-            FB.init({
-                xfbml: true,
-                version: 'v12.0'
-            });
-        };
+            window.fbAsyncInit = function () {
+                FB.init({
+                    xfbml: true,
+                    version: 'v12.0'
+                });
+            };
 
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script> --}}
-    <script>
-        function addToCart(url, id, size, quantity, redirect = 0) {
-            $.ajax({
-                type: "GET",
-                url: url,
-                data: {
-                    id: id,
-                    size: size,
-                    quantity: quantity,
-                },
-                dataType: 'json',
-                success: function (data) {
-                    if (data.code === 200) {
-                        $.notify("Thêm vào giỏ hàng thành công!", "success");
-                        $('.nav-cart__span').empty();
-                        $('.nav-cart__span').append(`<a href="" class="nav-cart__qty">${data.item}</a>`);
-                        if(redirect == 1) {
-                            setTimeout(function () {
-                                window.location = location.origin + "/payment";
-                            }, 1000);
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script> --}}
+        <script>
+            function addToCart(url, id, size, quantity, redirect = 0) {
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    data: {
+                        id: id,
+                        size: size,
+                        quantity: quantity,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.code === 200) {
+                            $.notify("Thêm vào giỏ hàng thành công!", "success");
+                            $('.nav-cart__span').empty();
+                            $('.nav-cart__span').append(`<a href="" class="nav-cart__qty">${data.item}</a>`);
+                            if(redirect == 1) {
+                                setTimeout(function () {
+                                    window.location = location.origin + "/payment";
+                                }, 1000);
+                            }
                         }
+                        else if (data.code === 400) {
+                            $.notify(data.message, "warn");
+                        }
+                    },
+                    error: function () {
+                        $.notify("Lỗi thêm giỏ hàng!", "danger");
                     }
-                    else if (data.code === 400) {
-                        $.notify(data.message, "warn");
-                    }
-                },
-                error: function () {
-                    $.notify("Lỗi thêm giỏ hàng!", "danger");
-                }
-            });
-        }
-    </script>
-    <script src="{{ asset('frontend/js/main.js') }}"></script>
-    <script src="{{ asset('frontend/js/notify.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/addcart.js') }}"></script>
-</body>
+                });
+            }
+        </script>
+        <script src="{{ asset('frontend/js/main.js') }}"></script>
+        <script src="{{ asset('frontend/js/notify.min.js') }}"></script>
+        <script src="{{ asset('frontend/js/addcart.js') }}"></script>
+    </body>

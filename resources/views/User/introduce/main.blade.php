@@ -11,9 +11,7 @@
 		<div class="introduce__content">
 			<div class="introduce__title">Giới thiệu</div>
 			<div class="introduce__description">
-				G2 SHOES được thành lập từ niềm đam mê Sneaker người mà yêu thích
-				nền văn hóa SÁT MẶT ĐẤT. Nơi giao lưu học hỏi và mua bán các sản
-				phẩm Sneaker Authentic 100%.
+				
 			</div>
 			<div class="introduce__video">
 				<h4>Một số đánh giá:</h4>

@@ -1,4 +1,4 @@
-<section class="product">
+<section class="product product-home">
   <div class="product-heading">
     <h2 class="heading heading-title">Sales Off</h2>
     <a href="{{URL::to('/sales')}}" class="heading-view">Xem thêm</a>

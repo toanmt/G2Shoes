@@ -1,5 +1,5 @@
 @foreach($data->take(2) as $brand)
-<section class="product">
+<section class="product product-home">
   <div class="product-heading">
     <h2 class="heading heading-title"><a href="{{URL::to('/brand/'.$brand->id)}}">{{$brand->brand_name}}</a></h2>
     <a href="{{URL::to('/brand/'.$brand->id)}}" class="heading-view">Xem thêm</a>
