@@ -24,11 +24,11 @@ class HomeController extends Controller
 		$saleOff = Product::where('discount','>',0)->limit(4)->get();
 
 		//sản phẩm bán chạy
-		$top_product = Product::selectRaw("products.* ,sum(invoice_details.amount) as Tong")
+		$top_product = Product::select('products.id','product_name','price','discount','type_id', Product::raw('sum(invoice_details.amount) as topitem'))
 		->join('invoice_details','products.id','=','invoice_details.product_id')
-		->groupBy("invoice_details.product_id")
-		->orderBy("Tong","desc")
-        ->limit(4)
+		->groupBy("invoice_details.product_id",'products.id')
+		->orderBy("topitem","desc")
+		->limit(4)
 		->get();
 
 		$data = Brand::all();
@@ -39,7 +39,7 @@ class HomeController extends Controller
 				'sale_off' => $saleOff,
 				'top_product' => $top_product,
 				'session' => $session,
-	]);
+			]);
 	}
 
 	public function search(Request $request){

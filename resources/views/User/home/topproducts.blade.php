@@ -1,4 +1,4 @@
-<section class="product">
+<section class="product product-home">
   <div class="product-heading">
     <h2 class="heading heading-title">Sản Phẩm Bán Chạy</h2>
   </div>
