@@ -60,32 +60,33 @@ class SalesController extends Controller
 		);
 	}
 
-	public function filter() {
+	public function filter(Request $request) {
 		$product = Product::select('products.id','product_name','price','discount','type_id')
 		->join('types','types.id','=','products.type_id')
 		->join('brands','types.brand_id','=','brands.id')
-		->with('images');
+		->join('product_sizes','product_sizes.product_id','=','products.id')
+		->join('sizes','sizes.id','=','product_sizes.size_id')
+		->with('images')
+		->with('product_size');
 
-
-		// filter type
-		if(isset($_GET['brand_list'])) {
-			$brand_filter = explode(',', $_GET['brand_list']);
+		
+		// filter brand
+		if($request->brand_list) {
+			$brand_filter = explode(',', $request->brand_list);
 			$product = $product
 			->whereIn('brands.id',$brand_filter);
 		}
 
 		// filter size
-		if(isset($_GET['size_list'])) {
-			$size_filter = explode(',', $_GET['size_list']);
+		if($request->size_list) {
+			$size_filter = explode(',', $request->size_list);
 			$product = $product
-			->join('product_sizes','product_sizes.product_id','=','products.id')
-			->join('sizes','sizes.id','=','product_sizes.size_id')
 			->whereIn('sizes.id',$size_filter);
 		}
 
 		// filter price
-		if(isset($_GET['price_list'])) {
-			switch ($_GET['price_list']) {
+		if($request->price_list) {
+			switch ($request->price_list) {
 				case 1:
 					$product = $product->whereBetween('price', [0, 1000000]);
 					break;
@@ -105,7 +106,15 @@ class SalesController extends Controller
 		}
 
 		$product = $product->get();
+		$arr = array();
+		$i = 0;
 
-		return response()->json($product);
+		foreach($product as $key => $value) {
+			if(!in_array($value, $arr)) {
+				$arr[$i] = $product[$key];
+				$i++;
+			}
+		}
+		echo json_encode($arr, true);
 	}
 }

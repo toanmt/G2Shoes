@@ -12,9 +12,10 @@
             $product_size = $product->find($product->id)->product_size;
             $size_amount = 0;
             if(!empty($product_size)) {
-              $product_sizes = $product_size->first();
-              if(!empty($product_sizes)) {
-                $size_amount = $product_sizes->amount;
+              foreach($product_size as $key => $product_sizes) {
+                if(!empty($product_sizes)) {
+                  $size_amount += $product_sizes->amount;
+                }
               }
             }
             ?>
