@@ -10,10 +10,10 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Invoice</h3>
+                        <h3 class="page-title">Hóa đơn</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Invoice</li>
+                            <li class="breadcrumb-item active">Hóa đơn</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">

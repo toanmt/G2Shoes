@@ -26,11 +26,6 @@
                                 <div class="col">
                                     <label>Password</label>
                                 </div>
-                                <div class="col-auto">
-                                    <a class="text-muted" href="{{ url('admin/forgot-password') }}">
-                                        Forgot password?
-                                    </a>
-                                </div>
                             </div>
                             <input class="form-control pass" name="password" type="password">
                             <div class="errPass text-danger"></div>

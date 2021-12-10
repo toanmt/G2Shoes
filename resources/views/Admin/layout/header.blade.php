@@ -32,22 +32,11 @@
         <span>{{ json_decode(Cookie::get('admin_login'))->username }}</span>
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="{{ url('admin/change-password') }}">Change password</a>
-        <a class="dropdown-item" href="{{ url('admin/logout') }}">Logout</a>
+        <a class="dropdown-item" href="{{ url('admin/change-password') }}">Đổi mật khẩu</a>
+        <a class="dropdown-item" href="{{ url('admin/logout') }}">Đăng xuất</a>
       </div>
     </li>
   </ul>
   <!-- /Header Menu -->
-
-  <!-- Mobile Menu -->
-  <div class="dropdown mobile-user-menu">
-    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-    <div class="dropdown-menu dropdown-menu-right">
-      <a class="dropdown-item" href="profile.html">My Profile</a>
-      <a class="dropdown-item" href="login.html">Logout</a>
-    </div>
-  </div>
-  <!-- /Mobile Menu -->
-
 </div>
 <!-- /Header -->

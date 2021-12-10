@@ -6,13 +6,13 @@
                 <table id="frm-table-invocie" class="table table-striped custom-table mb-0">
                     <thead>
                         <tr>
-                            <th>Invoice Number</th>
-                            <th>Customer</th>
+                            <th>Mã hóa đơn</th>
+                            <th>Khách hàng</th>
                             <th>Email</th>
-                            <th>Created Date</th>
-                            <th>Total</th>
-                            <th>Status</th>
-                            <th class="text-right">Action</th>
+                            <th>Ngày tạo</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            <th class="text-right"></th>
                         </tr>
                     </thead>
                     <tbody id="data-show">

@@ -3,7 +3,7 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Edit Brand</h5>
+				<h5 class="modal-title">Sửa thương hiệu</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -14,14 +14,14 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>Brand Name</label>
+								<label>Tên thương hiệu</label>
 								<input name="brandName" type="text" class="form-control brand-Name">
 								<div class="text-danger" id="err_name_brand"></div>
 							</div>
 						</div>
 					</div>
 					<div class="submit-section">
-						<button type="submit" name="upload_button" class="btn btn-primary submit-btn">Submit</button>	
+						<button type="submit" name="upload_button" class="btn btn-primary submit-btn">Lưu</button>	
 					</div>
 				</form>
 			</div>

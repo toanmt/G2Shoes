@@ -15,10 +15,10 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3 class="page-title">Invoice Report</h3>
+                    <h3 class="page-title">Báo cáo hóa đơn</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('admin/login') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Invoice Report</li>
+                        <li class="breadcrumb-item active">Báo cáo hóa đơn</li>
                     </ul>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                         <div class="cal-icon">
                             <input name="start_time" class="form-control floating datetimepicker dateFilRe1" type="text">
                         </div>
-                        <label class="focus-label">From</label>
+                        <label class="focus-label">Từ</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">  
@@ -42,11 +42,11 @@
                         <div class="cal-icon">
                             <input name="end_time" class="form-control floating datetimepicker dateFilRe2" type="text">
                         </div>
-                        <label class="focus-label">To</label>
+                        <label class="focus-label">Đến</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">  
-                    <button type="submit" class="btn btn-success btn-block abc"> Search </button>  
+                    <button type="submit" class="btn btn-success btn-block abc"> Tìm kiếm </button>  
                 </div>     
             </div>
         </form>
@@ -57,7 +57,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title">Total Revenue</h3>
+                        <h3 class="card-title">Tổng doanh thu</h3>
                         <div id="bar-charts-report">
                         </div>
                     </div>
@@ -73,12 +73,12 @@
                     <table id="frm-table-invocie" class="table table-striped custom-table mb-0">
                         <thead>
                             <tr>
-                                <th>Invoice Number</th>
-                                <th>Customer</th>
+                                <th>Mã hóa đơn</th>
+                                <th>Khách hàng</th>
                                 <th>Email</th>
-                                <th>Created Date</th>
-                                <th>Status</th>
-                                <th class="text-right">Action</th>
+                                <th>Ngày lập</th>
+                                <th>Trạng thái</th>
+                                <th class="text-right"></th>
                             </tr>
                         </thead>
                         <tbody id="data-invoice-report-show">

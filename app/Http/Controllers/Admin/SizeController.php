@@ -25,6 +25,6 @@ class SizeController extends Controller
     public function deleteSize(Request $request,$id){
         Size::where('id',$id)->delete();
         ProductSize::where('size_id',$id)->delete();
-        return ['output'=>'xóa thành công'];
+        return ['output'=>'Xóa thành công'];
     }
 }

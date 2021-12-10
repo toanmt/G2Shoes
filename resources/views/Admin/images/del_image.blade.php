@@ -5,15 +5,15 @@
 			<div class="modal-body">
 				<div class="form-header">
 					<h3>Delete </h3>
-					<p>Are you sure want to delete?</p>
+					<p>Bạn có chắc muốn xóa?</p>
 				</div>
 				<div class="modal-btn delete-action">
 					<div class="row">
 						<div class="col-6">
-							<a href="javascript:void(0);" class="btn btn-primary continue-btn btn-del-image">Delete</a>
+							<a href="javascript:void(0);" class="btn btn-primary continue-btn btn-del-image">Xóa</a>
 						</div>
 						<div class="col-6">
-							<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+							<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Thoát</a>
 						</div>
 					</div>
 				</div>

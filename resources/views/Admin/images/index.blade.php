@@ -15,10 +15,10 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="page-title">Images</h3>
+                    <h3 class="page-title">Hình ảnh</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('admin/login') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Images</li>
+                        <li class="breadcrumb-item active">Hình ảnh</li>
                     </ul>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">  
-                    <button type="submit" class="btn btn-success btn-block btn-search-image"> Search </button>  
+                    <button type="submit" class="btn btn-success btn-block btn-search-image"> Tìm kiếm </button>  
                 </div>
             </div>
         </form>
@@ -52,8 +52,8 @@
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item btn-edit-image" data-id="{{ $image->id }}" href="#" data-toggle="modal" data-target="#edit_image"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                            <a class="dropdown-item btn-delete-image" data-id="{{ $image->id }}" href="#" data-toggle="modal" data-target="#delete_image"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                            <a class="dropdown-item btn-edit-image" data-id="{{ $image->id }}" href="#" data-toggle="modal" data-target="#edit_image"><i class="fa fa-pencil m-r-5"></i> Sửa</a>
+                            <a class="dropdown-item btn-delete-image" data-id="{{ $image->id }}" href="#" data-toggle="modal" data-target="#delete_image"><i class="fa fa-trash-o m-r-5"></i> Xóa</a>
                         </div>
                     </div>
                     <div class="small text-muted justify-content-center">{{ $image->products->product_name }}</div>

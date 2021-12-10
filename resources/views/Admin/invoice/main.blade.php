@@ -14,10 +14,10 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="page-title">Invoices</h3>
+                    <h3 class="page-title">Hóa đơn</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('admin/login') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Invoices</li>
+                        <li class="breadcrumb-item active">Hóa đơn</li>
                     </ul>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                         <div class="cal-icon">
                             <input name="created_date" class="form-control floating datetimepicker" type="text">
                         </div>
-                        <label class="focus-label">Created Date</label>
+                        <label class="focus-label">Ngày lập</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3"> 
@@ -43,11 +43,11 @@
                             <option value="1">Hoàn thành</option>
                             <option value="2">Đã hủy</option>
                         </select>
-                        <label class="focus-label">Status</label>
+                        <label class="focus-label">Trạng thái</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">  
-                    <button type="submit" class="btn btn-success btn-block"> Search </button>  
+                    <button type="submit" class="btn btn-success btn-block"> Tìm </button>  
                 </div>     
             </div>
         </form>

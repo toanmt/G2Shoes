@@ -129,7 +129,7 @@ class ProductController extends Controller
                         $image_products[$index]->save();
                     }
                 }
-                return response()->json(['success'=>'sửa thành công']);
+                return response()->json(['success'=>'Sửa thành công']);
             }
         }
     }

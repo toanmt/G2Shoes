@@ -7,13 +7,13 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Discount</th>
+                            <th>Ảnh minh họa</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Giảm giá</th>
                             <th>Size</th>
-                            <th>Type</th>
-                            <th class="text-right no-sort">Action</th>
+                            <th>Loại</th>
+                            <th class="text-right no-sort"></th>
                         </tr>
                     </thead>
                     <?php $count = 0; ?>

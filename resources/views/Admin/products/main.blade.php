@@ -15,10 +15,10 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="page-title">Products</h3>
+                    <h3 class="page-title">Sản phẩm</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('admin/login') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Products</li>
+                        <li class="breadcrumb-item active">Sản phẩm</li>
                     </ul>
                 </div>
 
@@ -26,7 +26,7 @@
                     <a href="#" class="btn add-btn" data-toggle="modal" data-target="#size_manage"><i class="fa fa-arrows-h" aria-hidden="true"></i> Size</a>  
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_product"><i class="fa fa-plus"></i> Add Product</a>  
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_product"><i class="fa fa-plus"></i> Thêm sản phẩm</a>  
                 </div>
                 
             </div>
@@ -40,13 +40,13 @@
                 <div class="col-sm-6 col-md-3">  
                     <div class="form-group form-focus">
                         <input name="name" type="text" class="form-control floating">
-                        <label class="focus-label">Product Name</label>
+                        <label class="focus-label">Tên sản phẩm</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">  
                     <div class="form-group form-focus">
                         <input name="price" type="text" class="form-control floating">
-                        <label class="focus-label">Price</label>
+                        <label class="focus-label">Giá</label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3"> 
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">  
-                    <button type="submit" class="btn btn-success btn-block btn-search-product"> Search </button>  
+                    <button type="submit" class="btn btn-success btn-block btn-search-product"> Tìm kiếm </button>  
                 </div>
             </div>
         </form>

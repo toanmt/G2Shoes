@@ -51,33 +51,6 @@ class LoginController extends Controller
             return redirect('admin/login');
         }
     }
-
-    public function forgotPass(){
-        return View('Admin.login.forgot_password');
-    }
-
-    public function sendMail(Request $request){
-        $to_name = 'admin';
-        $to_email = $request->email;//to email 
-        $link_reset_pass = url('admin/reset-password');
-
-        $data = ['name'=>$to_name,'body'=>$link_reset_pass];
-        
-        Mail::send('Admin.emails.email', $data , function ($message) use ($to_email,$to_name) {
-            $message->from('Nhom2pmmnm@gmail.com','Developer');
-            $message->to($to_email,$to_name)->subject('Rest password');
-        });
-        if (Mail::failures()) {
-            return response()->json(['error'=>'Sorry! Please try again latter']);
-        }else{
-            return  response()->json(['success'=>'Great! Successfully send in your mail','url'=>url('admin/forgot-password')]);
-        }
-    }
-
-    public function resetPass(Request $request){
-        return View('Admin.login.reset_password');
-    }
-
     public function resetPassPost(Request $request){
         $admin = Admin::where('username',$request->username)->first();
         if(!empty($admin)){

@@ -24,20 +24,20 @@ class ImageController extends Controller
         //kiểm tra file đã upload chưa
         if(!$request->file('image_product')){
             //ko thay đổi csdl
-            return response()->json(['success'=>'edit thành công']);
+            return response()->json(['success'=>'Sửa thành công']);
         }else{
             $image = Image::find($id);
             $image_upload = $request->file('image_product');
             //kiểm tra file có bị trùng ko
             if($image->image_name == $image_upload->getClientOriginalName()){
-                return response()->json(['success'=>'edit thành công']);
+                return response()->json(['success'=>'Sửa thành công']);
             }else{
                 //nếu không trùng thì upload mới vào folder Image
                 $image_upload->move(public_path('/Image'), $image_upload->getClientOriginalName());
                 //sửa lại database
                 $image->image_name = $image_upload->getClientOriginalName();
                 $image->save();
-                return response()->json(['success'=>'edit thành công']);
+                return response()->json(['success'=>'Sửa thành công']);
             }
         }
     }
@@ -45,7 +45,7 @@ class ImageController extends Controller
     public function deleteImage(Request $request,$id){
         $image = Image::find($id)->delete();
         if($image){
-            return response()->json(['success'=>'xóa thành công']);
+            return response()->json(['success'=>'Xóa thành công']);
         }
     }
 

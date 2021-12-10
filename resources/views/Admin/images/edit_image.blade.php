@@ -3,7 +3,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Edit Brand</h5>
+					<h5 class="modal-title">Sửa ảnh minh họa</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -16,7 +16,7 @@
 								<div class="profile-img-wrap edit-img">
 									<img class="inline-block output image-product" src="">
 									<div class="fileupload btn">
-										<span class="btn-text">edit</span>
+										<span class="btn-text">Sửa</span>
 										<input name="image_product" class="upload" type="file">
 									</div>
 								</div>
@@ -30,7 +30,7 @@
 							</div>
 						</div>
 						<div class="submit-section">
-							<button type="submit" name="upload_button" class="btn btn-primary submit-btn">Submit</button>	
+							<button type="submit" name="upload_button" class="btn btn-primary submit-btn">Lưu</button>	
 						</div>
 					</form>
 				</div>

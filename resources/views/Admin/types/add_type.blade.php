@@ -3,7 +3,7 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Add New Type</h5>
+				<h5 class="modal-title">Thêm loại mới</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -14,14 +14,14 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>Type Name</label>
+								<label>Tên loại</label>
 								<input name="typeName" type="text" class="form-control">
 								<div class="text-danger" id="err_name_type"></div>
 							</div>
 						</div>
 					</div>
 					<div class="submit-section">
-						<button type="submit" name="upload_button" class="btn btn-primary submit-btn">Submit</button>	
+						<button type="submit" name="upload_button" class="btn btn-primary submit-btn">Thêm</button>	
 					</div>
 				</form>
 			</div>

@@ -56,15 +56,15 @@ class VoucherController extends Controller
             return response()->json(['errors'=>'vui lòng nhập đầy đủ thông tin']);
         }else{
             if(!is_numeric($request->percent)){
-                return response()->json(['errors'=>'percent không đúng định dạng']);
+                return response()->json(['errors'=>'Phần trăm giảm không đúng định dạng']);
             }elseif((int)$request->percent < 0){
-                return response()->json(['errors'=>'percent không được giá trị âm']);
+                return response()->json(['errors'=>'Phần trăm giảm không được giá trị âm']);
             }elseif((int)$request->percent >50){
-                return response()->json(['errors'=>'percent không được quá 50%']);
+                return response()->json(['errors'=>'Phần trăm giảm không được quá 50%']);
             }elseif(!is_numeric($request->amount)){
-                return response()->json(['errors'=>'amount không đúng định dạng']);
+                return response()->json(['errors'=>'Phần trăm giảm không đúng định dạng']);
             }elseif((int)$request->amount < 0){
-                return response()->json(['errors'=>'amount không được giá trị âm']);
+                return response()->json(['errors'=>'Phần trăm giảm không được giá trị âm']);
             }else{
                 $voucher = Voucher::find($id);
                 $voucher->voucher_name = $request->voucher_name;

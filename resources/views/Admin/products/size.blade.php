@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Size Management</h5>
+                <h5 class="modal-title">Quản lý Size</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,7 +13,7 @@
                     <div class="row">                        
                         <div class="col-sm-11">
                             <div class="form-group">
-                                <label class="col-form-label">Number Size <span class="text-danger">*</span></label>
+                                <label class="col-form-label">Số Size <span class="text-danger">*</span></label>
                                 <input name="number_size" class="form-control number-size" type="text">
                                 <div class="err_username text-danger"></div>
                             </div>

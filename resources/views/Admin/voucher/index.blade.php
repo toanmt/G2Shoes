@@ -15,14 +15,14 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Voucher</h3>
+                        <h3 class="page-title">Mã giảm giá</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('admin/login') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Voucher</li>
+                            <li class="breadcrumb-item active">Mã giảm giá</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_voucher"><i class="fa fa-plus"></i> Add Voucher</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_voucher"><i class="fa fa-plus"></i> Thêm mã giảm giá</a>
                     </div>
                 </div>
             </div>
@@ -35,13 +35,13 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Voucher Name </th>
-                                    <th>Voucher Percentage (%) </th>
-                                    <th>Amount</th>
-                                    <th>Created Date </th>
-                                    <th>Expired Date </th>
-                                    <th>Status</th>
-                                    <th class="text-right">Action</th>
+                                    <th>Tên mã giảm giá</th>
+                                    <th>Phần trăm giảm (%) </th>
+                                    <th>Số lượng</th>
+                                    <th>Ngày lập </th>
+                                    <th>Ngày kết thúc </th>
+                                    <th>Trạng thái</th>
+                                    <th class="text-right"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,9 +58,9 @@
                                             <div class="action-label">
                                                 <a class="btn btn-white btn-sm btn-rounded" href="#">
                                                     @if($voucher->status == 0)
-                                                        <i class="fa fa-dot-circle-o text-success"></i> Active
+                                                        <i class="fa fa-dot-circle-o text-success"></i> Kích hoạt
                                                     @else
-                                                        <i class="fa fa-dot-circle-o text-danger"></i> Disable
+                                                        <i class="fa fa-dot-circle-o text-danger"></i> Khóa
                                                     @endif
                                                 </a>
                                             </div>
@@ -69,8 +69,8 @@
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item btn-edit-voucher" href="#" data-id="{{ $voucher->id }}" data-toggle="modal" data-target="#edit_voucher"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item btn-delete-voucher" href="#" data-id="{{ $voucher->id }}" data-toggle="modal" data-target="#delete_voucher"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                    <a class="dropdown-item btn-edit-voucher" href="#" data-id="{{ $voucher->id }}" data-toggle="modal" data-target="#edit_voucher"><i class="fa fa-pencil m-r-5"></i> Sửa</a>
+                                                    <a class="dropdown-item btn-delete-voucher" href="#" data-id="{{ $voucher->id }}" data-toggle="modal" data-target="#delete_voucher"><i class="fa fa-trash-o m-r-5"></i> Xóa</a>
                                                 </div>
                                             </div>
                                         </td>

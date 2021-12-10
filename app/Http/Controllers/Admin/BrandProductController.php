@@ -13,15 +13,15 @@ class BrandProductController extends Controller
     public function index(){
         $brands= Brand::all();
         $types =Type::all();
-        return View('admin.BrandProduct.index')->with(['brands'=>(object)$brands,'types'=>(object)$types]);
+        return View('Admin.BrandProduct.index')->with(['brands'=>(object)$brands,'types'=>(object)$types]);
     }
 
     public function addBrand(Request $request){
         if ($request->brandName =='') {
-            return response()->json(['errorN'=>'Brand name cannot be left blank!']);
+            return response()->json(['errorN'=>'Tên thương hiệu không được để trống!']);
         }
         if(Brand::where("brand_name",$request->brandName)->first() != ''){
-            return response()->json(['errorN'=>'Brand name already exists!']);
+            return response()->json(['errorN'=>'Thương hiệu đã tồn tại!']);
         } else {
             $brand=new Brand();
             $brand->brand_name = $request->brandName;
@@ -43,11 +43,11 @@ class BrandProductController extends Controller
 
     public function editBrand(Request $request, $id){
         if ($request->brandName =='') {
-            return response()->json(['errorN'=>'Brand name cannot be left blank!']);
+            return response()->json(['errorN'=>'Tên thương hiệu không được để trống!']);
         }
         if(Brand::where("brand_name",$request->brandName)->first() != '' &&
                 Brand::where('id',$id)->first()->brand_name != $request->brandName){
-            return response()->json(['errorN'=>'Brand name already exists!']);
+            return response()->json(['errorN'=>'Tên thương hiệu đã tồn tại!']);
         } else {
             Brand::where('id',$id)->update([
                 'brand_name'=> $request->brandName

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Product</h5>
+                <h5 class="modal-title">Thêm sản phẩm</h5>
                 <button type="reset" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,7 +15,7 @@
                         <div  class="col-md-12 text-center">
                             <div class="edit-img edit-img-product">
                                 <div class="fileupload btn">
-                                    <span class="btn-text">add images product</span>
+                                    <span class="btn-text">Thêm ảnh sản phẩm</span>
                                     <input name="image_product[]" class="upload" type="file" multiple>
                                 </div>
                             </div>
@@ -24,14 +24,14 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label">Product Name <span class="text-danger">*</span></label>
+                                <label class="col-form-label">Tên sản phẩm <span class="text-danger">*</span></label>
                                 <input name="name" class="form-control name" type="text">
                                 <div class="err_name text-danger"></div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Type Product <span class="text-danger">*</span></label>
+                                <label>Loại sản phẩm <span class="text-danger">*</span></label>
                                 <select name="type" class="select">
                                     @foreach ($types as $type)
                                     <option value="{{ $type->id }}">{{ $type->type_name }}</option>
@@ -43,14 +43,14 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label">Price <span class="text-danger">*</span></label>
+                                <label class="col-form-label">Giá <span class="text-danger">*</span></label>
                                 <input name="price" class="form-control price" type="text">
                                 <div class="err_price text-danger"></div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label">Discount <span class="text-danger">*</span></label>
+                                <label class="col-form-label">Giảm giá <span class="text-danger">*</span></label>
                                 <input name="discount" class="form-control discount" type="text">
                                 <div class="err_discount text-danger"></div>
                             </div>
@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label>Sizes 
                                     <span class="text-danger">*</span>
-                                    <button type="button" class="btn btn-primary add-size-product"><i class="fa fa-plus"></i> add</button>
+                                    <button type="button" class="btn btn-primary add-size-product"><i class="fa fa-plus"></i> Thêm</button>
                                 </label>
                                 <select name="listsize" class="select" id="opsize" style="width:10px;">
                                     @foreach ($sizes as $size)
@@ -78,8 +78,8 @@
                                 <table class="table table-bordered table-review review-table mb-0" id="table_alterations">
                                     <thead>
                                         <tr>
-                                            <th >Number</th>
-                                            <th >Amount</th>
+                                            <th >Size</th>
+                                            <th >Số lượng</th>
                                             <th style="width: 20%;"></th>
                                         </tr>
                                     </thead>
@@ -90,8 +90,8 @@
                         </div>
                     </div>
                     <div class="submit-section">
-                        <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-                        <button type="reset" class="btn btn-primary submit-btn reset-create-product">Reset</button>
+                        <button type="submit" class="btn btn-primary submit-btn">Thêm</button>
+                        <button type="reset" class="btn btn-primary submit-btn reset-create-product">Đặt lại</button>
                     </div>
                 </form>
             </div>

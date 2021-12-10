@@ -14,7 +14,7 @@
     <div class="page-header">
       <div class="row">
         <div class="col-sm-12">
-          <h3 class="page-title">Welcome Admin!</h3>
+          <h3 class="page-title">Chào mừng đến trang Admin!</h3>
           <ul class="breadcrumb">
             <li class="breadcrumb-item active">Dashboard</li>
           </ul>
@@ -31,7 +31,7 @@
             <span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
             <div class="dash-widget-info">
               <h3>{{$count}}</h3>
-              <span>Order</span>
+              <span>Đơn</span>
             </div>
           </div>
         </div>
@@ -42,16 +42,16 @@
             <span class="dash-widget-icon"><i class="fa fa-usd"></i></span>
             <div class="dash-widget-info">
               <h3>{{number_format($sum)}} đ</h3>
-              <span>Total of all bills</span>
+              <span>Doanh thu</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <h2> In month </h2>
+    <h2> Thống kê trong tháng </h2>
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title">Total Revenue</h3>
+        <h3 class="card-title">Tổng doanh thu</h3>
         <div id="bar-charts"></div>
       </div>
     </div>

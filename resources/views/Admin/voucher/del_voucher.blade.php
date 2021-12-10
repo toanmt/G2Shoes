@@ -4,16 +4,16 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="form-header">
-                    <h3>Delete Tax</h3>
-                    <p>Are you sure want to delete?</p>
+                    <h3>Xóa mã</h3>
+                    <p>Bạn có chắc muốn xóa không?</p>
                 </div>
                 <div class="modal-btn delete-action">
                     <div class="row">
                         <div class="col-6">
-                            <a href="javascript:void(0);" class="btn btn-primary continue-btn del-voucher">Delete</a>
+                            <a href="javascript:void(0);" class="btn btn-primary continue-btn del-voucher">Xóa</a>
                         </div>
                         <div class="col-6">
-                            <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+                            <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Hủy</a>
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ class TypeController extends Controller
             ->where('type_name', $request->typeName)
             ->where(['brand_id' => $id])->exists()) 
         {
-            return response()->json(['errorN'=>'Type name already exists!']);
+            return response()->json(['errorN'=>'Loại sản phẩm này đã tồn tại!']);
         } else {
             $type = new Type();
             $type->type_name = $request->typeName;
