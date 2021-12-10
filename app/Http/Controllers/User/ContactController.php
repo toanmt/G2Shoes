@@ -12,6 +12,10 @@ class ContactController extends Controller
 	public function index(){
 		$session = session()->all();
 		$data = Brand::all();
-		return View('User.contact.main')->with(['data'=>(object)$data, 'session' => $session]);
+		return View('User.contact.main')->with(
+			[
+				'data'=>(object)$data,
+				'session' => $session,
+			]);
 	}
 }

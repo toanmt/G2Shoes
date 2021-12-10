@@ -20,6 +20,35 @@ class CartController extends Controller
             $quantity = $request->quantity;
             $product = Product::find($id);
             $product_size = Size::find($size)->size_number;
+            $size_total = ProductSize::where('product_id',$id)
+            ->where('product_sizes.size_id',$size)->get();
+
+            if(count($size_total) == 0) {
+                return response()->json([
+                    'code' => 400,
+                    'message' => 'Không đủ hàng!',
+                ], 200);
+            }
+            else {
+                foreach($size_total as $key => $size_totals)
+                {
+                    if(empty($size_totals->amount)) {
+                        return response()->json([
+                            'code' => 400,
+                            'message' => 'Không đủ hàng!',
+                        ], 200);
+                    }
+                    if(is_numeric($size_totals->amount)) {
+                        if ($quantity > $size_totals->amount) {
+                            return response()->json([
+                                'code' => 400,
+                                'message' => 'Không đủ hàng!',
+                            ], 200);
+                        }
+                    }
+                }
+            }
+            
             $cart = session()->get('cart');
             if (isset($cart["$id-$size"])) {
                 $cart["$id-$size"]['quantity'] = $cart["$id-$size"]['quantity'] + $quantity;

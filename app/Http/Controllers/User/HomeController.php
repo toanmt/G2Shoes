@@ -43,10 +43,19 @@ class HomeController extends Controller
 	}
 
 	public function search(Request $request){
+		//Session
+		$session = session()->all();
+
 		$keywords = $request->keywords_submit;
 		$search = Product::where('product_name','like','%'.$keywords.'%')->get();
 		$data = Brand::all();
-		return View('User.search.main')->with(['data'=>(object)$data])->with(['search'=>(object)$search])->with(['keywords'=>(string)$keywords]);
+		return View('User.search.main')->with(
+			[
+				'data'=>(object)$data,
+				'search'=>(object)$search,
+				'keywords'=>(string)$keywords,
+				'session' => $session,
+			]);
 	}
 	public function quickview(Request $request) {
 		$product_id = $request->product_id;

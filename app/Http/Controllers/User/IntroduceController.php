@@ -12,6 +12,10 @@ class IntroduceController extends Controller
 	public function index(){
 		$session = session()->all();
 		$data = Brand::all();
-		return View('User.introduce.main')->with(['data'=>(object)$data, 'session' => $session]);
+		return View('User.introduce.main')->with(
+			[
+				'data'=>(object)$data,
+				'session' => $session
+			]);
 	}
 }

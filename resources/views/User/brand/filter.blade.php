@@ -32,6 +32,10 @@
     <div class="brand-control__filter js-filter">
       <ul class="brand-control__list brand-control__price">
         <li>
+          <input class="filter_price filter" type="radio" name="price_range" id="g0" data-url="{{Request::url()}}/filter" data-search="price_list" filter="0" checked />
+          <label for="g0">Tất cả</label>
+        </li>
+        <li>
           <input class="filter_price filter" type="radio" name="price_range" id="g1" data-url="{{Request::url()}}/filter" data-search="price_list" filter="1" />
           <label for="g1">Dưới 1,000,000đ</label>
         </li>

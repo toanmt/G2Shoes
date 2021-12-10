@@ -67,7 +67,11 @@ class BrandController extends Controller
 		$product = Product::select('products.id','product_name','price','discount','type_id')
 		->join('types','types.id','=','products.type_id')
 		->join('brands','types.brand_id','=','brands.id')
-		->where('brands.id',$id)->with('images');
+		->join('product_sizes','product_sizes.product_id','=','products.id')
+		->join('sizes','sizes.id','=','product_sizes.size_id')
+		->where('brands.id',$id)
+		->with('images')
+		->with('product_size');
 
 
 		// filter type
@@ -82,28 +86,27 @@ class BrandController extends Controller
 		if($request->size_list) {
 			$size_filter = explode(',', $request->size_list);
 			$product = $product
-			->join('product_sizes','product_sizes.product_id','=','products.id')
-			->join('sizes','sizes.id','=','product_sizes.size_id')
 			->whereIn('sizes.id',$size_filter);
 		}
 
 		// filter price
 		if($request->price_list) {
-			$price_filter = explode(',', $request->price_list);
-			if(in_array(1, $price_filter)) {
-				$product = $product->whereBetween('price', [0, 1000000]);
-			}
-			if(in_array(2, $price_filter)) {
-				$product = $product->whereBetween('price', [1000000, 2000000]);
-			}
-			if(in_array(3, $price_filter)) {
-				$product = $product->whereBetween('price', [2000000, 3500000]);
-			}
-			if(in_array(4, $price_filter)) {
-				$product = $product->whereBetween('price', [3500000, 5000000]);
-			}
-			if(in_array(5, $price_filter)) {
-				$product = $product->where('price', '>' , 5000000);
+			switch ($request->price_list) {
+				case 1:
+					$product = $product->whereBetween('price', [0, 1000000]);
+					break;
+				case 2:
+					$product = $product->whereBetween('price', [1000000, 2000000]);
+					break;
+				case 3:
+					$product = $product->whereBetween('price', [2000000, 3500000]);
+					break;
+				case 4:
+					$product = $product->whereBetween('price', [3500000, 5000000]);
+					break;
+				case 5:
+					$product = $product->where('price', '>' , 5000000);
+					break;
 			}
 		}
 

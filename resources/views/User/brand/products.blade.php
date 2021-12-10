@@ -32,6 +32,7 @@
         </div>
       </div>
     </div>
+    @csrf
     <div class="product-list">
       <div class="container list-item">
         @foreach($product as $product)
@@ -63,7 +64,6 @@
             </a>
             <div class="product-control">
               <form>
-                @csrf
                 <input 
                 type="button" 
                 name="quick-view" 
