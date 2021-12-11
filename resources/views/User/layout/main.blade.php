@@ -76,7 +76,7 @@
                     dataType: 'json',
                     success: function (data) {
                         if (data.code === 200) {
-                            Swal.fire({title: 'Thêm sản phẩm thành công', icon: 'success', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000});
+                            Swal.fire({title: 'Thêm sản phẩm thành công', icon: 'success', showConfirmButton: false, toast: true, position: 'top', timer: 3000});
                             $('.nav-cart__span').empty();
                             $('.nav-cart__span').append(`<a href="" class="nav-cart__qty">${data.item}</a>`);
                             if(redirect == 1) {
@@ -86,11 +86,11 @@
                             }
                         }
                         else if (data.code === 400) {
-                            Swal.fire({title: 'Lỗi không thêm được giỏ hàng!', text: data.message , icon: 'warning', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000})
+                            Swal.fire({title: 'Lỗi không thêm được giỏ hàng!', text: data.message , icon: 'warning', showConfirmButton: false, toast: true, position: 'top', timer: 3000})
                         }
                     },
                     error: function () {
-                        Swal.fire({title: 'Lỗi mạng!', icon: 'error', confirmButtonText: "OK", buttonsStyling: true});
+                        Swal.fire({title: 'Lỗi', icon: 'error', confirmButtonText: "OK", buttonsStyling: true});
                     }
                 });
             }

@@ -718,7 +718,6 @@ a {
 .introduce {
   max-width: 1300px;
   font-size: 14px;
-  gap: normal normal;
   line-height: 19.6px;
   margin: auto;
 }
@@ -741,7 +740,6 @@ a {
 .introduce__content {
   display: flex;
   flex-direction: column;
-  gap: normal normal;
   padding-left: 30px;
 }
 .introduce__title {
@@ -763,9 +761,12 @@ a {
   line-height: 30px;
   margin-bottom: 20px;
 }
-.introduce__video--item {
+.introduce__video--list {
   display: flex;
   justify-content: space-between;
+}
+.introduce__video--item:first-child {
+  margin-right: 15px;
 }
 
 .product-details {

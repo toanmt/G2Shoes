@@ -254,7 +254,7 @@
             if(data.error){
               Swal.fire({title: data.error, icon: 'error', confirmButtonText: "OK", buttonsStyling: true});
             }else{
-              Swal.fire({title: 'Áp dụng voucher thành công!', icon: 'success', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000});
+              Swal.fire({title: 'Áp dụng voucher thành công!', icon: 'success', showConfirmButton: false, toast: true, position: 'top', timer: 3000});
               let currencyFormat = Intl.NumberFormat('en-US');
               var total = $('#subTotal').data('value')*
               (1-parseInt(data.voucher_percent)/100)
