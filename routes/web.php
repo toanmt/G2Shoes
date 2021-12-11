@@ -71,7 +71,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/image/{id}',[App\Http\Controllers\Admin\ImageController::class,'showImage']);
         Route::post('/edit-image/{id}',[App\Http\Controllers\Admin\ImageController::class,'editImage']);
         Route::get('/delete-image/{id}',[App\Http\Controllers\Admin\ImageController::class,'deleteImage']);
-        Route::post('/image-search',[App\Http\Controllers\Admin\ImageController::class,'searchImage']);
 
         Route::post('/add-size',[App\Http\Controllers\Admin\SizeController::class,'addSize']);
         Route::get('/edit-size/{id}',[App\Http\Controllers\Admin\SizeController::class,'editSize']);

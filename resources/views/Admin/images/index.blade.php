@@ -6,7 +6,7 @@
 
 @section('content')
 <!-- Page Wrapper -->
-<div class="page-wrapper">
+<div class="page-wrapper" id="page-image">
 			
     <!-- Page Content -->
     <div class="content container-fluid">
@@ -26,12 +26,11 @@
         <!-- /Page Header -->
         
         <!-- Search Filter -->
-        <form id="frm-search" action="{{ url('admin/image-search') }}" method="POST">
-            @csrf
+        <form id="frm-search" method="GET">
             <div class="row filter-row">
                 <div class="col-sm-6 col-md-3">  
                     <div class="form-group form-focus">
-                        <input name="product_name" type="text" class="form-control floating">
+                        <input name="product_name" id="query" type="text" class="form-control floating">
                         <label class="focus-label">Tên sản phẩm</label>
                     </div>
                 </div>
@@ -61,12 +60,11 @@
             </div> 
             @endforeach
         </div>
-
+        @include('Admin.images.edit_image')
+        @include('Admin.images.del_image')
         {!! $images->links("pagination::bootstrap-4") !!}
     </div>
-    <!-- /Page Content -->
-	@include('Admin.images.edit_image')
-	@include('Admin.images.del_image')
+   
 </div>
 <!-- /Page Wrapper -->
 @endsection
