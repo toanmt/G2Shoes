@@ -161,15 +161,16 @@ window.addEventListener("load", () => {
           processData:false,
           success: function(data){
             if(data.error !== undefined){
-             $('.error-fields').append(data.error);
+            $('.error-fields').append(data.error);
            }else{
-            alert(data.message);
+            Swal.fire({title: data.message, icon: 'success', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000});
             setTimeout(function(){
               location.reload();
             },1000);
           }
         },
         error: function(data){
+          Swal.fire({title: data.error, icon: 'error', confirmButtonText: "OK", buttonsStyling: true});
           $('.error-fields').append(data.error);
         }
       })
