@@ -725,6 +725,20 @@ table.dataTable thead > tr > td.sorting {
 	background-color: #f43b48;
 	border-color: #f43b48;
 }
+.pagination li.page-item {
+	display: none;
+}
+.pagination .page-item:first-child,
+.pagination .page-item:nth-child(-n+6),
+.pagination .page-item:last-child,
+.pagination .page-item.active {
+	display: block;
+}
+
+.pagination .page-item:nth-child(-n){
+	display: none;
+}
+
 .pagination > li > a, 
 .pagination > li > span {
 	color: #f43b48;

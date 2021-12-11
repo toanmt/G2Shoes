@@ -262,13 +262,28 @@ $(document).ready(function(){
             }
         });
     });
-    $('.btn-edit-image').click(function(e){
+
+    //page-image
+    $('#page-image').on('click','.pagination a', function(e) {
+        e.preventDefault();
+        let href = $(this).attr('href');
+        var currenUrl = href.split("page=")[0];
+        var page = href.split("page=")[1];
+        console.log(currenUrl);
+        $.get(currenUrl+'page='+page,function(data) {
+                $('#page-image').html($(data).find('#page-image .content'));
+                editImage();
+                deleteImage();
+        });
+   });
+
+    $('#page-image').on('click','.btn-edit-image',function(e){
+        e.preventDefault();
         var id = $(this).data('id');
         $.get('/admin/image/'+id,function(data){
             $('.image-product').attr('src',location.origin+'/Image/'+data.images.image_name);
             $('#product').val(data.product_name);
             $('#submit_form_edit_image').attr('action',location.origin+'/admin/edit-image/'+id);
-
         })
     });
 
@@ -295,12 +310,13 @@ $(document).ready(function(){
                 }
 
             })
-        })};
-        editImage();
+        })
+    };
+    editImage();
 
     //delete
-    $('.btn-delete-image').click(function(e){
-        $('.btn-del-image').attr('data-id',$(this).data('id'));
+    $('#page-image').on('click','.btn-delete-image',function(e){
+        $('#page-image .btn-del-image').attr('data-id',$(this).data('id'));
     });
 
     //delete
@@ -315,19 +331,20 @@ $(document).ready(function(){
             })
         });
     };
-
     deleteImage();
 
-    $('#frm-search').submit(function(e){
+
+    $('#page-image').on('submit','#frm-search',function(e){
         e.preventDefault();
-        var formData = $(this).serialize();
-        $.post($(this).attr('action'),formData,function(data){
-            if(data.output != ''){
-                $('.pagination').hide();
-                $('.data-show').removeData();
-                $('.data-show').html(data.output);
+        $.get(location.origin+'/admin/image-product?product_name='+$('#query').val(),function(data){
+            if($(data).find('#page-image .data-show').children().length > 0){
+                $(data).find('.main-wrapper').attr('id','page-image');
+                $('#page-image').html($(data).find('#page-image .content'))
                 editImage();
                 deleteImage();
+            }else{
+                $('#page-image .data-show').text('không tìm thấy sản phẩm');
+                $('.pagination').hide();
             }
         })
     });
@@ -454,8 +471,9 @@ $(document).ready(function(){
                     $('#data').empty();
                     $('#data').html(data.output);
                     editProduct();
-                    delProduct();
-                    $('#product-table').DataTable({searching:false});
+                    deleteProduct();
+                    $('#product-table').DataTable({searching:false,
+                        paging: true,pageLength: 10,info: true});
                 }else{
                     alert('không tìm thấy sản phẩm nào');
                 }

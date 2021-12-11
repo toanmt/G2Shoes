@@ -12,6 +12,12 @@ use App\Models\Image;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        ProductSize::where('product_sizes.amount',0)->delete();
+    }
+    
     public function index(){
         $products = Product::all();
         $sizes = Size::all();

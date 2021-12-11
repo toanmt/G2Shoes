@@ -51,7 +51,7 @@
 
   <!-- jQuery -->
   <script src="{{ asset('backend/js/jquery-3.5.1.min.js') }}"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   
   <!-- Bootstrap Core JS -->
@@ -90,12 +90,12 @@
   </script>
 
   <script>
-    $('.upload').change(function(e){
+    $('.page-wrapper').on('change','.upload',function(e){
       if(e.target.files.length <=2){
         $('.edit-img-product').css('border','none');
         $('.btn-text').hide();
         $('.img-output').remove();
-        for(let image of e.target.files){        
+        for(let image of e.target.files){
           $('.edit-img-product').append('<img class="img-output" src="'+URL.createObjectURL(image)+'">');
           $('.image-product').attr('src',URL.createObjectURL(image));
         }
@@ -119,7 +119,6 @@
         $('.edit-amount-input-'+$(this).val()).val('').attr('disabled','disabled');
       } 
     });
-
   </script>
   <!-- Chart JS -->
   <script src="{{ asset('backend/plugins/morris/morris.min.js') }}"></script>
