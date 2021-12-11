@@ -246,13 +246,13 @@ function fetchCauseAgainstFilter(url, brand_list, type_list, size_list, price_li
                     let quantity = parseInt(qty.val());
               
                     if (quantity.length == 0) {
-                      $.notify("Số lượng nhập không được để trống!", "warn");
+                        Swal.fire({title: 'Số lượng nhập không được để trống!', icon: 'warning', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000})
                     }
                     else if (isNaN(quantity)) {
-                      $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
+                        Swal.fire({title: 'Số lượng nhập không được phép chứa ký tự khác số!', icon: 'warning', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000})
                     }
                     else if (parseInt(quantity) < 1) {
-                      $.notify("Số lượng nhập không được bé hơn 1!", "warn");
+                        Swal.fire({title: 'Số lượng nhập không được bé hơn 1!', icon: 'warning', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000})
                     }
               
                   });
@@ -268,13 +268,13 @@ function fetchCauseAgainstFilter(url, brand_list, type_list, size_list, price_li
                       quantity = quantity + 1;
                     }
                     if (quantity.length == 0) {
-                      $.notify("Số lượng nhập không được để trống!", "warn");
+                        Swal.fire({title: 'Số lượng nhập không được để trống!', icon: 'warning', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000})
                     }
                     else if (isNaN(quantity)) {
-                      $.notify("Số lượng nhập không được phép chứa ký tự khác số!", "warn");
+                        Swal.fire({title: 'Số lượng nhập không được phép chứa ký tự khác số!', icon: 'warning', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000})
                     }
                     else if (parseInt(quantity) < 1) {
-                      $.notify("Số lượng nhập không được bé hơn 1!", "warn");
+                        Swal.fire({title: 'Số lượng nhập không được bé hơn 1!', icon: 'warning', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000})
                     }
                     else {
                       qty.val(quantity);
