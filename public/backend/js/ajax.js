@@ -338,6 +338,8 @@ $(document).ready(function(){
         e.preventDefault();
         $.get(location.origin+'/admin/image-product?product_name='+$('#query').val(),function(data){
             if($(data).find('#page-image .data-show').children().length > 0){
+                
+
                 $(data).find('.main-wrapper').attr('id','page-image');
                 $('#page-image').html($(data).find('#page-image .content'))
                 editImage();
@@ -466,6 +468,7 @@ $(document).ready(function(){
             data: formData,
             dataType: 'json',
             success: function(data){
+                console.log(data);
                 if(data.output != ''){
                     $('#product-table').DataTable().destroy();
                     $('#data').empty();
@@ -577,9 +580,14 @@ $(document).ready(function(){
         e.preventDefault();
         var formData = $(this).serialize();
         $.post($(this).attr('action'),formData,function(data){
+            console.log(data);
+            $('#frm-table-invocie').DataTable().destroy();
             $('#data-show').empty();
             $('#data-show').append(data.output);
             editInvoice();
+            $('#frm-table-invocie').DataTable({searching:false,
+                paging: true,pageLength: 10,info: true});
+            
         })
     });
 

@@ -75,7 +75,7 @@
   <!-- Datatable JS -->
   <script src="{{ asset('backend/js/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('backend/js/dataTables.bootstrap4.min.js') }}"></script>
-  
+
   <!-- Custom JS -->
   <script src="{{ asset('backend/js/app.js') }}"></script>
 

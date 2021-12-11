@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
-                <table id="frm-table-invocie" class="table table-striped custom-table mb-0">
+                <table id="frm-table-invocie" class="table datatable table-striped custom-table mb-0">
                     <thead>
                         <tr>
                             <th>Mã hóa đơn</th>

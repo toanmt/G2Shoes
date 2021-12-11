@@ -169,7 +169,12 @@ class ProductController extends Controller
 
     public function search(Request $request){
         if(empty($request->name) && empty($request->price)){
-           $products = Product::join('product_sizes','product_sizes.product_id','=','products.id')->where('size_id',$request->size)->get();
+            if(empty($request->size)){
+                $products = Product::all();
+            }else{
+                $products = Product::join('product_sizes','product_sizes.product_id','=','products.id')->where('size_id',$request->size)->get();
+            }
+            
         }else{
             if(empty($request->name))
                 $products = Product::where('price',$request->price)->get();

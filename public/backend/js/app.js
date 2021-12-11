@@ -1,8 +1,4 @@
-/*
-Author       : Dreamguys
-Template Name: SmartHR - Bootstrap Admin Template
-Version      : 3.6
-*/
+
 
 $(document).ready(function() {
 	
@@ -151,6 +147,12 @@ $(document).ready(function() {
 	if($('.datatable').length > 0) {
 		$('.datatable').DataTable({
 			"bFilter": false,
+			"language": {
+				"paginate": {
+				  "previous": "<",
+				  "next": ">"
+				}
+			  }
 		});
 	}
 	
