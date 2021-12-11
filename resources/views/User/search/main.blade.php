@@ -31,7 +31,11 @@
 					</div>
 					<a href="#" class="product-image__link">
 						@foreach($product->images as $image) 
-						<img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
+						@if($size_amount != 0) 
+            <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
+            @else
+            <img src="{{ asset('Image/'.$image->image_name) }}" alt="" class="sold-out" />
+            @endif
 						@endforeach
 					</a>
 					<div class="product-control">

@@ -22,14 +22,21 @@
             @if($size_amount == 0)
             <span class="product-noti__show product-noti__sold-out">Hết</span>
             @else
+            <div class="ribbon">
+              <span class="product-noti-title">new</span>
+            </div>
             @if($product->discount > 0)
             <span class="product-noti__show product-noti__sale">-{{$product->discount}}%</span>
             @endif
             @endif
           </div>
           <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
-            @foreach($product->images as $image) 
+            @foreach($product->images as $image)
+            @if($size_amount != 0) 
             <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />
+            @else
+            <img src="{{ asset('Image/'.$image->image_name) }}" alt="" class="sold-out" />
+            @endif
             @endforeach
           </a>
           <div class="product-control">
