@@ -30,7 +30,7 @@
                             <td>{{ number_format($product->price) }}</td>
                             <td>{{ $product->discount }}</td>
                             <td>@foreach ($product->product_size as $product_size)
-                                <button><?php echo $product_size->sizes->size_number ?></button>
+                                <span class="btn btn-info btn-sm"><?php echo $product_size->sizes->size_number ?></span>
                             @endforeach</td>
                             <td>{{ $product->type->type_name }}</td>
                             <td class="text-right">

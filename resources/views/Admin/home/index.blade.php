@@ -30,7 +30,7 @@
           <div class="card-body">
             <span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
             <div class="dash-widget-info">
-              <h3>{{$count}}</h3>
+              <h3>{{$data_today->count}}</h3>
               <span>Đơn</span>
             </div>
           </div>
@@ -41,7 +41,7 @@
           <div class="card-body">
             <span class="dash-widget-icon"><i class="fa fa-usd"></i></span>
             <div class="dash-widget-info">
-              <h3>{{number_format($sum)}} đ</h3>
+              <h3>{{number_format($data_today->sum)}} đ</h3>
               <span>Doanh thu</span>
             </div>
           </div>

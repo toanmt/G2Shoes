@@ -51,9 +51,7 @@
               @if($size_amount == 0)
               <span class="product-noti__show product-noti__sold-out">Hết</span>
               @else
-              @if($product->discount > 0)
               <span class="product-noti__show product-noti__sale">-{{$product->discount}}%</span>
-              @endif
               @endif
             </div>
             <a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
