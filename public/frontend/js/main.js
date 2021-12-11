@@ -163,7 +163,7 @@ window.addEventListener("load", () => {
             if(data.error !== undefined){
             $('.error-fields').append(data.error);
            }else{
-            Swal.fire({title: data.message, icon: 'success', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000});
+            Swal.fire({title: data.message, icon: 'success', showConfirmButton: false, toast: true, position: 'top', timer: 3000});
             setTimeout(function(){
               location.reload();
             },1000);
@@ -264,8 +264,6 @@ window.addEventListener("load", () => {
           errorElement.innerText = "";
           formGroupElement.classList.remove("invalid");
         }
-
-        return !message;
       };
     };
 
@@ -301,7 +299,6 @@ window.addEventListener("load", () => {
     Validator({
       form: "#form-infor",
       formMessage: ".form-message",
-      formButtonSubmit: ".form-submit",
       rules: [
       Validator.isRequired("#fullname", "Vui lòng nhập đầy đủ họ và tên"),
       Validator.isRequired("#email", "Vui lòng nhập email"),
@@ -315,10 +312,8 @@ window.addEventListener("load", () => {
     Validator({
         form: "#review-form",
         formMessage: ".form-message",
-        formButtonSubmit: ".form-submit",
         rules: [
         Validator.isRequired("#review_author", "Vui lòng nhập đầy đủ họ và tên"),
-        Validator.isFullName("#review_author", "Họ và tên không đúng định dạng"),
         Validator.isRequired("#review_body", "Vui lòng nhập đánh giá"),
         ],
       });
