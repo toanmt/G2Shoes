@@ -52,6 +52,7 @@
                 <div class="col-sm-6 col-md-3"> 
                     <div class="form-group form-focus select-focus">
                         <select name="size[]" class="select floating">
+                            <option>--- Chọn size cần tìm kiếm ----</option>
                             @foreach ($sizes as $size)
                                 <option value="{{ $size->id }}">size {{ $size->size_number }}</option>
                             @endforeach 
