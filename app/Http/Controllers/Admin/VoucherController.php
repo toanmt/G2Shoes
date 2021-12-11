@@ -23,29 +23,34 @@ class VoucherController extends Controller
             return response()->json(['errors'=>'vui lòng nhập đầy đủ thông tin']);
         }else{
             if(!is_numeric($request->percent)){
-                return response()->json(['errors'=>'percent không đúng định dạng']);
+                return response()->json(['errors'=>'phần trăm giảm không đúng định dạng']);
             }elseif((int)$request->percent < 0){
-                return response()->json(['errors'=>'percent không được giá trị âm']);
+                return response()->json(['errors'=>'phần trăm giảm không được giá trị âm']);
             }elseif((int)$request->percent >50){
-                return response()->json(['errors'=>'percent không được quá 50%']);
+                return response()->json(['errors'=>'phần trăm giảm không được quá 50%']);
             }elseif(!is_numeric($request->amount)){
-                return response()->json(['errors'=>'amount không đúng định dạng']);
+                return response()->json(['errors'=>'số lượng không đúng định dạng']);
             }elseif((int)$request->amount < 0){
-                return response()->json(['errors'=>'amount không được giá trị âm']);
+                return response()->json(['errors'=>'số lượng không được giá trị âm']);
             }else{
-                $voucher = new Voucher();
-                $voucher->voucher_name = $request->voucher_name;
-                $voucher->percent = $request->percent;
-                $voucher->amount = $request->amount;
-                $expired_date = implode("-", array_reverse(explode("/", $request->expired_date)));
-                if(time() <= strtotime($expired_date)){
-                    $voucher->expired_date = $expired_date;
+                $voucher_name = Voucher::where('voucher_name',$request->voucher_name)->first();
+                if(!isset($voucher_name)){
+                    $voucher = new Voucher();
+                    $voucher->voucher_name = $request->voucher_name;
+                    $voucher->percent = $request->percent;
+                    $voucher->amount = $request->amount;
+                    $expired_date = implode("-", array_reverse(explode("/", $request->expired_date)));
+                    if(time() <= strtotime($expired_date)){
+                        $voucher->expired_date = $expired_date;
+                    }else{
+                        return response()->json(['errors'=>'Hạn sử dụng không đúng!!!']);
+                    }
+                    $voucher->status = $request->status;
+                    $voucher->save();
                 }else{
-                    return response()->json(['errors'=>'Hạn sử dụng không đúng!!!']);
+                    return response()->json(['errors'=>'Mã giảm giá đã tồn tại']);
                 }
                 
-                $voucher->status = $request->status;
-                $voucher->save();
                 return response()->json(['success'=>'Thêm thành công!!!']);
             }
         }
@@ -71,7 +76,7 @@ class VoucherController extends Controller
                 $voucher->percent = $request->percent;
                 $voucher->amount = $request->amount;
                 $expired_date = implode("-", array_reverse(explode("/", $request->expired_date)));
-                if(strtotime($voucher->expired_date) <= strtotime($expired_date)){
+                if(strtotime($voucher->created_at) <= strtotime($expired_date)){
                     $voucher->expired_date = $expired_date;
                 }else{
                     return response()->json(['errors'=>'Hạn sử dụng không đúng!!!']);
