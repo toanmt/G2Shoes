@@ -161,7 +161,7 @@ window.addEventListener("load", () => {
           processData:false,
           success: function(data){
             if(data.error !== undefined){
-             $('.error-fields').append(data.error);
+            $('.error-fields').append(data.error);
            }else{
             Swal.fire({title: data.message, icon: 'success', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000});
             setTimeout(function(){

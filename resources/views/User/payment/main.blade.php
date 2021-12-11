@@ -190,7 +190,7 @@
                       </div>
                       <div class="product-size">Size: {{ $product['product_size'] }}</div>
                     </td>
-                    <td class="product-price">{{ number_format($product['price'] - ($product['price'] * $product['discount'])/100) }}₫</td>
+                    <td class="product-price">{{ number_format( $product['quantity'] * ($product['price'] - ($product['price'] * $product['discount'])/100)) }}₫</td>
                   </tr>
                 <?php $total_price = $total_price + $product['quantity'] * ($product['price'] - ($product['price'] * $product['discount'])/100); ?>
                 @endforeach
@@ -252,9 +252,9 @@
           var voucher_name = $('#voucher').val();
           $.post(location.origin+'/voucher',$(this).serialize(),function(data){
             if(data.error){
-              alert(data.error);
+              Swal.fire({title: data.error, icon: 'error', confirmButtonText: "OK", buttonsStyling: true});
             }else{
-              alert(data.success);
+              Swal.fire({title: 'Áp dụng voucher thành công!', icon: 'success', showConfirmButton: false, toast: true, position: 'top-end', timer: 3000});
               let currencyFormat = Intl.NumberFormat('en-US');
               var total = $('#subTotal').data('value')*
               (1-parseInt(data.voucher_percent)/100)
@@ -284,7 +284,7 @@
               type: 'GET',
               data: {'status':0},
               success: function(data){
-                alert(data.message);
+                Swal.fire({title: data.message, icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
                 setTimeout((data) => {
                   window.location.href = location.origin;
                 }, 1000);
@@ -342,9 +342,8 @@
                     type: 'GET',
                     data: {'status':1},
                     success: function(data){
-                      alert(data.message);
+                      Swal.fire({title: data.message, icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
                       setTimeout(() => {
-
                         window.location.href = location.origin;
                       }, 1000);
                     }
