@@ -38,7 +38,8 @@
                 </div>
                 <div class="col-sm-6 col-md-3"> 
                     <div class="form-group form-focus select-focus">
-                        <select name="status" class="select floating"> 
+                        <select name="status" class="select floating">
+                            <option value="">Tất cả</option> 
                             <option value="0">Chờ</option>
                             <option value="1">Hoàn thành</option>
                             <option value="2">Đã hủy</option>

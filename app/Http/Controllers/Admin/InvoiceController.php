@@ -86,7 +86,11 @@ class InvoiceController extends Controller
             $created_at = implode("-", array_reverse(explode("/", $request->created_date)));
             $invoices = Invoice::where('created_at','like','%'.$created_at.'%')->get();
         }else{
-            $invoices = Invoice::where('status',$request->status)->get();
+            if($request->status == ''){
+                $invoices = Invoice::all();
+            }else{
+                $invoices = Invoice::where('status',(int)$request->status)->get();
+            }
         }
 
         if(count($invoices) > 0){
