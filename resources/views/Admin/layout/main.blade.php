@@ -86,6 +86,7 @@
   <script src="{{ asset('backend/js/moment.min.js') }}"></script>
   <script src="{{ asset('backend/js/bootstrap-datetimepicker.min.js') }}"></script>
 
+  <script src="{{ asset('backend/js/notify.min.js') }}"></script>
   <!-- Ajax -->
   <script src="{{ asset('backend/js/ajax.js') }}"></script>
   <!-- Export To PDF -->
