@@ -32,9 +32,14 @@ $(document).ready(function(){
             data: formData,
             dataType: 'json',
             success: function(data){
-                setTimeout(function(){
-                    location.reload();
-                },1);
+                if (data.error != null) {
+                    Swal.fire({title: data.error, icon: 'warning', confirmButtonText: "OK", buttonsStyling: true});
+                }
+                else{
+                    setTimeout(function(){
+                        location.reload();
+                    },1);
+                }
             },
             error: function(data){
                 console.log(data);
@@ -227,33 +232,33 @@ $(document).ready(function(){
             e.preventDefault();
             var id = $(this).data('id');
             Swal.fire({title: 'Tên loại sản phẩm',
-            input:'text',inputAttributes: {
-                autocapitalize: 'off'
-              }
-              ,confirmButtonText: "OK"
-              ,showLoaderOnConfirm: true}).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: 'GET',
-                        url: '/admin/edit-type/'+id,
-                        data: {
-                            'typeName': result.value
-                        },
-                        dataType: 'json',
-                        success: function(data){
-                            Swal.fire({title: 'sửa thành công', icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
-                            if(data.ok){
-                                location.reload();
-                            }
-                        },
-                        error: function(data){
-                            Swal.fire({title: 'Có lỗi khi thực hiện', icon: 'warning', confirmButtonText: "OK", buttonsStyling: true});
-                        }
-                    })
+                input:'text',inputAttributes: {
+                    autocapitalize: 'off'
                 }
-              });
-            
-        })
+                ,confirmButtonText: "OK"
+                ,showLoaderOnConfirm: true}).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'GET',
+                            url: '/admin/edit-type/'+id,
+                            data: {
+                                'typeName': result.value
+                            },
+                            dataType: 'json',
+                            success: function(data){
+                                Swal.fire({title: 'sửa thành công', icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
+                                if(data.ok){
+                                    location.reload();
+                                }
+                            },
+                            error: function(data){
+                                Swal.fire({title: 'Có lỗi khi thực hiện', icon: 'warning', confirmButtonText: "OK", buttonsStyling: true});
+                            }
+                        })
+                    }
+                });
+                
+            })
     }
 
     editType();
@@ -280,11 +285,11 @@ $(document).ready(function(){
         var currenUrl = href.split("page=")[0];
         var page = href.split("page=")[1];
         $.get(currenUrl+'page='+page,function(data) {
-                $('#page-image').html($(data).find('#page-image .content'));
-                editImage();
-                deleteImage();
+            $('#page-image').html($(data).find('#page-image .content'));
+            editImage();
+            deleteImage();
         });
-   });
+    });
 
     $('#page-image').on('click','.btn-edit-image',function(e){
         e.preventDefault();
@@ -479,9 +484,10 @@ $(document).ready(function(){
                             "paginate": {
                               "previous": "<",
                               "next": ">"
-                            }
-                          }});
+                          }
+                      }});
                 }else{
+                    $('#product-table').DataTable().destroy();
                     $('#data').text('không tìm thấy sản phẩm nào');
                 }
             }
@@ -588,8 +594,8 @@ $(document).ready(function(){
                     "paginate": {
                       "previous": "<",
                       "next": ">"
-                    }
-                  }});
+                  }
+              }});
             
         })
     });

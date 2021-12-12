@@ -56,7 +56,7 @@ class InvoiceController extends Controller
             <td><a href="invoice-view.html">'.$invoice->id.'</a></td>
             <td>'.$invoice->customer_name.'</td>
             <td>'.$invoice->email.'</td>
-            <td>'.$invoice->created_at->format('jS F Y').'</td>
+            <td>'.$invoice->created_at->format('d/m/Y').'</td>
             <td>'.$total.'</td>
             <td>
                 <div class="dropdown action-label">'
@@ -99,7 +99,7 @@ class InvoiceController extends Controller
                 <td><a href="invoice-view.html">'.$invoice->id.'</a></td>
                 <td>'.$invoice->customer_name.'</td>
                 <td>'.$invoice->email.'</td>
-                <td>'.$invoice->created_at->format('jS F Y').'</td>
+                <td>'.$invoice->created_at->format('d/m/Y').'</td>
                 <td>'.$invoice->shipping_cost.'</td>
                 <td>
                     <div class="dropdown action-label">'

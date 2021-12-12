@@ -152,7 +152,7 @@ class ProductController extends Controller
     
         $product_sizes =  ProductSize::with('sizes')->where('product_id',$product->id)->get();
         foreach($product_sizes as $product_size){
-            $str .= '<button>'.$product_size->sizes->size_number.'</button> ';
+            $str .= '<span class="btn btn-info btn-sm">'.$product_size->sizes->size_number.'</span> ';
         }
         return $str;
         

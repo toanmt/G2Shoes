@@ -7,10 +7,15 @@ $(document).ready(function(){
             data: $('#frm_filter_report').serialize(),
             dataType: 'json',
             success: function(data){
-                chartR.setData(data.chart);
-                $('.pagination').hide();
-                $('#data-invoice-report-show').removeData();
-                $('#data-invoice-report-show').html(data.listinvoice);
+                if (data.error != null) {
+                    Swal.fire({title: data.error, icon: 'warning', confirmButtonText: "OK", buttonsStyling: true});
+                }
+                else{
+                    chartR.setData(data.chart);
+                    $('.pagination').hide();
+                    $('#data-invoice-report-show').removeData();
+                    $('#data-invoice-report-show').html(data.listinvoice);
+                }
             }
         })
     });

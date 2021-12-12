@@ -16,7 +16,6 @@
 								<div class="profile-img-wrap edit-img">
 									<img class="inline-block output image-product" src="">
 									<div class="fileupload btn">
-										<span class="btn-text">Sửa</span>
 										<input name="image_product" class="upload" type="file">
 									</div>
 								</div>
