@@ -475,7 +475,12 @@ $(document).ready(function(){
                     editProduct();
                     deleteProduct();
                     $('#product-table').DataTable({searching:false,
-                        paging: true,pageLength: 10,info: true});
+                        paging: true,pageLength: 10,info: true,"language": {
+                            "paginate": {
+                              "previous": "<",
+                              "next": ">"
+                            }
+                          }});
                 }else{
                     $('#data').text('không tìm thấy sản phẩm nào');
                 }
@@ -579,7 +584,12 @@ $(document).ready(function(){
             $('#data-show').append(data.output);
             editInvoice();
             $('#frm-table-invocie').DataTable({searching:false,
-                paging: true,pageLength: 10,info: true});
+                paging: true,pageLength: 10,info: true,"language": {
+                    "paginate": {
+                      "previous": "<",
+                      "next": ">"
+                    }
+                  }});
             
         })
     });
