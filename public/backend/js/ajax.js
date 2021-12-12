@@ -5,7 +5,7 @@ $(document).ready(function(){
         $('.delete-size').on('click',function(e){
             e.preventDefault();
             var id = $(this).data('id');
-            var choose = confirm('Bạn có muốn xóa size này không?');
+            var choose = Swal.fire({title: 'Bạn có muốn xóa kích thước này không?', confirmButtonText: "OK", buttonsStyling: true});             
             if(choose){
                 $.ajax({
                     type: 'GET',
@@ -15,9 +15,6 @@ $(document).ready(function(){
                         setTimeout(function(){
                             location.reload();
                         },1);
-                    },
-                    error: function(data){
-                        console.log(data);
                     }
                 })
             }
@@ -229,20 +226,33 @@ $(document).ready(function(){
         $('.btn-edit-type').on('click',function(e){
             e.preventDefault();
             var id = $(this).data('id');
-            var name = prompt('Type name: ');
-            $.ajax({
-                type: 'GET',
-                url: '/admin/edit-type/'+$(this).data('id'),
-                data: {
-                    'typeName': name
-                },
-                dataType: 'json',
-                success: function(data){
-                    if(data.ok){
-                        location.reload();
-                    }
+            Swal.fire({title: 'Tên loại sản phẩm',
+            input:'text',inputAttributes: {
+                autocapitalize: 'off'
+              }
+              ,confirmButtonText: "OK"
+              ,showLoaderOnConfirm: true}).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/admin/edit-type/'+id,
+                        data: {
+                            'typeName': result.value
+                        },
+                        dataType: 'json',
+                        success: function(data){
+                            Swal.fire({title: 'sửa thành công', icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
+                            if(data.ok){
+                                location.reload();
+                            }
+                        },
+                        error: function(data){
+                            Swal.fire({title: 'Có lỗi khi thực hiện', icon: 'warning', confirmButtonText: "OK", buttonsStyling: true});
+                        }
+                    })
                 }
-            })
+              });
+            
         })
     }
 
@@ -253,11 +263,11 @@ $(document).ready(function(){
         var formData = $(this).serialize();
         $.post($(this).attr('action'),formData,function(data){
             if(data.error !== undefined){
-                alert(data.error);
+                Swal.fire({title: data.errors, icon: 'warning', confirmButtonText: "OK", buttonsStyling: true});
             }
 
             if(data.success !== undefined){
-                alert(data.success);
+                Swal.fire({title: data.success, icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
                 location.href = data.url;
             }
         });
@@ -269,7 +279,6 @@ $(document).ready(function(){
         let href = $(this).attr('href');
         var currenUrl = href.split("page=")[0];
         var page = href.split("page=")[1];
-        console.log(currenUrl);
         $.get(currenUrl+'page='+page,function(data) {
                 $('#page-image').html($(data).find('#page-image .content'));
                 editImage();
@@ -299,16 +308,11 @@ $(document).ready(function(){
                 contentType:false,
                 processData:false,
                 success: function(data){
-                    alert(data.success);
+                    Swal.fire({title: data.success, icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
                     setTimeout(function(){
                         location.reload();
                     },1);
-                },
-                error: function(data){
-                    console.log(data);
-
                 }
-
             })
         })
     };
@@ -324,7 +328,7 @@ $(document).ready(function(){
         $('.btn-del-image').click(function(e){
             var id = $(this).data('id');
             $.get('/admin/delete-image/'+id,function(data){
-                alert(data.success);
+                Swal.fire({title: data.success, icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
                 setTimeout(function(){
                     location.reload();
                 },1);
@@ -338,8 +342,6 @@ $(document).ready(function(){
         e.preventDefault();
         $.get(location.origin+'/admin/image-product?product_name='+$('#query').val(),function(data){
             if($(data).find('#page-image .data-show').children().length > 0){
-                
-
                 $(data).find('.main-wrapper').attr('id','page-image');
                 $('#page-image').html($(data).find('#page-image .content'))
                 editImage();
@@ -358,7 +360,6 @@ $(document).ready(function(){
 
         $.get('/admin/products/'+id,function(data){
             if(data.image_product.length > 0){
-
                 $('.abc').css('border','none');
                 $('.btn-text').hide();
                 $('.img-output').remove();
@@ -397,9 +398,9 @@ $(document).ready(function(){
             processData:false,
             success: function(data){
                 if(data.error !== undefined){
-                    alert(data.error);
+                    Swal.fire({title: data.error, icon: 'warning', confirmButtonText: "OK", buttonsStyling: true});
                 }else{
-                    alert(data.success);
+                    Swal.fire({title: data.success, icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
                     setTimeout(function(){
                         location.reload();
                     },1);
@@ -425,9 +426,9 @@ $(document).ready(function(){
                 processData:false,
                 success: function(data){
                     if(data.error !== undefined){
-                        alert(data.error);
+                        Swal.fire({title: data.error, icon: 'warning', confirmButtonText: "OK", buttonsStyling: true});
                     }else{
-                        alert(data.success);
+                        Swal.fire({title: data.success, icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
                         setTimeout(function(){
                             location.reload();
                         },1);
@@ -450,7 +451,6 @@ $(document).ready(function(){
         $('.del-product').on('click',function(e){
             e.preventDefault();
             $.get('/admin/delete-product/'+$(this).data('id'),function(data){
-                console.log(data);
                 if(data.ok){
                     location.reload();
                 }
@@ -468,7 +468,6 @@ $(document).ready(function(){
             data: formData,
             dataType: 'json',
             success: function(data){
-                console.log(data);
                 if(data.output != ''){
                     $('#product-table').DataTable().destroy();
                     $('#data').empty();
@@ -478,11 +477,8 @@ $(document).ready(function(){
                     $('#product-table').DataTable({searching:false,
                         paging: true,pageLength: 10,info: true});
                 }else{
-                    alert('không tìm thấy sản phẩm nào');
+                    $('#data').text('không tìm thấy sản phẩm nào');
                 }
-            },
-            error: function(data){
-                console.log(data);
             }
         })
     });
@@ -494,10 +490,10 @@ $(document).ready(function(){
         var formData = $(this).serialize();
         $.post($(this).attr('action'),formData,function(data){
             if(data.errors != undefined){
-                alert(data.errors);
+                Swal.fire({title: data.errors, icon: 'warning', confirmButtonText: "OK", buttonsStyling: true});
             }
             if(data.success != undefined){
-                alert(data.success);
+                Swal.fire({title: data.success, icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
                 setTimeout(function(){
                     location.reload();
                 },1);
@@ -508,7 +504,6 @@ $(document).ready(function(){
     $('#voucher-table').on('click','.btn-edit-voucher',function(e){
         var id = $(this).data('id');
         $.get('/admin/voucher/'+id,function(data){
-
             $('.edit-name-voucher').val(data.voucher_name);
             $('.edit-percent-voucher').val(data.percent);
             $('.edit-amount-voucher').val(data.amount);
@@ -516,7 +511,6 @@ $(document).ready(function(){
             // var date_expired = date.getDay()+'/'+date.getMonth+'/'+date.getFullYear();
             $(".edit-date-voucher").val(time.getDate()+'/'+(time.getMonth()+1)+'/'+time.getFullYear());
             $('.edit-status-voucher').val(data.status).trigger('change');
-
             $('#frm-edit-voucher').attr('action',location.origin+'/admin/edit-voucher/'+id);
         })
     });
@@ -527,10 +521,10 @@ $(document).ready(function(){
             e.preventDefault();
             $.post($(this).attr('action'),$(this).serialize(),function(data){
                 if(data.errors != undefined){
-                    alert(data.errors);
+                    Swal.fire({title: data.errors, icon: 'warning', confirmButtonText: "OK", buttonsStyling: true});
                 }
                 if(data.success != undefined){
-                    alert(data.success);
+                    Swal.fire({title: data.success, icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
                     setTimeout(function(){
                         location.reload();
                     },1);
@@ -580,7 +574,6 @@ $(document).ready(function(){
         e.preventDefault();
         var formData = $(this).serialize();
         $.post($(this).attr('action'),formData,function(data){
-            console.log(data);
             $('#frm-table-invocie').DataTable().destroy();
             $('#data-show').empty();
             $('#data-show').append(data.output);
@@ -596,9 +589,9 @@ $(document).ready(function(){
         var id = $(this).data('id');
         $.get('/admin/send-invoice/'+id,function(data){
             if(data.error != undefined){
-                alert(data.error);
+                Swal.fire({title: data.error, icon: 'warning', confirmButtonText: "OK", buttonsStyling: true});
             }else{
-                alert(data.success);
+                Swal.fire({title: data.success, icon: 'success', confirmButtonText: "OK", buttonsStyling: true});
             }
         });
     });
