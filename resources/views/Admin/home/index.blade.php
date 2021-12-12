@@ -23,7 +23,7 @@
     </div>
     <!-- /Page Header -->
     
-    <h2>Today </h2>
+    <h2>Hôm nay: {{$data_today->datenow}}</h2>
     <div class="row">
       <div class="col-md-6 col-sm-6 col-lg-6">
         <div class="card dash-widget">
@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <h2> Thống kê trong tháng </h2>
+    <h2> Thống kê trong tháng {{$data_today->monthnow}}</h2>
     <div class="card">
       <div class="card-body">
         <h3 class="card-title">Tổng doanh thu</h3>

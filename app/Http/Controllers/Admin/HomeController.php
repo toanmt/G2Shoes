@@ -18,7 +18,8 @@ class HomeController extends Controller
         -> join('invoices', 'invoices.id', '=', 'invoice_details.invoice_id')
         -> leftjoin('vouchers', 'invoices.voucher_id', '=', 'vouchers.id')
         ->select(DB::raw('
-            DATE(NOW()) as datenow,
+            DATE_FORMAT(NOW(),"%m/%Y") as monthnow,
+            DATE_FORMAT(NOW(),"%d/%m/%Y") as datenow,
             IFNULL(SUM(invoice_details.amount * products.price *(100 - vouchers.percent )/ 100 + invoices.shipping_cost ),SUM(invoice_details.amount * products.price  + invoices.shipping_cost )) as sum,
             Count(invoices.id) as count'))
         ->whereRaw("DATE(invoices.created_at) = DATE(NOW())")
