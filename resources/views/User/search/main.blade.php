@@ -1,6 +1,6 @@
 @extends('User.layout.main')
 @section('content')
-<section class="product">
+<section class="product product-home">
 	<div class="product-heading">
 		<h2 class="heading heading-title">Kết quả tìm kiếm</h2>
 		<p>Có <span style="font-weight: 700">{{$search->count()}}</span> sản phẩm phù hợp với từ khoá <span style="font-weight: 700">"{{$keywords}}"</span></p>
