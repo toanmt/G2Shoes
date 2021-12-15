@@ -29,7 +29,7 @@
 						@endif
 						@endif
 					</div>
-					<a href="#" class="product-image__link">
+					<a href="{{ URL::to('/product_details/'.$product->id)}}" class="product-image__link">
 						@foreach($product->images as $image) 
 						@if($size_amount != 0) 
             <img src="{{ asset('Image/'.$image->image_name) }}" alt="" />

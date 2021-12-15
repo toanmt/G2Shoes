@@ -93,7 +93,7 @@ class BrandController extends Controller
 		if($request->price_list) {
 			switch ($request->price_list) {
 				case 1:
-					$product = $product->whereBetween('price', [0, 1000000]);
+					$product = $product->where('price', '<' , 1000000);
 					break;
 				case 2:
 					$product = $product->whereBetween('price', [1000000, 2000000]);
