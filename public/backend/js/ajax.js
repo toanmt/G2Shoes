@@ -5,8 +5,21 @@ $(document).ready(function(){
         $('.delete-size').on('click',function(e){
             e.preventDefault();
             var id = $(this).data('id');
-            var choose = Swal.fire({title: 'Bạn có muốn xóa kích thước này không?', confirmButtonText: "OK", buttonsStyling: true});             
-            if(choose){
+            Swal.fire({
+                title: 'Bạn có chắc muốn xóa không?',
+                text: "Bạn sẽ xóa thông tin này!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xóa!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire(
+                  'Đã xóa!',
+                  'Size bạn lựa chọn đã được xóa.',
+                  'Thành công'
+                  )
                 $.ajax({
                     type: 'GET',
                     url: '/admin/delete-size/'+id,
@@ -14,10 +27,11 @@ $(document).ready(function(){
                     success: function(data){
                         setTimeout(function(){
                             location.reload();
-                        },1);
+                        },3);
                     }
                 })
             }
+        }); 
         })
     }
 
@@ -207,7 +221,9 @@ $(document).ready(function(){
     function deltype(){
         $('.btn-delete-type').click(function(){
             var key = $(this).data('id');
+
             $('.btn-del-type').attr('data-id',key);
+            $('.nameType').html($(this).data('name'));
             $('.btn-edit-type').attr('data-id',key);
         })
     };
@@ -488,7 +504,7 @@ $(document).ready(function(){
                       }});
                 }else{
                     $('#product-table').DataTable().destroy();
-                    $('#data').text('không tìm thấy sản phẩm nào');
+                    $('#data').text('Không tìm thấy sản phẩm nào');
                 }
             }
         })

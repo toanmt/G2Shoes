@@ -125,7 +125,7 @@ class ProductController extends Controller
                 }
                 
                 if(!$request->hasFile('image_product')){
-                    return response()->json(['success'=>'sửa thành công']);
+                    return response()->json(['success'=>'Sửa thành công']);
                 }else{
                     $image_products = Image::where('product_id',$id)->get();
                     $image = $request->file('image_product');

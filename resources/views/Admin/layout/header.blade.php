@@ -19,7 +19,7 @@
 
   <!-- Header Title -->
   <div class="page-title-box">
-    <h3>G2 - Dev</h3>
+    <h3>G2 Shoes</h3>
   </div>
   <!-- /Header Title -->
 

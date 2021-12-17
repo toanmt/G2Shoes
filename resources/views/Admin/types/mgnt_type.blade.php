@@ -4,7 +4,7 @@
 		<div class="modal-content">
 			<div class="modal-body">
 				<div class="form-header">
-					<h3>Quản lý loại sản phẩm</h3>
+					<h3><div class="nameType"></div></h3>
 				</div>
 				<div class="modal-btn delete-action">
 					<div class="row">

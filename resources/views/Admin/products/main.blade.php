@@ -54,7 +54,7 @@
                         <select name="size" class="select floating">
                             <option value="">--- Chọn size cần tìm kiếm ----</option>
                             @foreach ($sizes as $size)
-                                <option value="{{ $size->id }}">size {{ $size->size_number }}</option>
+                                <option value="{{ $size->id }}">Size {{ $size->size_number }}</option>
                             @endforeach 
                         </select>
                         <label class="focus-label">Sizes</label>

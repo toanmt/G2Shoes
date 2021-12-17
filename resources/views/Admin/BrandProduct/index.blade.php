@@ -49,7 +49,7 @@
 								<td>
 									@foreach ($types as $type)
 										@if ($type->brand_id == $brand->id)	
-											<a href="#" class="btn-delete-type" data-id="{{ $type->id}}" data-toggle="modal" data-target="#mgnt_type">
+											<a href="#" class="btn-delete-type" data-id="{{ $type->id}}" data-name="{{ $type->type_name}}" data-toggle="modal" data-target="#mgnt_type">
 												{{ $type->type_name}}
 											</a> <br>
 										@endif

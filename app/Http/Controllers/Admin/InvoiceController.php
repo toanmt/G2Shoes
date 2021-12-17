@@ -124,7 +124,7 @@ class InvoiceController extends Controller
 
             return response()->json(['output'=>$output]);
         }else{
-            return response()->json(['output'=>'không tìm thấy thông tin này!!!']);
+            return response()->json(['output'=>'']);
         }
     }
 
